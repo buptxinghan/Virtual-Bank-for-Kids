@@ -58,7 +58,7 @@ public class VirtualBankApplication {
     }
 
     // 设置任务
-    public boolean setMission(Mission mission) {
+    public boolean setMission(Task task) {
         // 设置任务逻辑
         // 添加到missions列表
         return true;
@@ -81,7 +81,7 @@ public class VirtualBankApplication {
 
     // 主函数，用于测试
     public static void main(String[] args) {
-        VirtualBankSystem system = new VirtualBankSystem();
+        VirtualBankApplication application = new VirtualBankApplication();
         // 测试系统功能
     }
 }
