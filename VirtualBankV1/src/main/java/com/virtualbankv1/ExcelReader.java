@@ -23,11 +23,11 @@ public class ExcelReader {
             for (Row row : accountsSheet) {
                 if (row.getRowNum() == 0) continue; // 跳过标题行
                 Account account = new Account();
-                account.setAccountId((int) row.getCell(0).getNumericCellValue());
-                account.setUsername(row.getCell(1).getStringCellValue());
-                account.setAccountType(row.getCell(2).getStringCellValue());
-                account.setBalance(row.getCell(3).getNumericCellValue());
-                account.setStatus(row.getCell(4).getStringCellValue());
+               account.setAccountId((int) row.getCell(0).getNumericCellValue());
+               account.setUsername(row.getCell(1).getStringCellValue());
+               account.setAccountType(row.getCell(2).getStringCellValue());
+               account.setBalance(row.getCell(3).getNumericCellValue());
+               account.setStatus(row.getCell(4).getStringCellValue());
                 accounts.add(account);
             }
 
