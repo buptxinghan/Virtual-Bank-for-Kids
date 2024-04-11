@@ -1,4 +1,4 @@
-package softwareEngineering.VirtualBankV1.src.main.java.com.virtualbankv1;
+package com.virtualbankv1;
 // 用户账户类
 
 public class Account {

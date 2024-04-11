@@ -1,4 +1,4 @@
-package softwareEngineering.VirtualBankV1.src.main.java.com.virtualbankv1;
+package com.virtualbankv1;
 
 import java.util.List;
 import java.util.ArrayList;

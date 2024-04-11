@@ -1,4 +1,4 @@
-package softwareEngineering.VirtualBankV1.src.main.java.com.virtualbankv1;
+package com.virtualbankv1;
 
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
