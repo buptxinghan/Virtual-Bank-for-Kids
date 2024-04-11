@@ -1,6 +1,8 @@
 package com.virtualbankv1;
 // 主页界面类
 
+import softwareEngineering.VirtualBankV1.src.main.java.com.virtualbankv1.Account;
+
 import java.awt.*;
 import java.awt.BorderLayout;
 import java.awt.Button;

@@ -1,4 +1,4 @@
-package com.virtualbankv1;
+package softwareEngineering.VirtualBankV1.src.main.java.com.virtualbankv1;
 // ... 登录、登出和注册方法
 
 import java.util.List;

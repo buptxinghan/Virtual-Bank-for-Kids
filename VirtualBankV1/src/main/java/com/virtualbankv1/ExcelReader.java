@@ -1,4 +1,4 @@
-package com.virtualbankv1;
+package softwareEngineering.VirtualBankV1.src.main.java.com.virtualbankv1;
 
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
@@ -12,7 +12,7 @@ public class ExcelReader {
     public static void main(String[] args) {
         // 存储从Excel文件读取的数据
         List<Account> accounts = new ArrayList<>();
-        List<Transaction> transactions = new ArrayList<>();
+        List<com.virtualbankv1.Transaction> transactions = new ArrayList<>();
         // ... 其他列表
 
         try (FileInputStream inputStream = new FileInputStream("VirtualBankData.xlsx")) {
@@ -25,7 +25,7 @@ public class ExcelReader {
                 Account account = new Account();
                account.setAccountId((int) row.getCell(0).getNumericCellValue());
                account.setUsername(row.getCell(1).getStringCellValue());
-               account.setAccountType(row.getCell(2).getStringCellValue());
+               account.setType(row.getCell(2).getStringCellValue());
                account.setBalance(row.getCell(3).getNumericCellValue());
                account.setStatus(row.getCell(4).getStringCellValue());
                 accounts.add(account);
