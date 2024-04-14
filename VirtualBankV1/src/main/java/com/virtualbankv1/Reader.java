@@ -6,136 +6,145 @@ import java.util.*;
 public class Reader {
 
     public List<User> readUsers(String filePath) {
-        List<String[]> rawData = readCSV(filePath);
         List<User> users = new ArrayList<>();
-        for (String[] data : rawData) {
-            if (data[0].equals("Username")) { // 跳过标题行
-                continue;
+        try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
+            String line;
+            br.readLine(); // 跳过标题行
+            while ((line = br.readLine()) != null) {
+                String[] values = line.split(",");
+                User user = new User(
+                        values[0], // Username
+                        values[1]  // Password
+                );
+                users.add(user);
             }
-            User user = new User(
-                    data[0], //Username
-                    data[1]  //Password
-            ); // 创建User对象
-            users.add(user);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
         return users;
     }
 
+
     public List<Account> readAccounts(String filePath) {
-        List<String[]> rawData = readCSV(filePath);
         List<Account> accounts = new ArrayList<>();
-        for (String[] data : rawData) {
-            if (data[0].equals("AccountID")) { // 跳过标题行
-                continue;
+        try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
+            String line;
+            br.readLine(); // 跳过标题行
+            while ((line = br.readLine()) != null) {
+                String[] values = line.split(",");
+                Account account = new Account(
+                        values[0], // AccountID
+                        values[1], // AccountType
+                        values[2], // Username
+                        values[3], // Password
+                        Double.parseDouble(values[4]), // Balance
+                        values[5]  // Status
+                );
+                accounts.add(account);
             }
-            Account account = new Account(
-                    data[0], // AccountID
-                    data[1], // AccountType
-                    data[2], // Username
-                    data[3], // password
-                    Double.parseDouble(data[4]), // Balance
-                    data[5]  // Status
-            );
-            accounts.add(account);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
         return accounts;
     }
 
     public List<Goal> readGoals(String filePath) {
-        List<String[]> rawData = readCSV(filePath);
         List<Goal> goals = new ArrayList<>();
-        for (String[] data : rawData) {
-            if (data[0].equals("GoalID")) { // 跳过标题行
-                continue;
+        try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
+            String line;
+            br.readLine(); // 跳过标题行
+            while ((line = br.readLine()) != null) {
+                String[] values = line.split(",");
+                Goal goal = new Goal(
+                        values[0], // GoalID
+                        values[1], // Description
+                        Double.parseDouble(values[2]), // TargetAmount
+                        Double.parseDouble(values[3]), // CurrentAmount
+                        values[4]  // Status
+                );
+                goals.add(goal);
             }
-            Goal goal = new Goal(
-                    data[0], // GoalID
-                    data[1], // Description
-                    Double.parseDouble(data[2]), // TargetAmount
-                    Double.parseDouble(data[3]), // CurrentAmount
-                    data[4]  // Status
-            );
-            goals.add(goal);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
         return goals;
     }
 
     public List<Task> readTasks(String filePath) {
-        List<String[]> rawData = readCSV(filePath);
         List<Task> tasks = new ArrayList<>();
-        for (String[] data : rawData) {
-            if (data[0].equals("TaskID")) { // 跳过标题行
-                continue;
+        try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
+            String line;
+            br.readLine(); // 跳过标题行
+            while ((line = br.readLine()) != null) {
+                String[] values = line.split(",");
+                Task task = new Task(
+                        values[0], // TaskID
+                        values[1], // Description
+                        Double.parseDouble(values[2]), // Reward
+                        Boolean.parseBoolean(values[3]), // IsCompleted
+                        Integer.parseInt(values[4]) // Counter
+                );
+                tasks.add(task);
             }
-            Task task = new Task(
-                    data[0], // TaskID
-                    data[1], // Description
-                    Double.parseDouble(data[2]), // Reward
-                    Boolean.parseBoolean(data[3]), // IsCompleted
-                    Integer.parseInt(data[4]) // Counter
-            );
-            tasks.add(task);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
         return tasks;
     }
 
     public List<SupportSystem> readSupport(String filePath) {
-        List<String[]> rawData = readCSV(filePath);
         List<SupportSystem> supports = new ArrayList<>();
-        for (String[] data : rawData) {
-            if (data[0].equals("SupportID")) { // 跳过标题行
-                continue;
+        try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
+            String line;
+            br.readLine(); // 跳过标题行
+            while ((line = br.readLine()) != null) {
+                String[] values = line.split(",");
+                SupportSystem support = new SupportSystem(
+                        values[0], // FAQ ID
+                        values[1], // Question
+                        values[2], // Answer
+                        values[3], // Guide
+                        values[4]  // ContactInfo
+                );
+                supports.add(support);
             }
-            SupportSystem support = new SupportSystem(
-                    data[0], // FAQ ID
-                    data[1], // Question
-                    data[2], // Answer
-                    data[3], // Guide
-                    data[4]  // ContactInfo
-            );
-            supports.add(support);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
         return supports;
     }
 
     public List<Transaction> readTransactions(String filePath) {
-        List<String[]> rawData = readCSV(filePath);
         List<Transaction> transactions = new ArrayList<>();
-        for (String[] data : rawData) {
-            if (data[0].equals("TransactionID")) { // 跳过标题行
-                continue;
+        try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
+            String line;
+            br.readLine(); // 跳过标题行
+            while ((line = br.readLine()) != null) {
+                String[] values = line.split(",");
+                Transaction transaction = new Transaction(
+                        values[0], // TransactionID
+                        values[1], // UserFrom
+                        values[2], // UserTo
+                        Double.parseDouble(values[3]) // Amount
+                );
+                transactions.add(transaction);
             }
-            Transaction transaction = new Transaction(
-                    data[0], // TransactionID
-                    data[1], // UserFrom,,
-                    data[2], // UserTo
-                    Double.parseDouble(data[3]) // Amount
-            );
-            transactions.add(transaction);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
         return transactions;
     }
 
 
-    // 通用的CSV读取方法 //需修改
-    public List<String[]> readCSV(String filePath) {
-        List<String[]> data = new ArrayList<>();
-        try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
-            String line;
-            while ((line = br.readLine()) != null) {
-                String[] values = line.split(",");
-                data.add(values);
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return data;
-    }
 
     public static void main(String[] args) {
         Reader reader = new Reader();
-        List<Account> accounts =  reader.readAccounts("src/main/Data/User.csv");
-
+        List<User> users = reader.readUsers("src/main/Data/User.csv");
+        List<Account> accounts =  reader.readAccounts("src/main/Data/Accounts.csv");
+        List<Transaction> transactions = reader.readTransactions("src/main/Data/Transactions.csv");
+        List<Task> tasks = reader.readTasks("src/main/Data/Tasks.csv");
+        List<Goal> goals = reader.readGoals("src/main/Data/Goals.csv");
+        List<SupportSystem> support = reader.readSupport("src/main/Data/Support.csv");
         // 测试系统功能
     }
 }
