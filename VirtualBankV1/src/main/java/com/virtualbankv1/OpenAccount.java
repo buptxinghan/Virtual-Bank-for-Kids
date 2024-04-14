@@ -106,7 +106,7 @@ public class OpenAccount extends JFrame implements ActionListener{//9 assets
             //弹窗密码不一致
         }
         else {
-            Account account =new Account(str1,str3);
+            Account account =new Account(str1,str3,"a","b", 0.1, "s");
             //弹窗成功创建
             //存储进csv
         }

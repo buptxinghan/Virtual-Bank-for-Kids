@@ -16,7 +16,12 @@ public class AccountManager {
     private JTextField holderTextField, idTextField, typeTextField, balanceTextField, dateTextField;
     private JButton returnButton, withdrawButton, TransferInButton, freezeButton, deleteButton;
 
-    public AccountManager() {
+    public AccountManager(String accountID) {
+        accountManagerGUI(accountID);
+
+    }
+
+    public void accountManagerGUI(String accountID) {
 
 
         // Create a window
@@ -117,8 +122,8 @@ public class AccountManager {
     }
 
     public static void main(String[] args) {
-
-        new AccountManager();
+        String accountID = "000001";
+        new AccountManager(accountID);
 
     }
 }

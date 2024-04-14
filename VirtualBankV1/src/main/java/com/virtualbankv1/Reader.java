@@ -5,7 +5,7 @@ import java.util.*;
 
 public class Reader {
 
-    // 读取User.csv文件并存储到变量中
+    // 读取User.csv文件并存储到变量中 //需修改
     public List<User> readUsers(String filePath) {
         List<String[]> rawData = readCSV(filePath);
         List<User> users = new ArrayList<>();
@@ -33,7 +33,7 @@ public class Reader {
         return accounts;
     }
 
-    // 读取Goals.csv文件并存储到变量中
+    // 读取Goals.csv文件并存储到变量中 //需修改
     public List<Goal> readGoals(String filePath) {
         List<String[]> rawData = readCSV(filePath);
         List<Goal> goals = new ArrayList<>();
@@ -44,7 +44,7 @@ public class Reader {
         return goals;
     }
 
-    // 读取Tasks.csv文件并存储到变量中
+    // 读取Tasks.csv文件并存储到变量中 //需修改
     public List<Task> readTasks(String filePath) {
         List<String[]> rawData = readCSV(filePath);
         List<Task> tasks = new ArrayList<>();
@@ -55,7 +55,7 @@ public class Reader {
         return tasks;
     }
 
-    // 读取Support.csv文件并存储到变量中
+    // 读取Support.csv文件并存储到变量中 //需修改
     public List<SupportSystem> readSupport(String filePath) {
         List<String[]> rawData = readCSV(filePath);
         List<SupportSystem> supports = new ArrayList<>();
@@ -66,18 +66,18 @@ public class Reader {
         return supports;
     }
 
-    // 读取Transactions.csv文件并存储到变量中
-    public List<Transactions> readTransactions(String filePath) {
+    // 读取Transactions.csv文件并存储到变量中 //需修改
+    public List<Transaction> readTransactions(String filePath) {
         List<String[]> rawData = readCSV(filePath);
-        List<Transactions> transactions = new ArrayList<>();
+        List<Transaction> transactions = new ArrayList<>();
         for (String[] data : rawData) {
-            Transactions transaction = new Transactions(data[0], data[1], data[2], data[3], data[4]); // 假设Transactions类有一个构造函数接受所有属性
+            Transaction transaction = new Transaction(data[0], data[1], data[2], Double.parseDouble(data[3])); // 假设Transaction类有一个构造函数接受所有属性
             transactions.add(transaction);
         }
         return transactions;
     }
 
-    // 通用的CSV读取方法
+    // 通用的CSV读取方法 //需修改
     public List<String[]> readCSV(String filePath) {
         List<String[]> data = new ArrayList<>();
         try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {

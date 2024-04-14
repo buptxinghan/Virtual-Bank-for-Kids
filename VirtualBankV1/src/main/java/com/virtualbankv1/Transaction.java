@@ -2,13 +2,16 @@ package com.virtualbankv1;
 
 public class Transaction {
 
-
+    private String transactionID;
+    private String userFrom;
+    private String userTo;
+    private double amount;
 
     // 转账
-    public boolean transfer(User fromUser, User toUser, double amount) {
-        // 转账逻辑
-        // 更新两个账户的余额
-        // 记录交易
-        return true;
+    public Transaction(String transactionID, String userFrom, String userTo, double amount) {
+        this.transactionID = transactionID;
+        this.userFrom = userFrom;
+        this.userTo = userTo;
+        this.amount = amount;
     }
 }
