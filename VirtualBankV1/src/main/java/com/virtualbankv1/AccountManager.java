@@ -12,9 +12,6 @@ import java.util.List;
 public class AccountManager {
 
     // Create an account
-    private JFrame frame;
-    private JTextField holderTextField, idTextField, typeTextField, balanceTextField, dateTextField;
-    private JButton returnButton, withdrawButton, TransferInButton, freezeButton, deleteButton;
 
     public AccountManager(Account account) {
         accountManagerGUI(account);
@@ -23,82 +20,116 @@ public class AccountManager {
 
     public void accountManagerGUI(Account account) {
 
-        // Create a window
-        frame = new JFrame("Account Information");
-        frame.setSize(1200, 900);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setLayout(null);
+        JFrame frame;
+        JLabel holderLabel, idLabel, typeLabel, balanceLabel, dateLabel;
+        JButton returnButton, withdrawButton, TransferInButton, freezeButton, deleteButton;
 
-        // Title
-        JLabel titleLabel = new JLabel("Account Information");
-        titleLabel.setBounds(10, 10, 200, 25);
-        frame.add(titleLabel);
+        // Create a window and set its size
+        frame = new JFrame("Account Information");
+        frame.setSize(1400, 1000); // Set the initial size of the window
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setLayout(new BorderLayout());
+
+        // Title with larger font and centered in the North area
+        JLabel titleLabel = new JLabel("Account Information", SwingConstants.CENTER);
+        titleLabel.setFont(new Font("Serif", Font.BOLD, 60));
+        frame.add(titleLabel, BorderLayout.NORTH);
+
+        // Panel for information fields with margins on the sides
+        JPanel infoPanelWithMargins = new JPanel(new BorderLayout());
+        infoPanelWithMargins.setBorder(BorderFactory.createEmptyBorder(0, 50, 0, 50)); // Top, left, bottom, right margins
+
+        // Panel for information fields in the center area
+        JPanel infoPanel = new JPanel();
+        infoPanel.setLayout(new GridLayout(5, 2, 10, 10)); // 5 rows, 2 columns, with padding
+
+        // Custom font for information fields and buttons
+        Font infoFont = new Font("Arial", Font.PLAIN, 32);
 
         // Account holder information
-        JLabel holderLabel = new JLabel("Account holder:");
-        holderLabel.setBounds(10, 40, 100, 25);
-        frame.add(holderLabel);
-
-        holderTextField = new JTextField(20);
-        holderTextField.setBounds(120, 40, 165, 25);
-        frame.add(holderTextField);
+        holderLabel = new JLabel("Account Holder: " + account.getUsername());
+        holderLabel.setFont(infoFont);
+        infoPanel.add(holderLabel);
 
         // Account ID information
-        JLabel idLabel = new JLabel("AccountID:");
-        idLabel.setBounds(10, 70, 100, 25);
-        frame.add(idLabel);
-
-        idTextField = new JTextField(20);
-        idTextField.setText(account.getAccountID());
-        frame.add(idTextField);
+        idLabel = new JLabel("Account ID: " + account.getAccountID());
+        idLabel.setFont(infoFont);
+        infoPanel.add(idLabel);
 
         // Account type information
-        JLabel typeLabel = new JLabel("AccountType:");
-        typeLabel.setBounds(10, 100, 100, 25);
-        frame.add(typeLabel);
-
-        typeTextField = new JTextField(20);
-        typeTextField.setBounds(120, 100, 165, 25);
-        frame.add(typeTextField);
+        typeLabel = new JLabel("Account Type: " + account.getAccountType());
+        typeLabel.setFont(infoFont);
+        infoPanel.add(typeLabel);
 
         // Account balance information
-        JLabel balanceLabel = new JLabel("Account Balance:");
-        balanceLabel.setBounds(10, 130, 100, 25);
-        frame.add(balanceLabel);
+        balanceLabel = new JLabel("Account Balance: $" + account.getBalance());
+        balanceLabel.setFont(infoFont);
+        infoPanel.add(balanceLabel);
 
-        balanceTextField = new JTextField(20);
-        balanceTextField.setBounds(120, 130, 165, 25);
-        frame.add(balanceTextField);
+        // Account opening date information
+        dateLabel = new JLabel("Account Status: " + account.getStatus());
+        dateLabel.setFont(infoFont);
+        infoPanel.add(dateLabel);
 
-        // Account opening time information
-        JLabel dateLabel = new JLabel("Open Date:");
-        dateLabel.setBounds(10, 160, 100, 25);
-        frame.add(dateLabel);
+        // Add the information panel to the panel with margins
+        infoPanelWithMargins.add(infoPanel, BorderLayout.CENTER);
 
-        dateTextField = new JTextField(20);
-        dateTextField.setBounds(120, 160, 165, 25);
-        frame.add(dateTextField);
+        // Add the information panel with margins to the center area of the frame
+        frame.add(infoPanelWithMargins, BorderLayout.CENTER);
 
-        // Buttons
+        // South panel that will contain both the buttons and the blank space
+        JPanel southPanel = new JPanel(new BorderLayout());
+
+        // Panel for buttons with margins on the sides
+        JPanel buttonPanelWithMargins = new JPanel(new BorderLayout());
+        buttonPanelWithMargins.setBorder(BorderFactory.createEmptyBorder(0, 50, 0, 50)); // Top, left, bottom, right margins
+
+        // Panel for buttons
+        JPanel buttonPanel = new JPanel();
+        buttonPanel.setLayout(new GridLayout(1, 5, 10, 0)); // 1 row, 5 columns, with padding
+
+        // Custom dimension for buttons
+        Dimension buttonSize = new Dimension(280, 40);
+
+        // Buttons with larger font and custom width
         returnButton = new JButton("Return");
-        returnButton.setBounds(10, 190, 80, 25);
-        frame.add(returnButton);
+        returnButton.setFont(infoFont);
+        returnButton.setPreferredSize(buttonSize);
+        buttonPanel.add(returnButton);
 
         withdrawButton = new JButton("Withdraw");
-        withdrawButton.setBounds(95, 190, 100, 25);
-        frame.add(withdrawButton);
+        withdrawButton.setFont(infoFont);
+        withdrawButton.setPreferredSize(buttonSize);
+        buttonPanel.add(withdrawButton);
 
         TransferInButton = new JButton("Transfer In");
-        TransferInButton.setBounds(200, 190, 130, 25);
-        frame.add(TransferInButton);
+        TransferInButton.setFont(infoFont);
+        TransferInButton.setPreferredSize(buttonSize);
+        buttonPanel.add(TransferInButton);
 
         freezeButton = new JButton("Freeze Account");
-        freezeButton.setBounds(335, 190, 130, 25);
-        frame.add(freezeButton);
+        freezeButton.setFont(infoFont);
+        freezeButton.setPreferredSize(buttonSize);
+        buttonPanel.add(freezeButton);
 
         deleteButton = new JButton("Delete Account");
-        deleteButton.setBounds(470, 190, 130, 25);
-        frame.add(deleteButton);
+        deleteButton.setFont(infoFont);
+        deleteButton.setPreferredSize(buttonSize);
+        buttonPanel.add(deleteButton);
+
+        // Add the button panel to the button panel with margins
+        buttonPanelWithMargins.add(buttonPanel, BorderLayout.CENTER);
+
+        // Add the button panel with margins to the top of the south panel
+        southPanel.add(buttonPanelWithMargins, BorderLayout.NORTH);
+
+        // Create a blank panel to add space below the buttons
+        JPanel blankPanel = new JPanel();
+        blankPanel.setPreferredSize(new Dimension(0, 50)); // Set the preferred height for the blank space
+        southPanel.add(blankPanel, BorderLayout.CENTER); // Add the blank panel below the buttons
+
+        // Add the south panel to the South area of the frame
+        frame.add(southPanel, BorderLayout.SOUTH);
 
         // Display the window
         frame.setVisible(true);
@@ -118,9 +149,5 @@ public class AccountManager {
         // 更新账户余额
         // 记录交易
         return true;
-    }
-
-    public static void main(String[] args) {
-
     }
 }

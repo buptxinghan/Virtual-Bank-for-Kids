@@ -1,7 +1,6 @@
 package com.virtualbankv1;
 
 import java.util.List;
-import java.util.ArrayList;
 
 public class VirtualBankApplication {
     protected List<User> users; // 存储所有用户账户的信息
@@ -15,12 +14,12 @@ public class VirtualBankApplication {
 
     public VirtualBankApplication() {
         Reader reader = new Reader();
-        users = reader.readUsers("../Data/User.csv");
-        accounts = reader.readAccounts("../Data/Accounts.csv");
-        transactions = reader.readTransactions("../Data/Transactions.csv");
-        tasks = reader.readTasks("../Data/Tasks.csv");
-        goals = reader.readGoals("../Data/Goals.csv");
-        support = reader.readSupport("../Data/Support.csv");
+        users = reader.readUsers("src/main/Data/User.csv");
+        accounts = reader.readAccounts("src/main/Data/Accounts.csv");
+        transactions = reader.readTransactions("src/main/Data/Transactions.csv");
+        tasks = reader.readTasks("src/main/Data/Tasks.csv");
+        goals = reader.readGoals("src/main/Data/Goals.csv");
+        support = reader.readSupport("src/main/Data/Support.csv");
 
         Account tempAccount = accounts.get(0);
         AccountManager accountManager = new AccountManager(tempAccount);

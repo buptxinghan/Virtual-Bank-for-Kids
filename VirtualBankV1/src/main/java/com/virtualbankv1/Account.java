@@ -10,7 +10,6 @@ public class Account {
     private double balance;
     private String status;
 
-    public Account(){}
     public Account(String accountID, String accountType, String username, String password, double balance, String status) {
         this.accountID = accountID;
         this.accountType = accountType;
