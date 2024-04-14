@@ -2,9 +2,18 @@ package com.virtualbankv1;
 
 public class Goal {
     // 设置目标
-    public boolean setGoal(Goal goal) {
-        // 设置目标逻辑
-        // 添加到goals列表
-        return true;
+
+    private String goalID;
+    private String description;
+    private double targetAmount;
+    private double currentAmount;
+    private String childUsername;
+
+    public Goal(String goalID, String description, double targetAmount, double currentAmount, String childUsername) {
+        this.goalID = goalID;
+        this.description = description;
+        this.targetAmount = targetAmount;
+        this.currentAmount = currentAmount;
+        this.childUsername = childUsername;
     }
 }

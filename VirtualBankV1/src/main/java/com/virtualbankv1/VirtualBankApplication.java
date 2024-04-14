@@ -16,7 +16,7 @@ public class VirtualBankApplication {
         transactions = new ArrayList<>();
         tasks = new ArrayList<>();
         goals = new ArrayList<>();
-        support = new SupportSystem();
+        support = new SupportSystem("a", "b", "c", "d", "e");
     }
 
     // ... 其他必要的方法
