@@ -1,7 +1,7 @@
 package com.virtualbankv1;
 // 用户账户类
 
-public class Account {
+public class SoftwareAccount {
     private String username;
     private String password;
     private double balance;
@@ -46,8 +46,8 @@ public class Account {
     public boolean getStatus() {
         return status;
     }
-    public Account(){}
-    public Account(String username, String password) {
+    public SoftwareAccount(){}
+    public SoftwareAccount(String username, String password) {
         setUsername(username);
         setPassword(password);
     }
