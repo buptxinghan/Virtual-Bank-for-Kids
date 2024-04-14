@@ -21,6 +21,9 @@ public class VirtualBankApplication {
         tasks = reader.readTasks("../Data/Tasks.csv");
         goals = reader.readGoals("../Data/Goals.csv");
         support = reader.readSupport("../Data/Support.csv");
+
+        Account tempAccount = accounts.get(0);
+        AccountManager accountManager = new AccountManager(tempAccount);
     }
 
     // ... 其他必要的方法
@@ -28,6 +31,7 @@ public class VirtualBankApplication {
     // 主函数，用于测试
     public static void main(String[] args) {
         VirtualBankApplication application = new VirtualBankApplication();
+
         // 测试系统功能
     }
 }

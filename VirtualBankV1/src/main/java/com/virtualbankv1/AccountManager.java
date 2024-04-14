@@ -16,13 +16,12 @@ public class AccountManager {
     private JTextField holderTextField, idTextField, typeTextField, balanceTextField, dateTextField;
     private JButton returnButton, withdrawButton, TransferInButton, freezeButton, deleteButton;
 
-    public AccountManager(String accountID) {
-        accountManagerGUI(accountID);
+    public AccountManager(Account account) {
+        accountManagerGUI(account);
 
     }
 
-    public void accountManagerGUI(String accountID) {
-
+    public void accountManagerGUI(Account account) {
 
         // Create a window
         frame = new JFrame("Account Information");
@@ -50,7 +49,7 @@ public class AccountManager {
         frame.add(idLabel);
 
         idTextField = new JTextField(20);
-        idTextField.setBounds(120, 70, 165, 25);
+        idTextField.setText(account.getAccountID());
         frame.add(idTextField);
 
         // Account type information
@@ -122,8 +121,6 @@ public class AccountManager {
     }
 
     public static void main(String[] args) {
-        String accountID = "000001";
-        new AccountManager(accountID);
 
     }
 }
