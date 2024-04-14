@@ -5,7 +5,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class OpenBankAccount extends JFrame implements ActionListener{//9 assets
+public class OpenAccount extends JFrame implements ActionListener{//9 assets
     public JLabel title;
     public JLabel att;
     public JLabel atd;
@@ -19,7 +19,7 @@ public class OpenBankAccount extends JFrame implements ActionListener{//9 assets
     //密码隐藏收入
     public JButton submit=new JButton("submit");
 
-    public OpenBankAccount(){
+    public OpenAccount(){
         JPanel panel = new JPanel(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.anchor = GridBagConstraints.WEST;
@@ -90,9 +90,9 @@ public class OpenBankAccount extends JFrame implements ActionListener{//9 assets
         submit.addActionListener(this);
     }
     public static void main(String[] args) {
-        OpenBankAccount openBankAccount =new OpenBankAccount();
-        openBankAccount.setSize(1000, 500);
-        openBankAccount.setVisible(true);
+        OpenAccount openAccount =new OpenAccount();
+        openAccount.setSize(1000, 500);
+        openAccount.setVisible(true);
     }
     public void actionPerformed(ActionEvent event){
         String str1=pw.getText();
@@ -106,7 +106,7 @@ public class OpenBankAccount extends JFrame implements ActionListener{//9 assets
             //弹窗密码不一致
         }
         else {
-            BankAccount bankAccount=new BankAccount(str1,str3);
+            Account account =new Account(str1,str3);
             //弹窗成功创建
             //存储进csv
         }

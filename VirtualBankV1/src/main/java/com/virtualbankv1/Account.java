@@ -1,10 +1,10 @@
 package com.virtualbankv1;
 
-public class BankAccount {
+public class Account {
     private String accountType;
     private String paymentPassword;
-    public BankAccount(){}
-    public BankAccount(String paymentPassword,String accountType) {
+    public Account(){}
+    public Account(String paymentPassword, String accountType) {
         this.setAccountType(accountType);
         this.setPaymentPassword(paymentPassword);
     }

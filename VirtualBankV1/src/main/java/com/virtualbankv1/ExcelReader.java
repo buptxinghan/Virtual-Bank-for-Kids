@@ -11,7 +11,7 @@ import java.util.List;
 public class ExcelReader {
     public static void main(String[] args) {
         // 存储从Excel文件读取的数据
-        List<SoftwareAccount> softwareAccounts = new ArrayList<>();
+        List<User> users = new ArrayList<>();
         List<com.virtualbankv1.Transaction> transactions = new ArrayList<>();
         // ... 其他列表
 
@@ -22,13 +22,13 @@ public class ExcelReader {
             Sheet accountsSheet = workbook.getSheet("Accounts");
             for (Row row : accountsSheet) {
                 if (row.getRowNum() == 0) continue; // 跳过标题行
-                SoftwareAccount softwareAccount = new SoftwareAccount();
-               softwareAccount.setAccountId((int) row.getCell(0).getNumericCellValue());
-               softwareAccount.setUsername(row.getCell(1).getStringCellValue());
-               softwareAccount.setType(row.getCell(2).getStringCellValue());
-               softwareAccount.setBalance(row.getCell(3).getNumericCellValue());
-               softwareAccount.setStatus(row.getCell(4).getStringCellValue());
-                softwareAccounts.add(softwareAccount);
+                User user = new User();
+               user.setAccountId((int) row.getCell(0).getNumericCellValue());
+               user.setUsername(row.getCell(1).getStringCellValue());
+               user.setType(row.getCell(2).getStringCellValue());
+               user.setBalance(row.getCell(3).getNumericCellValue());
+               user.setStatus(row.getCell(4).getStringCellValue());
+                users.add(user);
             }
 
             // 读取交易记录
@@ -52,8 +52,8 @@ public class ExcelReader {
         }
 
         // 打印读取的数据（示例）
-        for (SoftwareAccount softwareAccount : softwareAccounts) {
-            System.out.println("Account ID: " + softwareAccount.getAccountId());
+        for (User user : users) {
+            System.out.println("Account ID: " + user.getAccountId());
             // ... 打印其他属性
         }
         // ... 打印其他列表的数据

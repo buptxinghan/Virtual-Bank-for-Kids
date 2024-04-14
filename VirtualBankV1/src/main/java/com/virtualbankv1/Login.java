@@ -5,33 +5,33 @@ import java.util.List;
 import java.util.ArrayList;
 
 public class Login {
-    private List<SoftwareAccount> softwareAccounts; // 存储所有用户账户的信息
+    private List<User> users; // 存储所有用户账户的信息
 
     public Login() {
-        this.softwareAccounts = new ArrayList<>(); // 初始化账户列表
+        this.users = new ArrayList<>(); // 初始化账户列表
     }
 
     // 用户注册
     public boolean signUp(String username, String password) {
         // 检查用户名是否已存在
-        for (SoftwareAccount softwareAccount : softwareAccounts) {
-            if (softwareAccount.getUsername().equals(username)) {
+        for (User user : users) {
+            if (user.getUsername().equals(username)) {
                 // 用户名已存在
                 return false;
             }
         }
         // 创建新账户并添加到列表
-        SoftwareAccount newSoftwareAccount = new SoftwareAccount(username, password);
-        softwareAccounts.add(newSoftwareAccount);
+        User newUser = new User(username, password);
+        users.add(newUser);
         return true;
     }
 
     // 用户登录
-    public SoftwareAccount login(String username, String password) {
-        for (SoftwareAccount softwareAccount : softwareAccounts) {
-            if (softwareAccount.getUsername().equals(username) && softwareAccount.getPassword().equals(password)) {
+    public User login(String username, String password) {
+        for (User user : users) {
+            if (user.getUsername().equals(username) && user.getPassword().equals(password)) {
                 // 登录成功
-                return softwareAccount;
+                return user;
             }
         }
         // 登录失败
@@ -39,7 +39,7 @@ public class Login {
     }
 
     // 用户登出
-    public void logout(SoftwareAccount softwareAccount) {
+    public void logout(User user) {
         // 处理用户登出逻辑，例如更新用户状态或清除会话信息
         // ...
     }
