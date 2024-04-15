@@ -20,119 +20,92 @@ public class AccountManager {
 
     public void accountManagerGUI(Account account) {
 
-        JFrame frame;
-        JLabel holderLabel, idLabel, typeLabel, balanceLabel, dateLabel;
-        JButton returnButton, withdrawButton, TransferInButton, freezeButton, deleteButton;
-
-        // Create a window and set its size
-        frame = new JFrame("Account Information");
-        frame.setSize(1400, 1000); // Set the initial size of the window
+        JFrame frame = new JFrame("Account Information");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setLayout(new BorderLayout());
+        frame.setPreferredSize(new Dimension(1600, 900));
+        frame.setLayout(new BorderLayout(10, 10)); // Set margins for the layout
 
-        // Title with larger font and centered in the North area
-        JLabel titleLabel = new JLabel("Account Information", SwingConstants.CENTER);
-        titleLabel.setFont(new Font("Serif", Font.BOLD, 60));
+        // Set a solid light blue background
+        frame.getContentPane().setBackground(new Color(199, 220, 247)); // Light blue background
+
+        // Create the title label with HTML formatting
+        JLabel titleLabel = new JLabel("<html><div style='text-align: center; color: black;'><font size=8>Account Information</font></div></html>", SwingConstants.CENTER);
+        titleLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        titleLabel.setBorder(BorderFactory.createEmptyBorder(20, 0, 20, 0)); // Top and bottom padding
+
+        // Create the form panel with labels for displaying information
+        JPanel formPanel = new JPanel();
+        formPanel.setLayout(new BoxLayout(formPanel, BoxLayout.Y_AXIS));
+        formPanel.setOpaque(false); // Transparent background
+        formPanel.setBorder(BorderFactory.createEmptyBorder(10, 50, 10, 50)); // Padding around the form
+
+        // Add display labels with fixed information and larger font size
+        formPanel.add(createLabel("Account holder:"));
+        formPanel.add(createDisplayLabel("Sam Smith")); // Larger font size
+        formPanel.add(createLabel("Account number:"));
+        formPanel.add(createDisplayLabel("123456789")); // Larger font size
+        formPanel.add(createLabel("Account Type:"));
+        formPanel.add(createDisplayLabel("Checking")); // Larger font size
+        formPanel.add(createLabel("Account Balance:"));
+        formPanel.add(createDisplayLabel("1000")); // Larger font size
+
+        // Create the buttons panel for the "Withdraw" and "Transfer In" buttons
+        JPanel transactionButtonsPanel = new JPanel();
+        transactionButtonsPanel.setLayout(new BoxLayout(transactionButtonsPanel, BoxLayout.Y_AXIS));
+        transactionButtonsPanel.setOpaque(false); // Transparent background
+        transactionButtonsPanel.add(Box.createRigidArea(new Dimension(0, 100))); // Spacer between buttons
+        transactionButtonsPanel.add(createStyledButton("Withdraw", new Color(70, 130, 180), Color.WHITE, new Dimension(200, 50)));
+        transactionButtonsPanel.add(Box.createRigidArea(new Dimension(0, 10))); // Spacer between buttons
+        transactionButtonsPanel.add(createStyledButton("Transfer In", new Color(70, 130, 180), Color.WHITE, new Dimension(200, 50)));
+
+        // Create the bottom buttons panel with custom button styling
+        JPanel bottomButtonsPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 10, 10));
+        bottomButtonsPanel.setOpaque(false); // Transparent background
+        bottomButtonsPanel.add(createStyledButton("Freeze Account", new Color(255, 255, 0), Color.BLACK, new Dimension(250, 50))); // Yellow button with black text
+        bottomButtonsPanel.add(Box.createRigidArea(new Dimension(50, 10))); // Spacer between buttons
+        bottomButtonsPanel.add(createStyledButton("Delete Account", new Color(255, 69, 0), Color.WHITE, new Dimension(250, 50))); // Red button
+
+        // Add components to the window
         frame.add(titleLabel, BorderLayout.NORTH);
+        frame.add(formPanel, BorderLayout.WEST); // Align the form panel to the left
+        frame.add(transactionButtonsPanel, BorderLayout.CENTER); // Place the transaction buttons in the center
+        frame.add(bottomButtonsPanel, BorderLayout.SOUTH); // Place the bottom buttons at the bottom
 
-        // Panel for information fields with margins on the sides
-        JPanel infoPanelWithMargins = new JPanel(new BorderLayout());
-        infoPanelWithMargins.setBorder(BorderFactory.createEmptyBorder(0, 50, 0, 50)); // Top, left, bottom, right margins
-
-        // Panel for information fields in the center area
-        JPanel infoPanel = new JPanel();
-        infoPanel.setLayout(new GridLayout(5, 2, 10, 10)); // 5 rows, 2 columns, with padding
-
-        // Custom font for information fields and buttons
-        Font infoFont = new Font("Arial", Font.PLAIN, 32);
-
-        // Account holder information
-        holderLabel = new JLabel("Account Holder: " + account.getUsername());
-        holderLabel.setFont(infoFont);
-        infoPanel.add(holderLabel);
-
-        // Account ID information
-        idLabel = new JLabel("Account ID: " + account.getAccountID());
-        idLabel.setFont(infoFont);
-        infoPanel.add(idLabel);
-
-        // Account type information
-        typeLabel = new JLabel("Account Type: " + account.getAccountType());
-        typeLabel.setFont(infoFont);
-        infoPanel.add(typeLabel);
-
-        // Account balance information
-        balanceLabel = new JLabel("Account Balance: $" + account.getBalance());
-        balanceLabel.setFont(infoFont);
-        infoPanel.add(balanceLabel);
-
-        // Account opening date information
-        dateLabel = new JLabel("Account Status: " + account.getStatus());
-        dateLabel.setFont(infoFont);
-        infoPanel.add(dateLabel);
-
-        // Add the information panel to the panel with margins
-        infoPanelWithMargins.add(infoPanel, BorderLayout.CENTER);
-
-        // Add the information panel with margins to the center area of the frame
-        frame.add(infoPanelWithMargins, BorderLayout.CENTER);
-
-        // South panel that will contain both the buttons and the blank space
-        JPanel southPanel = new JPanel(new BorderLayout());
-
-        // Panel for buttons with margins on the sides
-        JPanel buttonPanelWithMargins = new JPanel(new BorderLayout());
-        buttonPanelWithMargins.setBorder(BorderFactory.createEmptyBorder(0, 50, 0, 50)); // Top, left, bottom, right margins
-
-        // Panel for buttons
-        JPanel buttonPanel = new JPanel();
-        buttonPanel.setLayout(new GridLayout(1, 5, 10, 0)); // 1 row, 5 columns, with padding
-
-        // Custom dimension for buttons
-        Dimension buttonSize = new Dimension(280, 40);
-
-        // Buttons with larger font and custom width
-        returnButton = new JButton("Return");
-        returnButton.setFont(infoFont);
-        returnButton.setPreferredSize(buttonSize);
-        buttonPanel.add(returnButton);
-
-        withdrawButton = new JButton("Withdraw");
-        withdrawButton.setFont(infoFont);
-        withdrawButton.setPreferredSize(buttonSize);
-        buttonPanel.add(withdrawButton);
-
-        TransferInButton = new JButton("Transfer In");
-        TransferInButton.setFont(infoFont);
-        TransferInButton.setPreferredSize(buttonSize);
-        buttonPanel.add(TransferInButton);
-
-        freezeButton = new JButton("Freeze Account");
-        freezeButton.setFont(infoFont);
-        freezeButton.setPreferredSize(buttonSize);
-        buttonPanel.add(freezeButton);
-
-        deleteButton = new JButton("Delete Account");
-        deleteButton.setFont(infoFont);
-        deleteButton.setPreferredSize(buttonSize);
-        buttonPanel.add(deleteButton);
-
-        // Add the button panel to the button panel with margins
-        buttonPanelWithMargins.add(buttonPanel, BorderLayout.CENTER);
-
-        // Add the button panel with margins to the top of the south panel
-        southPanel.add(buttonPanelWithMargins, BorderLayout.NORTH);
-
-        // Create a blank panel to add space below the buttons
-        JPanel blankPanel = new JPanel();
-        blankPanel.setPreferredSize(new Dimension(0, 50)); // Set the preferred height for the blank space
-        southPanel.add(blankPanel, BorderLayout.CENTER); // Add the blank panel below the buttons
-
-        // Add the south panel to the South area of the frame
-        frame.add(southPanel, BorderLayout.SOUTH);
-
-        // Display the window
+        // Pack the frame and display the window
+        frame.pack();
+        frame.setLocationRelativeTo(null); // Center the window
         frame.setVisible(true);
+    }
+
+    // Helper method to create styled buttons
+    private static JButton createStyledButton(String text, Color bgColor, Color textColor, Dimension size) {
+        JButton button = new JButton("<html><font size ='6'>" + text + "</font></html>");
+        button.setBackground(bgColor);
+        button.setForeground(textColor); // Set the text color
+        button.setBorderPainted(false);
+        button.setFocusPainted(false);
+        button.setAlignmentX(Component.CENTER_ALIGNMENT); // Center the button text
+        button.setPreferredSize(size); // Set the preferred size
+        button.setMinimumSize(size); // Set the minimum size
+        button.setMaximumSize(size); // Set the maximum size
+        return button;
+    }
+
+    // Helper method to create labels with HTML formatting and larger font size
+    private static JLabel createLabel(String text) {
+        return new JLabel("<html><font color='black' size='7'>" + text + "</font></html>");
+    }
+
+    // Helper method to create display labels with fixed size and larger font size
+    private static JLabel createDisplayLabel(String text) {
+        JLabel label = new JLabel("<html><font size ='6'>" + text + "</font></html>");
+        label.setMaximumSize(new Dimension(300, 50)); // Adjusted size for display labels
+        label.setMinimumSize(new Dimension(300, 50)); // Adjusted size for display labels
+        label.setPreferredSize(new Dimension(300, 50)); // Adjusted size for display labels
+        label.setHorizontalAlignment(SwingConstants.CENTER);
+        label.setOpaque(true);
+        label.setBackground(Color.WHITE);
+        return label;
     }
 
     // 存款
