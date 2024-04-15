@@ -149,7 +149,7 @@ public class AccountManager {
         return label;
     }
     private static JLabel createDisplayLabel(Double text) {
-        JLabel label = new JLabel("<html><font color='Black' style='font-size: 20px;'>" + text + "</font></html>");
+        JLabel label = new JLabel("<html><font color='Red' style='font-size: 20px;'>" + text + "</font></html>");
         label.setMaximumSize(new Dimension(350, 50)); // Adjusted size for display labels
         label.setMinimumSize(new Dimension(350, 50)); // Adjusted size for display labels
         label.setPreferredSize(new Dimension(350, 50)); // Adjusted size for display labels
