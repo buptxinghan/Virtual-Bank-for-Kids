@@ -30,7 +30,6 @@ public class VirtualBankApplication {
     // 主函数，用于测试
     public static void main(String[] args) {
         VirtualBankApplication application = new VirtualBankApplication();
-
         // 测试系统功能
     }
 }
