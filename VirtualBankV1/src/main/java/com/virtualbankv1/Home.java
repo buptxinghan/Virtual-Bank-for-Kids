@@ -1,5 +1,6 @@
 package com.virtualbankv1;
 // 主页界面类
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -10,6 +11,7 @@ public class Home extends JFrame {
     public Home(String str) {
         super(str);
         setSize(1000, 600);
+
         Color bg = new Color(199, 220, 247);
         Color z1 = new Color(93,97,195);
         Color z2 = new Color(133,149,188);
@@ -18,6 +20,7 @@ public class Home extends JFrame {
 
         JButton btn1 = new JButton("<html><font size=5 color=" + getColorHex(z1) + ">My account</font><br><font color=" + getColorHex(z2) + ">Check your account information</font></html>");
         btn1.setHorizontalAlignment(SwingConstants.LEFT);
+
         btn1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -102,9 +105,4 @@ public class Home extends JFrame {
     private String getColorHex(Color color) {
         return String.format("#%02x%02x%02x", color.getRed(), color.getGreen(), color.getBlue());
     }
-
-
 }
-
-
-
