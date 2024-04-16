@@ -67,6 +67,8 @@ public class AccountManager {
         transactionButtonsPanel.add(createTransactionButton("Withdraw", new Color(70, 130, 180), Color.WHITE, new Dimension(200, 50), account, "withdraw"));
         transactionButtonsPanel.add(Box.createRigidArea(new Dimension(0, 10))); // Spacer between buttons
         transactionButtonsPanel.add(createTransactionButton("Transfer In", new Color(70, 130, 180), Color.WHITE, new Dimension(200, 50), account, "transferIn"));
+        transactionButtonsPanel.add(Box.createRigidArea(new Dimension(0, 10))); // Spacer between buttons
+        transactionButtonsPanel.add(createReturnButton("Return", new Color(70, 130, 180), Color.WHITE, new Dimension(200, 50), frame));
 
         // Create the bottom buttons panel with custom button styling
         JPanel bottomButtonsPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 10, 10));
@@ -135,6 +137,18 @@ public class AccountManager {
         return button;
     }
 
+    private static JButton createReturnButton(String text, Color bgColor, Color textColor, Dimension size, JFrame frame) {
+        RoundedButton button = new RoundedButton("<html><font size ='6'>" + text + "</font></html>");
+        button.setBackground(bgColor);
+        button.setForeground(textColor);
+        button.setAlignmentX(Component.CENTER_ALIGNMENT);
+        button.setPreferredSize(size);
+        button.setMinimumSize(size);
+        button.setMaximumSize(size);
+        addReturnListenerToButton(button, frame); // 添加监听器
+        return button;
+    }
+
     // Helper method to create labels with HTML formatting and larger font size
     private static JLabel createLabel(String text) {
         return new JLabel("<html><font color='#8595BC' style='font-size: 30px;'>" + text + "</font></html>");
@@ -162,7 +176,7 @@ public class AccountManager {
         return label;
     }
 
-    // 为按钮添加动作监听器
+    // 为交易按钮添加动作监听器
     private static void addTransactionListenerToButton(JButton button, String actionCommand, Account account) {
         button.setActionCommand(actionCommand);
         button.addActionListener(new ActionListener() {
@@ -187,7 +201,7 @@ public class AccountManager {
         });
     }
 
-    // 为按钮添加动作监听器
+    // 为Confirmation按钮添加动作监听器
     private static void addConfirmationListenerToButton(JButton button, String actionCommand, Account account) {
         button.setActionCommand(actionCommand);
         button.addActionListener(new ActionListener() {
@@ -206,6 +220,18 @@ public class AccountManager {
                         // 其他相关操作
                     }
                 }
+            }
+        });
+    }
+
+    // 为返回按钮添加动作监听器
+    private static void addReturnListenerToButton(JButton button, JFrame frame) {
+        button.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                frame.dispose(); // 关闭窗口
+                AccountOverviewPage aop = new AccountOverviewPage(); //生成上一页面
+                aop.setPage(aop);
             }
         });
     }

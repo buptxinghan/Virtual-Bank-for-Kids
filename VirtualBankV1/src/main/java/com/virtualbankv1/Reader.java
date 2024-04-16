@@ -134,17 +134,4 @@ public class Reader {
         }
         return transactions;
     }
-
-
-
-    public static void main(String[] args) {
-        Reader reader = new Reader();
-        List<User> users = reader.readUsers("src/main/Data/User.csv");
-        List<Account> accounts =  reader.readAccounts("src/main/Data/Accounts.csv");
-        List<Transaction> transactions = reader.readTransactions("src/main/Data/Transactions.csv");
-        List<Task> tasks = reader.readTasks("src/main/Data/Tasks.csv");
-        List<Goal> goals = reader.readGoals("src/main/Data/Goals.csv");
-        List<SupportSystem> support = reader.readSupport("src/main/Data/Support.csv");
-        // 测试系统功能
-    }
 }
