@@ -102,6 +102,16 @@ public class Home extends JFrame {
     private String getColorHex(Color color) {
         return String.format("#%02x%02x%02x", color.getRed(), color.getGreen(), color.getBlue());
     }
+    private static void addReturnListenerToButton(JButton button, JFrame frame) {
+        button.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                frame.dispose(); // 关闭窗口
+                AccountOverviewPage aop = new AccountOverviewPage(); //生成上一页面
+                aop.setPage(aop);
+            }
+        });
+    }
 
 
 }
