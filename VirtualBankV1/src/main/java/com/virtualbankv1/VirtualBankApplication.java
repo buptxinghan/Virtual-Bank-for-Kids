@@ -14,12 +14,12 @@ public class VirtualBankApplication {
 
     public VirtualBankApplication() {
         Reader reader = new Reader();
-        users = reader.readUsers("/src/Data/User.csv");
-        accounts = reader.readAccounts("/src/Data/Accounts.csv");
-        transactions = reader.readTransactions("D:/学习/大三下/软件工程/Group/Virtual-Bank-for-Kids/VirtualBankV1/src/Data/Transactions.csv");
-        tasks = reader.readTasks("D:/学习/大三下/软件工程/Group/Virtual-Bank-for-Kids/VirtualBankV1/src/Data/Tasks.csv");
-        goals = reader.readGoals("D:/学习/大三下/软件工程/Group/Virtual-Bank-for-Kids/VirtualBankV1/src/Data/Goals.csv");
-        support = reader.readSupport("D:/学习/大三下/软件工程/Group/Virtual-Bank-for-Kids/VirtualBankV1/src/Data/Support.csv");
+        users = reader.readUsers("src/Data/User.csv");
+        accounts = reader.readAccounts("src/Data/Accounts.csv");
+        transactions = reader.readTransactions("src/Data/Transactions.csv");
+        tasks = reader.readTasks("src/Data/Tasks.csv");
+        goals = reader.readGoals("src/Data/Goals.csv");
+        support = reader.readSupport("src/Data/Support.csv");
 
         Account tempAccount = accounts.getFirst();
         AccountManager accountManager = new AccountManager(tempAccount);
