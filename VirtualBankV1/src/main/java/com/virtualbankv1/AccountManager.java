@@ -230,7 +230,8 @@ public class AccountManager {
             @Override
             public void actionPerformed(ActionEvent e) {
                 frame.dispose(); // 关闭窗口
-                new AccountOverviewPage(); //生成上一页面
+                AccountOverviewPage aop = new AccountOverviewPage(); //生成上一页面
+                aop.setPage(aop);
             }
         });
     }
