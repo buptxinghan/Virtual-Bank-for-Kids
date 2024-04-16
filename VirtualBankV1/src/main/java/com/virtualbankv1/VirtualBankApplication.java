@@ -14,12 +14,12 @@ public class VirtualBankApplication {
 
     public VirtualBankApplication() {
         Reader reader = new Reader();
-        users = reader.readUsers("src/main/Data/User.csv");
-        accounts = reader.readAccounts("src/main/Data/Accounts.csv");
-        transactions = reader.readTransactions("src/main/Data/Transactions.csv");
-        tasks = reader.readTasks("src/main/Data/Tasks.csv");
-        goals = reader.readGoals("src/main/Data/Goals.csv");
-        support = reader.readSupport("src/main/Data/Support.csv");
+        users = reader.readUsers("src/Data/User.csv");
+        accounts = reader.readAccounts("src/Data/Accounts.csv");
+        transactions = reader.readTransactions("src/Data/Transactions.csv");
+        tasks = reader.readTasks("src/Data/Tasks.csv");
+        goals = reader.readGoals("src/Data/Goals.csv");
+        support = reader.readSupport("src/Data/Support.csv");
 
         Account tempAccount = accounts.get(0);
         AccountManager accountManager = new AccountManager(tempAccount);

@@ -65,7 +65,7 @@ public class Home extends JFrame {
         btn4.setBackground(bg);
 
         JLabel l1 = new JLabel("<html><font size=7 color=" + getColorHex(z1) + ">Welcome to Your Virtual Bank!</font></html>",JLabel.CENTER);
-        ImageIcon icon = new ImageIcon("D:\\Project\\Virtualbank\\Virtual-Bank-for-Kids\\Data\\pic.png");
+        ImageIcon icon = new ImageIcon("src/Materials/pig.png");
         JLabel pic = new JLabel(icon,JLabel.CENTER);
 
 
