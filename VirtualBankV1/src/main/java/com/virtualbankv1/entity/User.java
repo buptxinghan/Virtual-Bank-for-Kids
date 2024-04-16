@@ -1,4 +1,4 @@
-package com.virtualbankv1;
+package com.virtualbankv1.entity;
 // 用户账户类
 
 public class User {

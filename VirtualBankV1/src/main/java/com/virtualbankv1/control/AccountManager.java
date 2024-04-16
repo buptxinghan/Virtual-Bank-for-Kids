@@ -1,5 +1,9 @@
-package com.virtualbankv1;
+package com.virtualbankv1.control;
 // Account management interface class
+
+import com.virtualbankv1.boundary.RoundedButton;
+import com.virtualbankv1.boundary.AccountOverviewPage;
+import com.virtualbankv1.entity.Account;
 
 import javax.swing.*;
 import java.awt.*;

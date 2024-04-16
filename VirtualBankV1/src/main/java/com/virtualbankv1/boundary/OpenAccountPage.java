@@ -1,11 +1,13 @@
-package com.virtualbankv1;
+package com.virtualbankv1.boundary;
+
+import com.virtualbankv1.entity.Account;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class OpenAccount extends JFrame implements ActionListener {
+public class OpenAccountPage extends JFrame implements ActionListener {
     private JLabel title, att, atd, pp, ppd, cp;
     private String options[] = {"Saving", "Current"};
     private JComboBox<String> ats = new JComboBox<>(options);
@@ -13,7 +15,7 @@ public class OpenAccount extends JFrame implements ActionListener {
     private JTextField pw2 = new JTextField(6);
     private JButton submit = new JButton("submit");
 
-    public OpenAccount() {
+    public OpenAccountPage() {
         JPanel panel = new JPanel(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.anchor = GridBagConstraints.WEST;
@@ -60,9 +62,9 @@ public class OpenAccount extends JFrame implements ActionListener {
     }
 
     public static void main(String[] args) {
-        OpenAccount openAccount = new OpenAccount();
-        openAccount.setSize(1000, 500);
-        openAccount.setVisible(true);
+        OpenAccountPage openAccountPage = new OpenAccountPage();
+        openAccountPage.setSize(1000, 500);
+        openAccountPage.setVisible(true);
     }
 
     public void actionPerformed(ActionEvent event) {

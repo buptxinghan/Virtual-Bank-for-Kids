@@ -1,4 +1,4 @@
-package com.virtualbankv1;
+package com.virtualbankv1.entity;
 
 public class Goal {
     // 设置目标

@@ -1,4 +1,4 @@
-package com.virtualbankv1;
+package com.virtualbankv1.boundary;
 
 import javax.swing.*;
 import java.awt.*;
@@ -6,14 +6,14 @@ import java.awt.event.*;
 import java.io.*;
 import java.util.Random;
 
-public class SignUp {
+public class SignUpPage {
 
     private JFrame frame;
     private JTextField firstNameField, lastNameField;
     private JPasswordField passwordField, confirmPasswordField;
     private JButton submitButton;
 
-    public SignUp() {
+    public SignUpPage() {
         // Create and set up the window
         frame = new JFrame("Sign Up");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -81,7 +81,7 @@ public class SignUp {
         // Schedule a job for the event dispatch thread: creating and showing this application's GUI
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
-                new SignUp();
+                new SignUpPage();
             }
         });
     }
