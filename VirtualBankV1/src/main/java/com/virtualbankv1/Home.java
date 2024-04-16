@@ -18,43 +18,38 @@ public class Home extends JFrame {
 
         JButton btn1 = new JButton("<html><font size=5 color=" + getColorHex(z1) + ">My account</font><br><font color=" + getColorHex(z2) + ">Check your account information</font></html>");
         btn1.setHorizontalAlignment(SwingConstants.LEFT);
-        btn1.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                //new testpage("Visual bank");//打开页面2，
-                setVisible(false);//关闭页面1
-            }
-        });
+        this.addReturnListenerToButton(btn1,this);
+
 
         JButton btn2 = new JButton("<html><font size=5 color=" + getColorHex(z1) + ">My tasks</font><br><font color=" + getColorHex(z2) + ">Check the tasks assigned</font></html>");
         btn2.setHorizontalAlignment(SwingConstants.LEFT);
-        btn2.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                //new testpage2("Visual bank");//打开页面2，
-                setVisible(false);//关闭页面1
-            }
-        });
+//        btn2.addActionListener(new ActionListener() {
+//            @Override
+//            public void actionPerformed(ActionEvent e) {
+//                new testpage2("Visual bank");//打开页面2，
+//                setVisible(false);//关闭页面1
+//            }
+//        });
 
         JButton btn3 = new JButton("<html><font size=5 color=" + getColorHex(z1) + ">My goals</font><br><font color=" + getColorHex(z2) + ">Check and manage your goal</font></html>");
         btn3.setHorizontalAlignment(SwingConstants.LEFT);
-        btn3.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                //new testpage3("Visual bank");//打开页面2，
-                setVisible(false);//关闭页面1
-            }
-        });
+//        btn3.addActionListener(new ActionListener() {
+//            @Override
+//            public void actionPerformed(ActionEvent e) {
+//                //new testpage3("Visual bank");//打开页面2，
+//                setVisible(false);//关闭页面1
+//            }
+//        });
 
         JButton btn4 = new JButton("<html><font size=5 color=" + getColorHex(z1) + ">Instruction manual</font><br><font color=" + getColorHex(z2) + ">Learn how to use the software or contact us</font></html>");
         btn4.setHorizontalAlignment(SwingConstants.LEFT);
-        btn4.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                //new testpage4("Visual bank");//打开页面2，
-                setVisible(false);//关闭页面1
-            }
-        });
+//        btn4.addActionListener(new ActionListener() {
+//            @Override
+//            public void actionPerformed(ActionEvent e) {
+//                //new testpage4("Visual bank");//打开页面2，
+//                setVisible(false);//关闭页面1
+//            }
+//        });
 
         btn1.setBackground(bg);
         btn2.setBackground(bg);
