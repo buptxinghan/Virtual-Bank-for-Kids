@@ -1,6 +1,5 @@
 package com.virtualbankv1.boundary;
 // 主页界面类
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -11,7 +10,6 @@ public class HomePage extends JFrame {
     public HomePage(String str) {
         super(str);
         setSize(1000, 600);
-
         Color bg = new Color(199, 220, 247);
         Color z1 = new Color(93,97,195);
         Color z2 = new Color(133,149,188);
@@ -20,44 +18,38 @@ public class HomePage extends JFrame {
 
         JButton btn1 = new JButton("<html><font size=5 color=" + getColorHex(z1) + ">My account</font><br><font color=" + getColorHex(z2) + ">Check your account information</font></html>");
         btn1.setHorizontalAlignment(SwingConstants.LEFT);
+        this.addReturnListenerToButton(btn1,this);//跳转account overview
 
-        btn1.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                //new testpage("Visual bank");//打开页面2，
-                setVisible(false);//关闭页面1
-            }
-        });
 
         JButton btn2 = new JButton("<html><font size=5 color=" + getColorHex(z1) + ">My tasks</font><br><font color=" + getColorHex(z2) + ">Check the tasks assigned</font></html>");
         btn2.setHorizontalAlignment(SwingConstants.LEFT);
-        btn2.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                //new testpage2("Visual bank");//打开页面2，
-                setVisible(false);//关闭页面1
-            }
-        });
+//        btn2.addActionListener(new ActionListener() {
+//            @Override
+//            public void actionPerformed(ActionEvent e) {
+//                new testpage2("Visual bank");//打开页面2，
+//                setVisible(false);//关闭页面1
+//            }
+//        });
 
         JButton btn3 = new JButton("<html><font size=5 color=" + getColorHex(z1) + ">My goals</font><br><font color=" + getColorHex(z2) + ">Check and manage your goal</font></html>");
         btn3.setHorizontalAlignment(SwingConstants.LEFT);
-        btn3.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                //new testpage3("Visual bank");//打开页面2，
-                setVisible(false);//关闭页面1
-            }
-        });
+//        btn3.addActionListener(new ActionListener() {
+//            @Override
+//            public void actionPerformed(ActionEvent e) {
+//                //new testpage3("Visual bank");//打开页面2，
+//                setVisible(false);//关闭页面1
+//            }
+//        });
 
         JButton btn4 = new JButton("<html><font size=5 color=" + getColorHex(z1) + ">Instruction manual</font><br><font color=" + getColorHex(z2) + ">Learn how to use the software or contact us</font></html>");
         btn4.setHorizontalAlignment(SwingConstants.LEFT);
-        btn4.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                //new testpage4("Visual bank");//打开页面2，
-                setVisible(false);//关闭页面1
-            }
-        });
+//        btn4.addActionListener(new ActionListener() {
+//            @Override
+//            public void actionPerformed(ActionEvent e) {
+//                //new testpage4("Visual bank");//打开页面2，
+//                setVisible(false);//关闭页面1
+//            }
+//        });
 
         btn1.setBackground(bg);
         btn2.setBackground(bg);
@@ -65,7 +57,7 @@ public class HomePage extends JFrame {
         btn4.setBackground(bg);
 
         JLabel l1 = new JLabel("<html><font size=7 color=" + getColorHex(z1) + ">Welcome to Your Virtual Bank!</font></html>",JLabel.CENTER);
-        ImageIcon icon = new ImageIcon("src/Materials/pig.png");
+        ImageIcon icon = new ImageIcon("D:\\Project\\Virtualbank\\Virtual-Bank-for-Kids\\Data\\pic.png");
         JLabel pic = new JLabel(icon,JLabel.CENTER);
 
 
@@ -105,4 +97,16 @@ public class HomePage extends JFrame {
     private String getColorHex(Color color) {
         return String.format("#%02x%02x%02x", color.getRed(), color.getGreen(), color.getBlue());
     }
+    private static void addReturnListenerToButton(JButton button, JFrame frame) {
+        button.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                frame.dispose(); // 关闭窗口
+                AccountOverviewPage aop = new AccountOverviewPage(); //生成上一页面
+                aop.setPage(aop);
+            }
+        });
+    }
+
+
 }
