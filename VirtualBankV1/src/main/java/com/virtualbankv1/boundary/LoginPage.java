@@ -1,4 +1,4 @@
-package com.virtualbankv1;
+package com.virtualbankv1.boundary;
 
 import javax.swing.*;
 import java.awt.*;
@@ -6,14 +6,14 @@ import java.awt.event.*;
 import java.io.*;
 import java.util.*;
 
-public class Login{
+public class LoginPage {
 
     private JFrame frame;
     private JTextField userIdField;
     private JPasswordField passwordField;
     private JButton loginButton, signUpButton;
 
-    public Login() {
+    public LoginPage() {
         // Create and set up the window
         frame = new JFrame("Bank Login System");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -37,7 +37,7 @@ public class Login{
         signUpButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 // Open the sign-up form
-                new SignUp();
+                new SignUpPage();
                 // You can also choose to hide the login window if desired
                 // frame.setVisible(false);
             }
@@ -83,7 +83,7 @@ public class Login{
         // Schedule a job for the event dispatch thread: creating and showing this application's GUI
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
-                new Login();
+                new LoginPage();
             }
         });
     }

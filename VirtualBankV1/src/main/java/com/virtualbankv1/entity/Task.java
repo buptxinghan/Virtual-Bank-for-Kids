@@ -1,4 +1,4 @@
-package com.virtualbankv1;
+package com.virtualbankv1.entity;
 // 任务查看、布置、管理
 
 public class Task {

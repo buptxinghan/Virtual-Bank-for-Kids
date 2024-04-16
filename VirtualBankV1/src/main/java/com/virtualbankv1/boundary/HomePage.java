@@ -1,4 +1,4 @@
-package com.virtualbankv1;
+package com.virtualbankv1.boundary;
 // 主页界面类
 
 import javax.swing.*;
@@ -6,9 +6,9 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class Home extends JFrame {
+public class HomePage extends JFrame {
 
-    public Home(String str) {
+    public HomePage(String str) {
         super(str);
         setSize(1000, 600);
 

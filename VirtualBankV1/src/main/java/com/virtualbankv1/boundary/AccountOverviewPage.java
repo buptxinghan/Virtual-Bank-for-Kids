@@ -1,4 +1,4 @@
-package com.virtualbankv1;
+package com.virtualbankv1.boundary;
 
 import javax.swing.*;
 import java.awt.*;
@@ -31,11 +31,11 @@ public class AccountOverviewPage extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // 新建并显示“开户”界面
-                OpenAccount openAccount = new OpenAccount();
-                openAccount.setSize(1000, 500);
-                openAccount.setVisible(true);
-                openAccount.setLocationRelativeTo(null); // 设置窗口居中
-                openAccount.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // 修改关闭行为
+                OpenAccountPage openAccountPage = new OpenAccountPage();
+                openAccountPage.setSize(1000, 500);
+                openAccountPage.setVisible(true);
+                openAccountPage.setLocationRelativeTo(null); // 设置窗口居中
+                openAccountPage.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // 修改关闭行为
             }
         });
     }

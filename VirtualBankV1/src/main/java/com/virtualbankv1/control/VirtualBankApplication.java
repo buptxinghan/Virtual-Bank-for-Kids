@@ -1,4 +1,7 @@
-package com.virtualbankv1;
+package com.virtualbankv1.control;
+
+import com.virtualbankv1.boundary.Reader;
+import com.virtualbankv1.entity.*;
 
 import java.util.List;
 

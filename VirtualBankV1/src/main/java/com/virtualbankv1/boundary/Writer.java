@@ -1,4 +1,4 @@
-package com.virtualbankv1;
+package com.virtualbankv1.boundary;
 
 import java.io.*;
 import java.util.*;
