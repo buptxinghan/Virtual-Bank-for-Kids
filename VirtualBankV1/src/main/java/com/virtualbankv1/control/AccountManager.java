@@ -18,12 +18,6 @@ import java.awt.event.ActionListener;
 
 public class AccountManager {
 
-
-
-//    public AccountManager(Account account) {
-//        displayAccountInformation(account);
-//    }
-
     public void displayAccountInformation(Account account) {
         AccountInformationPage accountInformationPage = new AccountInformationPage();
         accountInformationPage.accountInformationGUI(account);

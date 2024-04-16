@@ -21,7 +21,7 @@ public class AccountInformationPage {
 
         JFrame frame = new JFrame("Account Information");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setPreferredSize(new Dimension(1600, 900));
+        frame.setPreferredSize(new Dimension(1440, 810));
         frame.setLayout(new BorderLayout(10, 10)); // Set margins for the layout
 
         // Set a solid light blue background
