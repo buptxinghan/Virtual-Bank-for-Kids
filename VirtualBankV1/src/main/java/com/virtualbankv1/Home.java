@@ -18,7 +18,7 @@ public class Home extends JFrame {
 
         JButton btn1 = new JButton("<html><font size=5 color=" + getColorHex(z1) + ">My account</font><br><font color=" + getColorHex(z2) + ">Check your account information</font></html>");
         btn1.setHorizontalAlignment(SwingConstants.LEFT);
-        this.addReturnListenerToButton(btn1,this);
+        this.addReturnListenerToButton(btn1,this);//跳转account overview
 
 
         JButton btn2 = new JButton("<html><font size=5 color=" + getColorHex(z1) + ">My tasks</font><br><font color=" + getColorHex(z2) + ">Check the tasks assigned</font></html>");
