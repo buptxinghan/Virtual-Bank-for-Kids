@@ -64,7 +64,7 @@ public class AccountInformationPage {
         transactionButtonsPanel.add(createTransactionButton("Transfer In", new Color(70, 130, 180), new Dimension(200, 50), account, "transferIn"));
         transactionButtonsPanel.add(Box.createRigidArea(new Dimension(0, 10))); // Spacer between buttons
         // Create return button
-        JButton returnButton = ReturnButton.createReturnButton("Return", new Color(70, 130, 180), Color.WHITE, new Dimension(200, 50), frame);
+        JButton returnButton = ReturnButton.createReturnButton(frame, "accountOverviewPage");
         transactionButtonsPanel.add(returnButton);
 
         // Create the bottom buttons panel with custom button styling
