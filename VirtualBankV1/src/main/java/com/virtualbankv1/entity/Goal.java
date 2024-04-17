@@ -16,4 +16,45 @@ public class Goal {
         this.currentAmount = currentAmount;
         this.childUsername = childUsername;
     }
+
+    //get and set
+    public String getGoalID() {
+        return goalID;
+    }
+
+    public void setGoalID(String goalID) {
+        this.goalID = goalID;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public double getTargetAmount() {
+        return targetAmount;
+    }
+
+    public void setTargetAmount(double targetAmount) {
+        this.targetAmount = targetAmount;
+    }
+
+    public double getCurrentAmount() {
+        return currentAmount;
+    }
+
+    public void setCurrentAmount(double currentAmount) {
+        this.currentAmount = currentAmount;
+    }
+
+    public String getChildUsername() {
+        return childUsername;
+    }
+
+    public void setChildUsername(String childUsername) {
+        this.childUsername = childUsername;
+    }
 }
