@@ -30,8 +30,6 @@ public class VirtualBankApplication {
         //Home home = new Home("zzh");
     }
 
-    // ... 其他必要的方法
-
     // 主函数，用于测试
     public static void main(String[] args) {
         VirtualBankApplication application = new VirtualBankApplication();

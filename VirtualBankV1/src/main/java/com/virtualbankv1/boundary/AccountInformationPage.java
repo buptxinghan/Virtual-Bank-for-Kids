@@ -4,7 +4,6 @@ import com.virtualbankv1.control.AccountManager;
 import com.virtualbankv1.entity.Account;
 
 import javax.swing.*;
-import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -63,7 +62,9 @@ public class AccountInformationPage {
         transactionButtonsPanel.add(Box.createRigidArea(new Dimension(0, 10))); // Spacer between buttons
         transactionButtonsPanel.add(createTransactionButton("Transfer In", new Color(70, 130, 180), new Dimension(200, 50), account, "transferIn"));
         transactionButtonsPanel.add(Box.createRigidArea(new Dimension(0, 10))); // Spacer between buttons
-        transactionButtonsPanel.add(createReturnButton("Return", new Color(70, 130, 180), Color.WHITE, new Dimension(200, 50), frame));
+        // Create return button
+        JButton returnButton = ReturnButton.createReturnButton("Return", new Color(70, 130, 180), Color.WHITE, new Dimension(200, 50), frame);
+        transactionButtonsPanel.add(returnButton);
 
         // Create the bottom buttons panel with custom button styling
         JPanel bottomButtonsPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 10, 10));
@@ -106,18 +107,6 @@ public class AccountInformationPage {
         button.setMinimumSize(size);
         button.setMaximumSize(size);
         addConfirmationListenerToButton(button, actionCommand, account); // 添加监听器
-        return button;
-    }
-
-    private static JButton createReturnButton(String text, Color bgColor, Color textColor, Dimension size, JFrame frame) {
-        RoundedButton button = new RoundedButton("<html><font size ='6'>" + text + "</font></html>");
-        button.setBackground(bgColor);
-        button.setForeground(textColor);
-        button.setAlignmentX(Component.CENTER_ALIGNMENT);
-        button.setPreferredSize(size);
-        button.setMinimumSize(size);
-        button.setMaximumSize(size);
-        addReturnListenerToButton(button, frame); // 添加监听器
         return button;
     }
 
@@ -199,15 +188,5 @@ public class AccountInformationPage {
         });
     }
 
-    // 为返回按钮添加动作监听器
-    private static void addReturnListenerToButton(JButton button, JFrame frame) {
-        button.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                frame.dispose(); // 关闭窗口
-                AccountOverviewPage aop = new AccountOverviewPage(); //生成上一页面
-                aop.setPage(aop);
-            }
-        });
-    }
+
 }
