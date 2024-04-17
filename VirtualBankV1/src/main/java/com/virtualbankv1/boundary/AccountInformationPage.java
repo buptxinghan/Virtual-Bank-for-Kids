@@ -21,14 +21,14 @@ public class AccountInformationPage {
 
         JFrame frame = new JFrame("Account Information");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setPreferredSize(new Dimension(1440, 810));
+        frame.setPreferredSize(new Dimension(1200, 900));
         frame.setLayout(new BorderLayout(10, 10)); // Set margins for the layout
 
         // Set a solid light blue background
         frame.getContentPane().setBackground(new Color(199, 220, 247)); // Light blue background
 
         // Create the title label with HTML formatting
-        JLabel titleLabel = new JLabel("<html><div style='text-align: center; color: #5D61C3;'><font style='font-size: 50px;'>Account Information</font></div></html>", SwingConstants.CENTER);
+        JLabel titleLabel = new JLabel("<html><div style='text-align: center; color: #5D61C3;'><font style='font-size: 45px;'>Account Information</font></div></html>", SwingConstants.CENTER);
         titleLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
         titleLabel.setBorder(BorderFactory.createEmptyBorder(20, 0, 20, 0)); // Top and bottom padding
 
@@ -59,9 +59,9 @@ public class AccountInformationPage {
         transactionButtonsPanel.setLayout(new BoxLayout(transactionButtonsPanel, BoxLayout.Y_AXIS));
         transactionButtonsPanel.setOpaque(false); // Transparent background
         transactionButtonsPanel.add(Box.createRigidArea(new Dimension(0, 30))); // Spacer between buttons
-        transactionButtonsPanel.add(createTransactionButton("Withdraw", new Color(70, 130, 180), new Dimension(200, 50), account, "withdraw"));
+        transactionButtonsPanel.add(createTransactionButton("Withdraw", account, "withdraw"));
         transactionButtonsPanel.add(Box.createRigidArea(new Dimension(0, 10))); // Spacer between buttons
-        transactionButtonsPanel.add(createTransactionButton("Transfer In", new Color(70, 130, 180), new Dimension(200, 50), account, "transferIn"));
+        transactionButtonsPanel.add(createTransactionButton("Transfer In", account, "transferIn"));
         transactionButtonsPanel.add(Box.createRigidArea(new Dimension(0, 10))); // Spacer between buttons
         // Create return button
         JButton returnButton = ReturnButton.createReturnButton(frame, "accountOverviewPage");
@@ -70,9 +70,9 @@ public class AccountInformationPage {
         // Create the bottom buttons panel with custom button styling
         JPanel bottomButtonsPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 10, 10));
         bottomButtonsPanel.setOpaque(false); // Transparent background
-        bottomButtonsPanel.add(createConfirmationButton("Freeze Account", new Color(255, 255, 0), Color.BLACK, new Dimension(250, 50), account, "freeze account")); // Yellow button with black text
+        bottomButtonsPanel.add(createConfirmationButton("Freeze Account", new Color(255, 255, 0), Color.BLACK, account, "freeze account")); // Yellow button with black text
         bottomButtonsPanel.add(Box.createRigidArea(new Dimension(50, 10))); // Spacer between buttons
-        bottomButtonsPanel.add(createConfirmationButton("Delete Account", new Color(255, 69, 0), Color.WHITE, new Dimension(250, 50), account, "delete account")); // Red button
+        bottomButtonsPanel.add(createConfirmationButton("Delete Account", new Color(255, 69, 0), Color.WHITE, account, "delete account")); // Red button
 
 
         // Add components to the window
@@ -87,33 +87,33 @@ public class AccountInformationPage {
         frame.setVisible(true);
     }
 
-    private JButton createTransactionButton(String text, Color bgColor, Dimension size, Account account, String actionCommand) {
+    private JButton createTransactionButton(String text, Account account, String actionCommand) {
         RoundedButton button = new RoundedButton("<html><font size ='6'>" + text + "</font></html>");
-        button.setBackground(bgColor);
+        button.setBackground(new Color(70, 130, 180));
         button.setForeground(Color.WHITE);
         button.setAlignmentX(Component.CENTER_ALIGNMENT);
-        button.setPreferredSize(size);
-        button.setMinimumSize(size);
-        button.setMaximumSize(size);
+        button.setPreferredSize(new Dimension(200, 50));
+        button.setMinimumSize(new Dimension(200, 50));
+        button.setMaximumSize(new Dimension(200, 50));
         addTransactionListenerToButton(button, actionCommand, account); // 添加监听器
         return button;
     }
 
-    private JButton createConfirmationButton(String text, Color bgColor, Color textColor, Dimension size, Account account, String actionCommand) {
-        RoundedButton button = new RoundedButton("<html><font size ='6'>" + text + "</font></html>");
+    private JButton createConfirmationButton(String text, Color bgColor, Color textColor, Account account, String actionCommand) {
+        RoundedButton button = new RoundedButton("<html><font style='font-size: 18px;'>" + text + "</font></html>");
         button.setBackground(bgColor);
         button.setForeground(textColor);
         button.setAlignmentX(Component.CENTER_ALIGNMENT);
-        button.setPreferredSize(size);
-        button.setMinimumSize(size);
-        button.setMaximumSize(size);
+        button.setPreferredSize(new Dimension(250, 50));
+        button.setMinimumSize(new Dimension(250, 50));
+        button.setMaximumSize(new Dimension(250, 50));
         addConfirmationListenerToButton(button, actionCommand, account); // 添加监听器
         return button;
     }
 
     // Helper method to create labels with HTML formatting and larger font size
     private static JLabel createLabel(String text) {
-        return new JLabel("<html><font color='#8595BC' style='font-size: 30px;'>" + text + "</font></html>");
+        return new JLabel("<html><font color='#8595BC' style='font-size: 25px;'>" + text + "</font></html>");
     }
 
     // Helper method to create display labels with fixed size and larger font size
