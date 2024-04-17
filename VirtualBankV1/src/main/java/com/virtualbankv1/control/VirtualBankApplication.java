@@ -1,6 +1,7 @@
 package com.virtualbankv1.control;
 
 import com.virtualbankv1.boundary.Reader;
+import com.virtualbankv1.boundary.Writer;
 import com.virtualbankv1.entity.*;
 
 import java.util.List;
@@ -28,6 +29,9 @@ public class VirtualBankApplication {
         AccountManager accountManager = new AccountManager();
         accountManager.displayAccountInformation(tempAccount);
         //Home home = new Home("zzh");
+
+//        Writer writer = new Writer();
+//        writer.writeCSV("src/Data/User.csv", users);
     }
 
     // 主函数，用于测试
