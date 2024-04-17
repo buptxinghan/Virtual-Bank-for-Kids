@@ -33,15 +33,15 @@ public class VirtualBankApplication {
 
         Account tempAccount = accounts.get(0);
         AccountManager accountManager = new AccountManager();
-        //accountManager.displayAccountInformation(tempAccount);
+        accountManager.displayAccountInformation(tempAccount);
         //Home home = new Home("zzh");
 
-        Writer writer = new Writer();
-        writer.writeUsers("src/Data/Users.csv", users);
-        writer.writeAccounts("src/Data/Accounts.csv", accounts);
-        writer.writeTransactions("src/Data/Transactions.csv", transactions);
-        writer.writeTasks("src/Data/Tasks.csv", tasks);
-        writer.writeGoals("src/Data/Goals.csv", goals);
+//        Writer writer = new Writer();
+//        writer.writeUsers("src/Data/Users.csv", users);
+//        writer.writeAccounts("src/Data/Accounts.csv", accounts);
+//        writer.writeTransactions("src/Data/Transactions.csv", transactions);
+//        writer.writeTasks("src/Data/Tasks.csv", tasks);
+//        writer.writeGoals("src/Data/Goals.csv", goals);
     }
 
     public List<Account> getCurrentUserAccounts(User currentUser) {
