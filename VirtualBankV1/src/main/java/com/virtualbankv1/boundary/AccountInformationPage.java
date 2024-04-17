@@ -36,7 +36,7 @@ public class AccountInformationPage {
         JPanel formPanel = new JPanel();
         formPanel.setLayout(new BoxLayout(formPanel, BoxLayout.Y_AXIS));
         formPanel.setOpaque(false); // Transparent background
-        formPanel.setBorder(BorderFactory.createEmptyBorder(10, 50, 10, 50)); // Padding around the form
+        formPanel.setBorder(BorderFactory.createEmptyBorder(10, 180, 10, 50)); // Padding around the form
 
         // 创建用于显示余额和账户状态的JLabel
         accountBalanceLabel = createDisplayLabel(account.getBalance());
@@ -58,7 +58,7 @@ public class AccountInformationPage {
         JPanel transactionButtonsPanel = new JPanel();
         transactionButtonsPanel.setLayout(new BoxLayout(transactionButtonsPanel, BoxLayout.Y_AXIS));
         transactionButtonsPanel.setOpaque(false); // Transparent background
-        transactionButtonsPanel.add(Box.createRigidArea(new Dimension(0, 30))); // Spacer between buttons
+        transactionButtonsPanel.add(Box.createRigidArea(new Dimension(0, 50))); // Spacer between buttons
         transactionButtonsPanel.add(createTransactionButton("Withdraw", account, "withdraw"));
         transactionButtonsPanel.add(Box.createRigidArea(new Dimension(0, 10))); // Spacer between buttons
         transactionButtonsPanel.add(createTransactionButton("Transfer In", account, "transferIn"));
@@ -66,6 +66,12 @@ public class AccountInformationPage {
         // Create return button
         JButton returnButton = ReturnButton.createReturnButton(frame, "accountOverviewPage");
         transactionButtonsPanel.add(returnButton);
+        // Add picture
+        Icon transferIcon = new ImageIcon("src/Materials/Transfer.png");
+        JLabel transferLabel = new JLabel(transferIcon);
+        transferLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        transactionButtonsPanel.add(Box.createRigidArea(new Dimension(0, 100))); // 添加间隔
+        transactionButtonsPanel.add(transferLabel);
 
         // Create the bottom buttons panel with custom button styling
         JPanel bottomButtonsPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 10, 10));

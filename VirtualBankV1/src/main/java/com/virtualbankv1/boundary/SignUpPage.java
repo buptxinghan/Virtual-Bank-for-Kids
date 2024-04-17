@@ -70,7 +70,7 @@ public class SignUpPage {
     }
 
     private void writeUserToCsv(String userId, String firstName, String lastName, String password) {
-        try (PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("User.csv", true)))) {
+        try (PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("Users.csv", true)))) {
             out.println(userId + "," + lastName + "," + firstName + "," + password);
         } catch (IOException e) {
             e.printStackTrace();

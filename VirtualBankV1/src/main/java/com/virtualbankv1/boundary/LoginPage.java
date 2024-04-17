@@ -65,7 +65,7 @@ public class LoginPage {
     }
 
     private boolean checkCredentials(String userId, String password) {
-        try (Scanner scanner = new Scanner(new File("User.csv"))) {
+        try (Scanner scanner = new Scanner(new File("Users.csv"))) {
             while (scanner.hasNextLine()) {
                 String line = scanner.nextLine();
                 String[] credentials = line.split(",");

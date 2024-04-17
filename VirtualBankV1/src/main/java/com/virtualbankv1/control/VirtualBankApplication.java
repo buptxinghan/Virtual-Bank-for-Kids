@@ -4,6 +4,7 @@ import com.virtualbankv1.boundary.Reader;
 import com.virtualbankv1.boundary.Writer;
 import com.virtualbankv1.entity.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class VirtualBankApplication {
@@ -18,20 +19,41 @@ public class VirtualBankApplication {
 
     public VirtualBankApplication() {
         Reader reader = new Reader();
-        users = reader.readUsers("src/Data/User.csv");
+        users = reader.readUsers("src/Data/Users.csv");
         accounts = reader.readAccounts("src/Data/Accounts.csv");
         transactions = reader.readTransactions("src/Data/Transactions.csv");
         tasks = reader.readTasks("src/Data/Tasks.csv");
         goals = reader.readGoals("src/Data/Goals.csv");
         support = reader.readSupport("src/Data/Support.csv");
 
+
+
+        currentUser = users.get(0);
+        List<Account> tempAccounts = getCurrentUserAccounts(currentUser);
+
         Account tempAccount = accounts.get(0);
         AccountManager accountManager = new AccountManager();
-        accountManager.displayAccountInformation(tempAccount);
+        //accountManager.displayAccountInformation(tempAccount);
         //Home home = new Home("zzh");
 
-//        Writer writer = new Writer();
-//        writer.writeCSV("src/Data/User.csv", users);
+        Writer writer = new Writer();
+        writer.writeUsers("src/Data/Users.csv", users);
+        writer.writeAccounts("src/Data/Accounts.csv", accounts);
+        writer.writeTransactions("src/Data/Transactions.csv", transactions);
+        writer.writeTasks("src/Data/Tasks.csv", tasks);
+        writer.writeGoals("src/Data/Goals.csv", goals);
+    }
+
+    public List<Account> getCurrentUserAccounts(User currentUser) {
+
+        List<Account> currentUserAccounts = new ArrayList<>();
+        for (Account account : accounts) {
+            if (account.getUsername().equals(currentUser.getUsername())){
+                currentUserAccounts.add(account);
+            }
+        }
+
+        return currentUserAccounts;
     }
 
     // 主函数，用于测试
