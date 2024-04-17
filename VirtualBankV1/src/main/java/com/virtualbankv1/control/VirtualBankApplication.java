@@ -24,7 +24,7 @@ public class VirtualBankApplication {
         goals = reader.readGoals("src/Data/Goals.csv");
         support = reader.readSupport("src/Data/Support.csv");
 
-        Account tempAccount = accounts.getFirst();
+        Account tempAccount = accounts.get(0);
         AccountManager accountManager = new AccountManager();
         accountManager.displayAccountInformation(tempAccount);
         //Home home = new Home("zzh");

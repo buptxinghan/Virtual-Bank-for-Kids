@@ -7,6 +7,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.DecimalFormat;
 
 public class AccountInformationPage {
 
@@ -127,8 +128,12 @@ public class AccountInformationPage {
         return label;
     }
 
-    private static JLabel createDisplayLabel(Double text) {
-        JLabel label = new JLabel("<html><font color='Red' style='font-size: 20px;'>" + text + "</font></html>");
+    private static JLabel createDisplayLabel(Double balance) {
+        //格式化balance
+        DecimalFormat df = new DecimalFormat("#,##0.00");
+        String formattedBalance = df.format(balance);
+
+        JLabel label = new JLabel("<html><font color='Red' style='font-size: 20px;'>" + formattedBalance + "</font></html>");
         label.setMaximumSize(new Dimension(350, 50)); // Adjusted size for display labels
         label.setMinimumSize(new Dimension(350, 50)); // Adjusted size for display labels
         label.setPreferredSize(new Dimension(350, 50)); // Adjusted size for display labels
@@ -150,12 +155,22 @@ public class AccountInformationPage {
                         double amount = Double.parseDouble(input);
                         if ("withdraw".equals(e.getActionCommand())) {
                             // 调用取款方法
-                            accountManager.withdraw(account, amount);
-                            accountBalanceLabel.setText("<html><font color='Red' style='font-size: 20px;'>" + account.getBalance() + "</font></html>");
+                            if(accountManager.withdraw(account, amount)) {
+                                //格式化balance
+                                DecimalFormat df = new DecimalFormat("#,##0.00");
+                                String formattedBalance = df.format(account.getBalance());
+                                accountBalanceLabel.setText("<html><font color='Red' style='font-size: 20px;'>" + formattedBalance + "</font></html>");
+                            }
+                            else {
+                                // 余额不足，弹出提示窗口
+                                JOptionPane.showMessageDialog(null, "余额不足", "错误", JOptionPane.ERROR_MESSAGE);
+                            }
                         } else if ("transferIn".equals(e.getActionCommand())) {
                             // 调用存款方法
                             accountManager.transferIn(account, amount);
-                            accountBalanceLabel.setText("<html><font color='Red' style='font-size: 20px;'>" + account.getBalance() + "</font></html>");
+                            DecimalFormat df = new DecimalFormat("#,##0.00");
+                            String formattedBalance = df.format(account.getBalance());
+                            accountBalanceLabel.setText("<html><font color='Red' style='font-size: 20px;'>" + formattedBalance + "</font></html>");
                         }
                     } catch (NumberFormatException ex) {
                         JOptionPane.showMessageDialog(null, "请输入有效的金额", "错误", JOptionPane.ERROR_MESSAGE);

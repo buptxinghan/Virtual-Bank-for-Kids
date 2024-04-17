@@ -15,8 +15,14 @@ public class AccountManager {
         account.setBalance(account.getBalance() + amount);
     }
 
-    public void withdraw(Account account, double amount) {
-        account.setBalance(account.getBalance() - amount);
+    public boolean withdraw(Account account, double amount) {
+        if (account.getBalance() >= amount) {
+            account.setBalance(account.getBalance() - amount);
+            return true;
+        }
+        else {
+            return false;
+        }
     }
 
     public void freezeAccount(Account account) {
