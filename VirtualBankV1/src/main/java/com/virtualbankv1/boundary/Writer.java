@@ -5,11 +5,15 @@ import java.util.*;
 
 public class Writer {
     public void writeCSV(String filePath, List<String[]> data) {
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter(filePath))) {
+        try {
+            FileWriter fw = new FileWriter(filePath,true);
+            BufferedWriter bw = new BufferedWriter(fw);
             for (String[] record : data) {
-                bw.write(String.join(",", record));
                 bw.newLine();
+                bw.write(String.join(",", record));
             }
+            bw.close();
+            fw.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
