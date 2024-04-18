@@ -5,8 +5,6 @@ import com.virtualbankv1.entity.Account;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.text.DecimalFormat;
 
 public class AccountInformationPage extends JFrame {
@@ -18,6 +16,7 @@ public class AccountInformationPage extends JFrame {
     private static JLabel accountStatusLabel;
 
     public AccountInformationPage(Account account) {
+
         setTitle("Account Information");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setPreferredSize(new Dimension(1200, 900));
