@@ -32,7 +32,7 @@ public class AccountOverviewPage extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 // 新建并显示“开户”界面
                 OpenAccountPage openAccountPage = new OpenAccountPage();
-                openAccountPage.setSize(1000, 500);
+                openAccountPage.setSize(new Dimension(1200, 900));
                 openAccountPage.setVisible(true);
                 openAccountPage.setLocationRelativeTo(null); // 设置窗口居中
                 openAccountPage.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // 修改关闭行为
@@ -41,7 +41,8 @@ public class AccountOverviewPage extends JFrame {
     }
 
     public void setPage(AccountOverviewPage aop) {
-        aop.setSize(1000, 500);
+        aop.setSize(new Dimension(1200, 900));
+        aop.setLocationRelativeTo(null);
         aop.setVisible(true);
     }
 

@@ -9,7 +9,7 @@ public class HomePage extends JFrame {
 
     public HomePage(String str) {
         super(str);
-        setSize(1000, 600);
+        setSize(new Dimension(1200, 900));
         Color bg = new Color(199, 220, 247);
         Color z1 = new Color(93,97,195);
         Color z2 = new Color(133,149,188);
@@ -91,6 +91,7 @@ public class HomePage extends JFrame {
         add(left, BorderLayout.WEST);
         add(Center);
 
+        setLocationRelativeTo(null); //窗口居中
         setVisible(true);
     }
     // 辅助方法：将Color对象转换为HTML颜色字符串

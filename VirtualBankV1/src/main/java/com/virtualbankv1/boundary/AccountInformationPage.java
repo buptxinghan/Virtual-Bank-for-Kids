@@ -9,23 +9,22 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.DecimalFormat;
 
-public class AccountInformationPage {
+public class AccountInformationPage extends JFrame {
 
-    private AccountManager accountManager = new AccountManager();
+    private final AccountManager accountManager = new AccountManager();
 
     // 成员变量用于存储UI组件的引用
     private static JLabel accountBalanceLabel;
     private static JLabel accountStatusLabel;
 
-    public void accountInformationGUI(Account account) {
-
-        JFrame frame = new JFrame("Account Information");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setPreferredSize(new Dimension(1200, 900));
-        frame.setLayout(new BorderLayout(10, 10)); // Set margins for the layout
+    public AccountInformationPage(Account account) {
+        setTitle("Account Information");
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setPreferredSize(new Dimension(1200, 900));
+        setLayout(new BorderLayout(10, 10)); // Set margins for the layout
 
         // Set a solid light blue background
-        frame.getContentPane().setBackground(new Color(199, 220, 247)); // Light blue background
+        getContentPane().setBackground(new Color(199, 220, 247)); // Light blue background
 
         // Create the title label with HTML formatting
         JLabel titleLabel = new JLabel("<html><div style='text-align: center; color: #5D61C3;'><font style='font-size: 45px;'>Account Information</font></div></html>", SwingConstants.CENTER);
@@ -64,7 +63,7 @@ public class AccountInformationPage {
         transactionButtonsPanel.add(createTransactionButton("Transfer In", account, "transferIn"));
         transactionButtonsPanel.add(Box.createRigidArea(new Dimension(0, 10))); // Spacer between buttons
         // Create return button
-        JButton returnButton = ReturnButton.createReturnButton(frame, "accountOverviewPage");
+        JButton returnButton = ReturnButton.createReturnButton(this, "accountOverviewPage");
         transactionButtonsPanel.add(returnButton);
         // Add picture
         Icon transferIcon = new ImageIcon("src/Materials/Transfer.png");
@@ -74,23 +73,22 @@ public class AccountInformationPage {
         transactionButtonsPanel.add(transferLabel);
 
         // Create the bottom buttons panel with custom button styling
-        JPanel bottomButtonsPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 10, 10));
+        JPanel bottomButtonsPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 10, 50));
         bottomButtonsPanel.setOpaque(false); // Transparent background
         bottomButtonsPanel.add(createConfirmationButton("Freeze Account", new Color(255, 255, 0), Color.BLACK, account, "freeze account")); // Yellow button with black text
         bottomButtonsPanel.add(Box.createRigidArea(new Dimension(50, 10))); // Spacer between buttons
         bottomButtonsPanel.add(createConfirmationButton("Delete Account", new Color(255, 69, 0), Color.WHITE, account, "delete account")); // Red button
 
-
         // Add components to the window
-        frame.add(titleLabel, BorderLayout.NORTH);
-        frame.add(formPanel, BorderLayout.WEST); // Align the form panel to the left
-        frame.add(transactionButtonsPanel, BorderLayout.CENTER); // Place the transaction buttons in the center
-        frame.add(bottomButtonsPanel, BorderLayout.SOUTH); // Place the bottom buttons at the bottom
+        add(titleLabel, BorderLayout.NORTH);
+        add(formPanel, BorderLayout.WEST); // Align the form panel to the left
+        add(transactionButtonsPanel, BorderLayout.CENTER); // Place the transaction buttons in the center
+        add(bottomButtonsPanel, BorderLayout.SOUTH); // Place the bottom buttons at the bottom
 
-        // Pack the frame and display the window
-        frame.pack();
-        frame.setLocationRelativeTo(null); // Center the window
-        frame.setVisible(true);
+        // Pack the frame
+        pack();
+        setLocationRelativeTo(null); // Center the window
+        setVisible(true);
     }
 
     private JButton createTransactionButton(String text, Account account, String actionCommand) {
@@ -152,35 +150,32 @@ public class AccountInformationPage {
     // 为交易按钮添加动作监听器
     private void addTransactionListenerToButton(JButton button, String actionCommand, Account account) {
         button.setActionCommand(actionCommand);
-        button.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                String input = JOptionPane.showInputDialog(null, "请输入金额：", "交易", JOptionPane.PLAIN_MESSAGE);
-                if (input != null && !input.isEmpty()) {
-                    try {
-                        double amount = Double.parseDouble(input);
-                        if ("withdraw".equals(e.getActionCommand())) {
-                            // 调用取款方法
-                            if(accountManager.withdraw(account, amount)) {
-                                //格式化balance
-                                DecimalFormat df = new DecimalFormat("#,##0.00");
-                                String formattedBalance = df.format(account.getBalance());
-                                accountBalanceLabel.setText("<html><font color='Red' style='font-size: 20px;'>" + formattedBalance + "</font></html>");
-                            }
-                            else {
-                                // 余额不足，弹出提示窗口
-                                JOptionPane.showMessageDialog(null, "余额不足", "错误", JOptionPane.ERROR_MESSAGE);
-                            }
-                        } else if ("transferIn".equals(e.getActionCommand())) {
-                            // 调用存款方法
-                            accountManager.transferIn(account, amount);
+        button.addActionListener(e ->  {
+            String input = JOptionPane.showInputDialog(null, "请输入金额：", "交易", JOptionPane.PLAIN_MESSAGE);
+            if (input != null && !input.isEmpty()) {
+                try {
+                    double amount = Double.parseDouble(input);
+                    if ("withdraw".equals(e.getActionCommand())) {
+                        // 调用取款方法
+                        if(accountManager.withdraw(account, amount)) {
+                            //格式化balance
                             DecimalFormat df = new DecimalFormat("#,##0.00");
                             String formattedBalance = df.format(account.getBalance());
                             accountBalanceLabel.setText("<html><font color='Red' style='font-size: 20px;'>" + formattedBalance + "</font></html>");
                         }
-                    } catch (NumberFormatException ex) {
-                        JOptionPane.showMessageDialog(null, "请输入有效的金额", "错误", JOptionPane.ERROR_MESSAGE);
+                        else {
+                            // 余额不足，弹出提示窗口
+                            JOptionPane.showMessageDialog(null, "余额不足", "错误", JOptionPane.ERROR_MESSAGE);
+                        }
+                    } else if ("transferIn".equals(e.getActionCommand())) {
+                        // 调用存款方法
+                        accountManager.transferIn(account, amount);
+                        DecimalFormat df = new DecimalFormat("#,##0.00");
+                        String formattedBalance = df.format(account.getBalance());
+                        accountBalanceLabel.setText("<html><font color='Red' style='font-size: 20px;'>" + formattedBalance + "</font></html>");
                     }
+                } catch (NumberFormatException ex) {
+                    JOptionPane.showMessageDialog(null, "请输入有效的金额", "错误", JOptionPane.ERROR_MESSAGE);
                 }
             }
         });
@@ -189,25 +184,20 @@ public class AccountInformationPage {
     // 为Confirmation按钮添加动作监听器
     private void addConfirmationListenerToButton(JButton button, String actionCommand, Account account) {
         button.setActionCommand(actionCommand);
-        button.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                int confirmed = JOptionPane.showConfirmDialog(null, "您确定要执行此操作吗？", "确认操作", JOptionPane.YES_NO_OPTION);
-                if (confirmed == JOptionPane.YES_OPTION) {
-                    if ("delete account".equals(e.getActionCommand())) {
-                        // 确认删除账户后的逻辑
-                        accountManager.deleteAccount(account); // 将账户状态改为 Deleted
-                        accountStatusLabel.setText("<html><font color='Black' style='font-size: 20px;'>" + account.getStatus() + "</font></html>");
+        button.addActionListener(e ->  {
+            int confirmed = JOptionPane.showConfirmDialog(null, "您确定要执行此操作吗？", "确认操作", JOptionPane.YES_NO_OPTION);
+            if (confirmed == JOptionPane.YES_OPTION) {
+                if ("delete account".equals(e.getActionCommand())) {
+                    // 确认删除账户后的逻辑
+                    accountManager.deleteAccount(account); // 将账户状态改为 Deleted
+                    accountStatusLabel.setText("<html><font color='Black' style='font-size: 20px;'>" + account.getStatus() + "</font></html>");
 
-                    } else if ("freeze account".equals(e.getActionCommand())) {
-                        // 确认冻结账户后的逻辑
-                        accountManager.freezeAccount(account); // 将账户状态改为 Frozen
-                        accountStatusLabel.setText("<html><font color='Black' style='font-size: 20px;'>" + account.getStatus() + "</font></html>");
-                    }
+                } else if ("freeze account".equals(e.getActionCommand())) {
+                    // 确认冻结账户后的逻辑
+                    accountManager.freezeAccount(account); // 将账户状态改为 Frozen
+                    accountStatusLabel.setText("<html><font color='Black' style='font-size: 20px;'>" + account.getStatus() + "</font></html>");
                 }
             }
         });
     }
-
-
 }

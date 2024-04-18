@@ -7,8 +7,7 @@ import com.virtualbankv1.entity.Account;
 public class AccountManager {
 
     public void displayAccountInformation(Account account) {
-        AccountInformationPage accountInformationPage = new AccountInformationPage();
-        accountInformationPage.accountInformationGUI(account);
+        new AccountInformationPage(account);
     }
 
     public void transferIn(Account account, double amount) {
