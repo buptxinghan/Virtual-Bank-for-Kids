@@ -7,6 +7,12 @@ import java.io.*;
 import java.util.*;
 
 public class Reader {
+    public static List<User> users; // 存储所有用户账户的信息
+    public static List<Account> accounts;
+    public static List<Transaction> transactions; // 存储所有账户的交易记录
+    public static List<Task> tasks; // 存储所有设置的任务
+    public static List<Goal> goals; // 存储所有用户设定的长期目标
+    public static List<SupportSystem> support; // 提供用户支持和帮助信息
 
     public Reader() {
         users = this.readUsers("src/Data/Users.csv");
