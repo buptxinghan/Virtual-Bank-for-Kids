@@ -1,11 +1,21 @@
 package com.virtualbankv1.boundary;
 
 import com.virtualbankv1.entity.*;
+import static com.virtualbankv1.control.VirtualBankApplication.*;
 
 import java.io.*;
 import java.util.*;
 
 public class Reader {
+
+    public Reader() {
+        users = this.readUsers("src/Data/Users.csv");
+        accounts = this.readAccounts("src/Data/Accounts.csv");
+        transactions = this.readTransactions("src/Data/Transactions.csv");
+        tasks = this.readTasks("src/Data/Tasks.csv");
+        goals = this.readGoals("src/Data/Goals.csv");
+        support = this.readSupport("src/Data/Support.csv");
+    }
 
     public List<User> readUsers(String filePath) {
         List<User> users = new ArrayList<>();
@@ -136,4 +146,5 @@ public class Reader {
         }
         return transactions;
     }
+
 }
