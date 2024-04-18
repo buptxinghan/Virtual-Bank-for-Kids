@@ -8,25 +8,21 @@ import com.virtualbankv1.entity.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class VirtualBankApplication {
-    public static List<User> users; // 存储所有用户账户的信息
-    public static List<Account> accounts;
-    public static List<Transaction> transactions; // 存储所有账户的交易记录
-    public static List<Task> tasks; // 存储所有设置的任务
-    public static List<Goal> goals; // 存储所有用户设定的长期目标
-    public static List<SupportSystem> support; // 提供用户支持和帮助信息
+import static com.virtualbankv1.boundary.Reader.accounts;
+import static com.virtualbankv1.boundary.Reader.users;
 
-    protected User currentUser; // 表示当前进入的用户账户
+public class VirtualBankApplication {
+    public static User currentUser; // 表示当前进入的用户账户
 
     public VirtualBankApplication() {
         new Reader();
 
-        currentUser = users.get(0);
-        List<Account> tempAccounts = getCurrentUserAccounts(currentUser);
+        //currentUser = users.get(0);
+        //List<Account> tempAccounts = getCurrentUserAccounts(currentUser);
 
-        Account tempAccount = accounts.get(0);
-        AccountManager accountManager = new AccountManager();
-        accountManager.displayAccountInformation(tempAccount);
+        //Account tempAccount = accounts.get(0);
+        //AccountManager accountManager = new AccountManager();
+        //accountManager.displayAccountInformation(tempAccount);
         HomePage home = new HomePage("zzh");  
 
         Writer writer = new Writer();
