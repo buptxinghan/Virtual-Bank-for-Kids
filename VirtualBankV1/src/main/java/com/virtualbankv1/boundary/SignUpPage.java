@@ -6,6 +6,10 @@ import java.awt.event.*;
 import java.io.*;
 import java.util.Random;
 
+import com.virtualbankv1.entity.User;
+
+import static com.virtualbankv1.boundary.Reader.users;
+
 public class SignUpPage {
 
     private JFrame frame;
@@ -63,6 +67,10 @@ public class SignUpPage {
 
     private void writeUserToCsv(String userName, String password) {
         try (PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("src/Data/Users.csv", true)))) {
+            User user = new User();
+            user.setPassword(password);
+            user.setUsername(userName);
+            users.add(user);
             out.println(userName + "," + password );
         } catch (IOException e) {
             e.printStackTrace();
