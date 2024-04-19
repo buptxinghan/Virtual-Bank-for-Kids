@@ -61,11 +61,11 @@ public class OpenAccountPage extends JFrame implements ActionListener {
         panel.add(component, gbc);
     }
 
-    public static void main(String[] args) {
-        OpenAccountPage openAccountPage = new OpenAccountPage();
-        openAccountPage.setSize(1000, 500);
-        openAccountPage.setVisible(true);
-    }
+//    public static void main(String[] args) {
+//        OpenAccountPage openAccountPage = new OpenAccountPage();
+//        openAccountPage.setSize(1000, 500);
+//        openAccountPage.setVisible(true);
+//    }
 
     public void actionPerformed(ActionEvent event) {
         String str1 = pw.getText();
