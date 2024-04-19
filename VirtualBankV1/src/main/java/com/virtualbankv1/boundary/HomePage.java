@@ -57,7 +57,7 @@ public class HomePage extends JFrame {
         btn4.setBackground(bg);
 
         JLabel l1 = new JLabel("<html><font size=7 color=" + getColorHex(z1) + ">Welcome to Your Virtual Bank!</font></html>",JLabel.CENTER);
-        ImageIcon icon = new ImageIcon("D:\\Project\\Virtualbank\\Virtual-Bank-for-Kids\\Data\\pic.png");
+        ImageIcon icon = new ImageIcon("src/Materials/pig.png");
         JLabel pic = new JLabel(icon,JLabel.CENTER);
 
 
@@ -103,7 +103,7 @@ public class HomePage extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 frame.dispose(); // 关闭窗口
-                AccountOverviewPage aop = new AccountOverviewPage("Wu Botong"); //生成上一页面
+                AccountOverviewPage aop = new AccountOverviewPage(); //生成上一页面
                 aop.setPage(aop);
             }
         });

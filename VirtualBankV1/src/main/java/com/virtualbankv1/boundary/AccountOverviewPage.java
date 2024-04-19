@@ -11,17 +11,18 @@ import java.awt.event.ActionListener;
 
 import static com.virtualbankv1.boundary.Reader.accounts;
 import static com.virtualbankv1.boundary.Reader.users;
+import static com.virtualbankv1.control.VirtualBankApplication.currentUser;
 
 public class AccountOverviewPage extends JFrame {
     private JButton createNewAccountButton = new JButton("+");
     private JPanel mainPanel;
     // Constructor
-    public AccountOverviewPage(String username) {
+    public AccountOverviewPage() {
         this.mainPanel = new JPanel(new GridBagLayout());
         setContentPane(this.mainPanel);
-        boolean userExists = checkUserExists(username);
+        boolean userExists = checkUserExists(currentUser.getUsername());
         if (userExists) {
-            displayAccountInfo(username);
+            displayAccountInfo(currentUser.getUsername());
         }
 
         displayCreateAccountPanel();

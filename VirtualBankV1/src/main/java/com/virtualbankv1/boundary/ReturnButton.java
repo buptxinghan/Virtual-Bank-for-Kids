@@ -26,7 +26,7 @@ public class ReturnButton {
             public void actionPerformed(ActionEvent e) {
                 frame.dispose(); // 关闭窗口
                 if (lastPage.equals("accountOverviewPage")) {
-                    AccountOverviewPage aop = new AccountOverviewPage(""); //生成AccountOverviewPage
+                    AccountOverviewPage aop = new AccountOverviewPage(); //生成AccountOverviewPage
                     aop.setPage(aop);
                 }
                 else if (lastPage.equals(" ")) {
