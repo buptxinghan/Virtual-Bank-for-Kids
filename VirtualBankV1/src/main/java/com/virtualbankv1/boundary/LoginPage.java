@@ -17,6 +17,7 @@ public class LoginPage {
         // Create and set up the window
         frame = new JFrame("Bank Login System");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setPreferredSize(new Dimension(350, 200));
         frame.setLayout(new BorderLayout(10, 10));
 
         // Create and populate the panel
@@ -62,7 +63,8 @@ public class LoginPage {
 
         // Set the size of the window and make it visible
         frame.add(panel, BorderLayout.CENTER);
-        frame.setSize(350, 150);
+        frame.pack();
+        frame.setLocationRelativeTo(null); // Center the window
         frame.setVisible(true);
     }
 

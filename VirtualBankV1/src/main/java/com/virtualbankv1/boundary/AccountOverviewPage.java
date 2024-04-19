@@ -67,7 +67,7 @@ public class AccountOverviewPage extends JFrame {
     // Open the account page
     private void openAccountPage() {
         OpenAccountPage openAccount = new OpenAccountPage();
-        openAccount.setSize(1000, 500);
+        openAccount.setSize(1200, 900);
         openAccount.setVisible(true);
         openAccount.setLocationRelativeTo(null); // Center the window
         openAccount.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // Modify the close behavior
@@ -75,8 +75,10 @@ public class AccountOverviewPage extends JFrame {
 
     // Show the page
     public void setPage(AccountOverviewPage aop) {
-        aop.setSize(1000, 500);
+        aop.setSize(1200, 900);
+        aop.setLocationRelativeTo(null); // Center the window
         aop.setVisible(true);
+        aop.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
 
     // Update the page with the given account information

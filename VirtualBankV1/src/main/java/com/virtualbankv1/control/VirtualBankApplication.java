@@ -1,6 +1,7 @@
 package com.virtualbankv1.control;
 
 import com.virtualbankv1.boundary.HomePage;
+import com.virtualbankv1.boundary.LoginPage;
 import com.virtualbankv1.boundary.Reader;
 import com.virtualbankv1.boundary.Writer;
 import com.virtualbankv1.entity.*;
@@ -23,11 +24,11 @@ public class VirtualBankApplication {
         //Account tempAccount = accounts.get(0);
         //AccountManager accountManager = new AccountManager();
         //accountManager.displayAccountInformation(tempAccount);
-        HomePage home = new HomePage("zzh");  
+        LoginPage login = new LoginPage();
 
-        Writer writer = new Writer();
+//        Writer writer = new Writer();
 //        writer.writeUsers("src/Data/Users.csv", users);
-        writer.writeAccounts("src/Data/Accounts.csv", accounts);
+//        writer.writeAccounts("src/Data/Accounts.csv", accounts);
 //        writer.writeTransactions("src/Data/Transactions.csv", transactions);
 //        writer.writeTasks("src/Data/Tasks.csv", tasks);
 //        writer.writeGoals("src/Data/Goals.csv", goals);
