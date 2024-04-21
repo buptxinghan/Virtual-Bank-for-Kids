@@ -76,6 +76,8 @@ public class AccountInformationPage extends JFrame {
         bottomButtonsPanel.setOpaque(false); // Transparent background
         bottomButtonsPanel.add(createConfirmationButton("Freeze Account", new Color(255, 255, 0), Color.BLACK, account, "freeze account")); // Yellow button with black text
         bottomButtonsPanel.add(Box.createRigidArea(new Dimension(50, 10))); // Spacer between buttons
+        bottomButtonsPanel.add(createConfirmationButton("Unfreeze Account", new Color(255, 255, 0), Color.BLACK, account, "unfreeze account")); // Yellow button with black text
+        bottomButtonsPanel.add(Box.createRigidArea(new Dimension(50, 10))); // Spacer between buttons
         bottomButtonsPanel.add(createConfirmationButton("Delete Account", new Color(255, 69, 0), Color.WHITE, account, "delete account")); // Red button
 
         // Add components to the window
@@ -150,6 +152,13 @@ public class AccountInformationPage extends JFrame {
     private void addTransactionListenerToButton(JButton button, String actionCommand, Account account) {
         button.setActionCommand(actionCommand);
         button.addActionListener(e ->  {
+
+            // 检查账户状态
+            if (accountManager.isFrozen(account) || accountManager.isDeleted(account)) {
+                JOptionPane.showMessageDialog(null, "账户状态异常，无法进行交易", "错误", JOptionPane.ERROR_MESSAGE);
+                return; // 账户状态异常，中断操作
+            }
+
             String input = JOptionPane.showInputDialog(null, "请输入金额：", "交易", JOptionPane.PLAIN_MESSAGE);
             if (input != null && !input.isEmpty()) {
                 try {
@@ -194,6 +203,10 @@ public class AccountInformationPage extends JFrame {
                 } else if ("freeze account".equals(e.getActionCommand())) {
                     // 确认冻结账户后的逻辑
                     accountManager.freezeAccount(account); // 将账户状态改为 Frozen
+                    accountStatusLabel.setText("<html><font color='Black' style='font-size: 20px;'>" + account.getStatus() + "</font></html>");
+                } else if ("unfreeze account".equals(e.getActionCommand())) {
+                    // 确认解冻账户后的逻辑
+                    accountManager.unfreezeAccount(account); // 将账户状态改为 Active
                     accountStatusLabel.setText("<html><font color='Black' style='font-size: 20px;'>" + account.getStatus() + "</font></html>");
                 }
             }

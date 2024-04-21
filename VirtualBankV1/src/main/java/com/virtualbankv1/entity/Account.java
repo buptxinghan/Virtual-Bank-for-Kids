@@ -67,15 +67,6 @@ public class Account {
         this.status = status;
     }
 
-    public Account getAccountById(List<Account> accounts, String accountID) {
-        for (Account account : accounts) {
-            if (account.getAccountID().equals(accountID)) {
-                return account; // 找到匹配的accountID，返回对应的Account对象
-            }
-        }
-        return null; // 如果没有找到，返回null
-    }
-
     @Override
     public String toString() {
         return "Account{" +
