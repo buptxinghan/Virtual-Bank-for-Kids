@@ -4,6 +4,12 @@ import com.virtualbankv1.entity.*;
 import java.io.*;
 import java.util.*;
 
+import static com.virtualbankv1.boundary.Reader.accounts;
+import static com.virtualbankv1.boundary.Reader.users;
+import static com.virtualbankv1.boundary.Reader.tasks;
+import static com.virtualbankv1.boundary.Reader.goals;
+import static com.virtualbankv1.boundary.Reader.transactions;
+
 public class Writer {
     public void writeAccounts(String filePath, List<Account> data) {
         try {
@@ -101,5 +107,73 @@ public class Writer {
         }
     }
 
+    public void writeSingleUser(User tempUser) {
+        try (PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("src/Data/Users.csv", true)))) {
+            users.add(tempUser);
+            out.println(tempUser.getUsername() + "," + tempUser.getPassword() );
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void writeSingleAccount(Account tempAccount) {
+        try (PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("src/Data/Users.csv", true)))) {
+            accounts.add(tempAccount);
+            out.println(
+                            tempAccount.getAccountID() + "," +
+                            tempAccount.getAccountType() + "," +
+                            tempAccount.getUsername() + "," +
+                            tempAccount.getPassword() + "," +
+                            tempAccount.getBalance() + "," +
+                            tempAccount.getStatus()
+            );
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void writeSingleTask(Task tempTask) {
+        try (PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("src/Data/Users.csv", true)))) {
+            tasks.add(tempTask);
+            out.println(
+                            tempTask.getTaskID() + "," +
+                            tempTask.getDescription() + "," +
+                            tempTask.getReward() + "," +
+                            "no" + "," +
+                            tempTask.getCounter()
+            );
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void writeSingleGoal(Goal tempGoal) {
+        try (PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("src/Data/Users.csv", true)))) {
+            goals.add(tempGoal);
+            out.println(
+                    tempGoal.getGoalID() + "," +
+                            tempGoal.getDescription() + "," +
+                            tempGoal.getTargetAmount() + "," +
+                            tempGoal.getCurrentAmount() + "," +
+                            tempGoal.getChildUsername()
+            );
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void writeSingleTransaction(Transaction tempTransaction) {
+        try (PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("src/Data/Users.csv", true)))) {
+            transactions.add(tempTransaction);
+            out.println(
+                    tempTransaction.getTransactionID() + "," +
+                            tempTransaction.getUserFrom() + "," +
+                            tempTransaction.getUserTo() + "," +
+                            tempTransaction.getAmount()
+            );
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
 }
