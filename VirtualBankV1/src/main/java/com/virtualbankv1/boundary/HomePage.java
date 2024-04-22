@@ -1,5 +1,7 @@
 package com.virtualbankv1.boundary;
 // 主页界面类
+import com.virtualbankv1.control.AccountOverviewPage;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -103,8 +105,10 @@ public class HomePage extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 frame.dispose(); // 关闭窗口
+                //AccountOverviewPage_old aop = new AccountOverviewPage_old(); //生成上一页面
                 AccountOverviewPage aop = new AccountOverviewPage(); //生成上一页面
-                aop.setPage(aop);
+                aop.ui.setPage(aop.ui);
+               //aop.setPage();
             }
         });
     }

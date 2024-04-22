@@ -1,9 +1,6 @@
 package com.virtualbankv1.control;
 
-import com.virtualbankv1.boundary.HomePage;
-import com.virtualbankv1.boundary.LoginPage;
-import com.virtualbankv1.boundary.Reader;
-import com.virtualbankv1.boundary.Writer;
+import com.virtualbankv1.boundary.*;
 import com.virtualbankv1.entity.*;
 
 import java.util.ArrayList;
@@ -18,13 +15,14 @@ public class VirtualBankApplication {
     public VirtualBankApplication() {
         new Reader();
 
-        //currentUser = users.get(0);
+        currentUser = users.get(1);
         //List<Account> tempAccounts = getCurrentUserAccounts(currentUser);
 
         //Account tempAccount = accounts.get(0);
         //AccountManager accountManager = new AccountManager();
         //accountManager.displayAccountInformation(tempAccount);
-        LoginPage login = new LoginPage();
+        //LoginPage login = new LoginPage();
+        HomePage hp = new HomePage("Zhong Zhenghan");
 
 //        Writer writer = new Writer();
 //        writer.writeUsers("src/Data/Users.csv", users);
