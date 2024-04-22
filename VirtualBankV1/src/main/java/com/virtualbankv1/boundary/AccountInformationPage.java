@@ -12,8 +12,8 @@ public class AccountInformationPage extends JFrame {
     private final AccountManager accountManager = new AccountManager();
 
     // 成员变量用于存储UI组件的引用
-    private static JLabel accountBalanceLabel;
-    private static JLabel accountStatusLabel;
+    public static JLabel accountBalanceLabel;
+    public static JLabel accountStatusLabel;
 
     public AccountInformationPage(Account account) {
 
@@ -100,7 +100,7 @@ public class AccountInformationPage extends JFrame {
         button.setPreferredSize(new Dimension(200, 50));
         button.setMinimumSize(new Dimension(200, 50));
         button.setMaximumSize(new Dimension(200, 50));
-        addTransactionListenerToButton(button, actionCommand, account); // 添加监听器
+        accountManager.addTransactionListenerToButton(button, actionCommand, account); // 添加监听器
         return button;
     }
 
@@ -112,7 +112,7 @@ public class AccountInformationPage extends JFrame {
         button.setPreferredSize(new Dimension(250, 50));
         button.setMinimumSize(new Dimension(250, 50));
         button.setMaximumSize(new Dimension(250, 50));
-        addConfirmationListenerToButton(button, actionCommand, account); // 添加监听器
+        accountManager.addConfirmationListenerToButton(button, actionCommand, account); // 添加监听器
         return button;
     }
 
@@ -148,68 +148,5 @@ public class AccountInformationPage extends JFrame {
         return label;
     }
 
-    // 为交易按钮添加动作监听器
-    private void addTransactionListenerToButton(JButton button, String actionCommand, Account account) {
-        button.setActionCommand(actionCommand);
-        button.addActionListener(e ->  {
 
-            // 检查账户状态
-            if (accountManager.isFrozen(account) || accountManager.isDeleted(account)) {
-                JOptionPane.showMessageDialog(null, "账户状态异常，无法进行交易", "错误", JOptionPane.ERROR_MESSAGE);
-                return; // 账户状态异常，中断操作
-            }
-
-            String input = JOptionPane.showInputDialog(null, "请输入金额：", "交易", JOptionPane.PLAIN_MESSAGE);
-            if (input != null && !input.isEmpty()) {
-                try {
-                    double amount = Double.parseDouble(input);
-                    if ("withdraw".equals(e.getActionCommand())) {
-                        // 调用取款方法
-                        if(accountManager.withdraw(account, amount)) {
-                            //格式化balance
-                            DecimalFormat df = new DecimalFormat("#,##0.00");
-                            String formattedBalance = df.format(account.getBalance());
-                            accountBalanceLabel.setText("<html><font color='Red' style='font-size: 20px;'>" + formattedBalance + "</font></html>");
-                        }
-                        else {
-                            // 余额不足，弹出提示窗口
-                            JOptionPane.showMessageDialog(null, "余额不足", "错误", JOptionPane.ERROR_MESSAGE);
-                        }
-                    } else if ("transferIn".equals(e.getActionCommand())) {
-                        // 调用存款方法
-                        accountManager.transferIn(account, amount);
-                        DecimalFormat df = new DecimalFormat("#,##0.00");
-                        String formattedBalance = df.format(account.getBalance());
-                        accountBalanceLabel.setText("<html><font color='Red' style='font-size: 20px;'>" + formattedBalance + "</font></html>");
-                    }
-                } catch (NumberFormatException ex) {
-                    JOptionPane.showMessageDialog(null, "请输入有效的金额", "错误", JOptionPane.ERROR_MESSAGE);
-                }
-            }
-        });
-    }
-
-    // 为Confirmation按钮添加动作监听器
-    private void addConfirmationListenerToButton(JButton button, String actionCommand, Account account) {
-        button.setActionCommand(actionCommand);
-        button.addActionListener(e ->  {
-            int confirmed = JOptionPane.showConfirmDialog(null, "您确定要执行此操作吗？", "确认操作", JOptionPane.YES_NO_OPTION);
-            if (confirmed == JOptionPane.YES_OPTION) {
-                if ("delete account".equals(e.getActionCommand())) {
-                    // 确认删除账户后的逻辑
-                    accountManager.deleteAccount(account); // 将账户状态改为 Deleted
-                    accountStatusLabel.setText("<html><font color='Black' style='font-size: 20px;'>" + account.getStatus() + "</font></html>");
-
-                } else if ("freeze account".equals(e.getActionCommand())) {
-                    // 确认冻结账户后的逻辑
-                    accountManager.freezeAccount(account); // 将账户状态改为 Frozen
-                    accountStatusLabel.setText("<html><font color='Black' style='font-size: 20px;'>" + account.getStatus() + "</font></html>");
-                } else if ("unfreeze account".equals(e.getActionCommand())) {
-                    // 确认解冻账户后的逻辑
-                    accountManager.unfreezeAccount(account); // 将账户状态改为 Active
-                    accountStatusLabel.setText("<html><font color='Black' style='font-size: 20px;'>" + account.getStatus() + "</font></html>");
-                }
-            }
-        });
-    }
 }
