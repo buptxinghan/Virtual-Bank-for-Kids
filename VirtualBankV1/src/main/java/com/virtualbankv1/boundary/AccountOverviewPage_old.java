@@ -1,23 +1,20 @@
 package com.virtualbankv1.boundary;
 
-import com.virtualbankv1.control.AccountManager;
 import com.virtualbankv1.entity.Account;
 import com.virtualbankv1.entity.User;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 import static com.virtualbankv1.boundary.Reader.accounts;
 import static com.virtualbankv1.boundary.Reader.users;
 import static com.virtualbankv1.control.VirtualBankApplication.currentUser;
 
-public class AccountOverviewPage extends JFrame {
-    private JButton createNewAccountButton = new JButton("+");
+public class AccountOverviewPage_old extends JFrame {
+
     private JPanel mainPanel;
     // Constructor
-    public AccountOverviewPage() {
+    public AccountOverviewPage_old() {
         this.mainPanel = new JPanel(new GridBagLayout());
         setContentPane(this.mainPanel);
         boolean userExists = checkUserExists(currentUser.getUsername());
@@ -68,14 +65,14 @@ public class AccountOverviewPage extends JFrame {
     // Open the account page
     private void openAccountPage() {
         OpenAccountPage openAccount = new OpenAccountPage();
-        openAccount.setSize(1200, 900);
-        openAccount.setVisible(true);
-        openAccount.setLocationRelativeTo(null); // Center the window
-        openAccount.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // Modify the close behavior
+//        openAccount.setSize(1200, 900);
+//        openAccount.setVisible(true);
+//        openAccount.setLocationRelativeTo(null); // Center the window
+//        openAccount.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // Modify the close behavior
     }
 
     // Show the page
-    public void setPage(AccountOverviewPage aop) {
+    public void setPage(AccountOverviewPage_old aop) {
         aop.setSize(1200, 900);
         aop.setLocationRelativeTo(null); // Center the window
         aop.setVisible(true);
@@ -113,7 +110,7 @@ public class AccountOverviewPage extends JFrame {
 
     // Show the account information
     private void showAccountInfo(Account account) {
-        dispose();
+        //dispose();
         AccountInformationPage am = new AccountInformationPage(account);
     }
 

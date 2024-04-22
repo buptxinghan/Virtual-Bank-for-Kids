@@ -1,5 +1,7 @@
 package com.virtualbankv1.boundary;
 
+import com.virtualbankv1.control.AccountOverviewPage;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -26,8 +28,8 @@ public class ReturnButton {
             public void actionPerformed(ActionEvent e) {
                 frame.dispose(); // 关闭窗口
                 if (lastPage.equals("accountOverviewPage")) {
-                    AccountOverviewPage aop = new AccountOverviewPage(); //生成AccountOverviewPage
-                    aop.setPage(aop);
+                    AccountOverviewPage aop = new AccountOverviewPage(); //生成上一页面
+                    aop.ui.setPage(aop.ui);
                 }
                 else if (lastPage.equals(" ")) {
                     //添加你想跳转的页面
