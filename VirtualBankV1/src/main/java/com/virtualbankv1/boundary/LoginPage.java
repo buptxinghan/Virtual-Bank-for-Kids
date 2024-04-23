@@ -6,10 +6,15 @@ import java.awt.event.*;
 import java.io.*;
 import java.util.*;
 
+import com.virtualbankv1.entity.User;
+
+import static com.virtualbankv1.control.VirtualBankApplication.currentUser;
+import static com.virtualbankv1.boundary.Reader.users;
+
 public class LoginPage {
 
     private JFrame frame;
-    private JTextField userIdField;
+    private JTextField nameField;
     private JPasswordField passwordField;
     private JButton loginButton, signUpButton;
 
@@ -17,14 +22,15 @@ public class LoginPage {
         // Create and set up the window
         frame = new JFrame("Bank Login System");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setPreferredSize(new Dimension(350, 200));
         frame.setLayout(new BorderLayout(10, 10));
 
         // Create and populate the panel
         JPanel panel = new JPanel(new GridLayout(3, 2, 10, 10));
 
-        panel.add(new JLabel("User ID:"));
-        userIdField = new JTextField();
-        panel.add(userIdField);
+        panel.add(new JLabel("Username:"));
+        nameField = new JTextField();
+        panel.add(nameField);
 
         panel.add(new JLabel("Password:"));
         passwordField = new JPasswordField();
@@ -47,35 +53,50 @@ public class LoginPage {
         // Add action listener to the login button
         loginButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                String userId = userIdField.getText();
+                String userName = nameField.getText();
                 String password = new String(passwordField.getPassword());
 
-                if (checkCredentials(userId, password)) {
-                    JOptionPane.showMessageDialog(frame, "Login successful!");
+                if (checkCredentials(userName, password)) {
+                    frame.setVisible(false); // Hide or dispose login frame
+                    new HomePage("virtual bank"); // Open the HomePage
+                    //JOptionPane.showMessageDialog(frame, "Login successful!");
                 } else {
-                    JOptionPane.showMessageDialog(frame, "Error: Incorrect User ID or Password!", "Error", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(frame, "Error: Incorrect Username or Password!", "Error", JOptionPane.ERROR_MESSAGE);
                 }
             }
         });
 
         // Set the size of the window and make it visible
         frame.add(panel, BorderLayout.CENTER);
-        frame.setSize(350, 150);
+        frame.pack();
+        frame.setLocationRelativeTo(null); // Center the window
         frame.setVisible(true);
     }
 
-    private boolean checkCredentials(String userId, String password) {
-        try (Scanner scanner = new Scanner(new File("Users.csv"))) {
-            while (scanner.hasNextLine()) {
-                String line = scanner.nextLine();
-                String[] credentials = line.split(",");
-                if (credentials[0].equals(userId) && credentials[3].equals(password)) {
-                    return true;
-                }
+//    private boolean checkCredentials(String userName, String password) {
+//        try (Scanner scanner = new Scanner(new File("src/Data/Users.csv"))) {
+//            while (scanner.hasNextLine()) {
+//                String line = scanner.nextLine();
+//                String[] credentials = line.split(",");
+//                if (credentials[0].equals(userName) && credentials[1].equals(password)) {
+//
+//                    return true;
+//                }
+//            }
+//        } catch (FileNotFoundException e) {
+//            JOptionPane.showMessageDialog(frame, "Error: User file not found!", "Error", JOptionPane.ERROR_MESSAGE);
+//        }
+//        return false;
+//    }
+
+    private boolean checkCredentials(String userName, String password) {
+        for (User user : users) {
+            if (user.getUsername().equals(userName) && user.getPassword().equals(password)) {
+                currentUser = user;
+                return true;
             }
-        } catch (FileNotFoundException e) {
-            JOptionPane.showMessageDialog(frame, "Error: User file not found!", "Error", JOptionPane.ERROR_MESSAGE);
         }
+        JOptionPane.showMessageDialog(frame, "Error: User not found!", "Error", JOptionPane.ERROR_MESSAGE);
         return false;
     }
 

@@ -1,65 +1,57 @@
 package com.virtualbankv1.boundary;
 // 主页界面类
+
+import com.virtualbankv1.control.HomePageController;
+
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class HomePage extends JFrame {
 
-    public HomePage(String str) {
-        super(str);
-        setSize(new Dimension(1200, 900));
+    private JButton accountButton;
+    private JButton tasksButton;
+    private JButton goalsButton;
+    private JButton manualButton;
+
+    public HomePage(String title) {
+        super(title);
+        initializeComponents();
+        HomePageController controller = new HomePageController(this);
+        controller.initializeController();
+    }
+
+    private void initializeComponents() {
+        // 设置窗口大小
+        setSize(new Dimension(1000, 600));
+        // 设置背景颜色
         Color bg = new Color(199, 220, 247);
         Color z1 = new Color(93,97,195);
         Color z2 = new Color(133,149,188);
 
         getContentPane().setBackground(bg);
 
-        JButton btn1 = new JButton("<html><font size=5 color=" + getColorHex(z1) + ">My account</font><br><font color=" + getColorHex(z2) + ">Check your account information</font></html>");
-        btn1.setHorizontalAlignment(SwingConstants.LEFT);
-        this.addReturnListenerToButton(btn1,this);//跳转account overview
+        // 初始化按钮
+        accountButton = new JButton("<html><font size=5 color=" + getColorHex(z1) + ">My account</font><br><font color=" + getColorHex(z2) + ">Check your account information</font></html>");
+        tasksButton = new JButton("<html><font size=5 color=" + getColorHex(z1) + ">My tasks</font><br><font color=" + getColorHex(z2) + ">Check the tasks assigned</font></html>");
+        goalsButton = new JButton("<html><font size=5 color=" + getColorHex(z1) + ">My goals</font><br><font color=" + getColorHex(z2) + ">Check and manage your goal</font></html>");
+        manualButton = new JButton("<html><font size=5 color=" + getColorHex(z1) + ">Instruction manual</font><br><font color=" + getColorHex(z2) + ">Learn how to use the software or contact us</font></html>");
 
+        accountButton.setHorizontalAlignment(SwingConstants.LEFT);
+        tasksButton.setHorizontalAlignment(SwingConstants.LEFT);
+        goalsButton.setHorizontalAlignment(SwingConstants.LEFT);
+        manualButton.setHorizontalAlignment(SwingConstants.LEFT);
 
-        JButton btn2 = new JButton("<html><font size=5 color=" + getColorHex(z1) + ">My tasks</font><br><font color=" + getColorHex(z2) + ">Check the tasks assigned</font></html>");
-        btn2.setHorizontalAlignment(SwingConstants.LEFT);
-//        btn2.addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                new testpage2("Visual bank");//打开页面2，
-//                setVisible(false);//关闭页面1
-//            }
-//        });
+        accountButton.setBackground(bg);
+        tasksButton.setBackground(bg);
+        goalsButton.setBackground(bg);
+        manualButton.setBackground(bg);
 
-        JButton btn3 = new JButton("<html><font size=5 color=" + getColorHex(z1) + ">My goals</font><br><font color=" + getColorHex(z2) + ">Check and manage your goal</font></html>");
-        btn3.setHorizontalAlignment(SwingConstants.LEFT);
-//        btn3.addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                //new testpage3("Visual bank");//打开页面2，
-//                setVisible(false);//关闭页面1
-//            }
-//        });
-
-        JButton btn4 = new JButton("<html><font size=5 color=" + getColorHex(z1) + ">Instruction manual</font><br><font color=" + getColorHex(z2) + ">Learn how to use the software or contact us</font></html>");
-        btn4.setHorizontalAlignment(SwingConstants.LEFT);
-//        btn4.addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                //new testpage4("Visual bank");//打开页面2，
-//                setVisible(false);//关闭页面1
-//            }
-//        });
-
-        btn1.setBackground(bg);
-        btn2.setBackground(bg);
-        btn3.setBackground(bg);
-        btn4.setBackground(bg);
-
+        //初始化组件
         JLabel l1 = new JLabel("<html><font size=7 color=" + getColorHex(z1) + ">Welcome to Your Virtual Bank!</font></html>",JLabel.CENTER);
         ImageIcon icon = new ImageIcon("D:\\Project\\Virtualbank\\Virtual-Bank-for-Kids\\Data\\pic.png");
         JLabel pic = new JLabel(icon,JLabel.CENTER);
 
+        // 设置布局
 
         JPanel Center = new JPanel(new GridLayout(2, 1));
         JPanel right = new JPanel();
@@ -76,11 +68,11 @@ public class HomePage extends JFrame {
         right.setPreferredSize(new Dimension(100, 100));
         left.setPreferredSize(new Dimension(100, 100));
 
-
-        Centerdown.add(btn1);
-        Centerdown.add(btn2);
-        Centerdown.add(btn3);
-        Centerdown.add(btn4);
+//添加组件上去
+        Centerdown.add(accountButton);
+        Centerdown.add(tasksButton);
+        Centerdown.add(goalsButton);
+        Centerdown.add(manualButton);
 
         Center.add(pic);
         Center.add(Centerdown);
@@ -94,20 +86,29 @@ public class HomePage extends JFrame {
         setLocationRelativeTo(null); //窗口居中
         setVisible(true);
     }
+
     // 辅助方法：将Color对象转换为HTML颜色字符串
     private String getColorHex(Color color) {
         return String.format("#%02x%02x%02x", color.getRed(), color.getGreen(), color.getBlue());
     }
-    private static void addReturnListenerToButton(JButton button, JFrame frame) {
-        button.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                frame.dispose(); // 关闭窗口
-                AccountOverviewPage aop = new AccountOverviewPage(); //生成上一页面
-                aop.setPage(aop);
-            }
-        });
+
+    // Getters for buttons
+    public JButton getAccountButton() {
+        return accountButton;
     }
+
+    public JButton getTasksButton() {
+        return tasksButton;
+    }
+
+    public JButton getGoalsButton() {
+        return goalsButton;
+    }
+
+    public JButton getManualButton() {
+        return manualButton;
+    }
+
 
 
 }
