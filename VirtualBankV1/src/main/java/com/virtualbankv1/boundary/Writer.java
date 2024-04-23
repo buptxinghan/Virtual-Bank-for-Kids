@@ -3,6 +3,8 @@ package com.virtualbankv1.boundary;
 import com.virtualbankv1.entity.*;
 import java.io.*;
 import java.text.DecimalFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 import static com.virtualbankv1.boundary.Reader.accounts;
@@ -14,6 +16,7 @@ import static com.virtualbankv1.boundary.Reader.transactions;
 public class Writer {
 
     private DecimalFormat decimalFormat = new DecimalFormat("#,##0.00"); // 保留两位小数
+    private DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy/MM/dd");
 
     public void writeAccounts(String filePath, List<Account> data) {
         try {
@@ -29,6 +32,7 @@ public class Writer {
                         decimalFormat.format(account.getBalance()) + "," +
                         account.getStatus());
             }
+            bw.newLine();
             bw.close();
             fw.close();
         } catch (IOException e) {
@@ -49,6 +53,7 @@ public class Writer {
                         decimalFormat.format(goal.getCurrentAmount()) + "," +
                         goal.getChildUsername());
             }
+            bw.newLine();
             bw.close();
             fw.close();
         } catch (IOException e) {
@@ -69,6 +74,7 @@ public class Writer {
                         task.isCompleted() + "," +
                         task.getCounter());
             }
+            bw.newLine();
             bw.close();
             fw.close();
         } catch (IOException e) {
@@ -80,14 +86,17 @@ public class Writer {
         try {
             FileWriter fw = new FileWriter(filePath);
             BufferedWriter bw = new BufferedWriter(fw);
-            bw.write("TransactionID,AccountFrom,AccountTo,Amount");
+            bw.write("TransactionID,AccountFrom,AccountTo,Amount,Date");
             for (Transaction transaction: data) {
                 bw.newLine();
                 bw.write(transaction.getTransactionID() + "," +
                         transaction.getAccountFrom() + "," +
                         transaction.getAccountTo() + "," +
-                        decimalFormat.format(transaction.getAmount()));
+                        decimalFormat.format(transaction.getAmount()) + "," +
+                        dateFormatter.format(LocalDate.now()) + "," +
+                        transaction.getDescription());
             }
+            bw.newLine();
             bw.close();
             fw.close();
         } catch (IOException e) {
@@ -104,6 +113,7 @@ public class Writer {
                 bw.newLine();
                 bw.write(user.getUsername() + "," + user.getPassword());
             }
+            bw.newLine();
             bw.close();
             fw.close();
         } catch (IOException e) {
@@ -173,7 +183,9 @@ public class Writer {
                     tempTransaction.getTransactionID() + "," +
                             tempTransaction.getAccountFrom() + "," +
                             tempTransaction.getAccountTo() + "," +
-                            decimalFormat.format(tempTransaction.getAmount())
+                            decimalFormat.format(tempTransaction.getAmount()) + "," +
+                            dateFormatter.format(LocalDate.now()) + "," +
+                            tempTransaction.getDescription()
             );
         } catch (IOException e) {
             e.printStackTrace();

@@ -2,6 +2,7 @@ package com.virtualbankv1.control;
 // Account management interface class
 
 import com.virtualbankv1.boundary.AccountInformationPage;
+import com.virtualbankv1.boundary.TransactionHistoryPage;
 import com.virtualbankv1.boundary.TransactionPage;
 import com.virtualbankv1.entity.Account;
 
@@ -9,9 +10,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.text.DecimalFormat;
 import java.util.List;
-
-import static com.virtualbankv1.boundary.AccountInformationPage.accountBalanceLabel;
-import static com.virtualbankv1.boundary.AccountInformationPage.accountStatusLabel;
 
 public class AccountManager {
 
@@ -63,7 +61,7 @@ public class AccountManager {
     }
 
     // 为交易按钮添加动作监听器
-    public void addTransactionListenerToButton(JButton button, String actionCommand, Account account) {
+    public void addTransactionListenerToButton(JButton button, String actionCommand, Account account, JLabel accountBalanceLabel) {
         button.setActionCommand(actionCommand);
         button.addActionListener(e ->  {
 
@@ -104,7 +102,7 @@ public class AccountManager {
     }
 
     // 为Confirmation按钮添加动作监听器
-    public void addConfirmationListenerToButton(JButton button, String actionCommand, Account account) {
+    public void addConfirmationListenerToButton(JButton button, String actionCommand, Account account, JLabel accountStatusLabel, JLabel accountBalanceLabel, JLabel accountTypeLabel, JLabel accountIDLabel, JLabel accountUsernameLabel) {
         button.setActionCommand(actionCommand);
         button.addActionListener(e ->  {
             int confirmed = JOptionPane.showConfirmDialog(null, "您确定要执行此操作吗？", "确认操作", JOptionPane.YES_NO_OPTION);
@@ -113,7 +111,15 @@ public class AccountManager {
                     // 确认删除账户后的逻辑
                     deleteAccount(account); // 将账户状态改为 Deleted
                     accountStatusLabel.setText("<html><font color='Black' style='font-size: 20px;'>" + account.getStatus() + "</font></html>");
-
+                    account.setBalance(0.00);
+                    accountBalanceLabel.setText("<html><font color='Black' style='font-size: 20px;'>" + account.getBalance() + "</font></html>");
+                    account.setAccountType("---");
+                    accountTypeLabel.setText("<html><font color='Black' style='font-size: 20px;'>" + account.getAccountType() + "</font></html>");
+                    account.setUsername("---");
+                    accountUsernameLabel.setText("<html><font color='Black' style='font-size: 20px;'>" + account.getUsername() + "</font></html>");
+                    account.setPassword("---");
+                    account.setAccountID("---");
+                    accountIDLabel.setText("<html><font color='Black' style='font-size: 20px;'>" + account.getAccountID() + "</font></html>");
                 } else if ("freeze account".equals(e.getActionCommand())) {
                     // 确认冻结账户后的逻辑
                     freezeAccount(account); // 将账户状态改为 Frozen
@@ -139,6 +145,20 @@ public class AccountManager {
 
             frame.dispose();
             new TransactionPage(account);
+        });
+    }
+
+    public  void  addHistoryListenerToBotton(JButton button, String actionCommand, Account account, Frame frame) {
+        button.setActionCommand(actionCommand);
+        button.addActionListener(e ->  {
+            // 检查账户状态
+            if (isFrozen(account) || isDeleted(account)) {
+                JOptionPane.showMessageDialog(null, "账户状态异常，无法进行交易", "错误", JOptionPane.ERROR_MESSAGE);
+                return; // 账户状态异常，中断操作
+            }
+
+            frame.dispose();
+            //new TransactionHistoryPage(account);
         });
     }
 

@@ -4,6 +4,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Random;
 
 
@@ -142,12 +144,12 @@ public class TransactionPage extends JFrame {
                         num++;
                     }
                     JOptionPane.showMessageDialog(null, "Transfer to: " + transferTo + "\nAmount: " + amount + "\nDescription: " + description);
-                    Transaction tempTransaction = new Transaction("00"+String.valueOf(num), account.getAccountID(), transferTo, amount);
+                    DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+                    Transaction tempTransaction = new Transaction("00"+String.valueOf(num), account.getAccountID(), transferTo, amount, dateFormatter.format(LocalDate.now()), description);
                     transactions.add(tempTransaction);
 
                     Writer writer = new Writer();
                     writer.writeSingleTransaction(tempTransaction);
-                    writer.writeAccounts("src/Data/Accounts.csv", accounts);
                 } else {
                     // 余额不足，弹出提示窗口
                     JOptionPane.showMessageDialog(null, "账户余额不足，请重新输入金额。", "错误", JOptionPane.ERROR_MESSAGE);

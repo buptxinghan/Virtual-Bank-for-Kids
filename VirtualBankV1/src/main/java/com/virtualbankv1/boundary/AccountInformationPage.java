@@ -12,8 +12,11 @@ public class AccountInformationPage extends JFrame {
     private final AccountManager accountManager = new AccountManager();
 
     // 成员变量用于存储UI组件的引用
-    public static JLabel accountBalanceLabel;
-    public static JLabel accountStatusLabel;
+    private JLabel accountBalanceLabel;
+    private JLabel accountStatusLabel;
+    private JLabel accountIDLabel;
+    private JLabel accountTypeLabel;
+    private JLabel accountUsernameLabel;
 
     public AccountInformationPage(Account account) {
 
@@ -39,14 +42,17 @@ public class AccountInformationPage extends JFrame {
         // 创建用于显示余额和账户状态的JLabel
         accountBalanceLabel = createDisplayLabel(account.getBalance());
         accountStatusLabel = createDisplayLabel(account.getStatus());
+        accountTypeLabel = createDisplayLabel(account.getAccountType());
+        accountIDLabel = createDisplayLabel(account.getAccountID());
+        accountUsernameLabel = createDisplayLabel(account.getUsername());
 
         // Add display labels with fixed information and larger font size
         formPanel.add(createLabel("Account holder:"));
-        formPanel.add(createDisplayLabel(account.getUsername()));
+        formPanel.add(accountUsernameLabel);
         formPanel.add(createLabel("Account number:"));
-        formPanel.add(createDisplayLabel(account.getAccountID()));
+        formPanel.add(accountIDLabel);
         formPanel.add(createLabel("Account Type:"));
-        formPanel.add(createDisplayLabel(account.getAccountType()));
+        formPanel.add(accountTypeLabel);
         formPanel.add(createLabel("Account Status:"));
         formPanel.add(accountStatusLabel);
         formPanel.add(createLabel("Account Balance:"));
@@ -56,12 +62,14 @@ public class AccountInformationPage extends JFrame {
         JPanel transactionButtonsPanel = new JPanel();
         transactionButtonsPanel.setLayout(new BoxLayout(transactionButtonsPanel, BoxLayout.Y_AXIS));
         transactionButtonsPanel.setOpaque(false); // Transparent background
-        transactionButtonsPanel.add(Box.createRigidArea(new Dimension(0, 50))); // Spacer between buttons
+        transactionButtonsPanel.add(Box.createRigidArea(new Dimension(0, 30))); // Spacer between buttons
         transactionButtonsPanel.add(createButtons("Withdraw", new Color(70, 130, 180), Color.WHITE, account, "withdraw"));
         transactionButtonsPanel.add(Box.createRigidArea(new Dimension(0, 10))); // Spacer between buttons
         transactionButtonsPanel.add(createButtons("Transfer In", new Color(70, 130, 180), Color.WHITE, account, "transferIn"));
         transactionButtonsPanel.add(Box.createRigidArea(new Dimension(0, 10))); // Spacer between buttons
         transactionButtonsPanel.add(createButtons("Transfer accounts", new Color(70, 130, 180), Color.WHITE, account, "transferAccounts"));
+        transactionButtonsPanel.add(Box.createRigidArea(new Dimension(0, 10))); // Spacer between buttons
+        transactionButtonsPanel.add(createButtons("History", new Color(70, 130, 180), Color.WHITE, account, "history"));
         transactionButtonsPanel.add(Box.createRigidArea(new Dimension(0, 10))); // Spacer between buttons
 
         // Create return button
@@ -71,7 +79,7 @@ public class AccountInformationPage extends JFrame {
         Icon transferIcon = new ImageIcon("src/Materials/Transfer.png");
         JLabel transferLabel = new JLabel(transferIcon);
         transferLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
-        transactionButtonsPanel.add(Box.createRigidArea(new Dimension(0, 100))); // 添加间隔
+        transactionButtonsPanel.add(Box.createRigidArea(new Dimension(0, 50))); // 添加间隔
         transactionButtonsPanel.add(transferLabel);
 
         // Create the bottom buttons panel with custom button styling
@@ -104,11 +112,13 @@ public class AccountInformationPage extends JFrame {
         button.setMinimumSize(new Dimension(250, 50));
         button.setMaximumSize(new Dimension(250, 50));
         if (actionCommand.equals("withdraw") || actionCommand.equals("transferIn")) {
-            accountManager.addTransactionListenerToButton(button, actionCommand, account); // 添加监听器
+            accountManager.addTransactionListenerToButton(button, actionCommand, account, accountBalanceLabel); // 添加监听器
         } else if (actionCommand.equals("freeze account") || actionCommand.equals("unfreeze account") || actionCommand.equals("delete account")) {
-            accountManager.addConfirmationListenerToButton(button, actionCommand, account);
+            accountManager.addConfirmationListenerToButton(button, actionCommand, account, accountStatusLabel, accountBalanceLabel, accountTypeLabel, accountIDLabel, accountUsernameLabel);
         } else if (actionCommand.equals("transferAccounts")) {
             accountManager.addTransferListenerToButton(button, actionCommand, account, this);
+        } else if (actionCommand.equals("history")) {
+            accountManager.addHistoryListenerToBotton(button, actionCommand, account, this);
         }
 
         return button;

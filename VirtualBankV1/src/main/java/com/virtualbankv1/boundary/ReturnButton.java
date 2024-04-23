@@ -8,6 +8,8 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import static com.virtualbankv1.boundary.Reader.*;
+
 public class ReturnButton {
 
     public static JButton createReturnButton(JFrame frame, String lastPage) {
@@ -52,12 +54,17 @@ public class ReturnButton {
             @Override
             public void actionPerformed(ActionEvent e) {
                 frame.dispose(); // 关闭窗口
+
+                // Save data
+//                Writer writer = new Writer();
+//                writer.writeAccounts("src/Data/Accounts.csv", accounts);
+//                writer.writeGoals("src/Data/Goals.csv", goals);
+//                writer.writeTasks("src/Data/Tasks.csv", tasks);
+//                writer.writeTransactions("src/Data/Transactions.csv", transactions);
+
                 if (lastPage.equals("accountOverviewPage")) {
                     AccountOverviewPage aop = new AccountOverviewPage(); //生成上一页面
                     aop.ui.setPage(aop.ui);
-                }
-                else if (lastPage.equals("accountInformationPage")) {
-
                 }
                 else if (lastPage.equals(" ")) {
                     //添加你想跳转的页面
@@ -73,12 +80,20 @@ public class ReturnButton {
             @Override
             public void actionPerformed(ActionEvent e) {
                 frame.dispose(); // 关闭窗口
+
+                // Save data
+//                Writer writer = new Writer();
+//                writer.writeAccounts("src/Data/Accounts.csv", accounts);
+//                writer.writeGoals("src/Data/Goals.csv", goals);
+//                writer.writeTasks("src/Data/Tasks.csv", tasks);
+//                writer.writeTransactions("src/Data/Transactions.csv", transactions);
+
                 if (lastPage.equals("accountOverviewPage")) {
                     AccountOverviewPage aop = new AccountOverviewPage(); //生成上一页面
                     aop.ui.setPage(aop.ui);
                 }
                 else if (lastPage.equals("accountInformationPage")) {
-                    AccountInformationPage aip = new AccountInformationPage(account);
+                    new AccountInformationPage(account);
                 }
                 else if (lastPage.equals(" ")) {
                     //添加你想跳转的页面

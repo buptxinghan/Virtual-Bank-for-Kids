@@ -143,7 +143,9 @@ public class Reader {
                         values[0], // TransactionID
                         values[1], // UserFrom
                         values[2], // UserTo
-                        Double.parseDouble(values[3]) // Amount
+                        Double.parseDouble(values[3]), // Amount
+                        values[4], // Date
+                        values[5]  // Description
                 );
                 transactions.add(transaction);
             }
