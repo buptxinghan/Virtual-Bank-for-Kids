@@ -58,7 +58,7 @@ public class LoginPage {
 
                 if (checkCredentials(userName, password)) {
                     frame.setVisible(false); // Hide or dispose login frame
-                    new HomePage("virtual bank"); // Open the HomePage
+                    new HomePage(); // Open the HomePage
                     //JOptionPane.showMessageDialog(frame, "Login successful!");
                 } else {
                     JOptionPane.showMessageDialog(frame, "Error: Incorrect Username or Password!", "Error", JOptionPane.ERROR_MESSAGE);
