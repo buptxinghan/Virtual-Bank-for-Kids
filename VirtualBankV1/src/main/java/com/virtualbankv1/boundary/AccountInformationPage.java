@@ -118,7 +118,7 @@ public class AccountInformationPage extends JFrame {
         } else if (actionCommand.equals("transferAccounts")) {
             accountManager.addTransferListenerToButton(button, actionCommand, account, this);
         } else if (actionCommand.equals("history")) {
-            accountManager.addHistoryListenerToBotton(button, actionCommand, account, this);
+            accountManager.addHistoryListenerToButton(button, actionCommand, account, this);
         }
 
         return button;

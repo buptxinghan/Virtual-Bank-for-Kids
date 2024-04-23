@@ -148,7 +148,7 @@ public class AccountManager {
         });
     }
 
-    public  void  addHistoryListenerToBotton(JButton button, String actionCommand, Account account, Frame frame) {
+    public  void  addHistoryListenerToButton(JButton button, String actionCommand, Account account, Frame frame) {
         button.setActionCommand(actionCommand);
         button.addActionListener(e ->  {
             // 检查账户状态
@@ -158,7 +158,7 @@ public class AccountManager {
             }
 
             frame.dispose();
-            //new TransactionHistoryPage(account);
+            new TransactionHistoryPage(account);
         });
     }
 

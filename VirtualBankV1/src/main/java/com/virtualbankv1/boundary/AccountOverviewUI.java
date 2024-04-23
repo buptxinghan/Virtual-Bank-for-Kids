@@ -14,6 +14,7 @@ public class AccountOverviewUI extends JFrame {
     // Constructor
     public AccountOverviewUI(AccountOverviewPage controller) {
         this.mainPanel = new JPanel(new GridLayout(2,2));
+        this.mainPanel.setBackground(new Color(199, 220, 247));
         setContentPane(this.mainPanel);
         displayCreateAccountPanel();
     }

@@ -1,5 +1,6 @@
 package com.virtualbankv1.boundary;
 
+import com.virtualbankv1.entity.Account;
 import com.virtualbankv1.entity.Transaction;
 
 import javax.swing.*;
@@ -9,6 +10,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.virtualbankv1.boundary.Reader.accounts;
 import static com.virtualbankv1.boundary.Reader.transactions;
 
 public class TransactionHistoryPage extends JFrame {
@@ -21,8 +23,9 @@ public class TransactionHistoryPage extends JFrame {
     private JTextField dayField;
     private JButton showButton;
     private JButton showAllButton;
+    private JButton returnButton;
 
-    public TransactionHistoryPage() {
+    public TransactionHistoryPage(Account account) {
         setTitle("Transaction History");
         setSize(1200, 900);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -98,9 +101,12 @@ public class TransactionHistoryPage extends JFrame {
                 showTransactions(transactions);
             }
         });
+        returnButton = ReturnButton.createReturnButton(this, "accountInformationPage", new Dimension(250, 50), account);
         buttonPanel.add(showButton);
         buttonPanel.add(Box.createRigidArea(new Dimension(30, 0)));
         buttonPanel.add(showAllButton);
+        buttonPanel.add(Box.createRigidArea(new Dimension(30, 0)));
+        buttonPanel.add(returnButton);
         buttonPanel.setBackground(new Color(199, 220, 247));
         datePanel.add(buttonPanel);
 
@@ -131,9 +137,9 @@ public class TransactionHistoryPage extends JFrame {
                 "<br><b>Date:</b> " + transaction.getDate() +
                 "<br><b>Description:</b> " + transaction.getDescription() + "</font></html>");
 
-        transactionLabel.setMaximumSize(new Dimension(800, 500));
-        transactionLabel.setPreferredSize(new Dimension(800, 500));
-        transactionLabel.setMinimumSize(new Dimension(800, 500));
+        transactionLabel.setMaximumSize(new Dimension(600, 100));
+        transactionLabel.setPreferredSize(new Dimension(600, 100));
+        transactionLabel.setMinimumSize(new Dimension(600, 100));
         transactionPanel.add(transactionLabel);
         transactionsPanel.add(transactionPanel);
         transactionsPanel.add(Box.createRigidArea(new Dimension(0, 10)));
@@ -167,7 +173,7 @@ public class TransactionHistoryPage extends JFrame {
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
                 new Reader();
-                new TransactionHistoryPage();
+                new TransactionHistoryPage(accounts.get(0));
             }
         });
     }
