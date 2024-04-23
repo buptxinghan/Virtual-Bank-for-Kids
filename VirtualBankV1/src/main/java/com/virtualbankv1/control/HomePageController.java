@@ -14,7 +14,7 @@ public class HomePageController {
     }
 
     public void initializeController() {
-        // 为view中的按钮添加事件监听器
+        // 为view中的按钮添加事件监听器。
         //addReturnListenerToButton1(view.getAccountButton(), new AccountOverviewPage());
         //addReturnListenerToButton(view.getTasksButton(), new testpage2("VB"));
         //addReturnListenerToButton(view.getGoalsButton(), new testpage3("VB"));
