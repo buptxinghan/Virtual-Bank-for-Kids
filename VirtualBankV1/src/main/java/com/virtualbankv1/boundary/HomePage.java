@@ -92,10 +92,24 @@ public class HomePage extends JFrame {
     private String getColorHex(Color color) {
         return String.format("#%02x%02x%02x", color.getRed(), color.getGreen(), color.getBlue());
     }
+<<<<<<< Updated upstream
 
     // Getters for buttons
     public JButton getAccountButton() {
         return accountButton;
+=======
+    private static void addReturnListenerToButton(JButton button, JFrame frame) {
+        button.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                frame.dispose(); // 关闭窗口
+                //AccountOverviewPage_old aop = new AccountOverviewPage_old(); //生成上一页面
+                AccountOverviewPage aop = new AccountOverviewPage(); //生成上一页面
+//                aop.ui.setPage(aop.ui);
+               //aop.setPage();
+            }
+        });
+>>>>>>> Stashed changes
     }
 
     public JButton getTasksButton() {

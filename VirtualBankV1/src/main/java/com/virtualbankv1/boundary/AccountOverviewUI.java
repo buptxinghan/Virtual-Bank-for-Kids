@@ -4,84 +4,90 @@ import com.virtualbankv1.control.AccountOverviewPage;
 import com.virtualbankv1.entity.Account;
 
 import javax.swing.*;
-import javax.swing.border.EmptyBorder;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+
 
 public class AccountOverviewUI extends JFrame {
 
     private JPanel mainPanel;
-    private AccountOverviewPage controller;
-
+    public PageOpen pageOpen = new PageOpen();
     // Constructor
     public AccountOverviewUI(AccountOverviewPage controller) {
-        this.controller = controller;
         this.mainPanel = new JPanel(new GridLayout(2,2));
         setContentPane(this.mainPanel);
         displayCreateAccountPanel();
     }
 
-    public void setPage(AccountOverviewUI aop) {
-        aop.setSize(1200, 900);
-        aop.setLocationRelativeTo(null); // Center the window
-        aop.setVisible(true);
-        aop.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+    public void setPage() {
+        //pack();
+        setLocationRelativeTo(null); // Center the window
+        setSize(new Dimension(1200, 900));
+        setVisible(true);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
+
     // Display the panel for creating a new account
     private void displayCreateAccountPanel() {
-        JPanel panel = controller.createPanel();
 
-        JLabel titleLabel = new JLabel("Create new account");
-        titleLabel.setFont(new Font("Arial", Font.BOLD, 14));
-        panel.add(titleLabel);
+        JPanel outerPanel = new JPanel(new GridBagLayout());
+        outerPanel.setSize(600,450);
 
-        JButton addButton = new JButton("+");
-        addButton.addActionListener(e -> controller.openAccount());
+        RoundedButton addButton = new RoundedButton("<html><font style='font-size: 15px;'>+</font></html>" );
+        addButton.setBackground(new Color(70, 130, 180));
+        addButton.setForeground(Color.WHITE);
+        addButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+        addButton.setSize(new Dimension(100,100));
 
-        panel.add(addButton);
+        addButton.addActionListener(e -> {
+            dispose();
+            pageOpen.openAccount();
+        });
 
-        add(panel);
-        pack();
-        setLocationRelativeTo(null); // Center the window
-        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // Modify the close behavior
+        RoundedPanel innerPanel = createRoundedPanel();
+        innerPanel.setSize(600,450);
+        innerPanel.add(createLabel("Create new account ", Font.BOLD, 14));
+        innerPanel.add(Box.createRigidArea(new Dimension(0, 20)));
+        innerPanel.add(addButton);
+        innerPanel.add(Box.createRigidArea(new Dimension(0, 20)));
+        outerPanel.add(innerPanel);
+
+        add(outerPanel);
+
+        setPage();
     }
 
     // Update the page with the given account information
-    // Update the page with the given account information
-    public void updatePage(Account account, Color color) {
+    public void updatePage(Account account) {
 //        if (account == null || color == null) {
 //            throw new IllegalArgumentException("Account or color cannot be null");
 //        }
+        JPanel outerPanel = new JPanel(new GridBagLayout());
+//        outerPanel.setSize(600,450);
+        RoundedButton selectButton = new RoundedButton( "<html><font style='font-size: 15px;'>select</font></html>");
+        selectButton.setBackground(new Color(70, 130, 180));
+        selectButton.setForeground(Color.WHITE);
+        selectButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+        selectButton.setPreferredSize(new Dimension(10,100));
+        selectButton.addActionListener(e -> {
+            dispose();
+            pageOpen.showAccountInfo(account);
+        });
 
-        JPanel panel = controller.createPanel();
-        panel.setBackground(color);
-
-        //JPanel contentPanel = new JPanel();
-        //contentPanel.setLayout(new BoxLayout(contentPanel, BoxLayout.Y_AXIS));
-
-//        contentPanel.add(createLabel(account.getAccountID(), Font.BOLD, 14));
-//        contentPanel.add(createLabel("Account status: " + account.getStatus()));
-//        contentPanel.add(createLabel("Account type: " + account.getAccountType()));
-        panel.add(createLabel(account.getAccountID(), Font.BOLD, 14));
+        RoundedPanel panel = createRoundedPanel();
+//        panel.setSize(600,450);
+        panel.setBackground(Color.CYAN);
+        panel.add(createLabel(account.getAccountID(), Font.BOLD, 18));
+        panel.add(Box.createRigidArea(new Dimension(0, 20)));
         panel.add(createLabel("Account status: " + account.getStatus()));
+        panel.add(Box.createRigidArea(new Dimension(0, 20)));
         panel.add(createLabel("Account type: " + account.getAccountType()));
-
-        JButton selectButton = new JButton("Select");
-        selectButton.addActionListener(e -> controller.showAccountInfo(account));
-        selectButton.setAlignmentX(Component.CENTER_ALIGNMENT); // Center alignment
-        //contentPanel.add(selectButton);
+        panel.add(Box.createRigidArea(new Dimension(0, 20)));
         panel.add(selectButton);
-        //panel.add(contentPanel, BorderLayout.CENTER); // Add content to CENTER
-
-        GridBagConstraints gbc = new GridBagConstraints();
-        gbc.gridwidth = GridBagConstraints.REMAINDER;
-        gbc.weightx = 1;
-        gbc.weighty = 1;
+        outerPanel.add(panel);
 
         SwingUtilities.invokeLater(() -> {
-            mainPanel.add(panel, gbc);
-            pack();
+            add(outerPanel);
+            setPage();
             revalidate();
         });
     }
@@ -97,5 +103,12 @@ public class AccountOverviewUI extends JFrame {
         return createLabel(text, Font.PLAIN, 12);
     }
 
+
+    public RoundedPanel createRoundedPanel() {
+        RoundedPanel rpanel = new RoundedPanel(15);
+        rpanel.setLayout(new BoxLayout(rpanel, BoxLayout.Y_AXIS));
+        rpanel.setBorder(BorderFactory.createEmptyBorder(40, 60, 30, 60));
+        return rpanel;
+    }
 
 }
