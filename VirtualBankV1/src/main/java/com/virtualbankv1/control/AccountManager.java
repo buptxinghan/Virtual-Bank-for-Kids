@@ -2,6 +2,7 @@ package com.virtualbankv1.control;
 // Account management interface class
 
 import com.virtualbankv1.boundary.AccountInformationPage;
+import com.virtualbankv1.boundary.TransactionPage;
 import com.virtualbankv1.entity.Account;
 
 import javax.swing.*;
@@ -122,6 +123,14 @@ public class AccountManager {
                     accountStatusLabel.setText("<html><font color='Black' style='font-size: 20px;'>" + account.getStatus() + "</font></html>");
                 }
             }
+        });
+    }
+
+    // 为Confirmation按钮添加动作监听器
+    public void addTransferListenerToButton(JButton button, String actionCommand, Account account) {
+        button.setActionCommand(actionCommand);
+        button.addActionListener(e ->  {
+            new TransactionPage(account);
         });
     }
 

@@ -4,6 +4,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Random;
+
 
 import com.virtualbankv1.control.TransactionManager;
 import com.virtualbankv1.entity.Account;
@@ -21,141 +23,146 @@ public class TransactionPage extends JFrame {
     private TransactionManager transactionManager = new TransactionManager();
 
     public TransactionPage(Account account) {
-        initializeFrame();
-        addComponents(account);
-    }
-
-    private void initializeFrame() {
+        // Create the frame
         setTitle("TransferPage");
         setPreferredSize(new Dimension(1200, 900));
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
-        getContentPane().setBackground(new Color(199, 220, 247));
-    }
 
-    private void addComponents(Account account) {
-        addTitleLabel();
-        addCenterPanel();
-        addButtonsPanel(account);
-        pack();
-        setLocationRelativeTo(null);
-        setVisible(true);
-    }
+        // Set a solid light blue background
+        getContentPane().setBackground(new Color(199, 220, 247)); // Light blue background
 
-    private void addTitleLabel() {
+        // Title label
         JLabel titleLabel = new JLabel("<html><div style='text-align: center; color: #5D61C3;'><font style='font-size: 35px;'>Transfer details</font></div></html>", SwingConstants.CENTER);
+        titleLabel.setHorizontalAlignment(JLabel.LEFT);
         add(titleLabel, BorderLayout.NORTH);
-    }
 
-    private void addCenterPanel() {
+        // Center panel for form elements
         JPanel centerPanel = new JPanel();
         centerPanel.setLayout(new BoxLayout(centerPanel, BoxLayout.Y_AXIS));
         centerPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
         centerPanel.setBackground(new Color(199, 220, 247));
 
-        addTransferToDropdown(centerPanel);
-        addAmountField(centerPanel);
-        addDescriptionArea(centerPanel);
-
-        add(centerPanel, BorderLayout.CENTER);
-    }
-
-    private void addTransferToDropdown(JPanel panel) {
+        // Transfer to dropdown
+        centerPanel.add(Box.createRigidArea(new Dimension(0, 50)));
+        // Convert accounts to an array of account IDs
         String[] accountIDs = accounts.stream()
-                .map(Account::getAccountID)
+                .map(Account::getAccountID)  // Assuming getAccountID returns String
                 .toArray(String[]::new);
 
+        // Create JComboBox with accountIDs
         transferToDropdown = new JComboBox<>(accountIDs);
+
         transferToDropdown.setBorder(BorderFactory.createTitledBorder("<html><font color='#8595BC' style='font-size: 20px;'>Transfer to</font></html>"));
         transferToDropdown.setMaximumSize(new Dimension(1100, 90));
-        panel.add(transferToDropdown);
-        panel.add(Box.createRigidArea(new Dimension(0, 10)));
-    }
+        centerPanel.add(transferToDropdown);
 
-    private void addAmountField(JPanel panel) {
+        // Spacer
+        centerPanel.add(Box.createRigidArea(new Dimension(0, 10)));
+
+        // Amount field
+        centerPanel.add(Box.createRigidArea(new Dimension(0, 20)));
         amountField = new JTextField();
         amountField.setBorder(BorderFactory.createTitledBorder("<html><font color='#8595BC' style='font-size: 20px;'>Amount</font></html>"));
-        amountField.setMaximumSize(new Dimension(1100, 60));
-        panel.add(amountField);
-        panel.add(Box.createRigidArea(new Dimension(0, 10)));
-    }
+        amountField.setMaximumSize(new Dimension(1100, 60)); // Fixed size
+        centerPanel.add(amountField);
 
-    private void addDescriptionArea(JPanel panel) {
+        // Spacer
+        centerPanel.add(Box.createRigidArea(new Dimension(0, 10)));
+
+        // Description area
+        centerPanel.add(Box.createRigidArea(new Dimension(0, 20)));
         descriptionArea = new JTextArea();
         descriptionArea.setBorder(BorderFactory.createTitledBorder("<html><font color='#8595BC' style='font-size: 20px;'>Description</font></html>"));
-        descriptionArea.setMaximumSize(new Dimension(1100, 100));
-        panel.add(descriptionArea);
-        panel.add(Box.createRigidArea(new Dimension(0, 20)));
-    }
+        descriptionArea.setMaximumSize(new Dimension(1100, 100)); // Fixed size
+        centerPanel.add(descriptionArea);
 
-    private void addButtonsPanel(Account account) {
+        add(centerPanel, BorderLayout.CENTER);
+
+        // Buttons panel for horizontal layout
         JPanel buttonsPanel = new JPanel();
         buttonsPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
         buttonsPanel.setBackground(new Color(199, 220, 247));
 
-        addButton(clearButton, "Clear", new ActionListener() {
+        // Clear button
+        clearButton = new RoundedButton("<html><font style='font-size: 18px;'>Clear</font></html>");
+        clearButton.setBackground(new Color(70, 130, 180));
+        clearButton.setForeground(Color.WHITE);
+        clearButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+        clearButton.setPreferredSize(new Dimension(200, 50));
+        clearButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                clearFields();
+                // Clear all fields
+                transferToDropdown.setSelectedIndex(0);
+                amountField.setText("");
+                descriptionArea.setText("");
             }
-        }, buttonsPanel);
+        });
+        buttonsPanel.add(clearButton);
+        buttonsPanel.add(Box.createRigidArea(new Dimension(100, 0)));
 
-        addButton(submitButton, "Submit", new ActionListener() {
+        // Submit button
+        submitButton = new RoundedButton("<html><font style='font-size: 18px;'>Submit</font></html>");
+        submitButton.setBackground(new Color(70, 130, 180));
+        submitButton.setForeground(Color.WHITE);
+        submitButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+        submitButton.setPreferredSize(new Dimension(200, 50));
+        submitButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                handleSubmit(account);
-            }
-        }, buttonsPanel);
+                // Submit action
+                String transferTo = (String) transferToDropdown.getSelectedItem();
+                double amount = 0.00;
+                try {
+                    amount = Double.parseDouble(amountField.getText());
+                } catch (NumberFormatException ex) {
+                    JOptionPane.showMessageDialog(null, "Please enter a valid amount.");
+                    return; // Exit the method if the amount is invalid
+                }
+                String description = descriptionArea.getText();
 
-        JButton returnButton = ReturnButton.createReturnButton(this, "accountInformationPage");
+                if (account.getBalance() < amount) {
+                    account.setBalance(account.getBalance() - amount);
+
+                    // Submit logic, saving data to a csv
+                    int num = 1;
+                    for (Transaction tempTransaction : transactions){
+                        num++;
+                    }
+                    JOptionPane.showMessageDialog(null, "Transfer to: " + transferTo + "\nAmount: " + amount + "\nDescription: " + description);
+                    Transaction tempTransaction = new Transaction("00"+String.valueOf(num), account.getAccountID(), transferTo, amount);
+                    transactions.add(tempTransaction);
+                    new Writer().writeSingleTransaction(tempTransaction);
+                } else {
+                    // 余额不足，弹出提示窗口
+                    JOptionPane.showMessageDialog(null, "余额不足", "错误", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        });
+        buttonsPanel.add(submitButton);
+        buttonsPanel.add(Box.createRigidArea(new Dimension(100, 0)));
+
+        // Return button
+        JButton returnButton = ReturnButton.createReturnButton(this, "accountInformationPage", new Dimension(250, 50), account);
         buttonsPanel.add(returnButton);
 
         buttonsPanel.add(Box.createRigidArea(new Dimension(0, 200)));
         add(buttonsPanel, BorderLayout.SOUTH);
-    }
 
-    private void addButton(JButton button, String text, ActionListener actionListener, JPanel panel) {
-        button = new RoundedButton("<html><font style='font-size: 18px;'>" + text + "</font></html>");
-        button.setBackground(new Color(70, 130, 180));
-        button.setForeground(Color.WHITE);
-        button.setAlignmentX(Component.CENTER_ALIGNMENT);
-        button.setPreferredSize(new Dimension(200, 50));
-        button.addActionListener(actionListener);
-        panel.add(button);
-        panel.add(Box.createRigidArea(new Dimension(100, 0)));
-    }
-
-    private void clearFields() {
-        transferToDropdown.setSelectedIndex(0);
-        amountField.setText("");
-        descriptionArea.setText("");
-    }
-
-    private void handleSubmit(Account account) {
-        String transferTo = (String) transferToDropdown.getSelectedItem();
-        double amount = 0.00;
-        try {
-            amount = Double.parseDouble(amountField.getText());
-        } catch (NumberFormatException ex) {
-            JOptionPane.showMessageDialog(null, "Please enter a valid amount.");
-            return;
-        }
-        String description = descriptionArea.getText();
-
-        int num = transactions.size() + 1;
-        String transactionID = "00" + String.valueOf(num);
-
-        JOptionPane.showMessageDialog(null, "Transfer to: " + transferTo + "\nAmount: " + amount + "\nDescription: " + description);
-
-        Transaction tempTransaction = new Transaction(transactionID, account.getAccountID(), transferTo, amount);
-        transactions.add(tempTransaction);
-        new Writer().writeSingleTransaction(tempTransaction);
+        // Display the frame
+        pack();
+        setLocationRelativeTo(null);
+        setVisible(true);
     }
 
     public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> {
-            new Reader();
-            new TransactionPage(accounts.get(0));
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                new Reader();
+                new TransactionPage(accounts.get(0));
+            }
         });
     }
 }
