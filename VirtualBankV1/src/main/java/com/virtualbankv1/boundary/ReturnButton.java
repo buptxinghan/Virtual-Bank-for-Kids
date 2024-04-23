@@ -31,6 +31,9 @@ public class ReturnButton {
                     AccountOverviewPage aop = new AccountOverviewPage(); //生成上一页面
                     aop.ui.setPage(aop.ui);
                 }
+                else if (lastPage.equals("accountInformationPage")) {
+
+                }
                 else if (lastPage.equals(" ")) {
                     //添加你想跳转的页面
                 }

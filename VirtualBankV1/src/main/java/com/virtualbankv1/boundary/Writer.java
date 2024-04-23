@@ -76,12 +76,12 @@ public class Writer {
         try {
             FileWriter fw = new FileWriter(filePath);
             BufferedWriter bw = new BufferedWriter(fw);
-            bw.write("TransactionID,UserFrom,UserTo,Amount");
+            bw.write("TransactionID,AccountFrom,AccountTo,Amount");
             for (Transaction transaction: data) {
                 bw.newLine();
                 bw.write(transaction.getTransactionID() + "," +
-                        transaction.getUserFrom() + "," +
-                        transaction.getUserTo() + "," +
+                        transaction.getAccountFrom() + "," +
+                        transaction.getAccountTo() + "," +
                         transaction.getAmount());
             }
             bw.close();
@@ -117,7 +117,7 @@ public class Writer {
     }
 
     public void writeSingleAccount(Account tempAccount) {
-        try (PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("src/Data/Users.csv", true)))) {
+        try (PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("src/Data/Accounts.csv", true)))) {
             accounts.add(tempAccount);
             out.println(
                             tempAccount.getAccountID() + "," +
@@ -133,7 +133,7 @@ public class Writer {
     }
 
     public void writeSingleTask(Task tempTask) {
-        try (PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("src/Data/Users.csv", true)))) {
+        try (PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("src/Data/Tasks.csv", true)))) {
             tasks.add(tempTask);
             out.println(
                             tempTask.getTaskID() + "," +
@@ -148,7 +148,7 @@ public class Writer {
     }
 
     public void writeSingleGoal(Goal tempGoal) {
-        try (PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("src/Data/Users.csv", true)))) {
+        try (PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("src/Data/Goals.csv", true)))) {
             goals.add(tempGoal);
             out.println(
                     tempGoal.getGoalID() + "," +
@@ -163,12 +163,12 @@ public class Writer {
     }
 
     public void writeSingleTransaction(Transaction tempTransaction) {
-        try (PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("src/Data/Users.csv", true)))) {
+        try (PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("src/Data/Transactions.csv", true)))) {
             transactions.add(tempTransaction);
             out.println(
                     tempTransaction.getTransactionID() + "," +
-                            tempTransaction.getUserFrom() + "," +
-                            tempTransaction.getUserTo() + "," +
+                            tempTransaction.getAccountFrom() + "," +
+                            tempTransaction.getAccountTo() + "," +
                             tempTransaction.getAmount()
             );
         } catch (IOException e) {
