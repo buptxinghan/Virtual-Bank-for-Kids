@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 import java.util.Random;
 
 
+import com.virtualbankv1.control.AccountManager;
 import com.virtualbankv1.control.TransactionManager;
 import com.virtualbankv1.entity.Account;
 import com.virtualbankv1.entity.Transaction;
@@ -21,6 +22,7 @@ public class TransactionPage extends JFrame {
     private JButton clearButton;
     private JButton submitButton;
     private TransactionManager transactionManager = new TransactionManager();
+    private AccountManager accountManager = new AccountManager();
 
     public TransactionPage(Account account) {
         // Create the frame
@@ -122,8 +124,17 @@ public class TransactionPage extends JFrame {
                 }
                 String description = descriptionArea.getText();
 
-                if (account.getBalance() < amount) {
-                    account.setBalance(account.getBalance() - amount);
+                if (accountManager.withdraw(account, amount)) {
+                    for (Account tempAccount : accounts) {
+                        if (tempAccount.getAccountID().equals(transferTo)) {
+                            // 检查账户状态
+                            if (accountManager.isFrozen(tempAccount) || accountManager.isDeleted(tempAccount)) {
+                                JOptionPane.showMessageDialog(null, "账户状态异常，无法进行交易", "错误", JOptionPane.ERROR_MESSAGE);
+                                return; // 账户状态异常，中断操作
+                            }
+                            accountManager.transferIn(tempAccount, amount);
+                        }
+                    }
 
                     // Submit logic, saving data to a csv
                     int num = 1;
@@ -133,10 +144,13 @@ public class TransactionPage extends JFrame {
                     JOptionPane.showMessageDialog(null, "Transfer to: " + transferTo + "\nAmount: " + amount + "\nDescription: " + description);
                     Transaction tempTransaction = new Transaction("00"+String.valueOf(num), account.getAccountID(), transferTo, amount);
                     transactions.add(tempTransaction);
-                    new Writer().writeSingleTransaction(tempTransaction);
+
+                    Writer writer = new Writer();
+                    writer.writeSingleTransaction(tempTransaction);
+                    writer.writeAccounts("src/Data/Accounts.csv", accounts);
                 } else {
                     // 余额不足，弹出提示窗口
-                    JOptionPane.showMessageDialog(null, "余额不足", "错误", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "账户余额不足，请重新输入金额。", "错误", JOptionPane.ERROR_MESSAGE);
                 }
             }
         });

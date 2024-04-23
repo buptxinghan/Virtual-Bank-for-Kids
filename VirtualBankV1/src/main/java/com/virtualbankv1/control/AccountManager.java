@@ -6,6 +6,7 @@ import com.virtualbankv1.boundary.TransactionPage;
 import com.virtualbankv1.entity.Account;
 
 import javax.swing.*;
+import java.awt.*;
 import java.text.DecimalFormat;
 import java.util.List;
 
@@ -127,9 +128,16 @@ public class AccountManager {
     }
 
     // 为Confirmation按钮添加动作监听器
-    public void addTransferListenerToButton(JButton button, String actionCommand, Account account) {
+    public void addTransferListenerToButton(JButton button, String actionCommand, Account account, Frame frame) {
         button.setActionCommand(actionCommand);
         button.addActionListener(e ->  {
+            // 检查账户状态
+            if (isFrozen(account) || isDeleted(account)) {
+                JOptionPane.showMessageDialog(null, "账户状态异常，无法进行交易", "错误", JOptionPane.ERROR_MESSAGE);
+                return; // 账户状态异常，中断操作
+            }
+
+            frame.dispose();
             new TransactionPage(account);
         });
     }

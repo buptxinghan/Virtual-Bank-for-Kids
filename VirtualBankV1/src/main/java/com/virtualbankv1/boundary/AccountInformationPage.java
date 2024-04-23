@@ -108,8 +108,7 @@ public class AccountInformationPage extends JFrame {
         } else if (actionCommand.equals("freeze account") || actionCommand.equals("unfreeze account") || actionCommand.equals("delete account")) {
             accountManager.addConfirmationListenerToButton(button, actionCommand, account);
         } else if (actionCommand.equals("transferAccounts")) {
-            this.dispose();
-            accountManager.addTransferListenerToButton(button, actionCommand, account);
+            accountManager.addTransferListenerToButton(button, actionCommand, account, this);
         }
 
         return button;
