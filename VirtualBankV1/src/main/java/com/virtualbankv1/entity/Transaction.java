@@ -57,4 +57,16 @@ public class Transaction {
     public String getDescription() {return description;}
 
     public void setDescription() {this.description = description;}
+
+    @Override
+    public String toString() {
+        return "Transaction{" +
+                "transactionID='" + transactionID + '\'' +
+                ", accountFrom='" + accountFrom + '\'' +
+                ", accountTo='" + accountTo + '\'' +
+                ", amount=" + amount +
+                ", date='" + date + '\'' +
+                ", description='" + description + '\'' +
+                '}';
+    }
 }
