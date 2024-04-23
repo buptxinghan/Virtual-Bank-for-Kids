@@ -57,12 +57,15 @@ public class AccountInformationPage extends JFrame {
         transactionButtonsPanel.setLayout(new BoxLayout(transactionButtonsPanel, BoxLayout.Y_AXIS));
         transactionButtonsPanel.setOpaque(false); // Transparent background
         transactionButtonsPanel.add(Box.createRigidArea(new Dimension(0, 50))); // Spacer between buttons
-        transactionButtonsPanel.add(createTransactionButton("Withdraw", account, "withdraw"));
+        transactionButtonsPanel.add(createButtons("Withdraw", new Color(70, 130, 180), Color.WHITE, account, "withdraw"));
         transactionButtonsPanel.add(Box.createRigidArea(new Dimension(0, 10))); // Spacer between buttons
-        transactionButtonsPanel.add(createTransactionButton("Transfer In", account, "transferIn"));
+        transactionButtonsPanel.add(createButtons("Transfer In", new Color(70, 130, 180), Color.WHITE, account, "transferIn"));
         transactionButtonsPanel.add(Box.createRigidArea(new Dimension(0, 10))); // Spacer between buttons
+        transactionButtonsPanel.add(createButtons("Transfer accounts", new Color(70, 130, 180), Color.WHITE, account, "transferAccounts"));
+        transactionButtonsPanel.add(Box.createRigidArea(new Dimension(0, 10))); // Spacer between buttons
+
         // Create return button
-        JButton returnButton = ReturnButton.createReturnButton(this, "accountOverviewPage");
+        JButton returnButton = ReturnButton.createReturnButton(this, "accountOverviewPage", new Dimension(250, 50));
         transactionButtonsPanel.add(returnButton);
         // Add picture
         Icon transferIcon = new ImageIcon("src/Materials/Transfer.png");
@@ -74,11 +77,11 @@ public class AccountInformationPage extends JFrame {
         // Create the bottom buttons panel with custom button styling
         JPanel bottomButtonsPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 10, 50));
         bottomButtonsPanel.setOpaque(false); // Transparent background
-        bottomButtonsPanel.add(createConfirmationButton("Freeze Account", new Color(255, 255, 0), Color.BLACK, account, "freeze account")); // Yellow button with black text
+        bottomButtonsPanel.add(createButtons("Freeze Account", new Color(255, 255, 0), Color.BLACK, account, "freeze account")); // Yellow button with black text
         bottomButtonsPanel.add(Box.createRigidArea(new Dimension(50, 10))); // Spacer between buttons
-        bottomButtonsPanel.add(createConfirmationButton("Unfreeze Account", new Color(255, 255, 0), Color.BLACK, account, "unfreeze account")); // Yellow button with black text
+        bottomButtonsPanel.add(createButtons("Unfreeze Account", new Color(255, 255, 0), Color.BLACK, account, "unfreeze account")); // Yellow button with black text
         bottomButtonsPanel.add(Box.createRigidArea(new Dimension(50, 10))); // Spacer between buttons
-        bottomButtonsPanel.add(createConfirmationButton("Delete Account", new Color(255, 69, 0), Color.WHITE, account, "delete account")); // Red button
+        bottomButtonsPanel.add(createButtons("Delete Account", new Color(255, 69, 0), Color.WHITE, account, "delete account")); // Red button
 
         // Add components to the window
         add(titleLabel, BorderLayout.NORTH);
@@ -92,19 +95,7 @@ public class AccountInformationPage extends JFrame {
         setVisible(true);
     }
 
-    private JButton createTransactionButton(String text, Account account, String actionCommand) {
-        RoundedButton button = new RoundedButton("<html><font size ='6'>" + text + "</font></html>");
-        button.setBackground(new Color(70, 130, 180));
-        button.setForeground(Color.WHITE);
-        button.setAlignmentX(Component.CENTER_ALIGNMENT);
-        button.setPreferredSize(new Dimension(200, 50));
-        button.setMinimumSize(new Dimension(200, 50));
-        button.setMaximumSize(new Dimension(200, 50));
-        accountManager.addTransactionListenerToButton(button, actionCommand, account); // 添加监听器
-        return button;
-    }
-
-    private JButton createConfirmationButton(String text, Color bgColor, Color textColor, Account account, String actionCommand) {
+    private JButton createButtons(String text, Color bgColor, Color textColor, Account account, String actionCommand) {
         RoundedButton button = new RoundedButton("<html><font style='font-size: 18px;'>" + text + "</font></html>");
         button.setBackground(bgColor);
         button.setForeground(textColor);
@@ -112,7 +103,15 @@ public class AccountInformationPage extends JFrame {
         button.setPreferredSize(new Dimension(250, 50));
         button.setMinimumSize(new Dimension(250, 50));
         button.setMaximumSize(new Dimension(250, 50));
-        accountManager.addConfirmationListenerToButton(button, actionCommand, account); // 添加监听器
+        if (actionCommand.equals("withdraw") || actionCommand.equals("transferIn")) {
+            accountManager.addTransactionListenerToButton(button, actionCommand, account); // 添加监听器
+        } else if (actionCommand.equals("freeze account") || actionCommand.equals("unfreeze account") || actionCommand.equals("delete account")) {
+            accountManager.addConfirmationListenerToButton(button, actionCommand, account);
+        } else if (actionCommand.equals("transferAccounts")) {
+            this.dispose();
+            accountManager.addTransferListenerToButton(button, actionCommand, account);
+        }
+
         return button;
     }
 
