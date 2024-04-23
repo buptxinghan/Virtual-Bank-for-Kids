@@ -1,10 +1,13 @@
 package com.virtualbankv1.boundary;
 // 主页界面类
 
+import com.virtualbankv1.control.AccountOverviewPage;
 import com.virtualbankv1.control.HomePageController;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 
 public class HomePage extends JFrame {
@@ -22,7 +25,7 @@ public class HomePage extends JFrame {
 
     private void initializeComponents() {
         // 设置窗口大小
-        setSize(new Dimension(1000, 600));
+        setSize(new Dimension(1200, 900));
         setTitle("Virtual Bank");
         // 设置背景颜色
         Color bg = new Color(199, 220, 247);
@@ -49,7 +52,7 @@ public class HomePage extends JFrame {
 
         //初始化组件
         JLabel l1 = new JLabel("<html><font size=7 color=" + getColorHex(z1) + ">Welcome to Your Virtual Bank!</font></html>",JLabel.CENTER);
-        ImageIcon icon = new ImageIcon("D:\\Project\\Virtualbank\\Virtual-Bank-for-Kids\\Data\\pic.png");
+        ImageIcon icon = new ImageIcon("src/Materials/pig.png");
         JLabel pic = new JLabel(icon,JLabel.CENTER);
 
         // 设置布局
@@ -69,6 +72,11 @@ public class HomePage extends JFrame {
         right.setPreferredSize(new Dimension(100, 100));
         left.setPreferredSize(new Dimension(100, 100));
 
+        accountButton.addActionListener(e -> {
+            this.dispose();
+            new AccountOverviewPage();
+        });
+
 //添加组件上去
         Centerdown.add(accountButton);
         Centerdown.add(tasksButton);
@@ -84,6 +92,7 @@ public class HomePage extends JFrame {
         add(left, BorderLayout.WEST);
         add(Center);
 
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null); //窗口居中
         setVisible(true);
     }
@@ -92,24 +101,10 @@ public class HomePage extends JFrame {
     private String getColorHex(Color color) {
         return String.format("#%02x%02x%02x", color.getRed(), color.getGreen(), color.getBlue());
     }
-<<<<<<< Updated upstream
 
     // Getters for buttons
     public JButton getAccountButton() {
-        return accountButton;
-=======
-    private static void addReturnListenerToButton(JButton button, JFrame frame) {
-        button.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                frame.dispose(); // 关闭窗口
-                //AccountOverviewPage_old aop = new AccountOverviewPage_old(); //生成上一页面
-                AccountOverviewPage aop = new AccountOverviewPage(); //生成上一页面
-//                aop.ui.setPage(aop.ui);
-               //aop.setPage();
-            }
-        });
->>>>>>> Stashed changes
+        return accountButton; // 选择一个版本或合并两者
     }
 
     public JButton getTasksButton() {

@@ -1,9 +1,4 @@
 AccountID,AccountType,Username,Password,Balance,Status
-<<<<<<< Updated upstream
 001,Saving Account,Zhong Zhenghan,000,188.20,Active
 002,Current Account,Zhong Zhenghan,111,312.30,Active
 003,Saving Account,Zhong Zhenghan,333,0.00,Frozen
-=======
-001,Saving Account,Zhong Zhenghan,000,200.2,Active
-002,Current Account,Zhong Zhenghan,111,300.3,Active
->>>>>>> Stashed changes

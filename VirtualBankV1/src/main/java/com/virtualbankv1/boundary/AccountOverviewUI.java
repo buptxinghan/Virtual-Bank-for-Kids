@@ -50,6 +50,7 @@ public class AccountOverviewUI extends JFrame {
         innerPanel.add(addButton);
         innerPanel.add(Box.createRigidArea(new Dimension(0, 20)));
         outerPanel.add(innerPanel);
+        outerPanel.setBackground(new Color(199, 220, 247));
 
         add(outerPanel);
 
@@ -84,6 +85,8 @@ public class AccountOverviewUI extends JFrame {
         panel.add(Box.createRigidArea(new Dimension(0, 20)));
         panel.add(selectButton);
         outerPanel.add(panel);
+        // Set a solid light blue background
+        outerPanel.setBackground(new Color(199, 220, 247)); // Light blue background
 
         SwingUtilities.invokeLater(() -> {
             add(outerPanel);
