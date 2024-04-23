@@ -2,6 +2,7 @@ package com.virtualbankv1.boundary;
 
 import com.virtualbankv1.entity.*;
 import java.io.*;
+import java.text.DecimalFormat;
 import java.util.*;
 
 import static com.virtualbankv1.boundary.Reader.accounts;
@@ -11,6 +12,9 @@ import static com.virtualbankv1.boundary.Reader.goals;
 import static com.virtualbankv1.boundary.Reader.transactions;
 
 public class Writer {
+
+    private DecimalFormat decimalFormat = new DecimalFormat("#,##0.00"); // 保留两位小数
+
     public void writeAccounts(String filePath, List<Account> data) {
         try {
             FileWriter fw = new FileWriter(filePath);
@@ -22,7 +26,7 @@ public class Writer {
                         account.getAccountType() + "," +
                         account.getUsername() + "," +
                         account.getPassword() + "," +
-                        account.getBalance() + "," +
+                        decimalFormat.format(account.getBalance()) + "," +
                         account.getStatus());
             }
             bw.close();
@@ -41,8 +45,8 @@ public class Writer {
                 bw.newLine();
                 bw.write(goal.getGoalID() + "," +
                         goal.getDescription() + "," +
-                        goal.getTargetAmount() + "," +
-                        goal.getCurrentAmount() + "," +
+                        decimalFormat.format(goal.getTargetAmount()) + "," +
+                        decimalFormat.format(goal.getCurrentAmount()) + "," +
                         goal.getChildUsername());
             }
             bw.close();
@@ -61,7 +65,7 @@ public class Writer {
                 bw.newLine();
                 bw.write(task.getTaskID() + "," +
                         task.getDescription() + "," +
-                        task.getReward() + "," +
+                        decimalFormat.format(task.getReward()) + "," +
                         task.isCompleted() + "," +
                         task.getCounter());
             }
@@ -76,13 +80,13 @@ public class Writer {
         try {
             FileWriter fw = new FileWriter(filePath);
             BufferedWriter bw = new BufferedWriter(fw);
-            bw.write("TransactionID,UserFrom,UserTo,Amount");
+            bw.write("TransactionID,AccountFrom,AccountTo,Amount");
             for (Transaction transaction: data) {
                 bw.newLine();
                 bw.write(transaction.getTransactionID() + "," +
-                        transaction.getUserFrom() + "," +
-                        transaction.getUserTo() + "," +
-                        transaction.getAmount());
+                        transaction.getAccountFrom() + "," +
+                        transaction.getAccountTo() + "," +
+                        decimalFormat.format(transaction.getAmount()));
             }
             bw.close();
             fw.close();
@@ -117,14 +121,14 @@ public class Writer {
     }
 
     public void writeSingleAccount(Account tempAccount) {
-        try (PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("src/Data/Users.csv", true)))) {
+        try (PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("src/Data/Accounts.csv", true)))) {
             accounts.add(tempAccount);
             out.println(
                             tempAccount.getAccountID() + "," +
                             tempAccount.getAccountType() + "," +
                             tempAccount.getUsername() + "," +
                             tempAccount.getPassword() + "," +
-                            tempAccount.getBalance() + "," +
+                            decimalFormat.format(tempAccount.getBalance()) + "," +
                             tempAccount.getStatus()
             );
         } catch (IOException e) {
@@ -133,12 +137,12 @@ public class Writer {
     }
 
     public void writeSingleTask(Task tempTask) {
-        try (PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("src/Data/Users.csv", true)))) {
+        try (PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("src/Data/Tasks.csv", true)))) {
             tasks.add(tempTask);
             out.println(
                             tempTask.getTaskID() + "," +
                             tempTask.getDescription() + "," +
-                            tempTask.getReward() + "," +
+                            decimalFormat.format(tempTask.getReward()) + "," +
                             "no" + "," +
                             tempTask.getCounter()
             );
@@ -148,13 +152,13 @@ public class Writer {
     }
 
     public void writeSingleGoal(Goal tempGoal) {
-        try (PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("src/Data/Users.csv", true)))) {
+        try (PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("src/Data/Goals.csv", true)))) {
             goals.add(tempGoal);
             out.println(
                     tempGoal.getGoalID() + "," +
                             tempGoal.getDescription() + "," +
-                            tempGoal.getTargetAmount() + "," +
-                            tempGoal.getCurrentAmount() + "," +
+                            decimalFormat.format(tempGoal.getTargetAmount()) + "," +
+                            decimalFormat.format(tempGoal.getCurrentAmount()) + "," +
                             tempGoal.getChildUsername()
             );
         } catch (IOException e) {
@@ -163,13 +167,13 @@ public class Writer {
     }
 
     public void writeSingleTransaction(Transaction tempTransaction) {
-        try (PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("src/Data/Users.csv", true)))) {
+        try (PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("src/Data/Transactions.csv", true)))) {
             transactions.add(tempTransaction);
             out.println(
                     tempTransaction.getTransactionID() + "," +
-                            tempTransaction.getUserFrom() + "," +
-                            tempTransaction.getUserTo() + "," +
-                            tempTransaction.getAmount()
+                            tempTransaction.getAccountFrom() + "," +
+                            tempTransaction.getAccountTo() + "," +
+                            decimalFormat.format(tempTransaction.getAmount())
             );
         } catch (IOException e) {
             e.printStackTrace();

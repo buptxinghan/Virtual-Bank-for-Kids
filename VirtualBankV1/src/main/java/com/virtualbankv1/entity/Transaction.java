@@ -3,15 +3,15 @@ package com.virtualbankv1.entity;
 public class Transaction {
 
     private String transactionID;
-    private String userFrom;
-    private String userTo;
+    private String accountFrom;
+    private String accountTo;
     private double amount;
 
     // 转账
     public Transaction(String transactionID, String userFrom, String userTo, double amount) {
         this.transactionID = transactionID;
-        this.userFrom = userFrom;
-        this.userTo = userTo;
+        this.accountFrom = userFrom;
+        this.accountTo = userTo;
         this.amount = amount;
     }
 
@@ -24,20 +24,20 @@ public class Transaction {
         this.transactionID = transactionID;
     }
 
-    public String getUserFrom() {
-        return userFrom;
+    public String getAccountFrom() {
+        return accountFrom;
     }
 
-    public void setUserFrom(String userFrom) {
-        this.userFrom = userFrom;
+    public void setAccountFrom(String userFrom) {
+        this.accountFrom = userFrom;
     }
 
-    public String getUserTo() {
-        return userTo;
+    public String getAccountTo() {
+        return accountTo;
     }
 
-    public void setUserTo(String userTo) {
-        this.userTo = userTo;
+    public void setAccountTo(String userTo) {
+        this.accountTo = userTo;
     }
 
     public double getAmount() {
