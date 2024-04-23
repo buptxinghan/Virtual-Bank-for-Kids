@@ -6,6 +6,7 @@ import com.virtualbankv1.control.HomePageController;
 import javax.swing.*;
 import java.awt.*;
 
+
 public class HomePage extends JFrame {
 
     private JButton accountButton;
@@ -13,16 +14,16 @@ public class HomePage extends JFrame {
     private JButton goalsButton;
     private JButton manualButton;
 
-    public HomePage(String title) {
-        super(title);
+    public HomePage() {
         initializeComponents();
         HomePageController controller = new HomePageController(this);
         controller.initializeController();
     }
 
     private void initializeComponents() {
-        // 设置窗口大小。
+        // 设置窗口大小
         setSize(new Dimension(1000, 600));
+        setTitle("Virtual Bank");
         // 设置背景颜色
         Color bg = new Color(199, 220, 247);
         Color z1 = new Color(93,97,195);

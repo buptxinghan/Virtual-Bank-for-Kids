@@ -22,7 +22,7 @@ public class VirtualBankApplication {
         //AccountManager accountManager = new AccountManager();
         //accountManager.displayAccountInformation(tempAccount);
         //LoginPage login = new LoginPage();
-        HomePage hp = new HomePage("Zhong Zhenghan");
+        HomePage hp = new HomePage();
 
 //        Writer writer = new Writer();
 //        writer.writeUsers("src/Data/Users.csv", users);
