@@ -63,10 +63,11 @@ public class ReturnButton {
 //                writer.writeTransactions("src/Data/Transactions.csv", transactions);
 
                 if (lastPage.equals("accountOverviewPage")) {
-                    AccountOverviewPage aop = new AccountOverviewPage(); //生成上一页面
+                     new AccountOverviewPage(); //生成上一页面
                 }
-                else if (lastPage.equals(" ")) {
+                else if (lastPage.equals("HomePage")) {
                     //添加你想跳转的页面
+                     new HomePage();
                 }
 
             }

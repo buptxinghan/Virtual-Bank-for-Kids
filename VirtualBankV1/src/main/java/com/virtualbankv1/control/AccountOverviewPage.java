@@ -15,7 +15,7 @@ public class AccountOverviewPage{
     public AccountOverviewPage controller;
 
     public AccountOverviewPage() {
-        this.ui = new AccountOverviewUI(this);
+        this.ui = new AccountOverviewUI();
         boolean userExists = checkUserExists(currentUser.getUsername());
         if (userExists) {
             displayAccountInfo(currentUser.getUsername());

@@ -1,6 +1,8 @@
 package com.virtualbankv1.boundary;
 
 import javax.swing.*;
+import javax.swing.border.BevelBorder;
+import javax.swing.border.Border;
 import java.awt.*;
 
 public class RoundedPanel extends JPanel {
@@ -8,7 +10,6 @@ public class RoundedPanel extends JPanel {
     private int cornerRadius = 15;
 
     public RoundedPanel(int radius) {
-
         cornerRadius = radius;
         setOpaque(false);
     }
