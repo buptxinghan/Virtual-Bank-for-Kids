@@ -90,8 +90,8 @@ public class TransactionHistoryPage extends JFrame {
                 String month = (String) monthComboBox.getSelectedItem();
                 String day = (String) dayComboBox.getSelectedItem();
 
-                List<Transaction> tempTransactions = filterTransactionsByDate(year, month, day);
-                showTransactions(transactionManager.filterTransactionsByAccount(account));
+                List<Transaction> tempTransactions = transactionManager.filterTransactionsByAccount(account);
+                showTransactions(filterTransactionsByDate(year, month, day, tempTransactions));
             }
         });
         showAllButton = new RoundedButton("<html><font style='font-size: 18px;'>Show All</font></html>");
@@ -172,10 +172,10 @@ public class TransactionHistoryPage extends JFrame {
     }
 
 
-    private List<Transaction> filterTransactionsByDate(String year, String month, String day) {
+    private List<Transaction> filterTransactionsByDate(String year, String month, String day, List<Transaction> tempTransactions) {
         List<Transaction> filteredTransactions = new ArrayList<>();
 
-        for (Transaction tempTransaction : transactions) {
+        for (Transaction tempTransaction : tempTransactions) {
             String[] dateParts = tempTransaction.getDate().split("/"); // Split by '/'
 
             if (dateParts.length == 3) {
