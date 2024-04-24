@@ -18,9 +18,9 @@ public class Writer {
     private DecimalFormat decimalFormat = new DecimalFormat("#,##0.00"); // 保留两位小数
     private DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy/MM/dd");
 
-    public void writeAccounts(String filePath, List<Account> data) {
+    public void writeAccounts(List<Account> data) {
         try {
-            FileWriter fw = new FileWriter(filePath);
+            FileWriter fw = new FileWriter("src/Data/Accounts.csv");
             BufferedWriter bw = new BufferedWriter(fw);
             bw.write("AccountID,AccountType,Username,Password,Balance,Status");
             for (Account account : data) {
@@ -40,9 +40,9 @@ public class Writer {
         }
     }
 
-    public void writeGoals(String filePath, List<Goal> data) {
+    public void writeGoals(List<Goal> data) {
         try {
-            FileWriter fw = new FileWriter(filePath);
+            FileWriter fw = new FileWriter("src/Data/Goals.csv");
             BufferedWriter bw = new BufferedWriter(fw);
             bw.write("GoalID,Description,TargetAmount,CurrentAmount,ChildUsername");
             for (Goal goal : data) {
@@ -61,9 +61,9 @@ public class Writer {
         }
     }
 
-    public void writeTasks(String filePath, List<Task> data) {
+    public void writeTasks(List<Task> data) {
         try {
-            FileWriter fw = new FileWriter(filePath);
+            FileWriter fw = new FileWriter("src/Data/Tasks.csv");
             BufferedWriter bw = new BufferedWriter(fw);
             bw.write("TaskID,Description,Reward,IsCompleted,Counter");
             for (Task task : data) {
@@ -82,9 +82,9 @@ public class Writer {
         }
     }
 
-    public void writeTransactions(String filePath, List<Transaction> data) {
+    public void writeTransactions(List<Transaction> data) {
         try {
-            FileWriter fw = new FileWriter(filePath);
+            FileWriter fw = new FileWriter("src/Data/Transactions.csv");
             BufferedWriter bw = new BufferedWriter(fw);
             bw.write("TransactionID,AccountFrom,AccountTo,Amount,Date");
             for (Transaction transaction: data) {
@@ -104,9 +104,9 @@ public class Writer {
         }
     }
 
-    public void writeUsers(String filePath, List<User> data) {
+    public void writeUsers(List<User> data) {
         try {
-            FileWriter fw = new FileWriter(filePath);
+            FileWriter fw = new FileWriter("src/Data/Users.csv");
             BufferedWriter bw = new BufferedWriter(fw);
             bw.write("Username,Password");
             for (User user : data) {

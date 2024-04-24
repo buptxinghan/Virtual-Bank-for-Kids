@@ -115,8 +115,7 @@ public class OpenAccountPage extends JFrame implements ActionListener {
             Reader reader=new Reader();
             accounts.add(account);
             Writer writer=new Writer();
-            String path=new String("src/Data/Accounts.csv");
-            writer.writeAccounts(path,accounts);
+            writer.writeAccounts(accounts);
             JOptionPane.showOptionDialog(
                     this,
                     "Account created successfully!",

@@ -4,12 +4,15 @@ package com.virtualbankv1.control;
 import com.virtualbankv1.boundary.AccountInformationPage;
 import com.virtualbankv1.boundary.TransactionHistoryPage;
 import com.virtualbankv1.boundary.TransactionPage;
+import com.virtualbankv1.boundary.Writer;
 import com.virtualbankv1.entity.Account;
 
 import javax.swing.*;
 import java.awt.*;
 import java.text.DecimalFormat;
 import java.util.List;
+
+import static com.virtualbankv1.boundary.Reader.accounts;
 
 public class AccountManager {
 
@@ -129,6 +132,7 @@ public class AccountManager {
                     unfreezeAccount(account); // 将账户状态改为 Active
                     accountStatusLabel.setText("<html><font color='Black' style='font-size: 20px;'>" + account.getStatus() + "</font></html>");
                 }
+                new Writer().writeAccounts(accounts);
             }
         });
     }
