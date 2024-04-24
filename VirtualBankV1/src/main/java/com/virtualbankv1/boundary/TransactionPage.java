@@ -139,13 +139,9 @@ public class TransactionPage extends JFrame {
                     }
 
                     // Submit logic, saving data to a csv
-                    int num = 1;
-                    for (Transaction tempTransaction : transactions){
-                        num++;
-                    }
                     JOptionPane.showMessageDialog(null, "Transfer to: " + transferTo + "\nAmount: " + amount + "\nDescription: " + description);
                     DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy/MM/dd");
-                    Transaction tempTransaction = new Transaction("00"+String.valueOf(num), account.getAccountID(), transferTo, amount, dateFormatter.format(LocalDate.now()), description);
+                    Transaction tempTransaction = new Transaction("00"+transactionManager.getTransactionID(), account.getAccountID(), transferTo, amount, dateFormatter.format(LocalDate.now()), description);
                     transactions.add(tempTransaction);
 
                     Writer writer = new Writer();
@@ -160,7 +156,7 @@ public class TransactionPage extends JFrame {
         buttonsPanel.add(Box.createRigidArea(new Dimension(100, 0)));
 
         // Return button
-        JButton returnButton = ReturnButton.createReturnButton(this, "accountInformationPage", new Dimension(250, 50), account);
+        JButton returnButton = ReturnButton.createReturnButton(this, "accountInformationPage", new Dimension(200, 50), account);
         buttonsPanel.add(returnButton);
 
         buttonsPanel.add(Box.createRigidArea(new Dimension(0, 200)));

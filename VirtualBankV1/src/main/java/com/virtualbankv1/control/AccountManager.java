@@ -6,13 +6,17 @@ import com.virtualbankv1.boundary.TransactionHistoryPage;
 import com.virtualbankv1.boundary.TransactionPage;
 import com.virtualbankv1.boundary.Writer;
 import com.virtualbankv1.entity.Account;
+import com.virtualbankv1.entity.Transaction;
 
 import javax.swing.*;
 import java.awt.*;
 import java.text.DecimalFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import static com.virtualbankv1.boundary.Reader.accounts;
+import static com.virtualbankv1.boundary.Reader.transactions;
 
 public class AccountManager {
 
@@ -31,11 +35,19 @@ public class AccountManager {
 
     public void transferIn(Account account, double amount) {
         account.setBalance(account.getBalance() + amount);
+        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+        Transaction transaction = new Transaction(new TransactionManager().getTransactionID(), "System", account.getAccountID(), amount,  dateFormatter.format(LocalDate.now()), "Transfer In");
+        transactions.add(transaction);
+        new Writer().writeSingleTransaction(transaction);
     }
 
     public boolean withdraw(Account account, double amount) {
         if (account.getBalance() >= amount) {
             account.setBalance(account.getBalance() - amount);
+            DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+            Transaction transaction = new Transaction(new TransactionManager().getTransactionID(), "System", account.getAccountID(), amount,  dateFormatter.format(LocalDate.now()), "Withdraw");
+            transactions.add(transaction);
+            new Writer().writeSingleTransaction(transaction);
             return true;
         }
         else {
