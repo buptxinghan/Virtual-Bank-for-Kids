@@ -77,6 +77,11 @@ public class HomePage extends JFrame {
             new AccountOverviewPage();
         });
 
+=======
+            dispose();
+            new AccountOverviewPage();
+        });
+>>>>>>> Stashed changes
 //添加组件上去
         Centerdown.add(accountButton);
         Centerdown.add(tasksButton);
@@ -105,6 +110,10 @@ public class HomePage extends JFrame {
     // Getters for buttons
     public JButton getAccountButton() {
         return accountButton; // 选择一个版本或合并两者
+=======
+
+        return accountButton;
+>>>>>>> Stashed changes
     }
 
     public JButton getTasksButton() {
@@ -118,7 +127,5 @@ public class HomePage extends JFrame {
     public JButton getManualButton() {
         return manualButton;
     }
-
-
 
 }
