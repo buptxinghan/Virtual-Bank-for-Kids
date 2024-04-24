@@ -1,5 +1,6 @@
 package com.virtualbankv1.boundary;
 
+import com.virtualbankv1.control.TransactionManager;
 import com.virtualbankv1.entity.Account;
 import com.virtualbankv1.entity.Transaction;
 
@@ -7,6 +8,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,6 +26,8 @@ public class TransactionHistoryPage extends JFrame {
     private JComboBox<String> yearComboBox;
     private JComboBox<String> monthComboBox;
     private JComboBox<String> dayComboBox;
+
+    TransactionManager transactionManager = new TransactionManager();
 
     public TransactionHistoryPage(Account account) {
         setTitle("Transaction History");
@@ -87,7 +91,7 @@ public class TransactionHistoryPage extends JFrame {
                 String day = (String) dayComboBox.getSelectedItem();
 
                 List<Transaction> tempTransactions = filterTransactionsByDate(year, month, day);
-                showTransactions(tempTransactions);
+                showTransactions(transactionManager.filterTransactionsByAccount(account));
             }
         });
         showAllButton = new RoundedButton("<html><font style='font-size: 18px;'>Show All</font></html>");
@@ -98,7 +102,7 @@ public class TransactionHistoryPage extends JFrame {
         showAllButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                showTransactions(transactions);
+                showTransactions(transactionManager.filterTransactionsByAccount(account));
             }
         });
         returnButton = ReturnButton.createReturnButton(this, "accountInformationPage", new Dimension(250, 50), account);
@@ -144,19 +148,22 @@ public class TransactionHistoryPage extends JFrame {
         transactionPanel.setAlignmentX(Component.CENTER_ALIGNMENT);  // Set horizontal alignment to center
         transactionPanel.setBackground(new Color(112, 172, 249));
 
+        DecimalFormat df = new DecimalFormat("#,##0.00");
+        String formattedAmount = df.format(transaction.getAmount());
+
         JLabel transactionLabel = new JLabel("<html><font color=#333333><b>Transaction ID:</b> " + transaction.getTransactionID() +
                 " | <b>From:</b> " + transaction.getAccountFrom() +
                 " | <b>To:</b> " + transaction.getAccountTo() +
-                " | <b>Amount:</b> $" + transaction.getAmount() +
+                " | <b>Amount:</b> $" + formattedAmount +
                 " | <b>Date:</b> " + transaction.getDate() +
                 " | <b>Description:</b> " + transaction.getDescription() + "</font></html>");
 
         transactionLabel.setHorizontalAlignment(SwingConstants.CENTER);  // Set horizontal alignment to center
         transactionLabel.setVerticalAlignment(SwingConstants.CENTER);    // Set vertical alignment to center
 
-        transactionLabel.setMaximumSize(new Dimension(600, 60));
-        transactionLabel.setPreferredSize(new Dimension(600, 60));
-        transactionLabel.setMinimumSize(new Dimension(600, 60));
+        transactionLabel.setMaximumSize(new Dimension(1000, 60));
+        transactionLabel.setPreferredSize(new Dimension(1000, 60));
+        transactionLabel.setMinimumSize(new Dimension(1000, 60));
         transactionLabel.setAlignmentX(Component.CENTER_ALIGNMENT);  // Set horizontal alignment to center
 
         transactionPanel.add(transactionLabel);

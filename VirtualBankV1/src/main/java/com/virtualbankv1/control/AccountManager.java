@@ -20,6 +20,8 @@ import static com.virtualbankv1.boundary.Reader.transactions;
 
 public class AccountManager {
 
+    Writer writer = new Writer();
+
     public void displayAccountInformation(Account account) {
         new AccountInformationPage(account);
     }
@@ -36,18 +38,20 @@ public class AccountManager {
     public void transferIn(Account account, double amount) {
         account.setBalance(account.getBalance() + amount);
         DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy/MM/dd");
-        Transaction transaction = new Transaction(new TransactionManager().getTransactionID(), "System", account.getAccountID(), amount,  dateFormatter.format(LocalDate.now()), "Transfer In");
+        Transaction transaction = new Transaction(new TransactionManager().getFormatTransactionID(), "System", account.getAccountID(), amount,  dateFormatter.format(LocalDate.now()), "Transfer In");
         transactions.add(transaction);
-        new Writer().writeSingleTransaction(transaction);
+        writer.writeAccounts(accounts);
+        writer.writeSingleTransaction(transaction);
     }
 
     public boolean withdraw(Account account, double amount) {
         if (account.getBalance() >= amount) {
             account.setBalance(account.getBalance() - amount);
             DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy/MM/dd");
-            Transaction transaction = new Transaction(new TransactionManager().getTransactionID(), "System", account.getAccountID(), amount,  dateFormatter.format(LocalDate.now()), "Withdraw");
+            Transaction transaction = new Transaction(new TransactionManager().getFormatTransactionID(), "System", account.getAccountID(), amount,  dateFormatter.format(LocalDate.now()), "Withdraw");
             transactions.add(transaction);
-            new Writer().writeSingleTransaction(transaction);
+            writer.writeAccounts(accounts);
+            writer.writeSingleTransaction(transaction);
             return true;
         }
         else {
@@ -144,7 +148,7 @@ public class AccountManager {
                     unfreezeAccount(account); // 将账户状态改为 Active
                     accountStatusLabel.setText("<html><font color='Black' style='font-size: 20px;'>" + account.getStatus() + "</font></html>");
                 }
-                new Writer().writeAccounts(accounts);
+                writer.writeAccounts(accounts);
             }
         });
     }
@@ -169,7 +173,7 @@ public class AccountManager {
         button.addActionListener(e ->  {
             // 检查账户状态
             if (isFrozen(account) || isDeleted(account)) {
-                JOptionPane.showMessageDialog(null, "账户状态异常，无法进行交易", "错误", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "账户状态异常，无法产看交易历史", "错误", JOptionPane.ERROR_MESSAGE);
                 return; // 账户状态异常，中断操作
             }
 
