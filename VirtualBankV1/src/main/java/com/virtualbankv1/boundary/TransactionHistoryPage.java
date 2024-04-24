@@ -18,12 +18,12 @@ public class TransactionHistoryPage extends JFrame {
     private JPanel dateFieldsPanel; // Panel for date fields
     private JPanel buttonPanel; // Panel for buttons
     private JPanel transactionsPanel;
-    private JTextField yearField;
-    private JTextField monthField;
-    private JTextField dayField;
     private JButton showButton;
     private JButton showAllButton;
     private JButton returnButton;
+    private JComboBox<String> yearComboBox;
+    private JComboBox<String> monthComboBox;
+    private JComboBox<String> dayComboBox;
 
     public TransactionHistoryPage(Account account) {
         setTitle("Transaction History");
@@ -44,33 +44,33 @@ public class TransactionHistoryPage extends JFrame {
 
         // Date fields panel
         dateFieldsPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
-        yearField = new JTextField(4);
-        yearField.setPreferredSize(new Dimension(60, 30));
-        monthField = new JTextField(2);
-        monthField.setPreferredSize(new Dimension(40, 30));
-        dayField = new JTextField(2);
-        dayField.setPreferredSize(new Dimension(40, 30));
-        dateFieldsPanel.add(yearField);
+
+        // Year ComboBox
+        String[] years = {"2020", "2021", "2022", "2023", "2024", "2025"};
+        yearComboBox = new JComboBox<>(years);
+        yearComboBox.setPreferredSize(new Dimension(55, 30));
+
+        // Month ComboBox
+        String[] months = {"01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"};
+        monthComboBox = new JComboBox<>(months);
+        monthComboBox.setPreferredSize(new Dimension(40, 30));
+
+        // Day ComboBox
+        String[] days = new String[31];
+        for (int i = 1; i <= 31; i++) {
+            days[i - 1] = String.format("%02d", i);
+        }
+        dayComboBox = new JComboBox<>(days);
+        dayComboBox.setPreferredSize(new Dimension(40, 30));
+
+        dateFieldsPanel.add(yearComboBox);
         dateFieldsPanel.add(new JLabel("<html><font color= #8595BC style='font-size: 25px;'>Year</font></html>"));
-        dateFieldsPanel.add(monthField);
+        dateFieldsPanel.add(monthComboBox);
         dateFieldsPanel.add(new JLabel("<html><font color= #8595BC style='font-size: 25px;'>Month</font></html>"));
-        dateFieldsPanel.add(dayField);
+        dateFieldsPanel.add(dayComboBox);
         dateFieldsPanel.add(new JLabel("<html><font color= #8595BC style='font-size: 25px;'>Day</font></html>"));
         dateFieldsPanel.setBackground(new Color(199, 220, 247));
         datePanel.add(dateFieldsPanel);
-
-        // Transactions panel
-        transactionsPanel = new JPanel();
-        transactionsPanel.setLayout(new BoxLayout(transactionsPanel, BoxLayout.Y_AXIS));
-        transactionsPanel.setBackground(new Color(199, 220, 247));
-        transactionsPanel.setPreferredSize(new Dimension(600, 650));
-
-        JScrollPane scrollPane = new JScrollPane(transactionsPanel);
-        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS); // 总是显示垂直滚动条
-        scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER); // 不显示水平滚动条
-        scrollPane.setBackground(new Color(199, 220, 247));
-        add(scrollPane, BorderLayout.SOUTH);
-        showTransactions(transactions);
 
         // Button panel
         buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
@@ -82,9 +82,9 @@ public class TransactionHistoryPage extends JFrame {
         showButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String year = yearField.getText();
-                String month = monthField.getText();
-                String day = dayField.getText();
+                String year = (String) yearComboBox.getSelectedItem();
+                String month = (String) monthComboBox.getSelectedItem();
+                String day = (String) dayComboBox.getSelectedItem();
 
                 List<Transaction> tempTransactions = filterTransactionsByDate(year, month, day);
                 showTransactions(tempTransactions);
@@ -112,12 +112,25 @@ public class TransactionHistoryPage extends JFrame {
 
         add(datePanel, BorderLayout.CENTER);
 
+        // Transactions panel
+        transactionsPanel = new JPanel();
+        transactionsPanel.setLayout(new BoxLayout(transactionsPanel, BoxLayout.Y_AXIS));
+        transactionsPanel.setBackground(new Color(199, 220, 247));
+
+        JScrollPane scrollPane = new JScrollPane(transactionsPanel);
+        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS); // 总是显示垂直滚动条
+        scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER); // 不显示水平滚动条
+        scrollPane.setBackground(new Color(199, 220, 247));
+        scrollPane.setPreferredSize(new Dimension(600, 650));
+        add(scrollPane, BorderLayout.SOUTH);
+
         setLocationRelativeTo(null);
         setVisible(true);
     }
 
     private void showTransactions(List<Transaction> tempTransactions) {
         transactionsPanel.removeAll(); // 清空之前的记录
+        transactionsPanel.add(Box.createRigidArea(new Dimension(0, 10))); // 添加20像素的空白
         for (Transaction transaction : tempTransactions) {
             addTransaction(transaction);
         }
@@ -126,24 +139,31 @@ public class TransactionHistoryPage extends JFrame {
     }
 
     private void addTransaction(Transaction transaction) {
-        JPanel transactionPanel = new JPanel();
-        transactionPanel.setLayout(new GridLayout(1, 1));
+        JPanel transactionPanel = new RoundedPanel(45);
+        transactionPanel.setLayout(new BoxLayout(transactionPanel, BoxLayout.Y_AXIS));
+        transactionPanel.setAlignmentX(Component.CENTER_ALIGNMENT);  // Set horizontal alignment to center
+        transactionPanel.setBackground(new Color(112, 172, 249));
 
-        // Create a JLabel to display transaction details
         JLabel transactionLabel = new JLabel("<html><font color=#333333><b>Transaction ID:</b> " + transaction.getTransactionID() +
-                "<br><b>From:</b> " + transaction.getAccountFrom() +
-                "<br><b>To:</b> " + transaction.getAccountTo() +
-                "<br><b>Amount:</b> $" + transaction.getAmount() +
-                "<br><b>Date:</b> " + transaction.getDate() +
-                "<br><b>Description:</b> " + transaction.getDescription() + "</font></html>");
+                " | <b>From:</b> " + transaction.getAccountFrom() +
+                " | <b>To:</b> " + transaction.getAccountTo() +
+                " | <b>Amount:</b> $" + transaction.getAmount() +
+                " | <b>Date:</b> " + transaction.getDate() +
+                " | <b>Description:</b> " + transaction.getDescription() + "</font></html>");
 
-        transactionLabel.setMaximumSize(new Dimension(600, 100));
-        transactionLabel.setPreferredSize(new Dimension(600, 100));
-        transactionLabel.setMinimumSize(new Dimension(600, 100));
+        transactionLabel.setHorizontalAlignment(SwingConstants.CENTER);  // Set horizontal alignment to center
+        transactionLabel.setVerticalAlignment(SwingConstants.CENTER);    // Set vertical alignment to center
+
+        transactionLabel.setMaximumSize(new Dimension(600, 60));
+        transactionLabel.setPreferredSize(new Dimension(600, 60));
+        transactionLabel.setMinimumSize(new Dimension(600, 60));
+        transactionLabel.setAlignmentX(Component.CENTER_ALIGNMENT);  // Set horizontal alignment to center
+
         transactionPanel.add(transactionLabel);
         transactionsPanel.add(transactionPanel);
         transactionsPanel.add(Box.createRigidArea(new Dimension(0, 10)));
     }
+
 
     private List<Transaction> filterTransactionsByDate(String year, String month, String day) {
         List<Transaction> filteredTransactions = new ArrayList<>();
