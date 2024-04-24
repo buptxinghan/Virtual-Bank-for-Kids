@@ -1,4 +1,3 @@
 AccountID,AccountType,Username,Password,Balance,Status
-001,Saving Account,Zhong Zhenghan,000,188.20,Active
+001,Saving Account,Zhong Zhenghan,000,45.20,Active
 002,Current Account,Zhong Zhenghan,111,312.30,Active
----,---,---,---,0.00,Deleted

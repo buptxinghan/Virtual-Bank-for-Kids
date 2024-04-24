@@ -10,10 +10,10 @@ public class Transaction {
     private String description;
 
     // 转账
-    public Transaction(String transactionID, String userFrom, String userTo, double amount, String date, String description) {
+    public Transaction(String transactionID, String accountFrom, String accountTo, double amount, String date, String description) {
         this.transactionID = transactionID;
-        this.accountFrom = userFrom;
-        this.accountTo = userTo;
+        this.accountFrom = accountFrom;
+        this.accountTo = accountTo;
         this.amount = amount;
         this.date = date;
         this.description = description;

@@ -6,8 +6,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.Random;
-
 
 import com.virtualbankv1.control.AccountManager;
 import com.virtualbankv1.control.TransactionManager;
@@ -122,37 +120,18 @@ public class TransactionPage extends JFrame {
                     amount = Double.parseDouble(amountField.getText());
                 } catch (NumberFormatException ex) {
                     JOptionPane.showMessageDialog(null, "Please enter a valid amount.");
-                    return; // Exit the method if the amount is invalid
+                    return;
                 }
                 String description = descriptionArea.getText();
 
-                if (accountManager.withdraw(account, amount)) {
-                    for (Account tempAccount : accounts) {
-                        if (tempAccount.getAccountID().equals(transferTo)) {
-                            // 检查账户状态
-                            if (accountManager.isFrozen(tempAccount) || accountManager.isDeleted(tempAccount)) {
-                                JOptionPane.showMessageDialog(null, "账户状态异常，无法进行交易", "错误", JOptionPane.ERROR_MESSAGE);
-                                return; // 账户状态异常，中断操作
-                            }
-                            accountManager.transferIn(tempAccount, amount);
+                for (Account tempAccount : accounts) {
+                    if (tempAccount.getAccountID().equals(transferTo)) {
+                        if (transactionManager.transfer(account, tempAccount, amount, description)) {
+                            JOptionPane.showMessageDialog(null, "Transfer to: " + transferTo + "\nAmount: " + amount + "\nDescription: " + description);
+                        } else {
+                            JOptionPane.showMessageDialog(null, "Error during transaction. Please check account balance or account status.", "Error", JOptionPane.ERROR_MESSAGE);
                         }
                     }
-
-                    // Submit logic, saving data to a csv
-                    int num = 1;
-                    for (Transaction tempTransaction : transactions){
-                        num++;
-                    }
-                    JOptionPane.showMessageDialog(null, "Transfer to: " + transferTo + "\nAmount: " + amount + "\nDescription: " + description);
-                    DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy/MM/dd");
-                    Transaction tempTransaction = new Transaction("00"+String.valueOf(num), account.getAccountID(), transferTo, amount, dateFormatter.format(LocalDate.now()), description);
-                    transactions.add(tempTransaction);
-
-                    Writer writer = new Writer();
-                    writer.writeSingleTransaction(tempTransaction);
-                } else {
-                    // 余额不足，弹出提示窗口
-                    JOptionPane.showMessageDialog(null, "账户余额不足，请重新输入金额。", "错误", JOptionPane.ERROR_MESSAGE);
                 }
             }
         });
@@ -160,7 +139,7 @@ public class TransactionPage extends JFrame {
         buttonsPanel.add(Box.createRigidArea(new Dimension(100, 0)));
 
         // Return button
-        JButton returnButton = ReturnButton.createReturnButton(this, "accountInformationPage", new Dimension(250, 50), account);
+        JButton returnButton = ReturnButton.createReturnButton(this, "accountInformationPage", new Dimension(200, 50), account);
         buttonsPanel.add(returnButton);
 
         buttonsPanel.add(Box.createRigidArea(new Dimension(0, 200)));
