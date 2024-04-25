@@ -7,17 +7,37 @@ import javax.swing.*;
 import java.awt.*;
 import java.text.DecimalFormat;
 
+/**
+ * This class represents the GUI for displaying account information.
+ * It extends JFrame and provides functionalities to display account details,
+ * perform transactions, and manage account status.
+ */
 public class AccountInformationPage extends JFrame {
 
+    /** The AccountManager instance to handle account-related operations. */
     private final AccountManager accountManager = new AccountManager();
 
-    // 成员变量用于存储UI组件的引用
+    /** JLabel to display the account balance. */
     private JLabel accountBalanceLabel;
+
+    /** JLabel to display the account status. */
     private JLabel accountStatusLabel;
+
+    /** JLabel to display the account ID. */
     private JLabel accountIDLabel;
+
+    /** JLabel to display the account type. */
     private JLabel accountTypeLabel;
+
+    /** JLabel to display the account username. */
     private JLabel accountUsernameLabel;
 
+    /**
+     * Constructs an AccountInformationPage with the given Account object.
+     * Initializes the GUI components and sets up the layout.
+     *
+     * @param account The Account object containing the account details to display.
+     */
     public AccountInformationPage(Account account) {
 
         setTitle("Account Information");
@@ -103,6 +123,17 @@ public class AccountInformationPage extends JFrame {
         setVisible(true);
     }
 
+    /**
+     * Creates and configures a JButton with the specified text and colors.
+     * Associates different action listeners based on the action command.
+     *
+     * @param text          The text to display on the button.
+     * @param bgColor       The background color of the button.
+     * @param textColor     The text color of the button.
+     * @param account       The Account object associated with the button.
+     * @param actionCommand The action command to determine the listener type.
+     * @return The configured JButton.
+     */
     private JButton createButtons(String text, Color bgColor, Color textColor, Account account, String actionCommand) {
         RoundedButton button = new RoundedButton("<html><font style='font-size: 18px;'>" + text + "</font></html>");
         button.setBackground(bgColor);
@@ -124,12 +155,23 @@ public class AccountInformationPage extends JFrame {
         return button;
     }
 
-    // Helper method to create labels with HTML formatting and larger font size
+    /**
+     * Helper method to create JLabels with HTML formatting and larger font size.
+     *
+     * @param text The text to display in the label.
+     * @return The configured JLabel.
+     */
     private static JLabel createLabel(String text) {
         return new JLabel("<html><font color='#8595BC' style='font-size: 25px;'>" + text + "</font></html>");
     }
 
-    // Helper method to create display labels with fixed size and larger font size
+
+    /**
+     * Helper method to create display JLabels with fixed size and larger font size.
+     *
+     * @param text The text to display in the label.
+     * @return The configured JLabel.
+     */
     private static JLabel createDisplayLabel(String text) {
         JLabel label = new JLabel("<html><font color='Black' style='font-size: 20px;'>" + text + "</font></html>");
         label.setMaximumSize(new Dimension(350, 50)); // Adjusted size for display labels
@@ -141,6 +183,13 @@ public class AccountInformationPage extends JFrame {
         return label;
     }
 
+    /**
+     * Helper method to create display JLabels with fixed size and larger font size.
+     * Formats the balance amount to display.
+     *
+     * @param balance The account balance to display.
+     * @return The configured JLabel displaying the formatted balance.
+     */
     private static JLabel createDisplayLabel(Double balance) {
         //格式化balance
         DecimalFormat df = new DecimalFormat("#,##0.00");
@@ -155,6 +204,4 @@ public class AccountInformationPage extends JFrame {
         label.setBackground(Color.WHITE);
         return label;
     }
-
-
 }

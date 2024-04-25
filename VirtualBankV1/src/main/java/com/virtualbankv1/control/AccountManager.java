@@ -35,6 +35,10 @@ public class AccountManager {
         return null; // 如果没有找到，返回null
     }
 
+    public boolean validatePassword(String password, Account account) {
+        return password.equals(account.getPassword());
+    }
+
     public void transferIn(Account account, double amount) {
         account.setBalance(account.getBalance() + amount);
         DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy/MM/dd");
@@ -84,11 +88,7 @@ public class AccountManager {
         button.setActionCommand(actionCommand);
         button.addActionListener(e ->  {
 
-            // 检查账户状态
-            if (isFrozen(account) || isDeleted(account)) {
-                JOptionPane.showMessageDialog(null, "账户状态异常，无法进行交易", "错误", JOptionPane.ERROR_MESSAGE);
-                return; // 账户状态异常，中断操作
-            }
+            if (validateAccount(account)) return;
 
             String input = JOptionPane.showInputDialog(null, "请输入金额：", "交易", JOptionPane.PLAIN_MESSAGE);
             if (input != null && !input.isEmpty()) {
@@ -157,11 +157,8 @@ public class AccountManager {
     public void addTransferListenerToButton(JButton button, String actionCommand, Account account, Frame frame) {
         button.setActionCommand(actionCommand);
         button.addActionListener(e ->  {
-            // 检查账户状态
-            if (isFrozen(account) || isDeleted(account)) {
-                JOptionPane.showMessageDialog(null, "账户状态异常，无法进行交易", "错误", JOptionPane.ERROR_MESSAGE);
-                return; // 账户状态异常，中断操作
-            }
+
+            if (validateAccount(account)) return;
 
             frame.dispose();
             new TransactionPage(account);
@@ -171,15 +168,27 @@ public class AccountManager {
     public  void  addHistoryListenerToButton(JButton button, String actionCommand, Account account, Frame frame) {
         button.setActionCommand(actionCommand);
         button.addActionListener(e ->  {
-            // 检查账户状态
-            if (isFrozen(account) || isDeleted(account)) {
-                JOptionPane.showMessageDialog(null, "账户状态异常，无法产看交易历史", "错误", JOptionPane.ERROR_MESSAGE);
-                return; // 账户状态异常，中断操作
-            }
+
+            if (validateAccount(account)) return;
 
             frame.dispose();
             new TransactionHistoryPage(account);
         });
+    }
+
+    private boolean validateAccount(Account account) {
+        // 检查账户状态
+        if (isFrozen(account) || isDeleted(account)) {
+            JOptionPane.showMessageDialog(null, "账户状态异常，无法进行交易", "错误", JOptionPane.ERROR_MESSAGE);
+            return true;
+        }
+
+        String password = JOptionPane.showInputDialog(null, "请输入密码：", "身份验证", JOptionPane.PLAIN_MESSAGE);
+        if (!validatePassword(password, account)) {
+            JOptionPane.showMessageDialog(null, "密码错误", "错误", JOptionPane.ERROR_MESSAGE);
+            return true;
+        }
+        return false;
     }
 
 }

@@ -48,12 +48,12 @@ public class TransactionPage extends JFrame {
         // Transfer to dropdown
         centerPanel.add(Box.createRigidArea(new Dimension(0, 50)));
         // Convert accounts to an array of account IDs
-        String[] accountIDs = accounts.stream()
-                .map(Account::getAccountID)  // Assuming getAccountID returns String
+        String[] accountDetails = accounts.stream()
+                .map(acc -> "Account ID: " + acc.getAccountID() + " | Account Owner: " + acc.getUsername())
                 .toArray(String[]::new);
 
         // Create JComboBox with accountIDs
-        transferToDropdown = new JComboBox<>(accountIDs);
+        transferToDropdown = new JComboBox<>(accountDetails);
 
         transferToDropdown.setBorder(BorderFactory.createTitledBorder("<html><font color='#8595BC' style='font-size: 20px;'>Transfer to</font></html>"));
         transferToDropdown.setMaximumSize(new Dimension(1100, 90));
@@ -125,7 +125,7 @@ public class TransactionPage extends JFrame {
                 String description = descriptionArea.getText();
 
                 for (Account tempAccount : accounts) {
-                    if (tempAccount.getAccountID().equals(transferTo)) {
+                    if (("Account ID: " + tempAccount.getAccountID() + " | Account Owner: " + tempAccount.getUsername()).equals(transferTo)) {
                         if (transactionManager.transfer(account, tempAccount, amount, description)) {
                             JOptionPane.showMessageDialog(null, "Transfer to: " + transferTo + "\nAmount: " + amount + "\nDescription: " + description);
                         } else {

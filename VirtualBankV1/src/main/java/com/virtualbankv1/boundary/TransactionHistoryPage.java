@@ -134,7 +134,7 @@ public class TransactionHistoryPage extends JFrame {
 
     private void showTransactions(List<Transaction> tempTransactions) {
         transactionsPanel.removeAll(); // 清空之前的记录
-        transactionsPanel.add(Box.createRigidArea(new Dimension(0, 10))); // 添加20像素的空白
+        transactionsPanel.add(Box.createRigidArea(new Dimension(0, 15))); // 添加20像素的空白
         for (Transaction transaction : tempTransactions) {
             addTransaction(transaction);
         }
@@ -151,24 +151,26 @@ public class TransactionHistoryPage extends JFrame {
         DecimalFormat df = new DecimalFormat("#,##0.00");
         String formattedAmount = df.format(transaction.getAmount());
 
-        JLabel transactionLabel = new JLabel("<html><font color=#333333><b>Transaction ID:</b> " + transaction.getTransactionID() +
-                " | <b>From:</b> " + transaction.getAccountFrom() +
-                " | <b>To:</b> " + transaction.getAccountTo() +
-                " | <b>Amount:</b> $" + formattedAmount +
-                " | <b>Date:</b> " + transaction.getDate() +
-                " | <b>Description:</b> " + transaction.getDescription() + "</font></html>");
+        JLabel transactionLabel = new JLabel("<html>" +
+                "<span style='color:#fcfc98; font-size: 20px;'>Transaction ID:</span> <font color=#FFFFFF size=6>" + transaction.getTransactionID() + "</font>" +
+                "<span style='color:#fcfc98; font-size: 20px;'> | Date:</span> <font color=#FFFFFF size=6>" + transaction.getDate() + "</font>" +
+                "<br/><span style='color:#fcfc98; font-size: 20px;'><b>From account:</b></span> <font color=#FFFFFF size=6>" + transaction.getAccountFrom() + "</font>" +
+                "<span style='color:#fcfc98; font-size: 20px;'><b> | To account:</b></span> <font color=#FFFFFF size=6>" + transaction.getAccountTo() + "</font>" +
+                "<span style='color:#fcfc98; font-size: 20px;'><b> | Amount:</b></span> <font color=#FFFFFF size=6>$" + formattedAmount + "</font>" +
+                "<br/><span style='color:#fcfc98; font-size: 20px;'><b>Description:</b></span> <font color=#FFFFFF size=6>" + transaction.getDescription() + "</font>" +
+                "</html>");
 
         transactionLabel.setHorizontalAlignment(SwingConstants.CENTER);  // Set horizontal alignment to center
         transactionLabel.setVerticalAlignment(SwingConstants.CENTER);    // Set vertical alignment to center
 
-        transactionLabel.setMaximumSize(new Dimension(1000, 60));
-        transactionLabel.setPreferredSize(new Dimension(1000, 60));
-        transactionLabel.setMinimumSize(new Dimension(1000, 60));
+        transactionLabel.setMaximumSize(new Dimension(1100, 120));
+        transactionLabel.setPreferredSize(new Dimension(1100, 120));
+        transactionLabel.setMinimumSize(new Dimension(1100, 120));
         transactionLabel.setAlignmentX(Component.CENTER_ALIGNMENT);  // Set horizontal alignment to center
 
         transactionPanel.add(transactionLabel);
         transactionsPanel.add(transactionPanel);
-        transactionsPanel.add(Box.createRigidArea(new Dimension(0, 10)));
+        transactionsPanel.add(Box.createRigidArea(new Dimension(0, 15)));
     }
 
 
