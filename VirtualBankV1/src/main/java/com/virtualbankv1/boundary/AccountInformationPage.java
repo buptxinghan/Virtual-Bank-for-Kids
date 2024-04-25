@@ -7,14 +7,37 @@ import javax.swing.*;
 import java.awt.*;
 import java.text.DecimalFormat;
 
+/**
+ * This class represents the GUI for displaying account information.
+ * It extends JFrame and provides functionalities to display account details,
+ * perform transactions, and manage account status.
+ */
 public class AccountInformationPage extends JFrame {
 
+    /** The AccountManager instance to handle account-related operations. */
     private final AccountManager accountManager = new AccountManager();
 
-    // 成员变量用于存储UI组件的引用
-    public static JLabel accountBalanceLabel;
-    public static JLabel accountStatusLabel;
+    /** JLabel to display the account balance. */
+    private JLabel accountBalanceLabel;
 
+    /** JLabel to display the account status. */
+    private JLabel accountStatusLabel;
+
+    /** JLabel to display the account ID. */
+    private JLabel accountIDLabel;
+
+    /** JLabel to display the account type. */
+    private JLabel accountTypeLabel;
+
+    /** JLabel to display the account username. */
+    private JLabel accountUsernameLabel;
+
+    /**
+     * Constructs an AccountInformationPage with the given Account object.
+     * Initializes the GUI components and sets up the layout.
+     *
+     * @param account The Account object containing the account details to display.
+     */
     public AccountInformationPage(Account account) {
 
         setTitle("Account Information");
@@ -39,14 +62,17 @@ public class AccountInformationPage extends JFrame {
         // 创建用于显示余额和账户状态的JLabel
         accountBalanceLabel = createDisplayLabel(account.getBalance());
         accountStatusLabel = createDisplayLabel(account.getStatus());
+        accountTypeLabel = createDisplayLabel(account.getAccountType());
+        accountIDLabel = createDisplayLabel(account.getAccountID());
+        accountUsernameLabel = createDisplayLabel(account.getUsername());
 
         // Add display labels with fixed information and larger font size
         formPanel.add(createLabel("Account holder:"));
-        formPanel.add(createDisplayLabel(account.getUsername()));
+        formPanel.add(accountUsernameLabel);
         formPanel.add(createLabel("Account number:"));
-        formPanel.add(createDisplayLabel(account.getAccountID()));
+        formPanel.add(accountIDLabel);
         formPanel.add(createLabel("Account Type:"));
-        formPanel.add(createDisplayLabel(account.getAccountType()));
+        formPanel.add(accountTypeLabel);
         formPanel.add(createLabel("Account Status:"));
         formPanel.add(accountStatusLabel);
         formPanel.add(createLabel("Account Balance:"));
@@ -56,12 +82,14 @@ public class AccountInformationPage extends JFrame {
         JPanel transactionButtonsPanel = new JPanel();
         transactionButtonsPanel.setLayout(new BoxLayout(transactionButtonsPanel, BoxLayout.Y_AXIS));
         transactionButtonsPanel.setOpaque(false); // Transparent background
-        transactionButtonsPanel.add(Box.createRigidArea(new Dimension(0, 50))); // Spacer between buttons
+        transactionButtonsPanel.add(Box.createRigidArea(new Dimension(0, 30))); // Spacer between buttons
         transactionButtonsPanel.add(createButtons("Withdraw", new Color(70, 130, 180), Color.WHITE, account, "withdraw"));
         transactionButtonsPanel.add(Box.createRigidArea(new Dimension(0, 10))); // Spacer between buttons
         transactionButtonsPanel.add(createButtons("Transfer In", new Color(70, 130, 180), Color.WHITE, account, "transferIn"));
         transactionButtonsPanel.add(Box.createRigidArea(new Dimension(0, 10))); // Spacer between buttons
         transactionButtonsPanel.add(createButtons("Transfer accounts", new Color(70, 130, 180), Color.WHITE, account, "transferAccounts"));
+        transactionButtonsPanel.add(Box.createRigidArea(new Dimension(0, 10))); // Spacer between buttons
+        transactionButtonsPanel.add(createButtons("History", new Color(70, 130, 180), Color.WHITE, account, "history"));
         transactionButtonsPanel.add(Box.createRigidArea(new Dimension(0, 10))); // Spacer between buttons
 
         // Create return button
@@ -71,7 +99,7 @@ public class AccountInformationPage extends JFrame {
         Icon transferIcon = new ImageIcon("src/Materials/Transfer.png");
         JLabel transferLabel = new JLabel(transferIcon);
         transferLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
-        transactionButtonsPanel.add(Box.createRigidArea(new Dimension(0, 100))); // 添加间隔
+        transactionButtonsPanel.add(Box.createRigidArea(new Dimension(0, 50))); // 添加间隔
         transactionButtonsPanel.add(transferLabel);
 
         // Create the bottom buttons panel with custom button styling
@@ -95,6 +123,17 @@ public class AccountInformationPage extends JFrame {
         setVisible(true);
     }
 
+    /**
+     * Creates and configures a JButton with the specified text and colors.
+     * Associates different action listeners based on the action command.
+     *
+     * @param text          The text to display on the button.
+     * @param bgColor       The background color of the button.
+     * @param textColor     The text color of the button.
+     * @param account       The Account object associated with the button.
+     * @param actionCommand The action command to determine the listener type.
+     * @return The configured JButton.
+     */
     private JButton createButtons(String text, Color bgColor, Color textColor, Account account, String actionCommand) {
         RoundedButton button = new RoundedButton("<html><font style='font-size: 18px;'>" + text + "</font></html>");
         button.setBackground(bgColor);
@@ -104,22 +143,35 @@ public class AccountInformationPage extends JFrame {
         button.setMinimumSize(new Dimension(250, 50));
         button.setMaximumSize(new Dimension(250, 50));
         if (actionCommand.equals("withdraw") || actionCommand.equals("transferIn")) {
-            accountManager.addTransactionListenerToButton(button, actionCommand, account); // 添加监听器
+            accountManager.addTransactionListenerToButton(button, actionCommand, account, accountBalanceLabel); // 添加监听器
         } else if (actionCommand.equals("freeze account") || actionCommand.equals("unfreeze account") || actionCommand.equals("delete account")) {
-            accountManager.addConfirmationListenerToButton(button, actionCommand, account);
+            accountManager.addConfirmationListenerToButton(button, actionCommand, account, accountStatusLabel, accountBalanceLabel, accountTypeLabel, accountIDLabel, accountUsernameLabel);
         } else if (actionCommand.equals("transferAccounts")) {
             accountManager.addTransferListenerToButton(button, actionCommand, account, this);
+        } else if (actionCommand.equals("history")) {
+            accountManager.addHistoryListenerToButton(button, actionCommand, account, this);
         }
 
         return button;
     }
 
-    // Helper method to create labels with HTML formatting and larger font size
+    /**
+     * Helper method to create JLabels with HTML formatting and larger font size.
+     *
+     * @param text The text to display in the label.
+     * @return The configured JLabel.
+     */
     private static JLabel createLabel(String text) {
         return new JLabel("<html><font color='#8595BC' style='font-size: 25px;'>" + text + "</font></html>");
     }
 
-    // Helper method to create display labels with fixed size and larger font size
+
+    /**
+     * Helper method to create display JLabels with fixed size and larger font size.
+     *
+     * @param text The text to display in the label.
+     * @return The configured JLabel.
+     */
     private static JLabel createDisplayLabel(String text) {
         JLabel label = new JLabel("<html><font color='Black' style='font-size: 20px;'>" + text + "</font></html>");
         label.setMaximumSize(new Dimension(350, 50)); // Adjusted size for display labels
@@ -131,6 +183,13 @@ public class AccountInformationPage extends JFrame {
         return label;
     }
 
+    /**
+     * Helper method to create display JLabels with fixed size and larger font size.
+     * Formats the balance amount to display.
+     *
+     * @param balance The account balance to display.
+     * @return The configured JLabel displaying the formatted balance.
+     */
     private static JLabel createDisplayLabel(Double balance) {
         //格式化balance
         DecimalFormat df = new DecimalFormat("#,##0.00");
@@ -145,6 +204,4 @@ public class AccountInformationPage extends JFrame {
         label.setBackground(Color.WHITE);
         return label;
     }
-
-
 }
