@@ -143,7 +143,7 @@ public class AccountInformationPage extends JFrame {
         button.setMinimumSize(new Dimension(250, 50));
         button.setMaximumSize(new Dimension(250, 50));
         if (actionCommand.equals("withdraw") || actionCommand.equals("transferIn")) {
-            accountManager.addTransactionListenerToButton(button, actionCommand, account, accountBalanceLabel); // 添加监听器
+            accountManager.addTransactionListenerToButton(button, actionCommand, account, accountBalanceLabel);
         } else if (actionCommand.equals("freeze account") || actionCommand.equals("unfreeze account") || actionCommand.equals("delete account")) {
             accountManager.addConfirmationListenerToButton(button, actionCommand, account, accountStatusLabel, accountBalanceLabel, accountTypeLabel, accountIDLabel, accountUsernameLabel);
         } else if (actionCommand.equals("transferAccounts")) {

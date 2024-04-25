@@ -13,7 +13,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static com.virtualbankv1.boundary.Reader.accounts;
-import static com.virtualbankv1.boundary.Reader.transactions;
 
 public class TransactionHistoryPage extends JFrame {
     private JPanel datePanel;
