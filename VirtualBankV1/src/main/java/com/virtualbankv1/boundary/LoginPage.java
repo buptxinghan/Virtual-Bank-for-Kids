@@ -6,6 +6,11 @@ import java.awt.event.*;
 import java.io.*;
 import java.util.*;
 
+import com.virtualbankv1.entity.User;
+
+import static com.virtualbankv1.control.VirtualBankApplication.currentUser;
+import static com.virtualbankv1.boundary.Reader.users;
+
 public class LoginPage {
 
     private JFrame frame;
@@ -53,7 +58,7 @@ public class LoginPage {
 
                 if (checkCredentials(userName, password)) {
                     frame.setVisible(false); // Hide or dispose login frame
-                    new HomePage("virtual bank"); // Open the HomePage
+                    new HomePage(); // Open the HomePage
                     //JOptionPane.showMessageDialog(frame, "Login successful!");
                 } else {
                     JOptionPane.showMessageDialog(frame, "Error: Incorrect Username or Password!", "Error", JOptionPane.ERROR_MESSAGE);
@@ -68,18 +73,30 @@ public class LoginPage {
         frame.setVisible(true);
     }
 
+//    private boolean checkCredentials(String userName, String password) {
+//        try (Scanner scanner = new Scanner(new File("src/Data/Users.csv"))) {
+//            while (scanner.hasNextLine()) {
+//                String line = scanner.nextLine();
+//                String[] credentials = line.split(",");
+//                if (credentials[0].equals(userName) && credentials[1].equals(password)) {
+//
+//                    return true;
+//                }
+//            }
+//        } catch (FileNotFoundException e) {
+//            JOptionPane.showMessageDialog(frame, "Error: User file not found!", "Error", JOptionPane.ERROR_MESSAGE);
+//        }
+//        return false;
+//    }
+
     private boolean checkCredentials(String userName, String password) {
-        try (Scanner scanner = new Scanner(new File("src/Data/Users.csv"))) {
-            while (scanner.hasNextLine()) {
-                String line = scanner.nextLine();
-                String[] credentials = line.split(",");
-                if (credentials[0].equals(userName) && credentials[1].equals(password)) {
-                    return true;
-                }
+        for (User user : users) {
+            if (user.getUsername().equals(userName) && user.getPassword().equals(password)) {
+                currentUser = user;
+                return true;
             }
-        } catch (FileNotFoundException e) {
-            JOptionPane.showMessageDialog(frame, "Error: User file not found!", "Error", JOptionPane.ERROR_MESSAGE);
         }
+        JOptionPane.showMessageDialog(frame, "Error: User not found!", "Error", JOptionPane.ERROR_MESSAGE);
         return false;
     }
 

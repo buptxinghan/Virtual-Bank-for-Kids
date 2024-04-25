@@ -3,16 +3,20 @@ package com.virtualbankv1.entity;
 public class Transaction {
 
     private String transactionID;
-    private String userFrom;
-    private String userTo;
+    private String accountFrom;
+    private String accountTo;
     private double amount;
+    private String date;
+    private String description;
 
     // 转账
-    public Transaction(String transactionID, String userFrom, String userTo, double amount) {
+    public Transaction(String transactionID, String accountFrom, String accountTo, double amount, String date, String description) {
         this.transactionID = transactionID;
-        this.userFrom = userFrom;
-        this.userTo = userTo;
+        this.accountFrom = accountFrom;
+        this.accountTo = accountTo;
         this.amount = amount;
+        this.date = date;
+        this.description = description;
     }
 
     // Getter and Setter methods
@@ -24,20 +28,20 @@ public class Transaction {
         this.transactionID = transactionID;
     }
 
-    public String getUserFrom() {
-        return userFrom;
+    public String getAccountFrom() {
+        return accountFrom;
     }
 
-    public void setUserFrom(String userFrom) {
-        this.userFrom = userFrom;
+    public void setAccountFrom(String userFrom) {
+        this.accountFrom = userFrom;
     }
 
-    public String getUserTo() {
-        return userTo;
+    public String getAccountTo() {
+        return accountTo;
     }
 
-    public void setUserTo(String userTo) {
-        this.userTo = userTo;
+    public void setAccountTo(String userTo) {
+        this.accountTo = userTo;
     }
 
     public double getAmount() {
@@ -46,5 +50,23 @@ public class Transaction {
 
     public void setAmount(double amount) {
         this.amount = amount;
+    }
+
+    public String getDate() {return date;}
+
+    public String getDescription() {return description;}
+
+    public void setDescription() {this.description = description;}
+
+    @Override
+    public String toString() {
+        return "Transaction{" +
+                "transactionID='" + transactionID + '\'' +
+                ", accountFrom='" + accountFrom + '\'' +
+                ", accountTo='" + accountTo + '\'' +
+                ", amount=" + amount +
+                ", date='" + date + '\'' +
+                ", description='" + description + '\'' +
+                '}';
     }
 }

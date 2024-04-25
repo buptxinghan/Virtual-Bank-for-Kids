@@ -6,6 +6,9 @@ import java.awt.event.*;
 import java.io.*;
 import java.util.Random;
 
+import com.virtualbankv1.entity.User;
+import com.virtualbankv1.boundary.Writer;
+
 public class SignUpPage {
 
     private JFrame frame;
@@ -46,7 +49,9 @@ public class SignUpPage {
                 String confirmPassword = new String(confirmPasswordField.getPassword());
 
                 if (password.equals(confirmPassword)) {
-                    writeUserToCsv(userName,password);
+                    User tempUser = new User(userName,password);
+                    Writer writer = new Writer();
+                    writer.writeSingleUser(tempUser);
                     JOptionPane.showMessageDialog(frame, "Account created successfully!" );
                 } else {
                     JOptionPane.showMessageDialog(frame, "Error: Passwords do not match!", "Error", JOptionPane.ERROR_MESSAGE);
@@ -61,13 +66,14 @@ public class SignUpPage {
         frame.setVisible(true);
     }
 
-    private void writeUserToCsv(String userName, String password) {
-        try (PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("src/Data/Users.csv", true)))) {
-            out.println(userName + "," + password );
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
+//    private void writeUserToCsv(User tempUser) {
+//        try (PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("src/Data/Users.csv", true)))) {
+//            users.add(tempUser);
+//            out.println(tempUser.getUsername() + "," + tempUser.getPassword() );
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//    }
 
     public static void main(String[] args) {
         // Schedule a job for the event dispatch thread: creating and showing this application's GUI
