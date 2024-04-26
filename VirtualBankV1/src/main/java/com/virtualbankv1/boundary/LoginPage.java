@@ -17,90 +17,104 @@ public class LoginPage {
     private JTextField nameField;
     private JPasswordField passwordField;
     private JButton loginButton, signUpButton;
-    private JLabel usernameLabel, passwordLabel;
+    private JLabel usernameLabel, passwordLabel, titleLabel;
 
     public LoginPage() {
+        // Set a consistent font for all labels and buttons
+        Font fieldFont = new Font("Arial", Font.BOLD, 25);
+
         // Create and set up the window
         frame = new JFrame("Bank Login System");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setPreferredSize(new Dimension(1200, 900));
-        frame.setLayout(new BorderLayout(10, 10));
-        frame.getContentPane().setBackground(new Color(199, 220, 247)); // Light blue background
+        frame.setLayout(new BorderLayout());
 
-        // Create and populate the panel
-        JPanel panel = new JPanel(new GridLayout(3, 2, 10, 10));
-        panel.setBackground(new Color(199, 220, 247)); // Light blue background
+// Create a panel for the components
+        JPanel mainPanel = new JPanel();
+        mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
+        mainPanel.setBackground(new Color(199, 220, 247)); // Light blue background
+        mainPanel.add(Box.createVerticalStrut(120));
+// Title label
+        titleLabel = new JLabel("Login", JLabel.CENTER);
+        titleLabel.setFont(new Font("Arial", Font.BOLD, 36)); // Larger font for the title
+        titleLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        mainPanel.add(titleLabel);
 
+// Add vertical strut for spacing
+        mainPanel.add(Box.createVerticalStrut(20)); // Adds 20 pixels of space
+
+// Username panel
+        JPanel usernamePanel = new JPanel();
+        usernamePanel.setLayout(new FlowLayout(FlowLayout.CENTER, 0, 0));
+        usernamePanel.setBackground(new Color(199, 220, 247)); // Consistent with main panel
         usernameLabel = new JLabel("Username:");
-        usernameLabel.setForeground(new Color(133, 149, 188)); // Mid-gray for label text
-        panel.add(usernameLabel);
+        usernameLabel.setFont(fieldFont);
+        nameField = new JTextField(20);
+        nameField.setFont(fieldFont);
+        usernamePanel.add(usernameLabel);
+        usernamePanel.add(nameField);
+        mainPanel.add(usernamePanel);
 
-        nameField = new JTextField();
-        nameField.setBackground(new Color(112, 172, 249)); // Mid-blue for text field
-        nameField.setForeground(Color.BLACK); // Adjust text color as needed
-        panel.add(nameField);
-
+// Password panel
+        JPanel passwordPanel = new JPanel();
+        passwordPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 0, 0));
+        passwordPanel.setBackground(new Color(199, 220, 247));
         passwordLabel = new JLabel("Password:");
-        passwordLabel.setForeground(new Color(133, 149, 188)); // Mid-gray for label text
-        panel.add(passwordLabel);
+        passwordLabel.setFont(fieldFont);
+        passwordField = new JPasswordField(20);
+        passwordField.setFont(fieldFont);
+        passwordPanel.add(passwordLabel);
+        passwordPanel.add(passwordField);
+        mainPanel.add(passwordPanel);
 
-        passwordField = new JPasswordField();
-        passwordField.setBackground(new Color(112, 172, 249)); // Mid-blue for password field
-        passwordField.setForeground(Color.BLACK); // Adjust text color as needed
-        panel.add(passwordField);
+// Add vertical strut for spacing
+        mainPanel.add(Box.createVerticalStrut(20)); // Adds 20 pixels of space
 
+// Login button panel
+        JPanel loginButtonPanel = new JPanel();
+        loginButtonPanel.setLayout(new FlowLayout());
+        loginButtonPanel.setBackground(new Color(199, 220, 247));
         loginButton = new JButton("Login");
+        loginButton.setFont(fieldFont);
         loginButton.setBackground(new Color(93, 97, 195)); // Deep blue for buttons
         loginButton.setForeground(Color.WHITE); // White text on buttons
-        panel.add(loginButton);
+        loginButtonPanel.add(loginButton);
+        mainPanel.add(loginButtonPanel);
 
+// Add vertical strut for spacing
+        mainPanel.add(Box.createVerticalStrut(0)); // Adds 20 pixels of space
+
+// Sign Up button panel
+        JPanel signUpButtonPanel = new JPanel();
+        signUpButtonPanel.setLayout(new FlowLayout());
+        signUpButtonPanel.setBackground(new Color(199, 220, 247));
         signUpButton = new JButton("Sign Up");
-        signUpButton.setBackground(new Color(93, 97, 195)); // Deep blue for buttons
-        signUpButton.setForeground(Color.WHITE); // White text on buttons
-        signUpButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                new com.virtualbankv1.boundary.SignUpPage();
-            }
-        });
-        panel.add(signUpButton);
-        // Add action listener to the login button
-        loginButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                String userName = nameField.getText();
-                String password = new String(passwordField.getPassword());
+        signUpButton.setFont(fieldFont);
+        signUpButton.setBackground(new Color(93, 97, 195));
+        signUpButton.setForeground(Color.WHITE);
+        signUpButton.addActionListener(e -> new com.virtualbankv1.boundary.SignUpPage());
+        signUpButtonPanel.add(signUpButton);
+        mainPanel.add(signUpButtonPanel);
 
-                if (checkCredentials(userName, password)) {
-                    frame.setVisible(false); // Hide or dispose login frame
-                    new com.virtualbankv1.boundary.HomePage(); // Open the HomePage
-                    //JOptionPane.showMessageDialog(frame, "Login successful!");
-                } else {
-                    JOptionPane.showMessageDialog(frame, "Error: Incorrect Username or Password!", "Error", JOptionPane.ERROR_MESSAGE);
-                }
+
+        // Login button action
+        loginButton.addActionListener(e -> {
+            String userName = nameField.getText();
+            String password = new String(passwordField.getPassword());
+            if (checkCredentials(userName, password)) {
+                frame.setVisible(false);
+                new com.virtualbankv1.boundary.HomePage();
+            } else {
+                JOptionPane.showMessageDialog(frame, "Error: Incorrect Username or Password!", "Error", JOptionPane.ERROR_MESSAGE);
             }
         });
 
-        // Set the size of the window and make it visible
-        frame.add(panel, BorderLayout.CENTER);
+        // Add main panel to frame
+        frame.add(mainPanel, BorderLayout.CENTER);
         frame.pack();
-        frame.setLocationRelativeTo(null); // Center the window
+        frame.setLocationRelativeTo(null);
         frame.setVisible(true);
     }
-
-//    private boolean checkCredentials(String userName, String password) {
-//        try (Scanner scanner = new Scanner(new File("src/Data/Users.csv"))) {
-//            while (scanner.hasNextLine()) {
-//                String line = scanner.nextLine();
-//                String[] credentials = line.split(",");
-//                if (credentials[0].equals(userName) && credentials[1].equals(password)) {
-//
-//                    return true;
-//                }
-//            }
-//        } catch (FileNotFoundException e) {
-//            JOptionPane.showMessageDialog(frame, "Error: User file not found!", "Error", JOptionPane.ERROR_MESSAGE);
-//        }
-//        return false;
-//    }
 
     private boolean checkCredentials(String userName, String password) {
         for (User user : users) {
@@ -114,13 +128,7 @@ public class LoginPage {
     }
 
     public static void main(String[] args) {
-        // Schedule a job for the event dispatch thread: creating and showing this application's GUI
-        SwingUtilities.invokeLater(new Runnable() {
-            Reader reader = new Reader();
-            public void run() {
-                new LoginPage();
-            }
-        });
+        Reader reader = new Reader();
+        SwingUtilities.invokeLater(() -> new LoginPage());
     }
 }
-
