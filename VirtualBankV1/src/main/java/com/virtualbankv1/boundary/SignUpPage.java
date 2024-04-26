@@ -9,6 +9,8 @@ import java.util.Random;
 import com.virtualbankv1.entity.User;
 import com.virtualbankv1.boundary.Writer;
 
+import static com.virtualbankv1.boundary.Reader.users;
+
 public class SignUpPage {
 
     private JFrame frame;
@@ -52,6 +54,7 @@ public class SignUpPage {
                     User tempUser = new User(userName,password);
                     Writer writer = new Writer();
                     writer.writeSingleUser(tempUser);
+                    users.add(tempUser);
                     JOptionPane.showMessageDialog(frame, "Account created successfully!" );
                 } else {
                     JOptionPane.showMessageDialog(frame, "Error: Passwords do not match!", "Error", JOptionPane.ERROR_MESSAGE);
@@ -78,6 +81,7 @@ public class SignUpPage {
     public static void main(String[] args) {
         // Schedule a job for the event dispatch thread: creating and showing this application's GUI
         SwingUtilities.invokeLater(new Runnable() {
+            Reader reader = new Reader();
             public void run() {
                 new SignUpPage();
             }
