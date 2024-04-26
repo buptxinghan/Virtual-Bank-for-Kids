@@ -1,40 +1,45 @@
 package com.virtualbankv1.boundary;
-// 主页界面类
+// Homepage interface class
 
 import com.virtualbankv1.control.AccountOverviewPage;
 import com.virtualbankv1.control.HomePageController;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
 
 public class HomePage extends JFrame {
 
-    private JButton accountButton;
-    private JButton tasksButton;
-    private JButton goalsButton;
-    private JButton manualButton;
+    private JButton accountButton; // Button for accessing the user's account
+    private JButton tasksButton; // Button for accessing user's tasks
+    private JButton goalsButton; // Button for accessing user's goals
+    private JButton manualButton; // Button for accessing instruction manual
 
+    /**
+     * Constructor for HomePage class.
+     * Initializes components and sets up the controller.
+     */
     public HomePage() {
         initializeComponents();
         HomePageController controller = new HomePageController(this);
         controller.initializeController();
     }
 
+    /**
+     * Initializes the components of the homepage.
+     * Sets up buttons, labels, and layout.
+     */
     private void initializeComponents() {
-        // 设置窗口大小
+        // Set window size
         setSize(new Dimension(1200, 900));
         setTitle("Virtual Bank");
-        // 设置背景颜色
+        // Set background color
         Color bg = new Color(199, 220, 247);
         Color z1 = new Color(93,97,195);
         Color z2 = new Color(133,149,188);
 
         getContentPane().setBackground(bg);
 
-        // 初始化按钮
+        // Initialize buttons
         accountButton = new JButton("<html><font size=5 color=" + getColorHex(z1) + ">My account</font><br><font color=" + getColorHex(z2) + ">Check your account information</font></html>");
         tasksButton = new JButton("<html><font size=5 color=" + getColorHex(z1) + ">My tasks</font><br><font color=" + getColorHex(z2) + ">Check the tasks assigned</font></html>");
         goalsButton = new JButton("<html><font size=5 color=" + getColorHex(z1) + ">My goals</font><br><font color=" + getColorHex(z2) + ">Check and manage your goal</font></html>");
@@ -50,12 +55,12 @@ public class HomePage extends JFrame {
         goalsButton.setBackground(bg);
         manualButton.setBackground(bg);
 
-        //初始化组件
+        // Initialize components
         JLabel l1 = new JLabel("<html><font size=7 color=" + getColorHex(z1) + ">Welcome to Your Virtual Bank!</font></html>",JLabel.CENTER);
         ImageIcon icon = new ImageIcon("src/Materials/pig.png");
         JLabel pic = new JLabel(icon,JLabel.CENTER);
 
-        // 设置布局
+        // Set layout
 
         JPanel Center = new JPanel(new GridLayout(2, 1));
         JPanel right = new JPanel();
@@ -92,29 +97,47 @@ public class HomePage extends JFrame {
         add(Center);
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setLocationRelativeTo(null); //窗口居中
+        setLocationRelativeTo(null); // Center the window
         setVisible(true);
     }
 
-    // 辅助方法：将Color对象转换为HTML颜色字符串
+    /**
+     * Converts a Color object to its corresponding hexadecimal representation.
+     * @param color The Color object to convert.
+     * @return The hexadecimal representation of the Color.
+     */
     private String getColorHex(Color color) {
         return String.format("#%02x%02x%02x", color.getRed(), color.getGreen(), color.getBlue());
     }
 
-    // Getters for buttons
+    /**
+     * Getter for the account button.
+     * @return The account button.
+     */
     public JButton getAccountButton() {
-        return accountButton; // 选择一个版本或合并两者
-
+        return accountButton;
     }
 
+    /**
+     * Getter for the tasks button.
+     * @return The tasks button.
+     */
     public JButton getTasksButton() {
         return tasksButton;
     }
 
+    /**
+     * Getter for the goals button.
+     * @return The goals button.
+     */
     public JButton getGoalsButton() {
         return goalsButton;
     }
 
+    /**
+     * Getter for the manual button.
+     * @return The manual button.
+     */
     public JButton getManualButton() {
         return manualButton;
     }
