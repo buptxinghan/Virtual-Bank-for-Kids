@@ -19,7 +19,7 @@ public class OpenAccountPage extends JFrame implements ActionListener {
     private JComboBox<String> ats = new JComboBox<>(options);
     private JTextField pw = new JTextField(6);
     private JTextField pw2 = new JTextField(6);
-    public static JButton createReturnButton(JFrame frame) {
+    public static JButton createRoundButton(JFrame frame) {
         RoundedButton button = new RoundedButton("<html><font size ='6'>Submit</font></html>");
         button.setBackground(new Color(70, 130, 180));
         button.setForeground(Color.WHITE);
@@ -29,7 +29,7 @@ public class OpenAccountPage extends JFrame implements ActionListener {
         button.setMaximumSize(new Dimension(200, 50));
         return button;
     }
-    private RoundedButton submit = (RoundedButton) createReturnButton(this);
+    private RoundedButton submit = (RoundedButton) createRoundButton(this);
 
     private JButton returnButton=ReturnButton.createReturnButton(this,"accountOverviewPage");
 
@@ -37,18 +37,18 @@ public class OpenAccountPage extends JFrame implements ActionListener {
         JPanel panel = new JPanel(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.anchor = GridBagConstraints.WEST;
-        gbc.insets = new Insets(5, 5, 5, 5);
+        gbc.insets = new Insets(15, 15, 15, 15);
         getContentPane().setBackground(new Color(199, 220, 247));
-        addComponent(panel, gbc, title = new JLabel("Open Account"), new Font("Arial", Font.BOLD, 24), new Color(93, 97, 195), 2, 0, 0);
+        addComponent(panel, gbc, title = new JLabel("Open Account"), new Font("Arial", Font.BOLD, 45), new Color(93, 97, 195), 2, 0, 0,GridBagConstraints.CENTER);
         // 设置小标题的颜色和字体大小
-        addComponent(panel, gbc, att = new JLabel("Account Type (single-select):"), new Font("Arial", Font.BOLD, 14), new Color(133, 149, 188), 1, 0, 1);
-        addComponent(panel, gbc, atd = new JLabel("Basically, the only difference between these two types of account is whether users can get a yield by their savings."), new Font("Arial", Font.PLAIN, 12), new Color(112, 172, 249), 2, 0, 2);
+        addComponent(panel, gbc, att = new JLabel("Account Type (single-select):"), new Font("Arial", Font.BOLD, 32), new Color(133, 149, 188), 1, 0, 1,GridBagConstraints.WEST);
+        addComponent(panel, gbc, atd = new JLabel("Basically, the only difference between these two types of account is whether users can get a yield by their savings."), new Font("Arial", Font.PLAIN, 20), new Color(112, 172, 249), 2, 0, 2,GridBagConstraints.WEST);
         // 设置组件的颜色
         addComponent(panel, gbc, ats, new Color(112, 172, 249), 0,3);
-        addComponent(panel, gbc, pp = new JLabel("Payment Password:"), new Font("Arial", Font.BOLD, 14), new Color(133, 149, 188), 0, 4);
-        addComponent(panel, gbc, ppd = new JLabel("A 6-digit password is allowed."), new Font("Arial", Font.PLAIN, 14), new Color(112, 172, 249), 12, 0, 5);
+        addComponent(panel, gbc, pp = new JLabel("Payment Password:"), new Font("Arial", Font.BOLD, 32), new Color(133, 149, 188), 0, 4,GridBagConstraints.WEST);
+        addComponent(panel, gbc, ppd = new JLabel("A 6-digit password is allowed."), new Font("Arial", Font.PLAIN, 20), new Color(112, 172, 249), 12, 0, 5,GridBagConstraints.WEST);
         addComponent(panel, gbc, pw, new Color(112, 172, 249),0, 6);
-        addComponent(panel, gbc, cp = new JLabel("Confirm Password:"), new Font("Arial", Font.BOLD, 14), new Color(133, 149, 188), 0, 7);
+        addComponent(panel, gbc, cp = new JLabel("Confirm Password:"), new Font("Arial", Font.BOLD, 32), new Color(133, 149, 188), 0, 7,GridBagConstraints.WEST);
         addComponent(panel, gbc, pw2, new Color(112, 172, 249), 0,8);
         addComponent(panel, gbc, submit, 0,9);
         addComponent(panel, gbc, returnButton,0,10);
@@ -57,29 +57,25 @@ public class OpenAccountPage extends JFrame implements ActionListener {
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
-        submit.addActionListener(e -> {
-            dispose(); // 关闭窗口
-            AccountOverviewPage aop = new AccountOverviewPage(); //生成上一页面
-        });
-
+        submit.addActionListener(this);
         this.setVisible(true);
     }
-
-    private void addComponent(JPanel panel, GridBagConstraints gbc, JLabel label, Font font, Color color, int gridwidth, int gridx, int gridy) {
+    private void addComponent(JPanel panel, GridBagConstraints gbc, JLabel label, Font font, Color color, int gridwidth, int gridx, int gridy, int horizontalAlignment) {
         label.setFont(font);
         label.setForeground(color);
         gbc.gridwidth = gridwidth;
         gbc.gridx = gridx;
         gbc.gridy = gridy;
+        gbc.anchor = horizontalAlignment;
         panel.setBackground(new Color(199, 220, 247));
         panel.add(label, gbc);
     }
-
-    private void addComponent(JPanel panel, GridBagConstraints gbc, JLabel label, Font font, Color color, int gridx, int gridy) {
+    private void addComponent(JPanel panel, GridBagConstraints gbc, JLabel label, Font font, Color color, int gridx, int gridy,int horizontalAlignment) {
         label.setFont(font);
         label.setForeground(color);
         gbc.gridx = gridx;
         gbc.gridy = gridy;
+        gbc.anchor = horizontalAlignment;
         panel.setBackground(new Color(199, 220, 247));
         panel.add(label, gbc);
     }
@@ -106,17 +102,16 @@ public class OpenAccountPage extends JFrame implements ActionListener {
         panel.setBackground(new Color(199, 220, 247));
         panel.add(component, gbc);
     }
-    /*public static void main(String[] args) {
+    public static void main(String[] args) {
         OpenAccountPage openAccountPage = new OpenAccountPage();
-        openAccountPage.setSize(1000, 500);
+        openAccountPage.setSize(1200, 900);
         openAccountPage.setVisible(true);
-    }*/
+    }
 
     public void actionPerformed(ActionEvent event) {
         String str1 = pw.getText();
         String str2 = pw2.getText();
         String str3 = (String) ats.getSelectedItem();
-        //int result;
         if (str1.equals("") || str2.equals("") || str1.length() != 6 || str2.length() != 6) {
             //invalid input
             JOptionPane.showOptionDialog(
@@ -159,9 +154,6 @@ public class OpenAccountPage extends JFrame implements ActionListener {
                     new String[] {"OK"},
                     "OK"
             );
-            //if (result==0){
-
-            //}
             pw.setText("");
             pw2.setText("");
         }
