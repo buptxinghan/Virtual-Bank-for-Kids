@@ -19,7 +19,7 @@ public class OpenAccountPage extends JFrame implements ActionListener {
     private JComboBox<String> ats = new JComboBox<>(options);
     private JTextField pw = new JTextField(6);
     private JTextField pw2 = new JTextField(6);
-    public static JButton createReturnButton(JFrame frame) {
+    public static JButton createRoundButton(JFrame frame) {
         RoundedButton button = new RoundedButton("<html><font size ='6'>Submit</font></html>");
         button.setBackground(new Color(70, 130, 180));
         button.setForeground(Color.WHITE);
@@ -29,7 +29,7 @@ public class OpenAccountPage extends JFrame implements ActionListener {
         button.setMaximumSize(new Dimension(200, 50));
         return button;
     }
-    private RoundedButton submit = (RoundedButton) createReturnButton(this);
+    private RoundedButton submit = (RoundedButton) createRoundButton(this);
 
     private JButton returnButton=ReturnButton.createReturnButton(this,"accountOverviewPage");
 
@@ -66,21 +66,10 @@ public class OpenAccountPage extends JFrame implements ActionListener {
         gbc.gridwidth = gridwidth;
         gbc.gridx = gridx;
         gbc.gridy = gridy;
-        gbc.anchor = horizontalAlignment; // 设置组件的水平对齐方式
+        gbc.anchor = horizontalAlignment;
         panel.setBackground(new Color(199, 220, 247));
         panel.add(label, gbc);
     }
-
-    /*private void addComponent(JPanel panel, GridBagConstraints gbc, JLabel label, Font font, Color color, int gridwidth, int gridx, int gridy) {
-        label.setFont(font);
-        label.setForeground(color);
-        gbc.gridwidth = gridwidth;
-        gbc.gridx = gridx;
-        gbc.gridy = gridy;
-        panel.setBackground(new Color(199, 220, 247));
-        panel.add(label, gbc);
-    }*/
-
     private void addComponent(JPanel panel, GridBagConstraints gbc, JLabel label, Font font, Color color, int gridx, int gridy,int horizontalAlignment) {
         label.setFont(font);
         label.setForeground(color);
@@ -123,7 +112,6 @@ public class OpenAccountPage extends JFrame implements ActionListener {
         String str1 = pw.getText();
         String str2 = pw2.getText();
         String str3 = (String) ats.getSelectedItem();
-        //int result;
         if (str1.equals("") || str2.equals("") || str1.length() != 6 || str2.length() != 6) {
             //invalid input
             JOptionPane.showOptionDialog(
@@ -166,9 +154,6 @@ public class OpenAccountPage extends JFrame implements ActionListener {
                     new String[] {"OK"},
                     "OK"
             );
-            //if (result==0){
-
-            //}
             pw.setText("");
             pw2.setText("");
         }
