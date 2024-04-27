@@ -59,7 +59,7 @@ public class AccountInformationPage extends JFrame {
         formPanel.setOpaque(false); // Transparent background
         formPanel.setBorder(BorderFactory.createEmptyBorder(10, 180, 10, 50)); // Padding around the form
 
-        // 创建用于显示余额和账户状态的JLabel
+        // Create a JLabel to display the balance and account status
         accountBalanceLabel = createDisplayLabel(account.getBalance());
         accountStatusLabel = createDisplayLabel(account.getStatus());
         accountTypeLabel = createDisplayLabel(account.getAccountType());
