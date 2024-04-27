@@ -1,5 +1,6 @@
 package com.virtualbankv1.boundary;
 
+import com.virtualbankv1.control.AccountOverviewPage;
 import com.virtualbankv1.entity.Account;
 
 import javax.swing.*;
@@ -9,6 +10,7 @@ import java.awt.event.ActionListener;
 
 
 import static com.virtualbankv1.boundary.Reader.accounts;
+
 
 
 public class OpenAccountPage extends JFrame implements ActionListener {
@@ -53,9 +55,14 @@ public class OpenAccountPage extends JFrame implements ActionListener {
         add(panel);
         pack();
         setLocationRelativeTo(null);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
-        submit.addActionListener(this);
+        submit.addActionListener(e -> {
+            dispose(); // 关闭窗口
+            AccountOverviewPage aop = new AccountOverviewPage(); //生成上一页面
+        });
+
+        this.setVisible(true);
     }
 
     private void addComponent(JPanel panel, GridBagConstraints gbc, JLabel label, Font font, Color color, int gridwidth, int gridx, int gridy) {
@@ -141,8 +148,7 @@ public class OpenAccountPage extends JFrame implements ActionListener {
             Reader reader=new Reader();
             accounts.add(account);
             Writer writer=new Writer();
-            String path=new String("src/Data/Accounts.csv");
-            writer.writeAccounts(path,accounts);
+            writer.writeAccounts(accounts);
             JOptionPane.showOptionDialog(
                     this,
                     "Account created successfully!",

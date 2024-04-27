@@ -2,18 +2,16 @@ package com.virtualbankv1.boundary;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.Random;
-
 
 import com.virtualbankv1.control.TransactionManager;
 import com.virtualbankv1.entity.Account;
-import com.virtualbankv1.entity.Transaction;
 
 import static com.virtualbankv1.boundary.Reader.accounts;
-import static com.virtualbankv1.boundary.Reader.transactions;
 
+/**
+ * TransactionPage class represents the GUI for performing transactions.
+ * Allows users to transfer money between accounts.
+ */
 public class TransactionPage extends JFrame {
     private JComboBox<String> transferToDropdown;
     private JTextField amountField;
@@ -22,6 +20,11 @@ public class TransactionPage extends JFrame {
     private JButton submitButton;
     private TransactionManager transactionManager = new TransactionManager();
 
+    /**
+     * Constructs a new TransactionPage with the specified account.
+     *
+     * @param account The account used for the transaction.
+     */
     public TransactionPage(Account account) {
         // Create the frame
         setTitle("TransferPage");
@@ -46,12 +49,12 @@ public class TransactionPage extends JFrame {
         // Transfer to dropdown
         centerPanel.add(Box.createRigidArea(new Dimension(0, 50)));
         // Convert accounts to an array of account IDs
-        String[] accountIDs = accounts.stream()
-                .map(Account::getAccountID)  // Assuming getAccountID returns String
+        String[] accountDetails = accounts.stream()
+                .map(acc -> "Account ID: " + acc.getAccountID() + " | Account Owner: " + acc.getUsername())
                 .toArray(String[]::new);
 
         // Create JComboBox with accountIDs
-        transferToDropdown = new JComboBox<>(accountIDs);
+        transferToDropdown = new JComboBox<>(accountDetails);
 
         transferToDropdown.setBorder(BorderFactory.createTitledBorder("<html><font color='#8595BC' style='font-size: 20px;'>Transfer to</font></html>"));
         transferToDropdown.setMaximumSize(new Dimension(1100, 90));
@@ -90,15 +93,7 @@ public class TransactionPage extends JFrame {
         clearButton.setForeground(Color.WHITE);
         clearButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         clearButton.setPreferredSize(new Dimension(200, 50));
-        clearButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                // Clear all fields
-                transferToDropdown.setSelectedIndex(0);
-                amountField.setText("");
-                descriptionArea.setText("");
-            }
-        });
+        clearButton.addActionListener(e -> clearFields());
         buttonsPanel.add(clearButton);
         buttonsPanel.add(Box.createRigidArea(new Dimension(100, 0)));
 
@@ -108,43 +103,12 @@ public class TransactionPage extends JFrame {
         submitButton.setForeground(Color.WHITE);
         submitButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         submitButton.setPreferredSize(new Dimension(200, 50));
-        submitButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                // Submit action
-                String transferTo = (String) transferToDropdown.getSelectedItem();
-                double amount = 0.00;
-                try {
-                    amount = Double.parseDouble(amountField.getText());
-                } catch (NumberFormatException ex) {
-                    JOptionPane.showMessageDialog(null, "Please enter a valid amount.");
-                    return; // Exit the method if the amount is invalid
-                }
-                String description = descriptionArea.getText();
-
-                if (account.getBalance() < amount) {
-                    account.setBalance(account.getBalance() - amount);
-
-                    // Submit logic, saving data to a csv
-                    int num = 1;
-                    for (Transaction tempTransaction : transactions){
-                        num++;
-                    }
-                    JOptionPane.showMessageDialog(null, "Transfer to: " + transferTo + "\nAmount: " + amount + "\nDescription: " + description);
-                    Transaction tempTransaction = new Transaction("00"+String.valueOf(num), account.getAccountID(), transferTo, amount);
-                    transactions.add(tempTransaction);
-                    new Writer().writeSingleTransaction(tempTransaction);
-                } else {
-                    // 余额不足，弹出提示窗口
-                    JOptionPane.showMessageDialog(null, "余额不足", "错误", JOptionPane.ERROR_MESSAGE);
-                }
-            }
-        });
+        submitButton.addActionListener(e -> submitTransaction(account));
         buttonsPanel.add(submitButton);
         buttonsPanel.add(Box.createRigidArea(new Dimension(100, 0)));
 
         // Return button
-        JButton returnButton = ReturnButton.createReturnButton(this, "accountInformationPage", new Dimension(250, 50), account);
+        JButton returnButton = ReturnButton.createReturnButton(this, "accountInformationPage", new Dimension(200, 50), account);
         buttonsPanel.add(returnButton);
 
         buttonsPanel.add(Box.createRigidArea(new Dimension(0, 200)));
@@ -154,6 +118,42 @@ public class TransactionPage extends JFrame {
         pack();
         setLocationRelativeTo(null);
         setVisible(true);
+    }
+
+    /**
+     * Clears all input fields.
+     */
+    private void clearFields() {
+        transferToDropdown.setSelectedIndex(0);
+        amountField.setText("");
+        descriptionArea.setText("");
+    }
+
+    /**
+     * Submits a transaction based on the user input.
+     *
+     * @param account The account from which the transaction is made.
+     */
+    private void submitTransaction(Account account) {
+        String transferTo = (String) transferToDropdown.getSelectedItem();
+        double amount = 0.00;
+        try {
+            amount = Double.parseDouble(amountField.getText());
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(null, "Please enter a valid amount.");
+            return;
+        }
+        String description = descriptionArea.getText();
+
+        for (Account tempAccount : accounts) {
+            if (("Account ID: " + tempAccount.getAccountID() + " | Account Owner: " + tempAccount.getUsername()).equals(transferTo)) {
+                if (transactionManager.transfer(account, tempAccount, amount, description)) {
+                    JOptionPane.showMessageDialog(null, "Transfer to: " + transferTo + "\nAmount: " + amount + "\nDescription: " + description);
+                } else {
+                    JOptionPane.showMessageDialog(null, "Error during transaction. Please check account balance or account status.", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        }
     }
 
     public static void main(String[] args) {

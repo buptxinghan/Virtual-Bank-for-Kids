@@ -2,6 +2,9 @@ package com.virtualbankv1.boundary;
 
 import com.virtualbankv1.entity.*;
 import java.io.*;
+import java.text.DecimalFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 import static com.virtualbankv1.boundary.Reader.accounts;
@@ -11,9 +14,13 @@ import static com.virtualbankv1.boundary.Reader.goals;
 import static com.virtualbankv1.boundary.Reader.transactions;
 
 public class Writer {
-    public void writeAccounts(String filePath, List<Account> data) {
+
+    private DecimalFormat decimalFormat = new DecimalFormat("#,##0.00"); // 保留两位小数
+    private DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+
+    public void writeAccounts(List<Account> data) {
         try {
-            FileWriter fw = new FileWriter(filePath);
+            FileWriter fw = new FileWriter("src/Data/Accounts.csv");
             BufferedWriter bw = new BufferedWriter(fw);
             bw.write("AccountID,AccountType,Username,Password,Balance,Status");
             for (Account account : data) {
@@ -22,9 +29,10 @@ public class Writer {
                         account.getAccountType() + "," +
                         account.getUsername() + "," +
                         account.getPassword() + "," +
-                        account.getBalance() + "," +
+                        decimalFormat.format(account.getBalance()) + "," +
                         account.getStatus());
             }
+            bw.newLine();
             bw.close();
             fw.close();
         } catch (IOException e) {
@@ -32,19 +40,20 @@ public class Writer {
         }
     }
 
-    public void writeGoals(String filePath, List<Goal> data) {
+    public void writeGoals(List<Goal> data) {
         try {
-            FileWriter fw = new FileWriter(filePath);
+            FileWriter fw = new FileWriter("src/Data/Goals.csv");
             BufferedWriter bw = new BufferedWriter(fw);
             bw.write("GoalID,Description,TargetAmount,CurrentAmount,ChildUsername");
             for (Goal goal : data) {
                 bw.newLine();
                 bw.write(goal.getGoalID() + "," +
                         goal.getDescription() + "," +
-                        goal.getTargetAmount() + "," +
-                        goal.getCurrentAmount() + "," +
+                        decimalFormat.format(goal.getTargetAmount()) + "," +
+                        decimalFormat.format(goal.getCurrentAmount()) + "," +
                         goal.getChildUsername());
             }
+            bw.newLine();
             bw.close();
             fw.close();
         } catch (IOException e) {
@@ -52,19 +61,20 @@ public class Writer {
         }
     }
 
-    public void writeTasks(String filePath, List<Task> data) {
+    public void writeTasks(List<Task> data) {
         try {
-            FileWriter fw = new FileWriter(filePath);
+            FileWriter fw = new FileWriter("src/Data/Tasks.csv");
             BufferedWriter bw = new BufferedWriter(fw);
             bw.write("TaskID,Description,Reward,IsCompleted,Counter");
             for (Task task : data) {
                 bw.newLine();
                 bw.write(task.getTaskID() + "," +
                         task.getDescription() + "," +
-                        task.getReward() + "," +
+                        decimalFormat.format(task.getReward()) + "," +
                         task.isCompleted() + "," +
                         task.getCounter());
             }
+            bw.newLine();
             bw.close();
             fw.close();
         } catch (IOException e) {
@@ -72,18 +82,21 @@ public class Writer {
         }
     }
 
-    public void writeTransactions(String filePath, List<Transaction> data) {
+    public void writeTransactions(List<Transaction> data) {
         try {
-            FileWriter fw = new FileWriter(filePath);
+            FileWriter fw = new FileWriter("src/Data/Transactions.csv");
             BufferedWriter bw = new BufferedWriter(fw);
-            bw.write("TransactionID,AccountFrom,AccountTo,Amount");
+            bw.write("TransactionID,AccountFrom,AccountTo,Amount,Date");
             for (Transaction transaction: data) {
                 bw.newLine();
                 bw.write(transaction.getTransactionID() + "," +
                         transaction.getAccountFrom() + "," +
                         transaction.getAccountTo() + "," +
-                        transaction.getAmount());
+                        decimalFormat.format(transaction.getAmount()) + "," +
+                        dateFormatter.format(LocalDate.now()) + "," +
+                        transaction.getDescription());
             }
+            bw.newLine();
             bw.close();
             fw.close();
         } catch (IOException e) {
@@ -91,15 +104,16 @@ public class Writer {
         }
     }
 
-    public void writeUsers(String filePath, List<User> data) {
+    public void writeUsers(List<User> data) {
         try {
-            FileWriter fw = new FileWriter(filePath);
+            FileWriter fw = new FileWriter("src/Data/Users.csv");
             BufferedWriter bw = new BufferedWriter(fw);
             bw.write("Username,Password");
             for (User user : data) {
                 bw.newLine();
                 bw.write(user.getUsername() + "," + user.getPassword());
             }
+            bw.newLine();
             bw.close();
             fw.close();
         } catch (IOException e) {
@@ -124,7 +138,7 @@ public class Writer {
                             tempAccount.getAccountType() + "," +
                             tempAccount.getUsername() + "," +
                             tempAccount.getPassword() + "," +
-                            tempAccount.getBalance() + "," +
+                            decimalFormat.format(tempAccount.getBalance()) + "," +
                             tempAccount.getStatus()
             );
         } catch (IOException e) {
@@ -138,7 +152,7 @@ public class Writer {
             out.println(
                             tempTask.getTaskID() + "," +
                             tempTask.getDescription() + "," +
-                            tempTask.getReward() + "," +
+                            decimalFormat.format(tempTask.getReward()) + "," +
                             "no" + "," +
                             tempTask.getCounter()
             );
@@ -153,8 +167,8 @@ public class Writer {
             out.println(
                     tempGoal.getGoalID() + "," +
                             tempGoal.getDescription() + "," +
-                            tempGoal.getTargetAmount() + "," +
-                            tempGoal.getCurrentAmount() + "," +
+                            decimalFormat.format(tempGoal.getTargetAmount()) + "," +
+                            decimalFormat.format(tempGoal.getCurrentAmount()) + "," +
                             tempGoal.getChildUsername()
             );
         } catch (IOException e) {
@@ -169,7 +183,9 @@ public class Writer {
                     tempTransaction.getTransactionID() + "," +
                             tempTransaction.getAccountFrom() + "," +
                             tempTransaction.getAccountTo() + "," +
-                            tempTransaction.getAmount()
+                            decimalFormat.format(tempTransaction.getAmount()) + "," +
+                            dateFormatter.format(LocalDate.now()) + "," +
+                            tempTransaction.getDescription()
             );
         } catch (IOException e) {
             e.printStackTrace();
