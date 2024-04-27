@@ -6,14 +6,33 @@ import static com.virtualbankv1.control.VirtualBankApplication.*;
 import java.io.*;
 import java.util.*;
 
+/**
+ * The Reader class provides methods to read data from CSV files and populate lists of various entities,
+ * such as users, accounts, transactions, tasks, goals, and support information.
+ */
 public class Reader {
-    public static List<User> users; // 存储所有用户账户的信息
+    /** List to store all user account information. */
+    public static List<User> users;
+
+    /** List to store all account information. */
     public static List<Account> accounts;
-    public static List<Transaction> transactions; // 存储所有账户的交易记录
-    public static List<Task> tasks; // 存储所有设置的任务
-    public static List<Goal> goals; // 存储所有用户设定的长期目标
+
+    /** List to store all transaction records of accounts. */
+    public static List<Transaction> transactions;
+
+    /** List to store all tasks set by parents. */
+    public static List<Task> tasks;
+
+    /** List to store all long-term goals set by users. */
+    public static List<Goal> goals;
+
+    /** List to store user support and help information. */
     public static List<SupportSystem> support; // 提供用户支持和帮助信息
 
+    /**
+     * Constructs a Reader object and initializes lists by reading data from CSV files.
+     * Reads data for users, accounts, transactions, tasks, goals, and support information.
+     */
     public Reader() {
         users = this.readUsers("src/Data/Users.csv");
         accounts = this.readAccounts("src/Data/Accounts.csv");
@@ -23,6 +42,12 @@ public class Reader {
         support = this.readSupport("src/Data/Support.csv");
     }
 
+    /**
+     * Reads user data from a CSV file and populates a list of User objects.
+     *
+     * @param filePath The path to the CSV file containing user data.
+     * @return A list of User objects populated with data from the CSV file.
+     */
     public List<User> readUsers(String filePath) {
         List<User> users = new ArrayList<>();
         try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
@@ -42,7 +67,12 @@ public class Reader {
         return users;
     }
 
-
+    /**
+     * Reads account data from a CSV file and populates a list of Account objects.
+     *
+     * @param filePath The path to the CSV file containing account data.
+     * @return A list of Account objects populated with data from the CSV file.
+     */
     public List<Account> readAccounts(String filePath) {
         List<Account> accounts = new ArrayList<>();
         try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
@@ -66,6 +96,12 @@ public class Reader {
         return accounts;
     }
 
+    /**
+     * Reads goal data from a CSV file and populates a list of Goal objects.
+     *
+     * @param filePath The path to the CSV file containing goal data.
+     * @return A list of Goal objects populated with data from the CSV file.
+     */
     public List<Goal> readGoals(String filePath) {
         List<Goal> goals = new ArrayList<>();
         try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
@@ -88,6 +124,12 @@ public class Reader {
         return goals;
     }
 
+    /**
+     * Reads task data from a CSV file and populates a list of Task objects.
+     *
+     * @param filePath The path to the CSV file containing task data.
+     * @return A list of Task objects populated with data from the CSV file.
+     */
     public List<Task> readTasks(String filePath) {
         List<Task> tasks = new ArrayList<>();
         try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
@@ -110,6 +152,12 @@ public class Reader {
         return tasks;
     }
 
+    /**
+     * Reads support information from a CSV file and populates a list of SupportSystem objects.
+     *
+     * @param filePath The path to the CSV file containing support information.
+     * @return A list of SupportSystem objects populated with data from the CSV file.
+     */
     public List<SupportSystem> readSupport(String filePath) {
         List<SupportSystem> supports = new ArrayList<>();
         try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
@@ -132,6 +180,12 @@ public class Reader {
         return supports;
     }
 
+    /**
+     * Reads transaction data from a CSV file and populates a list of Transaction objects.
+     *
+     * @param filePath The path to the CSV file containing transaction data.
+     * @return A list of Transaction objects populated with data from the CSV file.
+     */
     public List<Transaction> readTransactions(String filePath) {
         List<Transaction> transactions = new ArrayList<>();
         try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
