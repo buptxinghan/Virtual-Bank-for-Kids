@@ -7,7 +7,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Locale;
+
 
 import static com.virtualbankv1.boundary.Reader.accounts;
 
@@ -19,7 +19,18 @@ public class OpenAccountPage extends JFrame implements ActionListener {
     private JComboBox<String> ats = new JComboBox<>(options);
     private JTextField pw = new JTextField(6);
     private JTextField pw2 = new JTextField(6);
-    private JButton submit = new JButton("submit");
+    public static JButton createReturnButton(JFrame frame) {
+        RoundedButton button = new RoundedButton("<html><font size ='6'>Submit</font></html>");
+        button.setBackground(new Color(70, 130, 180));
+        button.setForeground(Color.WHITE);
+        button.setAlignmentX(Component.CENTER_ALIGNMENT);
+        button.setPreferredSize(new Dimension(200, 50));
+        button.setMinimumSize(new Dimension(200, 50));
+        button.setMaximumSize(new Dimension(200, 50));
+        return button;
+    }
+    private RoundedButton submit = (RoundedButton) createReturnButton(this);
+
     private JButton returnButton=ReturnButton.createReturnButton(this,"accountOverviewPage");
 
     public OpenAccountPage() {
@@ -27,17 +38,19 @@ public class OpenAccountPage extends JFrame implements ActionListener {
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.anchor = GridBagConstraints.WEST;
         gbc.insets = new Insets(5, 5, 5, 5);
-
-        addComponent(panel, gbc, title = new JLabel("Open Account"), Font.BOLD, 24, 2, 0, 0);
-        addComponent(panel, gbc, att = new JLabel("Account Type (single-select):"), Font.BOLD, 14, 1, 0, 1);
-        addComponent(panel, gbc, atd = new JLabel("Basically, the only difference between these two types of account is whether users can get a yield by their savings."), Font.PLAIN, 12, 2, 0, 2);
-        addComponent(panel, gbc, ats, 0, 3);
-        addComponent(panel, gbc, pp = new JLabel("Payment Password:"), Font.BOLD, 14, 0, 4);
-        addComponent(panel, gbc, ppd = new JLabel("A 6-digit password is allowed."), Font.PLAIN, 12, 0, 5);
-        addComponent(panel, gbc, pw, 0, 6);
-        addComponent(panel, gbc, cp = new JLabel("Confirm Password:"), Font.BOLD, 14, 0, 7);
-        addComponent(panel, gbc, pw2, 0, 8);
-        addComponent(panel, gbc, submit, 0, 9);
+        getContentPane().setBackground(new Color(199, 220, 247));
+        addComponent(panel, gbc, title = new JLabel("Open Account"), new Font("Arial", Font.BOLD, 24), new Color(93, 97, 195), 2, 0, 0);
+        // 设置小标题的颜色和字体大小
+        addComponent(panel, gbc, att = new JLabel("Account Type (single-select):"), new Font("Arial", Font.BOLD, 14), new Color(133, 149, 188), 1, 0, 1);
+        addComponent(panel, gbc, atd = new JLabel("Basically, the only difference between these two types of account is whether users can get a yield by their savings."), new Font("Arial", Font.PLAIN, 12), new Color(112, 172, 249), 2, 0, 2);
+        // 设置组件的颜色
+        addComponent(panel, gbc, ats, new Color(112, 172, 249), 0,3);
+        addComponent(panel, gbc, pp = new JLabel("Payment Password:"), new Font("Arial", Font.BOLD, 14), new Color(133, 149, 188), 0, 4);
+        addComponent(panel, gbc, ppd = new JLabel("A 6-digit password is allowed."), new Font("Arial", Font.PLAIN, 14), new Color(112, 172, 249), 12, 0, 5);
+        addComponent(panel, gbc, pw, new Color(112, 172, 249),0, 6);
+        addComponent(panel, gbc, cp = new JLabel("Confirm Password:"), new Font("Arial", Font.BOLD, 14), new Color(133, 149, 188), 0, 7);
+        addComponent(panel, gbc, pw2, new Color(112, 172, 249), 0,8);
+        addComponent(panel, gbc, submit, 0,9);
         addComponent(panel, gbc, returnButton,0,10);
         add(panel);
         pack();
@@ -52,33 +65,53 @@ public class OpenAccountPage extends JFrame implements ActionListener {
         this.setVisible(true);
     }
 
-    private void addComponent(JPanel panel, GridBagConstraints gbc, JComponent component, int fontStyle, int fontSize, int gridwidth, int gridx, int gridy) {
-        component.setFont(component.getFont().deriveFont(fontStyle, fontSize));
+    private void addComponent(JPanel panel, GridBagConstraints gbc, JLabel label, Font font, Color color, int gridwidth, int gridx, int gridy) {
+        label.setFont(font);
+        label.setForeground(color);
         gbc.gridwidth = gridwidth;
         gbc.gridx = gridx;
         gbc.gridy = gridy;
-        panel.add(component, gbc);
+        panel.setBackground(new Color(199, 220, 247));
+        panel.add(label, gbc);
     }
 
-    private void addComponent(JPanel panel, GridBagConstraints gbc, JComponent component, int fontStyle, int fontSize, int gridx, int gridy) {
-        component.setFont(component.getFont().deriveFont(fontStyle, fontSize));
+    private void addComponent(JPanel panel, GridBagConstraints gbc, JLabel label, Font font, Color color, int gridx, int gridy) {
+        label.setFont(font);
+        label.setForeground(color);
         gbc.gridx = gridx;
         gbc.gridy = gridy;
-        panel.add(component, gbc);
+        panel.setBackground(new Color(199, 220, 247));
+        panel.add(label, gbc);
     }
 
-    private void addComponent(JPanel panel, GridBagConstraints gbc, JComponent component, int gridx, int gridy) {
+    private void addComponent(JPanel panel, GridBagConstraints gbc, JComboBox<String> comboBox, Color color, int gridx,int gridy) {
+        comboBox.setForeground(color);
         gbc.gridx = gridx;
         gbc.gridy = gridy;
+        panel.setBackground(new Color(199, 220, 247));
+        panel.add(comboBox, gbc);
+    }
+
+    private void addComponent(JPanel panel, GridBagConstraints gbc, JTextField textField, Color color, int gridx,int gridy) {
+        textField.setForeground(color);
+        gbc.gridx = gridx;
+        gbc.gridy = gridy;
+        panel.setBackground(new Color(199, 220, 247));
+        panel.add(textField, gbc);
+    }
+
+    private void addComponent(JPanel panel, GridBagConstraints gbc, JComponent component,int gridx, int gridy) {
+        gbc.gridx = gridx;
+        gbc.gridy = gridy;
+        panel.setBackground(new Color(199, 220, 247));
         panel.add(component, gbc);
     }
-/*
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
         OpenAccountPage openAccountPage = new OpenAccountPage();
         openAccountPage.setSize(1000, 500);
         openAccountPage.setVisible(true);
-    }
-*/
+    }*/
+
     public void actionPerformed(ActionEvent event) {
         String str1 = pw.getText();
         String str2 = pw2.getText();
