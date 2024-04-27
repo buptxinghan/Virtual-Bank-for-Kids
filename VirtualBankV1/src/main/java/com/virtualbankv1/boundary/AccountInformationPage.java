@@ -59,7 +59,7 @@ public class AccountInformationPage extends JFrame {
         formPanel.setOpaque(false); // Transparent background
         formPanel.setBorder(BorderFactory.createEmptyBorder(10, 180, 10, 50)); // Padding around the form
 
-        // 创建用于显示余额和账户状态的JLabel
+        // Create a JLabel to display the balance and account status
         accountBalanceLabel = createDisplayLabel(account.getBalance());
         accountStatusLabel = createDisplayLabel(account.getStatus());
         accountTypeLabel = createDisplayLabel(account.getAccountType());
@@ -78,10 +78,13 @@ public class AccountInformationPage extends JFrame {
         formPanel.add(createLabel("Account Balance:"));
         formPanel.add(accountBalanceLabel);
 
-        // Create the buttons panel for the "Withdraw" and "Transfer In" buttons
+        // Create the buttons panel for the transfer buttons
         JPanel transactionButtonsPanel = new JPanel();
         transactionButtonsPanel.setLayout(new BoxLayout(transactionButtonsPanel, BoxLayout.Y_AXIS));
         transactionButtonsPanel.setOpaque(false); // Transparent background
+        transactionButtonsPanel.setBorder(BorderFactory.createEmptyBorder(10, 50, 10, 180)); // Padding around the form
+
+        // Create transfer button
         transactionButtonsPanel.add(Box.createRigidArea(new Dimension(0, 30))); // Spacer between buttons
         transactionButtonsPanel.add(createButtons("Withdraw", new Color(70, 130, 180), Color.WHITE, account, "withdraw"));
         transactionButtonsPanel.add(Box.createRigidArea(new Dimension(0, 10))); // Spacer between buttons
@@ -95,11 +98,12 @@ public class AccountInformationPage extends JFrame {
         // Create return button
         JButton returnButton = ReturnButton.createReturnButton(this, "accountOverviewPage", new Dimension(250, 50));
         transactionButtonsPanel.add(returnButton);
+        transactionButtonsPanel.add(Box.createRigidArea(new Dimension(0, 15))); // Spacer between buttons and picture
+
         // Add picture
         Icon transferIcon = new ImageIcon("src/Materials/Transfer.png");
         JLabel transferLabel = new JLabel(transferIcon);
         transferLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
-        transactionButtonsPanel.add(Box.createRigidArea(new Dimension(0, 50))); // 添加间隔
         transactionButtonsPanel.add(transferLabel);
 
         // Create the bottom buttons panel with custom button styling
@@ -114,7 +118,7 @@ public class AccountInformationPage extends JFrame {
         // Add components to the window
         add(titleLabel, BorderLayout.NORTH);
         add(formPanel, BorderLayout.WEST); // Align the form panel to the left
-        add(transactionButtonsPanel, BorderLayout.CENTER); // Place the transaction buttons in the center
+        add(transactionButtonsPanel, BorderLayout.EAST); // Place the transaction buttons in the center
         add(bottomButtonsPanel, BorderLayout.SOUTH); // Place the bottom buttons at the bottom
 
         // Pack the frame
