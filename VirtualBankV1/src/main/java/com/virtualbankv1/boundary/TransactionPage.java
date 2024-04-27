@@ -38,6 +38,7 @@ public class TransactionPage extends JFrame {
         // Title label
         JLabel titleLabel = new JLabel("<html><div style='text-align: center; color: #5D61C3;'><font style='font-size: 35px;'>Transfer details</font></div></html>", SwingConstants.CENTER);
         titleLabel.setHorizontalAlignment(JLabel.LEFT);
+        titleLabel.setBorder(BorderFactory.createEmptyBorder(60, 40, 0, 0)); // Top and bottom padding
         add(titleLabel, BorderLayout.NORTH);
 
         // Center panel for form elements
