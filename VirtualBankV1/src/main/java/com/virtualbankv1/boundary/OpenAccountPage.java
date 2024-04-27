@@ -34,6 +34,7 @@ public class OpenAccountPage extends JFrame implements ActionListener {
     private JButton returnButton=ReturnButton.createReturnButton(this,"accountOverviewPage");
 
     public OpenAccountPage() {
+        setPreferredSize(new Dimension(1200,900));
         JPanel panel = new JPanel(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.anchor = GridBagConstraints.WEST;
@@ -102,11 +103,11 @@ public class OpenAccountPage extends JFrame implements ActionListener {
         panel.setBackground(new Color(199, 220, 247));
         panel.add(component, gbc);
     }
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
         OpenAccountPage openAccountPage = new OpenAccountPage();
         openAccountPage.setSize(1200, 900);
         openAccountPage.setVisible(true);
-    }
+    }*/
 
     public void actionPerformed(ActionEvent event) {
         String str1 = pw.getText();
