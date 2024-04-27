@@ -1,8 +1,5 @@
 package com.virtualbankv1.entity;
 
-import com.virtualbankv1.boundary.RoundedButton;
-import com.virtualbankv1.boundary.RoundedPanel;
-
 import javax.swing.*;
 import java.awt.*;
 
@@ -21,9 +18,7 @@ public class ChildLock extends JFrame{
     }
 
     public ChildLock() {
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setSize(600, 450);
-
         this.mainPanel = new JPanel(new GridBagLayout());
         this.mainPanel.setBackground(new Color(199, 220, 247));
         this.setLocationRelativeTo(null);
@@ -33,9 +28,6 @@ public class ChildLock extends JFrame{
     }
 
     private void displayCreateLockPanel(JPanel panel) {
-
-//        this.userText = new JTextField(20);
-//        this.checkButton = new JButton("Check");
 
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.gridwidth = GridBagConstraints.REMAINDER;
@@ -58,18 +50,4 @@ public class ChildLock extends JFrame{
         panel.add(new JLabel(), gbc);
     }
 
-
-    public RoundedPanel createRoundedPanel(Color color) {
-        RoundedPanel rpanel = new RoundedPanel(15);
-        rpanel.setLayout(new BoxLayout(rpanel, BoxLayout.Y_AXIS));
-        rpanel.setBorder(BorderFactory.createEmptyBorder(65, 40, 65, 40));
-        rpanel.setBackground(color);
-        rpanel.setPreferredSize(new Dimension(600,450));
-        rpanel.setMinimumSize(new Dimension(400, 300));
-        return rpanel;
-    }
-
-    public static void main(String[] args) {
-        new ChildLock();
-    }
 }

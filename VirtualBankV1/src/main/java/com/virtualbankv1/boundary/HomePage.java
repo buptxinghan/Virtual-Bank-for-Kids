@@ -62,11 +62,18 @@ public class HomePage extends JFrame {
 
         // Set layout
 
-        JPanel Center = new JPanel(new GridLayout(2, 1));
-        JPanel right = new JPanel();
-        JPanel left = new JPanel();
-        JPanel down = new JPanel();
-        JPanel Centerdown = new JPanel(new GridLayout(4, 1));
+//        JPanel Center = new JPanel(new GridLayout(2, 1));
+        RoundedPanel Center = new RoundedPanel(15);
+        Center.setLayout(new GridLayout(2,1));
+        RoundedPanel right = new RoundedPanel(15);
+        RoundedPanel left = new RoundedPanel(15);
+        RoundedPanel down = new RoundedPanel(15);
+        RoundedPanel Centerdown = new RoundedPanel(15);
+        Centerdown.setLayout(new GridLayout(4,1));
+//        JPanel right = new JPanel();
+//        JPanel left = new JPanel();
+//        JPanel down = new JPanel();
+//        JPanel Centerdown = new JPanel(new GridLayout(4, 1));
 
         Center.setBackground(bg);
         right.setBackground(bg);
