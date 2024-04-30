@@ -15,7 +15,7 @@ public class AccountOverviewUI extends JFrame {
     public PageOpen pageOpen = new PageOpen();
     // Constructor
     public AccountOverviewUI() {
-        mainPanel = new JPanel(new GridLayout(5,2));
+        mainPanel = new JPanel(new GridLayout(3,2));
         mainPanel.setBackground(new Color(199, 220, 247));
         JScrollPane scrollPane = new JScrollPane(mainPanel);
         topPanel = new JPanel();
