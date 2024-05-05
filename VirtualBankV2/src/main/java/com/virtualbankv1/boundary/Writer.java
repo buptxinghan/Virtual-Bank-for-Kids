@@ -147,14 +147,17 @@ public class Writer {
     }
 
     public void writeSingleTask(Task tempTask) {
-        try (PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("src/Data/Tasks.csv", true)))) {
-            tasks.add(tempTask);
+        try (PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("VirtualBankV2/src/Data/Tasks.csv", true)))) {
+           // tasks.add(tempTask);
             out.println(
-                            tempTask.getTaskID() + "," +
+                    tempTask.getTaskID() + "," +
                             tempTask.getDescription() + "," +
                             decimalFormat.format(tempTask.getReward()) + "," +
-                            "no" + "," +
-                            tempTask.getCounter()
+                            tempTask.isCompleted() + "," +
+                            tempTask.getCounter()+","+
+                            tempTask.getStart()+","+
+                            tempTask.getEnd()+","+
+                            tempTask.getTitle()
             );
         } catch (IOException e) {
             e.printStackTrace();
