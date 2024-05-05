@@ -142,7 +142,10 @@ public class Reader {
                         values[1], // Description
                         Double.parseDouble(values[2]), // Reward
                         Boolean.parseBoolean(values[3]), // IsCompleted
-                        Integer.parseInt(values[4]) // Counter
+                        Integer.parseInt(values[4]), // Counter
+                        values[5],//Start
+                        values[6],//End
+                        values[7]//title
                 );
                 tasks.add(task);
             }
