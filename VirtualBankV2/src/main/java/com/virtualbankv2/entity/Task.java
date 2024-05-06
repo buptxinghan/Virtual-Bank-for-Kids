@@ -7,13 +7,14 @@ public class Task {
     private String title;
     private String start;
     private String end;
+    private String userName;
 
     private double reward;
     private boolean isCompleted;
     public static int totalcounter;
     private int counter;
 
-    public Task(String description, double reward, String title, String start, String end) {
+    public Task(String description, double reward, String title, String start, String end, String userName) {
         this.taskID = String.valueOf(totalcounter);
         this.description = description;
         this.reward = reward;
@@ -21,9 +22,10 @@ public class Task {
         this.title = title;
         this.start = start;
         this.end = end;
+        this.userName = userName;
     }
 
-    public Task(String value, String value1, double v, boolean b, int i, String s, String e, String value2) {
+    public Task(String value, String value1, double v, boolean b, int i, String s, String e, String value2, String o) {
         this.taskID = value;
         this.description = value1;
         this.reward = v;
@@ -32,6 +34,7 @@ public class Task {
         this.title = value2;
         this.start = s;
         this.end = e;
+        this.userName = o;
     }
 
     // 这里可以添加getter和setter方法
@@ -81,5 +84,13 @@ public class Task {
 
     public void setCounter(int counter) {
         this.counter = counter;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getUserName() {
+        return this.userName;
     }
 }

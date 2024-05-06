@@ -64,14 +64,18 @@ public class Writer {
         try {
             FileWriter fw = new FileWriter("src/Data/Tasks.csv");
             BufferedWriter bw = new BufferedWriter(fw);
-            bw.write("TaskID,Description,Reward,IsCompleted,Counter");
+            bw.write("TaskID,Description,Reward,IsCompleted,Counter,Start,End,Title,UserName");
             for (Task task : data) {
                 bw.newLine();
                 bw.write(task.getTaskID() + "," +
                         task.getDescription() + "," +
                         decimalFormat.format(task.getReward()) + "," +
                         task.isCompleted() + "," +
-                        task.getCounter());
+                        task.getCounter()+","+
+                        task.getStart()+","+
+                        task.getEnd()+","+
+                        task.getTitle()+","+
+                        task.getUserName());
             }
             bw.newLine();
             bw.close();
@@ -85,7 +89,7 @@ public class Writer {
         try {
             FileWriter fw = new FileWriter("src/Data/Transactions.csv");
             BufferedWriter bw = new BufferedWriter(fw);
-            bw.write("TransactionID,AccountFrom,AccountTo,Amount,Date");
+            bw.write("TransactionID,AccountFrom,AccountTo,Amount,Date,Description");
             for (Transaction transaction: data) {
                 bw.newLine();
                 bw.write(transaction.getTransactionID() + "," +
@@ -146,7 +150,7 @@ public class Writer {
     }
 
     public void writeSingleTask(Task tempTask) {
-        try (PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("VirtualBankV2/src/Data/Tasks.csv", true)))) {
+        try (PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("src/Data/Tasks.csv", true)))) {
            // tasks.add(tempTask);
             out.println(
                     tempTask.getTaskID() + "," +
@@ -156,7 +160,8 @@ public class Writer {
                             tempTask.getCounter()+","+
                             tempTask.getStart()+","+
                             tempTask.getEnd()+","+
-                            tempTask.getTitle()
+                            tempTask.getTitle()+","+
+                            tempTask.getUserName()
             );
         } catch (IOException e) {
             e.printStackTrace();
