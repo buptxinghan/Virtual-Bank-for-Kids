@@ -15,9 +15,9 @@ public class AccountOverviewUI extends JFrame {
     public PageOpen pageOpen = new PageOpen();
     // Constructor
     public AccountOverviewUI() {
-        mainPanel = new JPanel(new GridLayout(2,2));
+        mainPanel = new JPanel(new GridLayout(3,2));
         mainPanel.setBackground(new Color(199, 220, 247));
-
+        JScrollPane scrollPane = new JScrollPane(mainPanel);
         topPanel = new JPanel();
         topPanel.setBackground(new Color(199, 220, 247));
         topPanel.setMaximumSize(new Dimension(Integer.MAX_VALUE, 100));
@@ -32,17 +32,19 @@ public class AccountOverviewUI extends JFrame {
         bottlePanel.add(returnButton);
         setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
         add(this.topPanel);
-        add(this.mainPanel);
+//        add(this.mainPanel);
+        add(scrollPane);
         add(this.bottlePanel);
-
         displayCreateAccountPanel();
     }
 
 
     public void setPage() {
-        pack();
-        setLocationRelativeTo(null); // Center the window
+//        pack();
         setPreferredSize(new Dimension(1200,900));
+        setMinimumSize(new Dimension(1200,900));
+        setLocationRelativeTo(null); // Center the window
+
         setVisible(true);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
@@ -55,7 +57,8 @@ public class AccountOverviewUI extends JFrame {
         new ChildLockManager().addButtonWithChildLock(this,addButton, pageOpen);
 
         RoundedPanel innerPanel = createRoundedPanel(new Color(255,250,240));
-        innerPanel.setSize(new Dimension(500,300));
+        innerPanel.setPreferredSize(new Dimension(400,250));
+        innerPanel.setMinimumSize(new Dimension(400,250));
         innerPanel.add(Box.createRigidArea(new Dimension(0, 40)));
         innerPanel.add(createLabel("Create  new  account ", Font.BOLD, 18,Component.CENTER_ALIGNMENT));
         innerPanel.add(Box.createRigidArea(new Dimension(0, 65)));
@@ -75,7 +78,7 @@ public class AccountOverviewUI extends JFrame {
         Button.setBackground(new Color(70, 130, 180));
         Button.setForeground(Color.WHITE);
         Button.setAlignmentX(Component.CENTER_ALIGNMENT);
-        Button.setPreferredSize(new Dimension(10,10));
+        Button.setPreferredSize(new Dimension(0,10));
     }
 
     // Update the page with the given account information
@@ -93,7 +96,7 @@ public class AccountOverviewUI extends JFrame {
 
         RoundedPanel panel = createRoundedPanel(new Color(255,239,213));
         panel.add(createLabel(account.getAccountID(), Font.BOLD, 18,Component.CENTER_ALIGNMENT));
-        panel.add(Box.createRigidArea(new Dimension(0, 20)));
+        panel.add(Box.createRigidArea(new Dimension(0, 15)));
         panel.add(createLabel("Account status: " + account.getStatus(),Font.BOLD, 18,Component.LEFT_ALIGNMENT));
         panel.add(Box.createRigidArea(new Dimension(0, 20)));
         panel.add(createLabel("Account type: " + account.getAccountType(),Font.BOLD, 18,Component.LEFT_ALIGNMENT));
@@ -111,13 +114,10 @@ public class AccountOverviewUI extends JFrame {
     }
 
     private static void createOuterPanel(JPanel outerPanel, RoundedPanel panel) {
-        outerPanel.setLayout(new BoxLayout(outerPanel,BoxLayout.X_AXIS));
+        outerPanel.setLayout(new BorderLayout());
+        outerPanel.setBorder(BorderFactory.createEmptyBorder(20, 40, 20, 40));
         outerPanel.setBackground(new Color(199, 220, 247));
-        outerPanel.add(Box.createHorizontalGlue());
-        outerPanel.add(Box.createRigidArea(new Dimension(80, 0)));
         outerPanel.add(panel);
-        outerPanel.add(Box.createRigidArea(new Dimension(80, 0)));
-        outerPanel.add(Box.createHorizontalGlue());
     }
 
     private JLabel createLabel(String text, int fontStyle, int fontSize,float alignment) {
@@ -130,7 +130,7 @@ public class AccountOverviewUI extends JFrame {
     public RoundedPanel createRoundedPanel(Color color) {
         RoundedPanel rpanel = new RoundedPanel(15);
         rpanel.setLayout(new BoxLayout(rpanel, BoxLayout.Y_AXIS));
-        rpanel.setBorder(BorderFactory.createEmptyBorder(65, 40, 65, 40));
+        rpanel.setBorder(BorderFactory.createEmptyBorder(42, 40, 40, 40));
         rpanel.setBackground(color);
         return rpanel;
     }

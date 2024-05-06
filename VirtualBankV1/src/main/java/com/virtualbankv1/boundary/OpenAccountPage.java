@@ -10,7 +10,7 @@ import java.awt.event.ActionListener;
 
 
 import static com.virtualbankv1.boundary.Reader.accounts;
-
+import static com.virtualbankv1.control.VirtualBankApplication.currentUser;
 
 
 public class OpenAccountPage extends JFrame implements ActionListener {
@@ -138,7 +138,7 @@ public class OpenAccountPage extends JFrame implements ActionListener {
                     "OK"
             );
         } else {
-            Account account = new Account("b", str3, "a",str1,  0.1, "s");
+            Account account = new Account("b", str3, currentUser.getUsername(),str1,  0.00, "Active");
             //success
             //store
             Reader reader=new Reader();

@@ -40,10 +40,10 @@ public class HomePage extends JFrame {
         getContentPane().setBackground(bg);
 
         // Initialize buttons
-        accountButton = new JButton("<html><font size=5 color=" + getColorHex(z1) + ">My account</font><br><font color=" + getColorHex(z2) + ">Check your account information</font></html>");
-        tasksButton = new JButton("<html><font size=5 color=" + getColorHex(z1) + ">My tasks</font><br><font color=" + getColorHex(z2) + ">Check the tasks assigned</font></html>");
-        goalsButton = new JButton("<html><font size=5 color=" + getColorHex(z1) + ">My goals</font><br><font color=" + getColorHex(z2) + ">Check and manage your goal</font></html>");
-        manualButton = new JButton("<html><font size=5 color=" + getColorHex(z1) + ">Instruction manual</font><br><font color=" + getColorHex(z2) + ">Learn how to use the software or contact us</font></html>");
+        accountButton = new RoundedButton("<html><font size=6 color=" + getColorHex(z1) + ">My account</font><br><font color=" + getColorHex(z2) + ">Check your account information</font></html>");
+        tasksButton = new RoundedButton("<html><font size=6 color=" + getColorHex(z1) + ">My tasks</font><br><font color=" + getColorHex(z2) + ">Check the tasks assigned</font></html>");
+        goalsButton = new RoundedButton("<html><font size=6 color=" + getColorHex(z1) + ">My goals</font><br><font color=" + getColorHex(z2) + ">Check and manage your goal</font></html>");
+        manualButton = new RoundedButton("<html><font size=6 color=" + getColorHex(z1) + ">Instruction manual</font><br><font color=" + getColorHex(z2) + ">Learn how to use the software or contact us</font></html>");
 
         accountButton.setHorizontalAlignment(SwingConstants.LEFT);
         tasksButton.setHorizontalAlignment(SwingConstants.LEFT);
@@ -59,14 +59,26 @@ public class HomePage extends JFrame {
         JLabel l1 = new JLabel("<html><font size=7 color=" + getColorHex(z1) + ">Welcome to Your Virtual Bank!</font></html>",JLabel.CENTER);
         ImageIcon icon = new ImageIcon("src/Materials/pig.png");
         JLabel pic = new JLabel(icon,JLabel.CENTER);
+        JPanel picPanel = new JPanel();
+        picPanel.add(pic);
+        picPanel.setBackground(bg);
+        picPanel.setMaximumSize(new Dimension(300,100));
 
         // Set layout
 
-        JPanel Center = new JPanel(new GridLayout(2, 1));
+        JPanel Center = new JPanel();
+//        RoundedPanel Center = new RoundedPanel(15);
+        Center.setLayout(new BoxLayout(Center,BoxLayout.Y_AXIS));
+        //RoundedPanel right = new RoundedPanel(15);
+        //RoundedPanel left = new RoundedPanel(15);
+//        RoundedPanel down = new RoundedPanel(15);
+//        RoundedPanel Centerdown = new RoundedPanel(15);
         JPanel right = new JPanel();
         JPanel left = new JPanel();
         JPanel down = new JPanel();
+        down.setPreferredSize(new Dimension(0,100));
         JPanel Centerdown = new JPanel(new GridLayout(4, 1));
+        Centerdown.setLayout(new GridLayout(4,1));
 
         Center.setBackground(bg);
         right.setBackground(bg);
@@ -83,11 +95,15 @@ public class HomePage extends JFrame {
         });
 
         Centerdown.add(accountButton);
+//        Centerdown.add(Box.createRigidArea(new Dimension(0, 10)));
         Centerdown.add(tasksButton);
+//        Centerdown.add(Box.createRigidArea(new Dimension(0, 10)));
         Centerdown.add(goalsButton);
+//        Centerdown.add(Box.createRigidArea(new Dimension(0, 10)));
         Centerdown.add(manualButton);
 
-        Center.add(pic);
+        Center.add(Box.createRigidArea(new Dimension(0, 10)));
+        Center.add(picPanel);
         Center.add(Centerdown);
 
         add(right, BorderLayout.EAST);

@@ -144,7 +144,8 @@ public class Reader {
                         Integer.parseInt(values[4]), // Counter
                         values[5],//Start
                         values[6],//End
-                        values[7]//title
+                        values[7],//title
+                        values[8] //UserName
                 );
                 tasks.add(task);
             }
