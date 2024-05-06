@@ -10,7 +10,6 @@ import static com.virtualbankv1.entity.Task.totalcounter;
 public class CreateTaskController {
 
     private CreateTaskPage view;
-    private testpage hp;
     Writer writer = new Writer();
 
     public CreateTaskController(CreateTaskPage view) {
