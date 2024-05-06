@@ -5,10 +5,12 @@ import com.virtualbankv2.boundary.RoundedButton;
 import com.virtualbankv2.boundary.Writer;
 import com.virtualbankv2.entity.Task;
 
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import static com.virtualbankv2.control.VirtualBankApplication.currentUser;
 import static com.virtualbankv2.entity.Task.totalcounter;
 
 public class CreateTaskController {
@@ -34,8 +36,9 @@ public class CreateTaskController {
         String start = view.getStart();
         String end = view.getEnd();
         totalcounter = totalcounter+1;
+        String name = currentUser.getUsername();
 
-        Task temptask = new Task(description,reward,title,start,end);
+        Task temptask = new Task(description,reward,title,start,end,name);
         writer.writeSingleTask(temptask);
         JOptionPane.showMessageDialog(view, "Task created successfully!");
 
