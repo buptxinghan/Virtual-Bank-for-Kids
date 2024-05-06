@@ -65,14 +65,17 @@ public class Writer {
         try {
             FileWriter fw = new FileWriter("src/Data/Tasks.csv");
             BufferedWriter bw = new BufferedWriter(fw);
-            bw.write("TaskID,Description,Reward,IsCompleted,Counter");
+            bw.write("TaskID,Description,Reward,IsCompleted,Counter,Start,End,Title");
             for (Task task : data) {
                 bw.newLine();
                 bw.write(task.getTaskID() + "," +
                         task.getDescription() + "," +
                         decimalFormat.format(task.getReward()) + "," +
                         task.isCompleted() + "," +
-                        task.getCounter());
+                        task.getCounter()+","+
+                        task.getStart()+","+
+                        task.getEnd()+","+
+                        task.getTitle());
             }
             bw.newLine();
             bw.close();
@@ -148,13 +151,16 @@ public class Writer {
 
     public void writeSingleTask(Task tempTask) {
         try (PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("src/Data/Tasks.csv", true)))) {
-            tasks.add(tempTask);
+            //tasks.add(tempTask);
             out.println(
                             tempTask.getTaskID() + "," +
                             tempTask.getDescription() + "," +
                             decimalFormat.format(tempTask.getReward()) + "," +
-                            "no" + "," +
-                            tempTask.getCounter()
+                            tempTask.isCompleted() + "," +
+                            tempTask.getCounter()+","+
+                            tempTask.getStart()+","+
+                            tempTask.getEnd()+","+
+                            tempTask.getTitle()
             );
         } catch (IOException e) {
             e.printStackTrace();
