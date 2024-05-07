@@ -2,6 +2,7 @@ package com.virtualbankv2.control;
 
 import com.virtualbankv2.boundary.CreateTaskPage;
 import com.virtualbankv2.boundary.RoundedButton;
+import com.virtualbankv2.boundary.TaskOverviewUI;
 import com.virtualbankv2.boundary.Writer;
 import com.virtualbankv2.entity.Task;
 
@@ -16,14 +17,14 @@ import static com.virtualbankv2.entity.Task.totalcounter;
 public class CreateTaskController {
 
     private CreateTaskPage view;
-    //private testpage hp;
+    private TaskOverviewUI overviewUI;
     Writer writer = new Writer();
 
     public CreateTaskController(CreateTaskPage view) {
 
-        //this.hp = new testpage(1); // 在构造函数中初始化hp
-        //hp.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        //保证新跳转的页面构造取消 setVisible(true) 否则会同时弹出来；
+        this.overviewUI = new TaskOverviewUI(); // 在构造函数中初始化hp
+       // overviewUI.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        overviewUI.setVisible(false);
         this.view = view;
     }
 
@@ -46,7 +47,7 @@ public class CreateTaskController {
 
     public void initializeController() {
         // 为view中的按钮添加事件监听器
-       // addReturnListenerToButton(view.getSaveButton(), hp);
+        addReturnListenerToButton(view.getSaveButton(), overviewUI);
 
     }
 
@@ -55,17 +56,17 @@ public class CreateTaskController {
             @Override
             public void actionPerformed(ActionEvent e) {
                 createTask();
-                view.setVisible(false);
+                view.dispose();
                 newPage.setVisible(true);
             }
         });
     }
 
     //测试createtask
-    public static void main(String[] args) {
-        totalcounter = 0;
-        CreateTaskPage fr1 = new CreateTaskPage();
-        fr1.setVisible(true);
-
-    }
+//    public static void main(String[] args) {
+//        totalcounter = 0;
+//        CreateTaskPage fr1 = new CreateTaskPage();
+//        fr1.setVisible(true);
+//
+//    }
 }
