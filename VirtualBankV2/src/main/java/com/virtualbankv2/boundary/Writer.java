@@ -12,11 +12,19 @@ import static com.virtualbankv2.boundary.Reader.users;
 import static com.virtualbankv2.boundary.Reader.goals;
 import static com.virtualbankv2.boundary.Reader.transactions;
 
+/**
+ * Writes data to CSV files.
+ */
 public class Writer {
 
     private DecimalFormat decimalFormat = new DecimalFormat("#,##0.00"); // 保留两位小数
     private DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy/MM/dd");
 
+    /**
+     * Writes account data to a CSV file.
+     *
+     * @param data The list of accounts to be written.
+     */
     public void writeAccounts(List<Account> data) {
         try {
             FileWriter fw = new FileWriter("src/Data/Accounts.csv");
@@ -39,6 +47,11 @@ public class Writer {
         }
     }
 
+    /**
+     * Writes goal data to a CSV file.
+     *
+     * @param data The list of goals to be written.
+     */
     public void writeGoals(List<Goal> data) {
         try {
             FileWriter fw = new FileWriter("src/Data/Goals.csv");
@@ -62,6 +75,11 @@ public class Writer {
         }
     }
 
+    /**
+     * Writes task data to a CSV file.
+     *
+     * @param data The list of tasks to be written.
+     */
     public void writeTasks(List<Task> data) {
         try {
             FileWriter fw = new FileWriter("src/Data/Tasks.csv");
@@ -87,6 +105,11 @@ public class Writer {
         }
     }
 
+    /**
+     * Writes transaction data to a CSV file.
+     *
+     * @param data The list of transactions to be written.
+     */
     public void writeTransactions(List<Transaction> data) {
         try {
             FileWriter fw = new FileWriter("src/Data/Transactions.csv");
@@ -109,6 +132,11 @@ public class Writer {
         }
     }
 
+    /**
+     * Writes user data to a CSV file.
+     *
+     * @param data The list of users to be written.
+     */
     public void writeUsers(List<User> data) {
         try {
             FileWriter fw = new FileWriter("src/Data/Users.csv");
@@ -126,6 +154,11 @@ public class Writer {
         }
     }
 
+    /**
+     * Writes a single user to the user CSV file.
+     *
+     * @param tempUser The user to be written.
+     */
     public void writeSingleUser(User tempUser) {
         try (PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("src/Data/Users.csv", true)))) {
             users.add(tempUser);
@@ -135,6 +168,11 @@ public class Writer {
         }
     }
 
+    /**
+     * Writes a single account to the account CSV file.
+     *
+     * @param tempAccount The account to be written.
+     */
     public void writeSingleAccount(Account tempAccount) {
         try (PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("src/Data/Accounts.csv", true)))) {
             accounts.add(tempAccount);
@@ -151,6 +189,11 @@ public class Writer {
         }
     }
 
+    /**
+     * Writes a single task to the task CSV file.
+     *
+     * @param tempTask The task to be written.
+     */
     public void writeSingleTask(Task tempTask) {
         try (PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("src/Data/Tasks.csv", true)))) {
            // tasks.add(tempTask);
@@ -170,6 +213,11 @@ public class Writer {
         }
     }
 
+    /**
+     * Writes a single goal to the goal CSV file.
+     *
+     * @param tempGoal The goal to be written.
+     */
     public void writeSingleGoal(Goal tempGoal) {
         try (PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("src/Data/Goals.csv", true)))) {
             goals.add(tempGoal);
@@ -187,6 +235,11 @@ public class Writer {
         }
     }
 
+    /**
+     * Writes a single transaction to the transaction CSV file.
+     *
+     * @param tempTransaction The transaction to be written.
+     */
     public void writeSingleTransaction(Transaction tempTransaction) {
         try (PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("src/Data/Transactions.csv", true)))) {
             transactions.add(tempTransaction);
