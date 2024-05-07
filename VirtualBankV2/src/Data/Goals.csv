@@ -1,3 +1,4 @@
-GoalName,Description,TargetAmount,CurrentAmount,Username,startDate,endDate,targetAccount
-1,123456,22.00,22.00,Zhong Zhenghan,2024-05-01,2024-05-31,0000001
-2,123456,22.00,22.00,Zhong Zhenghan,2024-05-01,2024-05-31,0000002
+goalName,description,targetAmount,currentAmount,username,startDate,endDate
+Buy a bike,I hope to learn to ride a bike,600,200,ltz,2024.5.1,2024.5.10
+Watch a movie,I've been looking forward to the Avengers for a long time,60,20,ltz,2024.4.12,2024.4.18
+Buy a shirt,I really want that white basketball short sleeve from Nike,200,100,theo,2024.4.14,2024.4.20

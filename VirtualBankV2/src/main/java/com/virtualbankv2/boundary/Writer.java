@@ -65,8 +65,7 @@ public class Writer {
                         decimalFormat.format(goal.getCurrentAmount()) + "," +
                         goal.getUsername() + "," +
                         goal.getStartDate() + "," +
-                        goal.getEndDate() + "," +
-                        goal.getTargetAccount());
+                        goal.getEndDate());
             }
             bw.newLine();
             bw.close();
@@ -229,8 +228,7 @@ public class Writer {
                             decimalFormat.format(tempGoal.getCurrentAmount()) + "," +
                             tempGoal.getUsername() + "," +
                             tempGoal.getStartDate() + "," +
-                            tempGoal.getEndDate() + "," +
-                            tempGoal.getTargetAccount()
+                            tempGoal.getEndDate()
             );
         } catch (IOException e) {
             e.printStackTrace();
