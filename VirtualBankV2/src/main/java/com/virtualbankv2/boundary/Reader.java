@@ -109,11 +109,14 @@ public class Reader {
             while ((line = br.readLine()) != null) {
                 String[] values = line.split(",");
                 Goal goal = new Goal(
-                        values[0], // GoalID
+                        values[0], // GoalName
                         values[1], // Description
                         Double.parseDouble(values[2]), // TargetAmount
                         Double.parseDouble(values[3]), // CurrentAmount
-                        values[4]  // Status
+                        values[4], // username
+                        values[5], //startDate
+                        values[6], //endDate
+                        values[7]  //targetAccount
                 );
                 goals.add(goal);
             }
