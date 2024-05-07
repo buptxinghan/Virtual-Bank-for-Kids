@@ -6,42 +6,51 @@ public class GoalTest {
 
     @Test
     void testGoalConstructor() {
-        String goalID = "123456";
+        String goalName = "123456"; // Update variable name
         String description = "Buy a new bicycle";
         double targetAmount = 200.0;
         double currentAmount = 50.0;
         String childUsername = "JohnDoe";
+        String startDate = ""; // Add missing parameters
+        String endDate = ""; // Add missing parameters
+        String targetAccount = ""; // Add missing parameters
 
-        Goal goal = new Goal(goalID, description, targetAmount, currentAmount, childUsername);
+        Goal goal = new Goal(goalName, description, targetAmount, currentAmount, childUsername, startDate, endDate, targetAccount); // Update constructor call
 
         assertNotNull(goal);
-        assertEquals(goalID, goal.getGoalID());
+        assertEquals(goalName, goal.getGoalName());
         assertEquals(description, goal.getDescription());
         assertEquals(targetAmount, goal.getTargetAmount());
         assertEquals(currentAmount, goal.getCurrentAmount());
-        assertEquals(childUsername, goal.getChildUsername());
+        assertEquals(childUsername, goal.getUsername());
     }
 
     @Test
     void testGoalSettersAndGetters() {
-        Goal goal = new Goal("", "", 0.0, 0.0, "");
+        Goal goal = new Goal("", "", 0.0, 0.0, "", "", "", ""); // Update constructor call
 
-        String goalID = "987654";
+        String goalName = "987654"; // Update variable name
         String description = "Learn to play the guitar";
         double targetAmount = 500.0;
         double currentAmount = 100.0;
         String childUsername = "JaneDoe";
+        String startDate = ""; // Add missing parameters
+        String endDate = ""; // Add missing parameters
+        String targetAccount = ""; // Add missing parameters
 
-        goal.setGoalID(goalID);
+        goal.setGoalName(goalName);
         goal.setDescription(description);
         goal.setTargetAmount(targetAmount);
         goal.setCurrentAmount(currentAmount);
-        goal.setChildUsername(childUsername);
+        goal.setUsername(childUsername);
+        goal.setStartDate(startDate); // Add missing setter call
+        goal.setEndDate(endDate); // Add missing setter call
+        goal.setTargetAccount(targetAccount); // Add missing setter call
 
-        assertEquals(goalID, goal.getGoalID());
+        assertEquals(goalName, goal.getGoalName());
         assertEquals(description, goal.getDescription());
         assertEquals(targetAmount, goal.getTargetAmount());
         assertEquals(currentAmount, goal.getCurrentAmount());
-        assertEquals(childUsername, goal.getChildUsername());
+        assertEquals(childUsername, goal.getUsername());
     }
 }
