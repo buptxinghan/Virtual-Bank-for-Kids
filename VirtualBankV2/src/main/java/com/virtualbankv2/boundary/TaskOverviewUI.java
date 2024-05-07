@@ -1,7 +1,9 @@
 package com.virtualbankv2.boundary;
 
 import com.virtualbankv2.entity.Task;
-
+import com.virtualbankv2.entity.User;
+import static com.virtualbankv2.control.VirtualBankApplication.currentUser;
+import static com.virtualbankv2.boundary.Reader.tasks;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -83,6 +85,11 @@ public class TaskOverviewUI extends JFrame implements ActionListener {
         panel.add(smallPanel, gbc);
     }
     private void setMiddlePanel(JPanel panel){
+        Reader reader=new Reader();
+        String currentUserUserName = currentUser.getUsername();
+        for(Task task : tasks){
+            String taskUserName = task.getUserName();
+        }
 
     }
 
