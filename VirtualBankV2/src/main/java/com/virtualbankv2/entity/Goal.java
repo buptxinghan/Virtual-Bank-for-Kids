@@ -10,9 +10,8 @@ public class Goal {
     private String username;
     private String startDate;
     private String endDate;
-    private String targetAccount;
 
-    public Goal(String goalName, String description, double targetAmount, double currentAmount, String username, String startDate, String endDate, String targetAccount) {
+    public Goal(String goalName, String description, double targetAmount, double currentAmount, String username, String startDate, String endDate) {
         this.goalName = goalName;
         this.description = description;
         this.targetAmount = targetAmount;
@@ -20,7 +19,6 @@ public class Goal {
         this.username = username;
         this.startDate = startDate;
         this.endDate = endDate;
-        this.targetAccount = targetAccount;
     }
 
     //get and set
@@ -80,11 +78,4 @@ public class Goal {
         this.endDate = endDate;
     }
 
-    public String getTargetAccount() {
-        return targetAccount;
-    }
-
-    public void setTargetAccount(String targetAccount) {
-        this.targetAccount = targetAccount;
-    }
 }

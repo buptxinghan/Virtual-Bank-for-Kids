@@ -115,8 +115,7 @@ public class Reader {
                         Double.parseDouble(values[3]), // CurrentAmount
                         values[4], // username
                         values[5], //startDate
-                        values[6], //endDate
-                        values[7]  //targetAccount
+                        values[6]//endDate
                 );
                 goals.add(goal);
             }

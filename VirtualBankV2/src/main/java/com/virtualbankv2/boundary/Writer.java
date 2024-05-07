@@ -52,8 +52,7 @@ public class Writer {
                         decimalFormat.format(goal.getCurrentAmount()) + "," +
                         goal.getUsername() + "," +
                         goal.getStartDate() + "," +
-                        goal.getEndDate() + "," +
-                        goal.getTargetAccount());
+                        goal.getEndDate());
             }
             bw.newLine();
             bw.close();
