@@ -8,13 +8,14 @@ import java.util.List;
 
 import static com.virtualbankv2.boundary.Reader.accounts;
 import static com.virtualbankv2.boundary.Reader.users;
+import static com.virtualbankv2.entity.Task.totalcounter;
 
 public class VirtualBankApplication {
     public static User currentUser; // 表示当前进入的用户账户
 
     public VirtualBankApplication() {
         new Reader();
-
+        totalcounter = 0;
         currentUser = users.get(1);
         //List<Account> tempAccounts = getCurrentUserAccounts(currentUser);
 
@@ -23,6 +24,7 @@ public class VirtualBankApplication {
         //accountManager.displayAccountInformation(tempAccount);
         //LoginPage login = new LoginPage();
         HomePage hp = new HomePage();
+        CreateTaskPage ct = new CreateTaskPage();
 
 //        Writer writer = new Writer();
 //        writer.writeUsers("src/Data/Users.csv", users);
