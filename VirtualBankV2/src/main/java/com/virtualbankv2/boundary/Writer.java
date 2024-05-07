@@ -180,8 +180,7 @@ public class Writer {
                             decimalFormat.format(tempGoal.getCurrentAmount()) + "," +
                             tempGoal.getUsername() + "," +
                             tempGoal.getStartDate() + "," +
-                            tempGoal.getEndDate() + "," +
-                            tempGoal.getTargetAccount()
+                            tempGoal.getEndDate()
             );
         } catch (IOException e) {
             e.printStackTrace();
