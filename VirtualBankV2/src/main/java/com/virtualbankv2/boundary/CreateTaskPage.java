@@ -16,7 +16,6 @@ public class CreateTaskPage extends JFrame{
     private RoundedButton saveButton;
 
     public CreateTaskPage(){
-
         initializeComponents();
         CreateTaskController controller = new CreateTaskController(this);
         controller.initializeController();
@@ -129,7 +128,7 @@ public class CreateTaskPage extends JFrame{
 
         //显示
         setLocationRelativeTo(null); // 居中显示
-        //setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
 
 
