@@ -40,10 +40,10 @@ public class HomePage extends JFrame {
         getContentPane().setBackground(bg);
 
         // Initialize buttons
-        accountButton = new RoundedButton("<html><font size=6 color=" + getColorHex(z1) + ">My account</font><br><font color=" + getColorHex(z2) + ">Check your account information</font></html>");
-        tasksButton = new RoundedButton("<html><font size=6 color=" + getColorHex(z1) + ">My tasks</font><br><font color=" + getColorHex(z2) + ">Check the tasks assigned</font></html>");
-        goalsButton = new RoundedButton("<html><font size=6 color=" + getColorHex(z1) + ">My goals</font><br><font color=" + getColorHex(z2) + ">Check and manage your goal</font></html>");
-        manualButton = new RoundedButton("<html><font size=6 color=" + getColorHex(z1) + ">Instruction manual</font><br><font color=" + getColorHex(z2) + ">Learn how to use the software or contact us</font></html>");
+        accountButton = new RoundedButton("<html><font size=7 color=" + getColorHex(z1) + ">My account</font><br><font size=6 color=" + getColorHex(z2) + ">Check your account information</font></html>");
+        tasksButton = new RoundedButton("<html><font size=7 color=" + getColorHex(z1) + ">My tasks</font><br><font size=6 color=" + getColorHex(z2) + ">Check the tasks assigned</font></html>");
+        goalsButton = new RoundedButton("<html><font size=7 color=" + getColorHex(z1) + ">My goals</font><br><font size=6 color=" + getColorHex(z2) + ">Check and manage your goal</font></html>");
+        manualButton = new RoundedButton("<html><font size=7 color=" + getColorHex(z1) + ">Instruction manual</font><br><font size=6 color=" + getColorHex(z2) + ">Learn how to use the software or contact us</font></html>");
 
         accountButton.setHorizontalAlignment(SwingConstants.LEFT);
         tasksButton.setHorizontalAlignment(SwingConstants.LEFT);
@@ -56,7 +56,14 @@ public class HomePage extends JFrame {
         manualButton.setBackground(bg);
 
         // Initialize components
-        JLabel l1 = new JLabel("<html><font size=7 color=" + getColorHex(z1) + ">Welcome to Your Virtual Bank!</font></html>",JLabel.CENTER);
+        JLabel l1 = new JLabel( );
+        // 假设 getColorHex(z1) 返回一个颜色的十六进制字符串
+        String colorHex = getColorHex(z1);
+        l1.setText("<html><font color=" + colorHex + ">Welcome to Your Virtual Bank!</font></html>");
+        l1.setHorizontalAlignment(JLabel.CENTER);
+        l1.setFont(new Font("Serif", Font.BOLD, 60));
+
+
         ImageIcon icon = new ImageIcon("src/Materials/pig.png");
         JLabel pic = new JLabel(icon,JLabel.CENTER);
         JPanel picPanel = new JPanel();
@@ -86,8 +93,8 @@ public class HomePage extends JFrame {
         down.setBackground(bg);
         Centerdown.setBackground(bg);
 
-        right.setPreferredSize(new Dimension(100, 100));
-        left.setPreferredSize(new Dimension(100, 100));
+        right.setPreferredSize(new Dimension(250, 250));
+        left.setPreferredSize(new Dimension(250, 250));
 
         accountButton.addActionListener(e -> {
             this.dispose();
