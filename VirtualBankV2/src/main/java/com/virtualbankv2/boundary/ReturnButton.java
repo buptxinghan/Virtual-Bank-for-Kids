@@ -67,6 +67,9 @@ public class ReturnButton {
                     //添加你想跳转的页面
                      new HomePage();
                 }
+                else if (lastPage.equals("taskOverviewPage")) {
+                    new TaskOverviewUI();
+                }
 
             }
         });
@@ -92,8 +95,9 @@ public class ReturnButton {
                 else if (lastPage.equals("accountInformationPage")) {
                     new AccountInformationPage(account);
                 }
-                else if (lastPage.equals(" ")) {
+                else if (lastPage.equals("taskOverviewPage")) {
                     //添加你想跳转的页面
+                    new TaskOverviewUI();
                 }
 
             }
