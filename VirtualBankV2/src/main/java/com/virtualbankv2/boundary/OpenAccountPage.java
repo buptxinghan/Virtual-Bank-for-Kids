@@ -18,7 +18,7 @@ public class OpenAccountPage extends JFrame implements ActionListener {
     private JComboBox<String> ats = new JComboBox<>(options);
     private JTextField pw = new JTextField(6);
     private JTextField pw2 = new JTextField(6);
-    public static JButton createRoundButton(JFrame frame) {
+    public static JButton createRoundButton() {
         RoundedButton button = new RoundedButton("<html><font size ='6'>Submit</font></html>");
         button.setBackground(new Color(70, 130, 180));
         button.setForeground(Color.WHITE);
@@ -28,7 +28,7 @@ public class OpenAccountPage extends JFrame implements ActionListener {
         button.setMaximumSize(new Dimension(200, 50));
         return button;
     }
-    private RoundedButton submit = (RoundedButton) createRoundButton(this);
+    private RoundedButton submit = (RoundedButton) createRoundButton();
 
     private JButton returnButton=ReturnButton.createReturnButton(this,"accountOverviewPage");
 
