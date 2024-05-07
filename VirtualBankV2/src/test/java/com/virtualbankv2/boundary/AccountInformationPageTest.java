@@ -1,7 +1,6 @@
 import com.virtualbankv2.boundary.AccountInformationPage;
 import com.virtualbankv2.entity.Account;
 import org.junit.jupiter.api.Test;
-
 import javax.swing.*;
 import java.awt.Component;
 import java.awt.Container;
@@ -28,18 +27,18 @@ public class AccountInformationPageTest {
         assertNotNull(page);
 
         Container contentPane = page.getContentPane(); // Get the contentPane of the JFrame
-        assertEquals(3, contentPane.getComponentCount()); // Check if there are 3 panels: North, Center, South
+        assertEquals(3, contentPane.getComponentCount()); // Check if there are 4 panels: North, West, East, South
 
-        // Check if components are added in the Center panel
-        Component centerPanel = contentPane.getComponent(1); // Assuming the center panel is the second component
-        assertTrue(centerPanel instanceof JPanel);
-        Component[] centerComponents = ((JPanel) centerPanel).getComponents();
-        System.out.println("Number of components in Center panel: " + centerComponents.length); // Debugging output
-        for (Component component : centerComponents) {
-            System.out.println("Component in Center panel: " + component); // Debugging output
+        // Check if components are added in the West panel
+        Component westPanel = contentPane.getComponent(1); // Assuming the West panel is the second component
+        assertTrue(westPanel instanceof JPanel);
+        Component[] westComponents = ((JPanel) westPanel).getComponents();
+        System.out.println("Number of components in West panel: " + westComponents.length); // Debugging output
+        for (Component component : westComponents) {
+            System.out.println("Component in West panel: " + component); // Debugging output
         }
-        // Print out the details of each component in the center panel
-        for (Component component : centerComponents) {
+        // Print out the details of each component in the West panel
+        for (Component component : westComponents) {
             System.out.println(component.getClass().getName() + ": " + component.getName());
         }
     }
