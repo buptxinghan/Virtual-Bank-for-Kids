@@ -39,6 +39,7 @@ public class AccountInformationPage extends JFrame {
      * @param account The Account object containing the account details to display.
      */
     public AccountInformationPage(Account account) {
+
         setTitle("Account Information");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setPreferredSize(new Dimension(1200, 900));
@@ -99,10 +100,26 @@ public class AccountInformationPage extends JFrame {
         transactionButtonsPanel.add(returnButton);
         transactionButtonsPanel.add(Box.createRigidArea(new Dimension(0, 15))); // Spacer between buttons and picture
 
+        // Add picture
+        Icon transferIcon = new ImageIcon("src/Materials/Transfer.png");
+        JLabel transferLabel = new JLabel(transferIcon);
+        transferLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        transactionButtonsPanel.add(transferLabel);
+
+        // Create the bottom buttons panel with custom button styling
+        JPanel bottomButtonsPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 10, 50));
+        bottomButtonsPanel.setOpaque(false); // Transparent background
+        bottomButtonsPanel.add(createButtons("Freeze Account", new Color(255, 255, 0), Color.BLACK, account, "freeze account")); // Yellow button with black text
+        bottomButtonsPanel.add(Box.createRigidArea(new Dimension(50, 10))); // Spacer between buttons
+        bottomButtonsPanel.add(createButtons("Unfreeze Account", new Color(255, 255, 0), Color.BLACK, account, "unfreeze account")); // Yellow button with black text
+        bottomButtonsPanel.add(Box.createRigidArea(new Dimension(50, 10))); // Spacer between buttons
+        bottomButtonsPanel.add(createButtons("Delete Account", new Color(255, 69, 0), Color.WHITE, account, "delete account")); // Red button
+
         // Add components to the window
         add(titleLabel, BorderLayout.NORTH);
         add(formPanel, BorderLayout.WEST); // Align the form panel to the left
         add(transactionButtonsPanel, BorderLayout.EAST); // Place the transaction buttons in the center
+        add(bottomButtonsPanel, BorderLayout.SOUTH); // Place the bottom buttons at the bottom
 
         // Pack the frame
         pack();
@@ -110,6 +127,9 @@ public class AccountInformationPage extends JFrame {
         setVisible(true);
     }
 
+    public JLabel getAccountBalanceLabel() {
+        return accountBalanceLabel;
+    }
 
     /**
      * Creates and configures a JButton with the specified text and colors.
@@ -156,22 +176,11 @@ public class AccountInformationPage extends JFrame {
 
     /**
      * Helper method to create display JLabels with fixed size and larger font size.
-     * Formats the balance amount to display.
      *
      * @param text The text to display in the label.
      * @return The configured JLabel.
      */
     private static JLabel createDisplayLabel(String text) {
-        // Check if the text can be parsed as a Double
-        try {
-            Double balance = Double.parseDouble(text);
-            // Format the balance amount
-            DecimalFormat df = new DecimalFormat("#,##0.00");
-            text = df.format(balance);
-        } catch (NumberFormatException e) {
-            // Ignore parsing error
-        }
-
         JLabel label = new JLabel("<html><font color='Black' style='font-size: 20px;'>" + text + "</font></html>");
         label.setMaximumSize(new Dimension(350, 50)); // Adjusted size for display labels
         label.setMinimumSize(new Dimension(350, 50)); // Adjusted size for display labels
@@ -181,7 +190,6 @@ public class AccountInformationPage extends JFrame {
         label.setBackground(Color.WHITE);
         return label;
     }
-
 
     /**
      * Helper method to create display JLabels with fixed size and larger font size.
@@ -203,9 +211,5 @@ public class AccountInformationPage extends JFrame {
         label.setOpaque(true);
         label.setBackground(Color.WHITE);
         return label;
-    }
-
-    public JLabel getAccountBalanceLabel() {
-        return accountBalanceLabel;
     }
 }

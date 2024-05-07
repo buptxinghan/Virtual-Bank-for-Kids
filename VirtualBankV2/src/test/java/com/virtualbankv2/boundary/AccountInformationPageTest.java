@@ -27,7 +27,7 @@ public class AccountInformationPageTest {
         assertNotNull(page);
 
         Container contentPane = page.getContentPane(); // Get the contentPane of the JFrame
-        assertEquals(3, contentPane.getComponentCount()); // Check if there are 4 panels: North, West, East, South
+        assertEquals(4, contentPane.getComponentCount()); // Check if there are 4 panels: North, West, East, South
 
         // Check if components are added in the West panel
         Component westPanel = contentPane.getComponent(1); // Assuming the West panel is the second component
@@ -54,4 +54,5 @@ public class AccountInformationPageTest {
 
         assertEquals("<html><font color='Red' style='font-size: 20px;'>1,000.00</font></html>", balanceLabel.getText());
     }
+
 }
