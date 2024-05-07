@@ -5,6 +5,8 @@ import com.virtualbankv2.entity.*;
 import javax.swing.*;
 import java.awt.*;
 
+import static com.virtualbankv2.boundary.Reader.goals;
+
 public class GoalManager extends JFrame {
     private String currentUsername; // 当前用户的用户名
 
@@ -26,7 +28,7 @@ public class GoalManager extends JFrame {
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
 
         // 筛选与当前用户相关的目标
-        for (Goal goal : reader.goals) {
+        for (Goal goal : goals) {
             if (goal.getUsername().equals(currentUsername)) {
                 double completionRate = goal.getCurrentAmount() / goal.getTargetAmount();
                 String goalDetails = String.format("Goal Name: %s, Completion: %.2f%%, Start Date: %s, End Date: %s",
