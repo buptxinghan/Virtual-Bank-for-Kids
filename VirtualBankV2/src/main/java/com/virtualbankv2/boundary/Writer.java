@@ -43,14 +43,17 @@ public class Writer {
         try {
             FileWriter fw = new FileWriter("src/Data/Goals.csv");
             BufferedWriter bw = new BufferedWriter(fw);
-            bw.write("GoalID,Description,TargetAmount,CurrentAmount,ChildUsername");
+            bw.write("GoalName,Description,TargetAmount,CurrentAmount,Username,startDate,endDate,targetAccount");
             for (Goal goal : data) {
                 bw.newLine();
-                bw.write(goal.getGoalID() + "," +
+                bw.write(goal.getGoalName() + "," +
                         goal.getDescription() + "," +
                         decimalFormat.format(goal.getTargetAmount()) + "," +
                         decimalFormat.format(goal.getCurrentAmount()) + "," +
-                        goal.getChildUsername());
+                        goal.getUsername() + "," +
+                        goal.getStartDate() + "," +
+                        goal.getEndDate() + "," +
+                        goal.getTargetAccount());
             }
             bw.newLine();
             bw.close();
@@ -172,11 +175,14 @@ public class Writer {
         try (PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("src/Data/Goals.csv", true)))) {
             goals.add(tempGoal);
             out.println(
-                    tempGoal.getGoalID() + "," +
+                    tempGoal.getGoalName() + "," +
                             tempGoal.getDescription() + "," +
                             decimalFormat.format(tempGoal.getTargetAmount()) + "," +
                             decimalFormat.format(tempGoal.getCurrentAmount()) + "," +
-                            tempGoal.getChildUsername()
+                            tempGoal.getUsername() + "," +
+                            tempGoal.getStartDate() + "," +
+                            tempGoal.getEndDate() + "," +
+                            tempGoal.getTargetAccount()
             );
         } catch (IOException e) {
             e.printStackTrace();
