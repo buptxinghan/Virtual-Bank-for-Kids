@@ -6,7 +6,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
+import java.util.Random;
 
 import static com.virtualbankv2.boundary.Reader.accounts;
 import static com.virtualbankv2.control.VirtualBankApplication.currentUser;
@@ -137,7 +137,10 @@ public class OpenAccountPage extends JFrame implements ActionListener {
                     "OK"
             );
         } else {
-            Account account = new Account("b", str3, currentUser.getUsername(),str1,  0.00, "Active");
+            Random random = new Random();
+            int randomNumber = random.nextInt(900000) + 100000;
+            String accountid = String.valueOf(randomNumber);
+            Account account = new Account(accountid, str3, currentUser.getUsername(),str1,  0.00, "Active");
             //success
             //store
             Reader reader=new Reader();
