@@ -1,3 +1,4 @@
+package com.virtualbankv2.boundary;
 import com.virtualbankv2.boundary.AccountOverviewUI;
 import com.virtualbankv2.entity.Account;
 import org.junit.jupiter.api.BeforeEach;

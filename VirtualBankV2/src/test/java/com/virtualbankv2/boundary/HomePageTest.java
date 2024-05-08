@@ -1,3 +1,4 @@
+package com.virtualbankv2.boundary;
 import com.virtualbankv2.boundary.HomePage;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
