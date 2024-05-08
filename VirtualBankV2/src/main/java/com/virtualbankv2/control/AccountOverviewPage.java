@@ -12,7 +12,6 @@ import static com.virtualbankv2.control.VirtualBankApplication.currentUser;
 
 public class AccountOverviewPage{
     public AccountOverviewUI ui;
-    public AccountOverviewPage controller;
 
     public AccountOverviewPage() {
         this.ui = new AccountOverviewUI();

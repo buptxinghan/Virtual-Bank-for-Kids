@@ -127,6 +127,10 @@ public class AccountInformationPage extends JFrame {
         setVisible(true);
     }
 
+    public JLabel getAccountBalanceLabel() {
+        return accountBalanceLabel;
+    }
+
     /**
      * Creates and configures a JButton with the specified text and colors.
      * Associates different action listeners based on the action command.

@@ -24,6 +24,7 @@ public class CreateTaskPage extends JFrame{
 
         setSize(new Dimension(1200, 900));
         setTitle("Virtual Bank");
+
         // background color
         Color bg = new Color(199, 220, 247);
         Color z1 = new Color(93, 97, 195);
@@ -123,8 +124,6 @@ public class CreateTaskPage extends JFrame{
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
-
-
     }
 
 
@@ -136,12 +135,28 @@ public class CreateTaskPage extends JFrame{
         return contentArea;
     }
 
+    public JTextField getTitleField() {
+        return title;
+    }
+
+    public JTextField getRewardField() {
+        return reward;
+    }
+
     public JTextField getTitles() {
         return title;
     }
 
     public JTextField getReward() {
         return reward;
+    }
+
+    public JDateChooser getChooseStart() {
+        return chooseStart;
+    }
+
+    public JDateChooser getChooseEnd() {
+        return chooseEnd;
     }
 
     public String getStart() {
@@ -160,3 +175,5 @@ public class CreateTaskPage extends JFrame{
         return saveButton;
     }
 }
+
+// Unfinished

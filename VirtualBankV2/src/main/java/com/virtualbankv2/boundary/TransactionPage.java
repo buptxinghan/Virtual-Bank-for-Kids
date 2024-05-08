@@ -156,14 +156,4 @@ public class TransactionPage extends JFrame {
             }
         }
     }
-
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                new Reader();
-                new TransactionPage(accounts.get(0));
-            }
-        });
-    }
 }

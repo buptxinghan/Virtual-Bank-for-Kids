@@ -58,6 +58,15 @@ public class Transaction {
 
     public void setDescription() {this.description = description;}
 
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+
     @Override
     public String toString() {
         return "Transaction{" +

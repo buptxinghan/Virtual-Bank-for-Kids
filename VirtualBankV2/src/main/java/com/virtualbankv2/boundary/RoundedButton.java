@@ -4,10 +4,18 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.geom.RoundRectangle2D;
 
+/**
+ * A custom JButton with rounded corners.
+ */
 public class RoundedButton extends JButton {
     private Shape shape;
     private int cornerRadius;
 
+    /**
+     * Constructs a rounded button with the specified label.
+     *
+     * @param label The text label of the button.
+     */
     public RoundedButton(String label) {
         super(label);
         this.cornerRadius = 60;
@@ -17,7 +25,11 @@ public class RoundedButton extends JButton {
         setBorderPainted(false); // Remove border painting
     }
 
-    // 重写 paintComponent 方法来绘制圆角背景
+    /**
+     * Overrides the paintComponent method to draw a rounded background.
+     *
+     * @param g The Graphics context in which to paint.
+     */
     @Override
     protected void paintComponent(Graphics g) {
         Graphics2D g2 = (Graphics2D) g.create();
@@ -32,7 +44,13 @@ public class RoundedButton extends JButton {
         g2.dispose();
     }
 
-    // 重写 contains 方法来确保点击事件只在圆角区域内触发
+    /**
+     * Overrides the contains method to ensure that click events are only triggered within the rounded area.
+     *
+     * @param x The x-coordinate of the point to be tested.
+     * @param y The y-coordinate of the point to be tested.
+     * @return boolean True if the point is within the rounded area, otherwise false.
+     */
     @Override
     public boolean contains(int x, int y) {
         if (shape == null || !shape.getBounds().equals(getBounds())) {
