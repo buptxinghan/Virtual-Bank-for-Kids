@@ -22,9 +22,9 @@ public class VirtualBankApplication {
         //Account tempAccount = accounts.get(0);
         //AccountManager accountManager = new AccountManager();
         //accountManager.displayAccountInformation(tempAccount);
-        //LoginPage login = new LoginPage();
-        HomePage hp = new HomePage();
-        CreateTaskPage ct = new CreateTaskPage();
+//        LoginPage login = new LoginPage();
+       HomePage hp = new HomePage();
+        //CreateTaskPage ct = new CreateTaskPage();
 
 //        Writer writer = new Writer();
 //        writer.writeUsers("src/Data/Users.csv", users);
