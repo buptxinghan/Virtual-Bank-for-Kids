@@ -2,7 +2,7 @@ package com.virtualbankv2.boundary;
 
 import com.virtualbankv2.entity.Task;
 import com.virtualbankv2.entity.User;
-import static com.virtualbankv2.control.VirtualBankApplication.currentUser;
+//import static com.virtualbankv2.control.VirtualBankApplication.currentUser;
 import static com.virtualbankv2.boundary.Reader.tasks;
 import javax.swing.*;
 import java.awt.*;
@@ -36,7 +36,7 @@ public class TaskOverviewUI extends JFrame implements ActionListener {
         topPanel.setMaximumSize(new Dimension(Integer.MAX_VALUE, 100));
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.anchor = GridBagConstraints.CENTER;
-        gbc.insets = new Insets(15, 15, 15, 15);
+        gbc.insets = new Insets(30, 20, 30,20);
         bottomPanel = new JPanel();
         bottomPanel.setBackground(new Color(199, 220, 247));
         bottomPanel.setMaximumSize(new Dimension(Integer.MAX_VALUE, 100));
@@ -44,8 +44,9 @@ public class TaskOverviewUI extends JFrame implements ActionListener {
         JButton returnButton = ReturnButton.createReturnButton(this,"HomePage",new Dimension(120,50));
         addComponent(topPanel, gbc, cnt, 2,0,1,GridBagConstraints.CENTER);
         bottomPanel.add(returnButton);
-        middlePanel = new JPanel(new GridBagLayout());
+        middlePanel = new JPanel();
         middlePanel.setBackground(new Color(199, 220, 247));
+        middlePanel.setLayout(new BoxLayout(middlePanel, BoxLayout.Y_AXIS));
         setMiddlePanel(middlePanel);
         addComponent(panel,gbc,topPanel,2,0,0,GridBagConstraints.CENTER);
         addComponent(panel,gbc,middlePanel,2,0,1,GridBagConstraints.CENTER);
@@ -85,12 +86,52 @@ public class TaskOverviewUI extends JFrame implements ActionListener {
         panel.add(smallPanel, gbc);
     }
     private void setMiddlePanel(JPanel panel){
+        User currentUser=new User("Zhong Zhenghan","111111");
         Reader reader=new Reader();
+        int i=0;
         String currentUserUserName = currentUser.getUsername();
         for(Task task : tasks){
             String taskUserName = task.getUserName();
+            if (taskUserName.equals(currentUserUserName)) {
+                // 用户名相符的情况下的处理逻辑
+                createTaskComponent(task,i,panel);
+                i++;
+            }
         }
+    }
+    private void createTaskComponent(Task task, int i, JPanel container) {
+        String status;
+        if(task.isCompleted()){
+            status=new String("finished");
+        }
+        else{
+            status=new String("unfinished");
+        }
+        // 创建一个容器用于垂直排列两个小组件
+        JPanel pairContainer = new JPanel(new GridLayout(2, 1)); // 使用网格布局，两行一列
+        pairContainer.setAlignmentX(Component.CENTER_ALIGNMENT); // 设置容器水平居中对齐
+        pairContainer.setOpaque(false);
 
+        // 创建第一个小组件（标题）
+        JLabel titleLabel = new JLabel("Task " + (i + 1) + ": " + task.getTitle()+"("+status+")");
+        titleLabel.setHorizontalAlignment(SwingConstants.LEFT); // 设置文本左对齐
+        titleLabel.setOpaque(false); // 设置标签背景透明
+        titleLabel.setForeground(new Color(133, 149, 188));
+        titleLabel.setFont(new Font("Arial", Font.BOLD, 32));
+        // 创建第二个小组件（描述）
+        JLabel descriptionLabel = new JLabel("Description: " + task.getDescription());
+        descriptionLabel.setHorizontalAlignment(SwingConstants.LEFT); // 设置文本左对齐
+        descriptionLabel.setOpaque(false);
+        descriptionLabel.setForeground(new Color(112, 172, 249));
+        descriptionLabel.setFont(new Font("Arial", Font.PLAIN, 20));
+
+
+        // 将两个小组件添加到容器中
+        pairContainer.add(titleLabel);
+        pairContainer.add(descriptionLabel);
+
+        // 将一对小组件的容器添加到整体容器中
+        container.add(pairContainer);
     }
 
 //    public static void main(String[] args) {

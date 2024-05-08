@@ -94,6 +94,11 @@ public class HomePage extends JFrame {
         right.setPreferredSize(new Dimension(250, 250));
         left.setPreferredSize(new Dimension(250, 250));
 
+        accountButton.addActionListener(e -> {
+            this.dispose();
+            new AccountOverviewPage();
+        });
+
         Centerdown.add(accountButton);
 //        Centerdown.add(Box.createRigidArea(new Dimension(0, 10)));
         Centerdown.add(tasksButton);

@@ -3,27 +3,31 @@ package com.virtualbankv2.entity;
 public class Goal {
     // 设置目标
 
-    private String goalID;
+    private String goalName;
     private String description;
     private double targetAmount;
     private double currentAmount;
-    private String childUsername;
+    private String username;
+    private String startDate;
+    private String endDate;
 
-    public Goal(String goalID, String description, double targetAmount, double currentAmount, String childUsername) {
-        this.goalID = goalID;
+    public Goal(String goalName, String description, double targetAmount, double currentAmount, String username, String startDate, String endDate) {
+        this.goalName = goalName;
         this.description = description;
         this.targetAmount = targetAmount;
         this.currentAmount = currentAmount;
-        this.childUsername = childUsername;
+        this.username = username;
+        this.startDate = startDate;
+        this.endDate = endDate;
     }
 
     //get and set
-    public String getGoalID() {
-        return goalID;
+    public String getGoalName() {
+        return goalName;
     }
 
-    public void setGoalID(String goalID) {
-        this.goalID = goalID;
+    public void setGoalName(String goalID) {
+        this.goalName = goalID;
     }
 
     public String getDescription() {
@@ -50,11 +54,28 @@ public class Goal {
         this.currentAmount = currentAmount;
     }
 
-    public String getChildUsername() {
-        return childUsername;
+    public String getUsername() {
+        return username;
     }
 
-    public void setChildUsername(String childUsername) {
-        this.childUsername = childUsername;
+    public void setUsername(String childUsername) {
+        this.username = childUsername;
     }
+
+    public String getStartDate() {
+        return  startDate;
+    }
+
+    public void setStartDate(String startDate) {
+        this.startDate = startDate;
+    }
+
+    public String getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(String endDate) {
+        this.endDate = endDate;
+    }
+
 }
