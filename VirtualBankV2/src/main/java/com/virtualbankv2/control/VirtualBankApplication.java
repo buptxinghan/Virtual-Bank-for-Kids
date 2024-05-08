@@ -23,7 +23,7 @@ public class VirtualBankApplication {
         //AccountManager accountManager = new AccountManager();
         //accountManager.displayAccountInformation(tempAccount);
         //LoginPage login = new LoginPage();
-        HomePage hp = new HomePage();
+        //HomePage hp = new HomePage();
         CreateTaskPage ct = new CreateTaskPage();
 
 //        Writer writer = new Writer();
@@ -45,6 +45,8 @@ public class VirtualBankApplication {
 
         return currentUserAccounts;
     }
+
+
 
     // 主函数，用于测试
     public static void main(String[] args) {

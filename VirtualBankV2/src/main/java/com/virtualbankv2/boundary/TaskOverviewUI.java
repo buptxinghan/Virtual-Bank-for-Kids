@@ -93,10 +93,10 @@ public class TaskOverviewUI extends JFrame implements ActionListener {
 
     }
 
-    public static void main(String[] args) {
-        TaskOverviewUI taskOverviewUI= new TaskOverviewUI();
-    }
-    @Override
+//    public static void main(String[] args) {
+//        TaskOverviewUI taskOverviewUI= new TaskOverviewUI();
+//    }
+//    @Override
     public void actionPerformed(ActionEvent e) {
 //跳转
     }
