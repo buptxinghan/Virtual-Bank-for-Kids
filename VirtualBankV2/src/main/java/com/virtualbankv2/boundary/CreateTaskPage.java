@@ -25,12 +25,20 @@ public class CreateTaskPage extends JFrame{
         // 设置窗口大小
         setSize(new Dimension(1200, 900));
         setTitle("Virtual Bank");
+
         // 设置背景颜色
         Color bg = new Color(199, 220, 247);
         Color z1 = new Color(93, 97, 195);
         Color z2 = new Color(133, 149, 188);
 
         getContentPane().setBackground(bg);
+
+        //选择始末日期
+        chooseStart = new JDateChooser();
+        chooseStart.setDateFormatString("yyyy-MM-dd");
+
+        chooseEnd = new JDateChooser();
+        chooseEnd.setDateFormatString("yyyy-MM-dd");
 
         //生成组件
         //按钮
@@ -130,8 +138,6 @@ public class CreateTaskPage extends JFrame{
         setLocationRelativeTo(null); // 居中显示
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
-
-
     }
 
     // 辅助方法：将Color对象转换为HTML颜色字符串
@@ -143,12 +149,28 @@ public class CreateTaskPage extends JFrame{
         return contentArea;
     }
 
+    public JTextField getTitleField() {
+        return title;
+    }
+
+    public JTextField getRewardField() {
+        return reward;
+    }
+
     public JTextField getTitles() {
         return title;
     }
 
     public JTextField getReward() {
         return reward;
+    }
+
+    public JDateChooser getChooseStart() {
+        return chooseStart;
+    }
+
+    public JDateChooser getChooseEnd() {
+        return chooseEnd;
     }
 
     public String getStart() {
@@ -167,3 +189,5 @@ public class CreateTaskPage extends JFrame{
         return saveButton;
     }
 }
+
+// Unfinished
