@@ -52,7 +52,8 @@ public class AccountOverviewUI extends JFrame {
     // Display the panel for creating a new account
     private void displayCreateAccountPanel() {
 
-        RoundedButton addButton = new RoundedButton("<html><font style='font-size: 21px;'>+</font></html>");
+        RoundedButton addButton = new RoundedButton("+");
+        addButton.setFont(new Font("Arial", Font.BOLD, 25));
         addButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         extracted(addButton,50,50);
         new ChildLockManager().addButtonWithChildLock(this,addButton, pageOpen);
@@ -79,7 +80,7 @@ public class AccountOverviewUI extends JFrame {
     }
 
     private static void extracted(RoundedButton Button,int width,int height) {
-        Button.setBackground(new Color(66,88,187));
+        Button.setBackground(new Color(79,143,230));
         Button.setForeground(Color.WHITE);
         Button.setPreferredSize(new Dimension(width,height));
         Button.setMaximumSize(new Dimension(width,height));
@@ -88,7 +89,8 @@ public class AccountOverviewUI extends JFrame {
     // Update the page with the given account information
     public void updatePage(Account account) {
 
-        RoundedButton selectButton = new RoundedButton( "<html><font style='font-size: 13px;'>select</font></html>");
+        RoundedButton selectButton = new RoundedButton( "select");
+        selectButton.setFont(new Font("Arial", Font.BOLD, 17));
         extracted(selectButton,90,35);
         selectButton.addActionListener(e -> {
             dispose();

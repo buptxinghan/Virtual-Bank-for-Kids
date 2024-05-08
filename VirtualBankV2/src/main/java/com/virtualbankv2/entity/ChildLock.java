@@ -1,12 +1,14 @@
 package com.virtualbankv2.entity;
 
+import com.virtualbankv2.boundary.RoundedTextField;
+
 import javax.swing.*;
 import java.awt.*;
 
 public class ChildLock extends JFrame{
 
     private JPanel mainPanel;
-    private JTextField userText = new JTextField(20);
+    private JTextField userText = new RoundedTextField(20);
     private JButton checkButton = new JButton("Check");
 
     public JTextField getUserText() {
@@ -19,6 +21,7 @@ public class ChildLock extends JFrame{
 
     public ChildLock() {
         this.setSize(600, 450);
+        this.setResizable(false);
         this.mainPanel = new JPanel(new GridBagLayout());
         this.mainPanel.setBackground(new Color(199, 220, 247));
         this.setLocationRelativeTo(null);
@@ -32,7 +35,7 @@ public class ChildLock extends JFrame{
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.gridwidth = GridBagConstraints.REMAINDER;
         gbc.anchor = GridBagConstraints.CENTER;
-
+        userText.setBorder(BorderFactory.createLineBorder(Color.GRAY, 6));  // 添加黑色的线条边框，宽度为2
         JLabel lockLabel = new JLabel(new ImageIcon("src/Materials/Lock.png"));
         JLabel mathQuestion = new JLabel("999 + 999 = ?");
 
