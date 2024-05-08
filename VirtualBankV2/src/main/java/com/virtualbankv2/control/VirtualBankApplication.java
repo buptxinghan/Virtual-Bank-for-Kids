@@ -14,6 +14,7 @@ public class VirtualBankApplication {
     public static User currentUser; // 表示当前进入的用户账户
 
     public VirtualBankApplication() {
+
         new Reader();
         totalcounter = 0;
         currentUser = users.get(1);

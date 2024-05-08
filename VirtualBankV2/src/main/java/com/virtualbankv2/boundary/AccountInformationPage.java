@@ -18,19 +18,19 @@ public class AccountInformationPage extends JFrame {
     private final AccountManager accountManager = new AccountManager();
 
     /** JLabel to display the account balance. */
-    private JLabel accountBalanceLabel;
+    private RoundedLabel accountBalanceLabel;
 
     /** JLabel to display the account status. */
-    private JLabel accountStatusLabel;
+    private RoundedLabel accountStatusLabel;
 
     /** JLabel to display the account ID. */
-    private JLabel accountIDLabel;
+    private RoundedLabel accountIDLabel;
 
     /** JLabel to display the account type. */
-    private JLabel accountTypeLabel;
+    private RoundedLabel accountTypeLabel;
 
     /** JLabel to display the account username. */
-    private JLabel accountUsernameLabel;
+    private RoundedLabel accountUsernameLabel;
 
     /**
      * Constructs an AccountInformationPage with the given Account object.
@@ -180,13 +180,13 @@ public class AccountInformationPage extends JFrame {
      * @param text The text to display in the label.
      * @return The configured JLabel.
      */
-    private static JLabel createDisplayLabel(String text) {
-        JLabel label = new JLabel("<html><font color='Black' style='font-size: 20px;'>" + text + "</font></html>");
+    private static RoundedLabel createDisplayLabel(String text) {
+        RoundedLabel label = new RoundedLabel("<html><font color='Black' style='font-size: 20px;'>" + text + "</font></html>");
         label.setMaximumSize(new Dimension(350, 50)); // Adjusted size for display labels
         label.setMinimumSize(new Dimension(350, 50)); // Adjusted size for display labels
         label.setPreferredSize(new Dimension(350, 50)); // Adjusted size for display labels
         label.setHorizontalAlignment(SwingConstants.CENTER);
-        label.setOpaque(true);
+//        label.setOpaque(true);
         label.setBackground(Color.WHITE);
         return label;
     }
@@ -198,17 +198,17 @@ public class AccountInformationPage extends JFrame {
      * @param balance The account balance to display.
      * @return The configured JLabel displaying the formatted balance.
      */
-    private static JLabel createDisplayLabel(Double balance) {
+    private static RoundedLabel createDisplayLabel(Double balance) {
         //格式化balance
         DecimalFormat df = new DecimalFormat("#,##0.00");
         String formattedBalance = df.format(balance);
 
-        JLabel label = new JLabel("<html><font color='Red' style='font-size: 20px;'>" + formattedBalance + "</font></html>");
+        RoundedLabel label = new RoundedLabel("<html><font color='Red' style='font-size: 20px;'>" + formattedBalance + "</font></html>");
         label.setMaximumSize(new Dimension(350, 50)); // Adjusted size for display labels
         label.setMinimumSize(new Dimension(350, 50)); // Adjusted size for display labels
         label.setPreferredSize(new Dimension(350, 50)); // Adjusted size for display labels
         label.setHorizontalAlignment(SwingConstants.CENTER);
-        label.setOpaque(true);
+//        label.setOpaque(true);
         label.setBackground(Color.WHITE);
         return label;
     }
