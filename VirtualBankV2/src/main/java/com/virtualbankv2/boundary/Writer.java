@@ -43,16 +43,14 @@ public class Writer {
         try {
             FileWriter fw = new FileWriter("src/Data/Goals.csv");
             BufferedWriter bw = new BufferedWriter(fw);
-            bw.write("GoalName,Description,TargetAmount,CurrentAmount,Username,startDate,endDate,targetAccount");
+            bw.write("GoalName,Description,TargetAmount,CurrentAmount,Username,startDate,endDate");
             for (Goal goal : data) {
                 bw.newLine();
                 bw.write(goal.getGoalName() + "," +
                         goal.getDescription() + "," +
                         decimalFormat.format(goal.getTargetAmount()) + "," +
                         decimalFormat.format(goal.getCurrentAmount()) + "," +
-                        goal.getUsername() + "," +
-                        goal.getStartDate() + "," +
-                        goal.getEndDate());
+                        goal.getUsername());
             }
             bw.newLine();
             bw.close();
@@ -178,9 +176,7 @@ public class Writer {
                             tempGoal.getDescription() + "," +
                             decimalFormat.format(tempGoal.getTargetAmount()) + "," +
                             decimalFormat.format(tempGoal.getCurrentAmount()) + "," +
-                            tempGoal.getUsername() + "," +
-                            tempGoal.getStartDate() + "," +
-                            tempGoal.getEndDate()
+                            tempGoal.getUsername()
             );
         } catch (IOException e) {
             e.printStackTrace();

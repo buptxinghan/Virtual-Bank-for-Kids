@@ -1,4 +1,3 @@
-goalName,description,targetAmount,currentAmount,username,startDate,endDate
-Buy a bike,I hope to learn to ride a bike,600,200,ltz,2024.5.1,2024.5.10
-Watch a movie,I've been looking forward to the Avengers for a long time,60,20,ltz,2024.4.12,2024.4.18
-Buy a shirt,I really want that white basketball short sleeve from Nike,200,100,theo,2024.4.14,2024.4.20
+goalName,description,targetAmount,currentAmount,username
+Save up to 600,I want to buy a bike worth 600,600,200,ltz
+Save up to 200,I really want that white basketball short sleeve from Nike,200,100,theo
