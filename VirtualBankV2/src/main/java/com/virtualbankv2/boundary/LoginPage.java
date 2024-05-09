@@ -112,6 +112,7 @@ public class LoginPage extends JFrame {
         frame.pack();
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
+
     }
 
     private boolean checkCredentials(String userName, String password) {
@@ -128,5 +129,25 @@ public class LoginPage extends JFrame {
     public static void main(String[] args) {
         Reader reader = new Reader();
         SwingUtilities.invokeLater(() -> new LoginPage());
+    }
+
+    public JFrame getFrame() {
+        return frame;
+    }
+
+    public JTextField getNameField() {
+        return nameField;
+    }
+
+    public JPasswordField getPasswordField() {
+        return passwordField;
+    }
+
+    public JButton getLoginButton() {
+        return loginButton;
+    }
+
+    public JButton getSignUpButton() {
+        return signUpButton;
     }
 }

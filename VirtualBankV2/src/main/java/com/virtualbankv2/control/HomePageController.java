@@ -1,5 +1,6 @@
 package com.virtualbankv2.control;
 import com.virtualbankv2.boundary.HomePage;
+import com.virtualbankv2.boundary.TaskOverviewUI;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -7,12 +8,17 @@ import java.awt.event.ActionListener;
 
 public class HomePageController {
     private HomePage view;
+    private TaskOverviewUI task;
 
     /**
      * Constructor for HomePageController class.
      * @param view The view associated with the controller.
      */
     public HomePageController(HomePage view) {
+
+        this.task = new TaskOverviewUI(); // 在构造函数中初始化hp
+       // task.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        task.setVisible(false);
         this.view = view;
     }
 
@@ -33,11 +39,10 @@ public class HomePageController {
      * @param newPage The new page to be displayed when the button is clicked.
      */
     private void addReturnListenerToButton(JButton button, JFrame newPage) {
-        newPage.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                view.setVisible(false);
+                view.dispose();
                 newPage.setVisible(true);
             }
         });

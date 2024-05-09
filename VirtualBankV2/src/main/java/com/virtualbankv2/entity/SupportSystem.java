@@ -15,4 +15,21 @@ public class SupportSystem {
         this.guide = guide;
         this.contactInfo = contactInfo;
     }
+
+    // Getter methods
+    public String getFaqID() {
+        return faqID;
+    }
+    public String getQuestion() {
+        return question;
+    }
+    public String getAnswer() {
+        return answer;
+    }
+    public String getGuide() {
+        return guide;
+    }
+    public String getContactInfo() {
+        return contactInfo;
+    }
 }

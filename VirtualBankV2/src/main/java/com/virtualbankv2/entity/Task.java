@@ -1,5 +1,4 @@
 package com.virtualbankv2.entity;
-// 任务查看、布置、管理
 
 public class Task {
     private String taskID;
@@ -37,7 +36,6 @@ public class Task {
         this.userName = o;
     }
 
-    // 这里可以添加getter和setter方法
     public String getTaskID() {
         return taskID;
     }
