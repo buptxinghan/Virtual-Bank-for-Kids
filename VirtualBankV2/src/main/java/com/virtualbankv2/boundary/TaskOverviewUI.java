@@ -140,6 +140,7 @@ public class TaskOverviewUI extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         CreateTaskPage createTaskPage=new CreateTaskPage();
+        this.dispose();
 //跳转
     }
 }

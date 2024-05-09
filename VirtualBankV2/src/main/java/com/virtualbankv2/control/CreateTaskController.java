@@ -21,7 +21,6 @@ public class CreateTaskController {
     Writer writer = new Writer();
 
     public CreateTaskController(CreateTaskPage view) {
-
         this.overviewUI = new TaskOverviewUI();
         overviewUI.setVisible(false);
         this.view = view;
@@ -29,7 +28,7 @@ public class CreateTaskController {
 
 
     public void createTask(){
-        String title = view.getTitles().getText();
+        String title = view.getTitleField().getText();
         String re = view.getReward().getText();
         String description = view.getContentArea().getText();
         String start = view.getStart();
@@ -71,14 +70,13 @@ public class CreateTaskController {
         });
     }
     private boolean titleIsValid() {
-        String title = view.getTitles().getText();
-        return title != null && !title.trim().isEmpty();
+        String title = view.getTitleField().getText();
+        return title != null && !title.trim().isEmpty();//not equal to null string and empty value
     }
 
     private boolean rewardIsValid() {
         String re = view.getReward().getText();
         return re != null && !re.trim().isEmpty();
     }
-
 
 }
