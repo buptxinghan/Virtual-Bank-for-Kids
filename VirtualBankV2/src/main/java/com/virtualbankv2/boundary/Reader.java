@@ -26,7 +26,9 @@ public class Reader {
     public static List<Goal> goals;
 
     /** List to store user support and help information. */
-    public static List<SupportSystem> support; // 提供用户支持和帮助信息
+    public static List<SupportSystem> support;
+
+    public static List<Interest> interests;
 
     /**
      * Constructs a Reader object and initializes lists by reading data from CSV files.
@@ -39,6 +41,7 @@ public class Reader {
         tasks = this.readTasks("src/Data/Tasks.csv");
         goals = this.readGoals("src/Data/Goals.csv");
         support = this.readSupport("src/Data/Support.csv");
+        interests = this.readInterests("src/Data/Interest.csv");
     }
 
     /**
@@ -51,7 +54,7 @@ public class Reader {
         List<User> users = new ArrayList<>();
         try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
             String line;
-            br.readLine(); // 跳过标题行
+            br.readLine();
             while ((line = br.readLine()) != null) {
                 String[] values = line.split(",");
                 User user = new User(
@@ -76,7 +79,7 @@ public class Reader {
         List<Account> accounts = new ArrayList<>();
         try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
             String line;
-            br.readLine(); // 跳过标题行
+            br.readLine();
             while ((line = br.readLine()) != null) {
                 String[] values = line.split(",");
                 Account account = new Account(
@@ -105,7 +108,7 @@ public class Reader {
         List<Goal> goals = new ArrayList<>();
         try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
             String line;
-            br.readLine(); // 跳过标题行
+            br.readLine();
             while ((line = br.readLine()) != null) {
                 String[] values = line.split(",");
                 Goal goal = new Goal(
@@ -133,7 +136,7 @@ public class Reader {
         List<Task> tasks = new ArrayList<>();
         try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
             String line;
-            br.readLine(); // 跳过标题行
+            br.readLine();
             while ((line = br.readLine()) != null) {
                 String[] values = line.split(",");
                 Task task = new Task(
@@ -165,7 +168,7 @@ public class Reader {
         List<SupportSystem> supports = new ArrayList<>();
         try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
             String line;
-            br.readLine(); // 跳过标题行
+            br.readLine();
             while ((line = br.readLine()) != null) {
                 String[] values = line.split(",");
                 SupportSystem support = new SupportSystem(
@@ -193,7 +196,7 @@ public class Reader {
         List<Transaction> transactions = new ArrayList<>();
         try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
             String line;
-            br.readLine(); // 跳过标题行
+            br.readLine();
             while ((line = br.readLine()) != null) {
                 String[] values = line.split(",");
                 Transaction transaction = new Transaction(
@@ -210,6 +213,34 @@ public class Reader {
             e.printStackTrace();
         }
         return transactions;
+    }
+
+    /**
+     * Reads interest data from a CSV file and populates a list of interest objects.
+     *
+     * @param filePath The path to the CSV file containing interest data.
+     * @return A list of Interest objects populated with data from the CSV file.
+     */
+    public List<Interest> readInterests(String filePath) {
+        List<Interest> interests = new ArrayList<>();
+        try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
+            String line;
+            br.readLine();
+            while ((line = br.readLine()) != null) {
+                String[] values = line.split(",");
+                Interest interest = new Interest(
+                        values[0], // InterestId
+                        values[1], // LastUpdate
+                        values[2], // CurrentDate
+                        values[3], // AccountId
+                        Double.parseDouble(values[4]) // Amount
+                );
+                interests.add(interest);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return interests;
     }
 
 }

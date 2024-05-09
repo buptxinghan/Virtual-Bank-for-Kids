@@ -5,9 +5,9 @@ public class Interest {
     private String lastUpdate;
     private String currentDate;
     private String accountId;
-    private String amount;
+    private double amount;
 
-    public Interest(String interestId, String lastUpdate, String currentDate, String accountId, String amount) {
+    public Interest(String interestId, String lastUpdate, String currentDate, String accountId, double amount) {
         this.interestId = interestId;
         this.lastUpdate = lastUpdate;
         this.currentDate = currentDate;
@@ -48,11 +48,11 @@ public class Interest {
     }
 
 
-    public String getAmount() {
+    public double getAmount() {
         return amount;
     }
 
-    public void setAmount(String amount) {
+    public void setAmount(double amount) {
         this.amount = amount;
     }
 }

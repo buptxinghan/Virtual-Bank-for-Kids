@@ -7,10 +7,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 
-import static com.virtualbankv2.boundary.Reader.accounts;
-import static com.virtualbankv2.boundary.Reader.users;
-import static com.virtualbankv2.boundary.Reader.goals;
-import static com.virtualbankv2.boundary.Reader.transactions;
+import static com.virtualbankv2.boundary.Reader.*;
 
 /**
  * Writes data to CSV files.
@@ -246,6 +243,26 @@ public class Writer {
                             decimalFormat.format(tempTransaction.getAmount()) + "," +
                             dateFormatter.format(LocalDate.now()) + "," +
                             tempTransaction.getDescription()
+            );
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Writes a single interest to the Interest CSV file.
+     *
+     * @param tempInterest The interest to be written.
+     */
+    public void writeSingleInterest(Interest tempInterest) {
+        try (PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("src/Data/Interest.csv", true)))) {
+            interests.add(tempInterest);
+            out.println(
+                    tempInterest.getInterestId() + "," +
+                            tempInterest.getLastUpdate() + "," +
+                            tempInterest.getCurrentDate() + "," +
+                            tempInterest.getAccountId() + "," +
+                            decimalFormat.format(tempInterest.getAmount())
             );
         } catch (IOException e) {
             e.printStackTrace();
