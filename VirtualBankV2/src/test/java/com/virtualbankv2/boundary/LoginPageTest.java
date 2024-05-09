@@ -1,3 +1,4 @@
+package com.virtualbankv2.boundary;
 import com.virtualbankv2.boundary.LoginPage;
 import com.virtualbankv2.control.VirtualBankApplication;
 import com.virtualbankv2.entity.User;

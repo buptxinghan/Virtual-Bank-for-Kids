@@ -161,4 +161,18 @@ public class OpenAccountPage extends JFrame implements ActionListener {
             pw2.setText("");
         }
     }
+
+    public JTextField getPw() {
+        return pw;
+    }
+
+    public JTextField getPw2() {
+        return pw2;
+    }
+
+    public JButton getSubmit() {
+        return submit;
+    }
+
+
 }

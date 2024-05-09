@@ -7,9 +7,11 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+// 设置默认语言环境为英语
 public class ChildLockManager {
 
     public void addButtonWithChildLock(JFrame frame, JButton button, PageOpen pageOpen) {
+
         button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -28,7 +30,23 @@ public class ChildLockManager {
                             childLock.dispose();
                             pageOpen.openAccount();
                         } else {
-                            JOptionPane.showMessageDialog(childLock, "答案错误，请重试！");
+                            try {
+                                // 设置系统的 Look and Feel
+                                UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+                            } catch (Exception ee) {
+                                ee.printStackTrace();
+                            }
+                            JOptionPane.showOptionDialog(
+                                    childLock,
+                                    "Answer incorrect, please try again!",
+                                    "Error",
+                                    JOptionPane.DEFAULT_OPTION,
+                                    JOptionPane.ERROR_MESSAGE,
+                                    null,
+                                    new String[] {"OK"},
+                                    "OK"
+                            );
+
                         }
                     }
                 });

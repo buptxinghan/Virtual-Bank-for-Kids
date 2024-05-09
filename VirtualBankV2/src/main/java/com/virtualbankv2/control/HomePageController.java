@@ -34,6 +34,9 @@ public class HomePageController {
 
         addReturnListenerToButton(view.getTasksButton(), task);
         //addReturnListenerToButton(view.getGoalsButton(), new testpage3("VB"));
+        //addReturnListenerToButton(view.getAccountButton(), new AccountOverviewPage());
+        //addReturnListenerToButton(view.getTasksButton(), new testpage2("VB"));
+        //addReturnListenerToButton(view.getGoalsButton(), new GoalManager("ltz"));
         //addReturnListenerToButton(view.getManualButton(), new testpage4("VB"));
     }
 

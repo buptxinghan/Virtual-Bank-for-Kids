@@ -6,47 +6,92 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
 
 public class CreateGoalPage extends JFrame {
     private JTextField goalNameField;
     private JTextArea descriptionArea;
     private JTextField targetAmountField;
-    private JTextField startDateField;
-    private JTextField endDateField;
-    private JButton saveButton;
+    private RoundedButton saveButton;
+    private String currentUsername;
 
-    public CreateGoalPage() {
+    public CreateGoalPage(String username) {
+        this.currentUsername = username;
         createUI();
     }
 
     private void createUI() {
-        setTitle("Create my goal");
-        setSize(300, 400); // set frame size
-        setLayout(new GridLayout(6, 2, 10, 10)); // set layout
+        setTitle("Create My Goal");
+        getContentPane().setBackground(new Color(199, 220, 247));
+        setSize(800, 600); // Set frame size
+        setLocationRelativeTo(null);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLayout(new BorderLayout(10, 10)); // Set layout manager
 
-        // Initialize components
+        Font font1 = new Font("Arial", Font.BOLD, 40);
+        Font font2 = new Font("Arial",Font.BOLD,24);
+        // Top panel
+        JPanel topPanel = new JPanel();
+        topPanel.setBackground(new Color(199, 220, 247));
+        JLabel headerLabel = new JLabel("Create a Goal", JLabel.CENTER);
+        headerLabel.setFont(font1);
+        headerLabel.setForeground(new Color(93, 97, 195));
+        topPanel.add(headerLabel);
+        add(topPanel, BorderLayout.NORTH);
+
+        // Middle panel
+        JPanel middlePanel = new JPanel(new GridLayout(3, 2, 10, 10));
+        middlePanel.setBackground(new Color(199, 220, 247));
+
+        Font labelFont = new Font("Arial", Font.BOLD, 28); // Font for labels
+        Font inputFont = new Font("Arial", Font.BOLD, 24); // Font for input fields
+
+// Goal Name Label
+        JLabel goalNameLabel = new JLabel("Goal Name");
+        goalNameLabel.setFont(labelFont);
+        goalNameLabel.setForeground(new Color(93, 97, 195)); // Set color of the label
+        middlePanel.add(goalNameLabel);
+
+// Goal Name Field
         goalNameField = new JTextField();
-        descriptionArea = new JTextArea(5, 20);
-        targetAmountField = new JTextField();
-        startDateField = new JTextField();
-        endDateField = new JTextField();
-        saveButton = new JButton("Save");
+        goalNameField.setFont(inputFont);
+        goalNameField.setPreferredSize(new Dimension(100, 20)); // Set size of the input field
+        middlePanel.add(goalNameField);
 
-        // Adding components to JFrame
-        add(new JLabel("Goal Name"));
-        add(goalNameField);
-        add(new JLabel("Description"));
-        add(new JScrollPane(descriptionArea));
-        add(new JLabel("Target Amount"));
-        add(targetAmountField);
-        add(new JLabel("Start Date (yyyy/MM/dd)"));
-        add(startDateField);
-        add(new JLabel("End Date (yyyy/MM/dd)"));
-        add(endDateField);
-        add(saveButton);
+// Description Label
+        JLabel descriptionLabel = new JLabel("Description");
+        descriptionLabel.setFont(labelFont);
+        descriptionLabel.setForeground(new Color(93, 97, 195)); // Set color of the label
+        middlePanel.add(descriptionLabel);
+
+// Description Area
+        descriptionArea = new JTextArea(5, 20);
+        descriptionArea.setFont(inputFont);
+        JScrollPane scrollPane = new JScrollPane(descriptionArea);
+        scrollPane.setPreferredSize(new Dimension(100, 20)); // Set size of the scroll pane
+        middlePanel.add(scrollPane);
+
+// Target Amount Label
+        JLabel targetAmountLabel = new JLabel("Target Amount");
+        targetAmountLabel.setFont(labelFont);
+        targetAmountLabel.setForeground(new Color(93, 97, 195)); // Set color of the label
+        middlePanel.add(targetAmountLabel);
+
+// Target Amount Field
+        targetAmountField = new JTextField();
+        targetAmountField.setFont(inputFont);
+        targetAmountField.setPreferredSize(new Dimension(100, 20)); // Set size of the input field
+        middlePanel.add(targetAmountField);
+
+        add(middlePanel, BorderLayout.CENTER);
+
+
+        // Bottom panel
+        JPanel bottomPanel = new JPanel();
+        bottomPanel.setBackground(new Color(199, 220, 247));
+        saveButton = new RoundedButton("Save");
+        saveButton.setFont(font2);
+        bottomPanel.add(saveButton);
+        add(bottomPanel, BorderLayout.SOUTH);
 
         // Action Listener for Save Button
         saveButton.addActionListener(new ActionListener() {
@@ -55,7 +100,6 @@ public class CreateGoalPage extends JFrame {
             }
         });
 
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
     }
 
@@ -65,12 +109,9 @@ public class CreateGoalPage extends JFrame {
             String description = descriptionArea.getText();
             double targetAmount = Double.parseDouble(targetAmountField.getText());
             double currentAmount = Reader.accounts.get(4).getBalance();
-            LocalDate startDate = LocalDate.parse(startDateField.getText(), DateTimeFormatter.ofPattern("yyyy/MM/dd"));
-            LocalDate endDate = LocalDate.parse(endDateField.getText(), DateTimeFormatter.ofPattern("yyyy/MM/dd"));
-            String username = Reader.users.get(0).getUsername();
 
             // Create a Goal object
-            Goal goal = new Goal(goalName, description, targetAmount, currentAmount, username, startDate.toString(), endDate.toString());
+            Goal goal = new Goal(goalName, description, targetAmount, currentAmount, currentUsername);
 
             // Use Writer to save the goal
             Writer writer = new Writer();
@@ -79,18 +120,16 @@ public class CreateGoalPage extends JFrame {
             JOptionPane.showMessageDialog(this, "Goal saved successfully!");
         } catch (NumberFormatException ex) {
             JOptionPane.showMessageDialog(this, "Please enter a valid number for target amount.", "Input Error", JOptionPane.ERROR_MESSAGE);
-        } catch (DateTimeParseException ex) {
-            JOptionPane.showMessageDialog(this, "Please enter the date in the correct format (yyyy/MM/dd).", "Date Error", JOptionPane.ERROR_MESSAGE);
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, "Error saving the goal: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
 
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(new Runnable() {
-            public void run() {
-                new CreateGoalPage(); // Run the constructor
-            }
-        });
-    }
+//    public static void main(String[] args) {
+//        SwingUtilities.invokeLater(new Runnable() {
+//            public void run() {
+//                new CreateGoalPage(); // Run the constructor
+//            }
+//        });
+//    }
 }

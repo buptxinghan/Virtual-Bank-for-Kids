@@ -8,12 +8,12 @@ import com.virtualbankv2.entity.User;
 import static com.virtualbankv2.control.VirtualBankApplication.currentUser;
 import static com.virtualbankv2.boundary.Reader.users;
 
-public class LoginPage {
+public class LoginPage extends JFrame {
 
     private JFrame frame;
     private JTextField nameField;
     private JPasswordField passwordField;
-    private JButton loginButton, signUpButton;
+    private RoundedButton loginButton, signUpButton;
     private JLabel usernameLabel, passwordLabel, titleLabel;
 
     public LoginPage() {
@@ -23,7 +23,7 @@ public class LoginPage {
         // Create and set up the window
         frame = new JFrame("Bank Login System");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setPreferredSize(new Dimension(1200, 900));
+        frame.setPreferredSize(new Dimension(800, 600));
         frame.setLayout(new BorderLayout());
 
 // Create a panel for the components
@@ -67,31 +67,32 @@ public class LoginPage {
 // Add vertical strut for spacing
         mainPanel.add(Box.createVerticalStrut(20)); // Adds 20 pixels of space
 
-// Login button panel
-        JPanel loginButtonPanel = new JPanel();
-        loginButtonPanel.setLayout(new FlowLayout());
-        loginButtonPanel.setBackground(new Color(199, 220, 247));
-        loginButton = new JButton("Login");
+// Button Panel for Login and Sign Up
+        JPanel buttonPanel = new JPanel();
+        buttonPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
+        buttonPanel.setBackground(new Color(199, 220, 247));
+
+// Login Button
+        loginButton = new RoundedButton("Login");
         loginButton.setFont(fieldFont);
         loginButton.setBackground(new Color(93, 97, 195)); // Deep blue for buttons
         loginButton.setForeground(Color.WHITE); // White text on buttons
-        loginButtonPanel.add(loginButton);
-        mainPanel.add(loginButtonPanel);
+        buttonPanel.add(loginButton);
 
-// Add vertical strut for spacing
-        mainPanel.add(Box.createVerticalStrut(0)); // Adds 20 pixels of space
+// Add horizontal spacing between buttons
+        buttonPanel.add(Box.createHorizontalStrut(20)); // Adds 20 pixels of space between buttons
 
-// Sign Up button panel
-        JPanel signUpButtonPanel = new JPanel();
-        signUpButtonPanel.setLayout(new FlowLayout());
-        signUpButtonPanel.setBackground(new Color(199, 220, 247));
-        signUpButton = new JButton("Sign Up");
+// Sign Up Button
+        signUpButton = new RoundedButton("Sign Up");
         signUpButton.setFont(fieldFont);
         signUpButton.setBackground(new Color(93, 97, 195));
         signUpButton.setForeground(Color.WHITE);
         signUpButton.addActionListener(e -> new com.virtualbankv2.boundary.SignUpPage());
-        signUpButtonPanel.add(signUpButton);
-        mainPanel.add(signUpButtonPanel);
+        buttonPanel.add(signUpButton);
+
+// Add the panel with both buttons to the main panel
+        mainPanel.add(buttonPanel);
+
 
 
         // Login button action

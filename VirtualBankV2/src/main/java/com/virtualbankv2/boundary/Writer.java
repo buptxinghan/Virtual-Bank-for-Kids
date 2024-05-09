@@ -7,17 +7,14 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 
-import static com.virtualbankv2.boundary.Reader.accounts;
-import static com.virtualbankv2.boundary.Reader.users;
-import static com.virtualbankv2.boundary.Reader.goals;
-import static com.virtualbankv2.boundary.Reader.transactions;
+import static com.virtualbankv2.boundary.Reader.*;
 
 /**
  * Writes data to CSV files.
  */
 public class Writer {
 
-    private DecimalFormat decimalFormat = new DecimalFormat("#,##0.00"); // 保留两位小数
+    private DecimalFormat decimalFormat = new DecimalFormat("#,##0.00");
     private DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy/MM/dd");
 
     /**
@@ -56,16 +53,14 @@ public class Writer {
         try {
             FileWriter fw = new FileWriter("src/Data/Goals.csv");
             BufferedWriter bw = new BufferedWriter(fw);
-            bw.write("GoalName,Description,TargetAmount,CurrentAmount,Username,startDate,endDate,targetAccount");
+            bw.write("GoalName,Description,TargetAmount,CurrentAmount,Username,startDate,endDate");
             for (Goal goal : data) {
                 bw.newLine();
                 bw.write(goal.getGoalName() + "," +
                         goal.getDescription() + "," +
                         decimalFormat.format(goal.getTargetAmount()) + "," +
                         decimalFormat.format(goal.getCurrentAmount()) + "," +
-                        goal.getUsername() + "," +
-                        goal.getStartDate() + "," +
-                        goal.getEndDate());
+                        goal.getUsername());
             }
             bw.newLine();
             bw.close();
@@ -226,9 +221,7 @@ public class Writer {
                             tempGoal.getDescription() + "," +
                             decimalFormat.format(tempGoal.getTargetAmount()) + "," +
                             decimalFormat.format(tempGoal.getCurrentAmount()) + "," +
-                            tempGoal.getUsername() + "," +
-                            tempGoal.getStartDate() + "," +
-                            tempGoal.getEndDate()
+                            tempGoal.getUsername()
             );
         } catch (IOException e) {
             e.printStackTrace();
@@ -250,6 +243,26 @@ public class Writer {
                             decimalFormat.format(tempTransaction.getAmount()) + "," +
                             dateFormatter.format(LocalDate.now()) + "," +
                             tempTransaction.getDescription()
+            );
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Writes a single interest to the Interest CSV file.
+     *
+     * @param tempInterest The interest to be written.
+     */
+    public void writeSingleInterest(Interest tempInterest) {
+        try (PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("src/Data/Interest.csv", true)))) {
+            interests.add(tempInterest);
+            out.println(
+                    tempInterest.getInterestId() + "," +
+                            tempInterest.getLastUpdate() + "," +
+                            tempInterest.getCurrentDate() + "," +
+                            tempInterest.getAccountId() + "," +
+                            decimalFormat.format(tempInterest.getAmount())
             );
         } catch (IOException e) {
             e.printStackTrace();
