@@ -57,7 +57,6 @@ public class HomePage extends JFrame {
 
         // Initialize components
         JLabel l1 = new JLabel( );
-        // 假设 getColorHex(z1) 返回一个颜色的十六进制字符串
         String colorHex = getColorHex(z1);
         l1.setText("<html><font color=" + colorHex + ">Welcome to Your Virtual Bank!</font></html>");
         l1.setHorizontalAlignment(JLabel.CENTER);
