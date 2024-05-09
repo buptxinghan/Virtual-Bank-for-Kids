@@ -8,8 +8,6 @@ import com.virtualbankv2.entity.Task;
 
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
@@ -73,14 +71,11 @@ public class CreateTaskController {
     }
 
     private void addReturnListenerToButton(RoundedButton button, JFrame newPage) {
-        button.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                createTask();
-                if(titleIsValid() && rewardIsValid()){
-                    view.dispose();
-                    newPage.setVisible(true);
-                }
+        button.addActionListener(e -> {
+            createTask();
+            if(titleIsValid() && rewardIsValid()){
+                view.dispose();
+                newPage.setVisible(true);
             }
         });
     }
