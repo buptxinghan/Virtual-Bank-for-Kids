@@ -14,6 +14,7 @@ public class VirtualBankApplication {
     public static User currentUser; // 表示当前进入的用户账户
 
     public VirtualBankApplication() {
+
         new Reader();
         totalcounter = 0;
         currentUser = users.get(1);
@@ -22,9 +23,12 @@ public class VirtualBankApplication {
         //Account tempAccount = accounts.get(0);
         //AccountManager accountManager = new AccountManager();
         //accountManager.displayAccountInformation(tempAccount);
-        //LoginPage login = new LoginPage();
-        //HomePage hp = new HomePage();
-        CreateTaskPage ct = new CreateTaskPage();
+
+//        LoginPage login = new LoginPage();
+       HomePage hp = new HomePage();
+
+
+        //CreateTaskPage ct = new CreateTaskPage();
 
 //        Writer writer = new Writer();
 //        writer.writeUsers("src/Data/Users.csv", users);
@@ -45,8 +49,6 @@ public class VirtualBankApplication {
 
         return currentUserAccounts;
     }
-
-
 
     // 主函数，用于测试
     public static void main(String[] args) {
