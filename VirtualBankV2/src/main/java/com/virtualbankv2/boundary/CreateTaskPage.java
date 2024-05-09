@@ -14,6 +14,8 @@ public class CreateTaskPage extends JFrame{
     private JDateChooser chooseEnd;
     private RoundedButton saveButton;
 
+    private JButton returnButton;
+
     /**
      * Constructs a new CreateTaskPage object.
      */
@@ -33,17 +35,16 @@ public class CreateTaskPage extends JFrame{
         // background color
         Color bg = new Color(199, 220, 247);
         Color z1 = new Color(93, 97, 195);
-        Color z2 = new Color(133, 149, 188);
+        Color z2 = new Color(70, 130, 180);
 
         getContentPane().setBackground(bg);
 
         //components
         //button
-        saveButton = new RoundedButton("Save");
-        saveButton.setBackground(z1);
+        saveButton = new RoundedButton("<html><font size ='6'>Save</font></html>");
+        saveButton.setBackground(z2);
         saveButton.setForeground(Color.WHITE);
-
-
+        returnButton = ReturnButton.createReturnButton(this, "taskOverviewPage");
         //Label
         JLabel head = new JLabel("<html><font size=7 color=" + getColorHex(z1) + ">Create Task</font></html>",JLabel.CENTER);
         JLabel l1 = new JLabel("<html><font size=5 color=" + getColorHex(z1) + ">Title*</font></html>",JLabel.LEFT);
@@ -106,8 +107,13 @@ public class CreateTaskPage extends JFrame{
         C1.add(chooseEnd);
 
         b.setLayout(null);
-        saveButton.setBounds(500, 20, 80, 40);
+        saveButton.setBounds(520, 20, 100, 50);
+        returnButton.setBounds(660,20,100,50);
         b.add(saveButton);
+        b.add(returnButton);
+
+
+
         C2.add(l5);
         C2.add(contentArea);
         C2.add(b);
@@ -189,8 +195,7 @@ public class CreateTaskPage extends JFrame{
      */
     public String getStart() {
         Date s = chooseStart.getDate();
-        String start = new SimpleDateFormat("yyyy-MM-dd").format(s);
-        return start;
+        return new SimpleDateFormat("yyyy-MM-dd").format(s);
     }
 
     /**
@@ -200,8 +205,7 @@ public class CreateTaskPage extends JFrame{
      */
     public String getEnd() {
         Date e = chooseEnd.getDate();
-        String end = new SimpleDateFormat("yyyy-MM-dd").format(e);
-        return end;
+        return new SimpleDateFormat("yyyy-MM-dd").format(e);
     }
     /**
      * Retrieves the save button for saving the task.
@@ -211,6 +215,7 @@ public class CreateTaskPage extends JFrame{
     public RoundedButton getSaveButton() {
         return saveButton;
     }
+
 }
 
 // Unfinished
