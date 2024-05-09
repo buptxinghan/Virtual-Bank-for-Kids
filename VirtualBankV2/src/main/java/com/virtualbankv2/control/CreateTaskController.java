@@ -29,7 +29,7 @@ public class CreateTaskController {
 
 
     public void createTask(){
-        String title = view.getTitles().getText();
+        String title = view.getTitleField().getText();
         String re = view.getReward().getText();
         String description = view.getContentArea().getText();
         String start = view.getStart();
@@ -71,7 +71,7 @@ public class CreateTaskController {
         });
     }
     private boolean titleIsValid() {
-        String title = view.getTitles().getText();
+        String title = view.getTitleField().getText();
         return title != null && !title.trim().isEmpty();
     }
 
