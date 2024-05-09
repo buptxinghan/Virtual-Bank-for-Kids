@@ -14,12 +14,17 @@ public class CreateTaskPage extends JFrame{
     private JDateChooser chooseEnd;
     private RoundedButton saveButton;
 
+    /**
+     * Constructs a new CreateTaskPage object.
+     */
     public CreateTaskPage(){
         initializeComponents();
         CreateTaskController controller = new CreateTaskController(this);
         controller.initializeController();
     }
-
+    /**
+     * Initializes the GUI components and sets up the layout.
+     */
     private void initializeComponents() {
 
         setSize(new Dimension(1200, 900));
@@ -55,16 +60,13 @@ public class CreateTaskPage extends JFrame{
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
         scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         scrollPane.setPreferredSize(new Dimension(250, 150));
-
         //text
         title = new JTextField();
         reward = new JTextField();
-        //time
+        //time chooser
         chooseStart = new JDateChooser();
         chooseStart.setDateFormatString("yyyy-MM-dd");
         chooseStart.setDate(new Date());
-
-
         chooseEnd = new JDateChooser();
         chooseEnd.setDateFormatString("yyyy-MM-dd");
         chooseEnd.setDate(new Date());
@@ -92,7 +94,7 @@ public class CreateTaskPage extends JFrame{
         E.setBackground(bg);
         b.setBackground(bg);
 
-        //add components
+        //add components into panels
         C1.add(tip);
         C1.add(l1);
         C1.add(title);
@@ -112,8 +114,7 @@ public class CreateTaskPage extends JFrame{
 
         Center.add(C1);
         Center.add(C2);
-
-
+        //add panels into the frame
         add(E,BorderLayout.EAST);
         add(head,BorderLayout.NORTH);
         add(S,BorderLayout.SOUTH);
@@ -126,51 +127,87 @@ public class CreateTaskPage extends JFrame{
         setVisible(true);
     }
 
-
+    /**
+     * Retrieves the color hex code of the specified color.
+     *
+     * @param color The Color object.
+     * @return A String representing the color hex code.
+     */
     private String getColorHex(Color color) {
         return String.format("#%02x%02x%02x", color.getRed(), color.getGreen(), color.getBlue());
     }
 
+    /**
+     * Retrieves the content area where task content is entered.
+     *
+     * @return The JTextArea component representing the content area.
+     */
     public JTextArea getContentArea() {
         return contentArea;
     }
 
+    /**
+     * Retrieves the text field for entering the task title.
+     *
+     * @return The JTextField component representing the title field.
+     */
     public JTextField getTitleField() {
         return title;
     }
 
-    public JTextField getRewardField() {
-        return reward;
-    }
-
-    public JTextField getTitles() {
-        return title;
-    }
-
+    /**
+     * Retrieves the text field for entering the task reward.
+     *
+     * @return The JTextField component representing the reward field.
+     */
     public JTextField getReward() {
         return reward;
     }
 
+    /**
+     * Retrieves the text field for entering the task reward.
+     *
+     * @return The JTextField component representing the reward field.
+     */
     public JDateChooser getChooseStart() {
         return chooseStart;
     }
 
+    /**
+     * Retrieves the date chooser for selecting the task end date.
+     *
+     * @return The JDateChooser component representing the end date chooser.
+     */
     public JDateChooser getChooseEnd() {
         return chooseEnd;
     }
 
+    /**
+     * Retrieves the formatted start date of the task.
+     *
+     * @return A String representing the start date of the task in "yyyy-MM-dd" format.
+     */
     public String getStart() {
         Date s = chooseStart.getDate();
         String start = new SimpleDateFormat("yyyy-MM-dd").format(s);
         return start;
     }
 
+    /**
+     * Retrieves the formatted end date of the task.
+     *
+     * @return A String representing the end date of the task in "yyyy-MM-dd" format.
+     */
     public String getEnd() {
         Date e = chooseEnd.getDate();
         String end = new SimpleDateFormat("yyyy-MM-dd").format(e);
         return end;
     }
-
+    /**
+     * Retrieves the save button for saving the task.
+     *
+     * @return The RoundedButton component representing the save button.
+     */
     public RoundedButton getSaveButton() {
         return saveButton;
     }
