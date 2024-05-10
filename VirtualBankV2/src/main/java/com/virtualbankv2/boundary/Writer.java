@@ -191,7 +191,7 @@ public class Writer {
      */
     public void writeSingleTask(Task tempTask) {
         try (PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("src/Data/Tasks.csv", true)))) {
-           // tasks.add(tempTask);
+            tasks.add(tempTask);
             out.println(
                     tempTask.getTaskID() + "," +
                             tempTask.getDescription() + "," +
