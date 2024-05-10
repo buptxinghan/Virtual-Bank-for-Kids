@@ -100,7 +100,7 @@ public class TaskOverviewUI extends JFrame implements ActionListener {
         horizontalPanel.setOpaque(false);
 
         JPanel pairContainer = new JPanel(new GridLayout(2, 1));
-        pairContainer.setAlignmentY(Component.TOP_ALIGNMENT); // 垂直方向上顶部对齐
+        pairContainer.setAlignmentY(Component.CENTER_ALIGNMENT); // 垂直方向上顶部对齐 呵呵
         pairContainer.setOpaque(false);
         pairContainer.setPreferredSize(new Dimension(500, 100)); // 设置合适的固定大小
 
@@ -118,11 +118,13 @@ public class TaskOverviewUI extends JFrame implements ActionListener {
 
         pairContainer.add(titleLabel);
         pairContainer.add(descriptionLabel);
-        horizontalPanel.add(pairContainer);
-
+        Box horizontalBox = Box.createHorizontalBox();
+        horizontalBox.add(pairContainer);
+        horizontalBox.add(Box.createHorizontalGlue());
         if (!task.isCompleted()) {
+
             JButton button = new JButton("Finish");
-            horizontalPanel.add(button);
+            horizontalBox.add(button);
             button.addActionListener(e -> {
                 String description = task.getDescription();
                 updateTaskIsCompletedInCSV(description);
@@ -138,7 +140,7 @@ public class TaskOverviewUI extends JFrame implements ActionListener {
                 refreshUI();
             });
         }
-
+        horizontalPanel.add(horizontalBox);
         container.add(horizontalPanel);
     }
     private void updateTaskIsCompletedInCSV(String description) {
