@@ -90,7 +90,7 @@ public class AccountInformationPage extends JFrame {
         transactionButtonsPanel.add(Box.createRigidArea(new Dimension(0, 10))); // Spacer between buttons
         transactionButtonsPanel.add(createButtons("Transfer In", new Color(70, 130, 180), Color.WHITE, account, "transferIn"));
         transactionButtonsPanel.add(Box.createRigidArea(new Dimension(0, 10))); // Spacer between buttons
-        transactionButtonsPanel.add(createButtons("Transfer accounts", new Color(70, 130, 180), Color.WHITE, account, "transferAccounts"));
+        transactionButtonsPanel.add(createButtons("Transfer Accounts", new Color(70, 130, 180), Color.WHITE, account, "transferAccounts"));
         transactionButtonsPanel.add(Box.createRigidArea(new Dimension(0, 10))); // Spacer between buttons
         transactionButtonsPanel.add(createButtons("History", new Color(70, 130, 180), Color.WHITE, account, "history"));
         transactionButtonsPanel.add(Box.createRigidArea(new Dimension(0, 10))); // Spacer between buttons

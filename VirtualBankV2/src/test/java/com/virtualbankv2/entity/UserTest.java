@@ -1,4 +1,4 @@
-package com.virtualbankv2.boundary;
+package com.virtualbankv2.entity;
 import com.virtualbankv2.entity.User;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;

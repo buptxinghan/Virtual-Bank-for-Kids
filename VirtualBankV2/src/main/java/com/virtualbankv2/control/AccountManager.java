@@ -71,7 +71,6 @@ public class AccountManager {
         account.setBalance(account.getBalance() + amount);
         DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy/MM/dd");
         Transaction transaction = new Transaction(new TransactionManager().getFormatTransactionID(), "System", account.getAccountID(), amount,  dateFormatter.format(LocalDate.now()), "Transfer In");
-        transactions.add(transaction);
         writer.writeAccounts(accounts);
         writer.writeSingleTransaction(transaction);
     }

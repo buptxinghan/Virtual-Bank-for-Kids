@@ -8,8 +8,8 @@ import com.virtualbankv2.entity.Task;
 
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 import static com.virtualbankv2.control.VirtualBankApplication.currentUser;
 import static com.virtualbankv2.entity.Task.totalcounter;
@@ -55,18 +55,27 @@ public class CreateTaskController {
 
     public void initializeController() {
         addReturnListenerToButton(view.getSaveButton(), overviewUI);
+        view.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        view.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                returnToTaskOverview();
+            }
+        });
 
     }
 
+    private void returnToTaskOverview() {
+        view.dispose();
+        overviewUI.setVisible(true);
+    }
+
     private void addReturnListenerToButton(RoundedButton button, JFrame newPage) {
-        button.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                createTask();
-                if(titleIsValid() && rewardIsValid()){
-                    view.dispose();
-                    newPage.setVisible(true);
-                }
+        button.addActionListener(e -> {
+            createTask();
+            if(titleIsValid() && rewardIsValid()){
+                view.dispose();
+                newPage.setVisible(true);
             }
         });
     }
