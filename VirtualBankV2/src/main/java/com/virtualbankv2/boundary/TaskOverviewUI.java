@@ -60,6 +60,7 @@ public class TaskOverviewUI extends JFrame implements ActionListener {
         setMiddlePanel(middlePanel);
         JScrollPane scrollPane = new JScrollPane(middlePanel);
         scrollPane.getViewport().setOpaque(false); // 设置滚动面板的视口透明
+        scrollPane.setBackground(new Color(199, 220, 247));
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
         getContentPane().add(topPanel, BorderLayout.NORTH);
         getContentPane().add(scrollPane, BorderLayout.CENTER);
