@@ -199,7 +199,6 @@ public class AccountInformationPage extends JFrame {
      * @return The configured JLabel displaying the formatted balance.
      */
     private static RoundedLabel createDisplayLabel(Double balance) {
-        //格式化balance
         DecimalFormat df = new DecimalFormat("#,##0.00");
         String formattedBalance = df.format(balance);
 

@@ -145,8 +145,8 @@ public class TransactionHistoryPage extends JFrame {
      * @param tempTransactions The list of transactions to be displayed.
      */
     private void showTransactions(List<Transaction> tempTransactions) {
-        transactionsPanel.removeAll(); // 清空之前的记录
-        transactionsPanel.add(Box.createRigidArea(new Dimension(0, 15))); // 添加20像素的空白
+        transactionsPanel.removeAll();
+        transactionsPanel.add(Box.createRigidArea(new Dimension(0, 15)));
         for (Transaction transaction : tempTransactions) {
             addTransaction(transaction);
         }
