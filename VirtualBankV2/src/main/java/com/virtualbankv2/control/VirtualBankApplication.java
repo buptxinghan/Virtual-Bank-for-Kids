@@ -18,24 +18,11 @@ public class VirtualBankApplication {
         new Reader();
         totalcounter = 0;
         currentUser = users.get(1);
-        //List<Account> tempAccounts = getCurrentUserAccounts(currentUser);
-
-        //Account tempAccount = accounts.get(0);
-        //AccountManager accountManager = new AccountManager();
-        //accountManager.displayAccountInformation(tempAccount);
-
 //        LoginPage login = new LoginPage();
-       HomePage hp = new HomePage();
+        HomePage hp = new HomePage();
 
 
         //CreateTaskPage ct = new CreateTaskPage();
-
-//        Writer writer = new Writer();
-//        writer.writeUsers("src/Data/Users.csv", users);
-//        writer.writeAccounts("src/Data/Accounts.csv", accounts);
-//        writer.writeTransactions("src/Data/Transactions.csv", transactions);
-//        writer.writeTasks("src/Data/Tasks.csv", tasks);
-//        writer.writeGoals("src/Data/Goals.csv", goals);
     }
 
     public List<Account> getCurrentUserAccounts(User currentUser) {
@@ -50,9 +37,7 @@ public class VirtualBankApplication {
         return currentUserAccounts;
     }
 
-    // 主函数，用于测试
     public static void main(String[] args) {
         VirtualBankApplication application = new VirtualBankApplication();
-        // 测试系统功能
     }
 }
