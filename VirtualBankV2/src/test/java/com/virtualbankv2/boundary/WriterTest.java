@@ -33,8 +33,8 @@ public class WriterTest {
         transactions = new ArrayList<>();
         users = new ArrayList<>();
         users.add(new User("testuser", "testpassword"));
-        accounts.add(new Account("ACC001", "Savings", "testuser", "password", 1000.0, true));
-        goals.add(new Goal("Buy a Car", "Saving for a car", 5000.0, 2000.0, "testuser", LocalDate.now(), LocalDate.now().plusYears(1)));
+        accounts.add(new Account("ACC001", "Savings", "testuser", "password", 1000.0, "Active"));
+        goals.add(new Goal("Buy a Car", "Saving for a car", 5000.0, 2000.0, "testuser"));
         tasks.add(new Task("Task001", "Do something", 100.0, false, 0, LocalDate.now(), LocalDate.now().plusDays(7), "Task Title", "testuser"));
         transactions.add(new Transaction("TR001", "ACC001", "ACC002", 500.0, LocalDate.now(), "Payment for services"));
     }
@@ -47,7 +47,7 @@ public class WriterTest {
 
     @Test
     void testWriteSingleAccount() {
-        Account tempAccount = new Account("ACC002", "Checking", "testuser", "password", 2000.0, true);
+        Account tempAccount = new Account("ACC002", "Checking", "testuser", "password", 2000.0, "Active");
         writer.writeSingleAccount(tempAccount);
         assertTrue(Files.exists(Paths.get("src/Data/Accounts.csv")));
     }

@@ -19,7 +19,7 @@ public class CreateTaskPageTest {
 
     @Test
     public void testGetTitle() {
-        JTextField titleField = createTaskPage.getTitles();
+        JTextField titleField = createTaskPage.getTitleField();
         assertNotNull(titleField);
         assertEquals("Task Title", titleField.getText(), "Title field text is not as expected");
     }
@@ -34,7 +34,7 @@ public class CreateTaskPageTest {
     @Test
     public void testSaveButtonClicked() {
         // Set default values for title and reward fields
-        JTextField titleField = createTaskPage.getTitles();
+        JTextField titleField = createTaskPage.getTitleField();
         titleField.setText("Task Title");
 
         JTextField rewardField = createTaskPage.getReward();

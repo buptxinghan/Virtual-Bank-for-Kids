@@ -1,4 +1,4 @@
-package com.virtualbankv2.boundary;
+package com.virtualbankv2.entity;
 import com.virtualbankv2.entity.Goal;
 import org.junit.jupiter.api.Test;
 
@@ -13,44 +13,39 @@ public class GoalTest {
         String description = "Buy a new bicycle";
         double targetAmount = 200.0;
         double currentAmount = 50.0;
-        String childUsername = "JohnDoe";
-        String startDate = "";
-        String endDate = "";
+        String username = "JohnDoe";
 
-        Goal goal = new Goal(goalName, description, targetAmount, currentAmount, childUsername, startDate, endDate);
+
+        Goal goal = new Goal(goalName,description,targetAmount,currentAmount,username);
 
         assertNotNull(goal);
         assertEquals(goalName, goal.getGoalName());
         assertEquals(description, goal.getDescription());
         assertEquals(targetAmount, goal.getTargetAmount());
         assertEquals(currentAmount, goal.getCurrentAmount());
-        assertEquals(childUsername, goal.getUsername());
+        assertEquals(username, goal.getUsername());
     }
 
     @Test
     void testGoalSettersAndGetters() {
-        Goal goal = new Goal("", "", 0.0, 0.0, "", "", "");
+        Goal goal = new Goal("", "", 0.0, 0.0, "");
 
         String goalName = "987654";
         String description = "Learn to play the guitar";
         double targetAmount = 500.0;
         double currentAmount = 100.0;
-        String childUsername = "JaneDoe";
-        String startDate = "";
-        String endDate = "";
+        String username = "JaneDoe";
 
         goal.setGoalName(goalName);
         goal.setDescription(description);
         goal.setTargetAmount(targetAmount);
         goal.setCurrentAmount(currentAmount);
-        goal.setUsername(childUsername);
-        goal.setStartDate(startDate);
-        goal.setEndDate(endDate);
+        goal.setUsername(username);
 
         assertEquals(goalName, goal.getGoalName());
         assertEquals(description, goal.getDescription());
         assertEquals(targetAmount, goal.getTargetAmount());
         assertEquals(currentAmount, goal.getCurrentAmount());
-        assertEquals(childUsername, goal.getUsername());
+        assertEquals(username, goal.getUsername());
     }
 }
