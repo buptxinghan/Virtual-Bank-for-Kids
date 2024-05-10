@@ -185,7 +185,17 @@ public class AccountManager {
                         accountBalanceLabel.setText("<html><font color='Red' style='font-size: 20px;'>" + formattedBalance + "</font></html>");
                     }
                 } catch (NumberFormatException ex) {
-                    JOptionPane.showMessageDialog(null, "Please enter a valid amount", "Error!", JOptionPane.ERROR_MESSAGE);
+                    //JOptionPane.showMessageDialog(null, "Please enter a valid amount", "Error", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showOptionDialog(
+                            null,
+                            "Please enter a valid amount!",
+                            "Error",
+                            JOptionPane.DEFAULT_OPTION,
+                            JOptionPane.INFORMATION_MESSAGE,
+                            null,
+                            new String[] {"OK"},
+                            "OK"
+                    );
                 }
             }
         });

@@ -1,3 +1,5 @@
+package com.virtualbankv2.boundary;
+
 import com.virtualbankv2.boundary.CreateGoalPage;
 import com.virtualbankv2.entity.Account;
 import com.virtualbankv2.boundary.Reader;
