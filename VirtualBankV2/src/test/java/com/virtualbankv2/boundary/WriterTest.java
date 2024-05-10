@@ -35,8 +35,8 @@ public class WriterTest {
         users.add(new User("testuser", "testpassword"));
         accounts.add(new Account("ACC001", "Savings", "testuser", "password", 1000.0, "Active"));
         goals.add(new Goal("Buy a Car", "Saving for a car", 5000.0, 2000.0, "testuser"));
-        tasks.add(new Task("Task001", "Do something", 100.0, false, 0, LocalDate.now(), LocalDate.now().plusDays(7), "Task Title", "testuser"));
-        transactions.add(new Transaction("TR001", "ACC001", "ACC002", 500.0, LocalDate.now(), "Payment for services"));
+        tasks.add(new Task("Task001", "Do something", 100.0, false, 0, "2024/5/5", "2024/5/9", "Task Title", "testuser"));
+        transactions.add(new Transaction("TR001", "ACC001", "ACC002", 500.0, "2024/5/5", "Payment for services"));
     }
 
     @Test
@@ -60,7 +60,7 @@ public class WriterTest {
 
     @Test
     void testWriteSingleGoal() {
-        Goal tempGoal = new Goal("Vacation", "Saving for vacation", 3000.0, 1000.0, "testuser", LocalDate.now(), LocalDate.now().plusMonths(6));
+        Goal tempGoal = new Goal("Vacation", "Saving for vacation", 3000.0, 1000.0, "testuser");
         writer.writeSingleGoal(tempGoal);
         assertTrue(Files.exists(Paths.get("src/Data/Goals.csv")));
     }
@@ -81,7 +81,7 @@ public class WriterTest {
 
     @Test
     void testWriteSingleTask() {
-        Task tempTask = new Task("Task002", "Exercise daily", 50.0, false, 0, LocalDate.now(), LocalDate.now().plusDays(30), "Fitness Goal", "testuser");
+        Task tempTask = new Task("Task002", "Exercise daily", 50.0, false, 0, "2024/5/5", "2024/5/9", "Fitness Goal", "testuser");
         writer.writeSingleTask(tempTask);
         assertTrue(Files.exists(Paths.get("src/Data/Tasks.csv")));
         // 检查写入的任务文件内容，确保完成状态为字符串而不是布尔值
@@ -102,7 +102,7 @@ public class WriterTest {
 
     @Test
     void testWriteSingleTransaction() {
-        Transaction tempTransaction = new Transaction("TR002", "ACC002", "ACC001", 300.0, LocalDate.now(), "Payment received");
+        Transaction tempTransaction = new Transaction("TR002", "ACC002", "ACC001", 300.0, "2024/5/5", "Payment received");
         writer.writeSingleTransaction(tempTransaction);
         assertTrue(Files.exists(Paths.get("src/Data/Transactions.csv")));
     }
