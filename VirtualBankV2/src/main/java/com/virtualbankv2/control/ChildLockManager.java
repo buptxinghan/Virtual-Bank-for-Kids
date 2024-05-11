@@ -25,7 +25,7 @@ public class ChildLockManager {
                     @Override
                     public void actionPerformed(ActionEvent e) {
                         // 如果用户的答案正确，就执行跳转操作
-                        if ("1998".equals(userText.getText().trim())) {
+                        if ("111".equals(userText.getText().trim())) {
                             frame.dispose();
                             childLock.dispose();
                             pageOpen.openAccount();

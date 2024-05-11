@@ -1,8 +1,7 @@
 package com.virtualbankv2.boundary;
 
 import com.virtualbankv2.control.TransactionManager;
-import com.virtualbankv2.entity.Account;
-import com.virtualbankv2.entity.Transaction;
+import com.virtualbankv2.entity.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -11,8 +10,6 @@ import java.awt.event.ActionListener;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
-
-import static com.virtualbankv2.boundary.Reader.accounts;
 
 /**
  * Represents a page displaying transaction history for a specific account.
