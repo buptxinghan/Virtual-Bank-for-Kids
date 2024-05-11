@@ -1,6 +1,8 @@
 package com.virtualbankv2.boundary;
 
 import com.virtualbankv2.entity.Account;
+import com.virtualbankv2.entity.ReturnButton;
+import com.virtualbankv2.entity.RoundedButton;
 
 import javax.swing.*;
 import java.awt.*;
@@ -30,7 +32,7 @@ public class OpenAccountPage extends JFrame implements ActionListener {
     }
     private RoundedButton submit = (RoundedButton) createRoundButton();
 
-    private JButton returnButton=ReturnButton.createReturnButton(this,"accountOverviewPage");
+    private JButton returnButton= ReturnButton.createReturnButton(this,"accountOverviewPage");
 
     public OpenAccountPage() {
         setPreferredSize(new Dimension(1200,900));

@@ -9,9 +9,6 @@ import java.awt.geom.Arc2D;
 import java.util.List;
 import java.util.stream.Collectors;
 
-
-import static com.virtualbankv2.boundary.Reader.goals;
-
 public class GoalManager extends JFrame {
     private String currentUsername;
     private List<Goal> userGoals;

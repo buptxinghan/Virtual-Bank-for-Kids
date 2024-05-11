@@ -18,8 +18,8 @@ public class VirtualBankApplication {
         new Reader();
         totalcounter = 0;
         currentUser = users.get(1);
-//        LoginPage login = new LoginPage();
-        HomePage hp = new HomePage();
+        LoginPage login = new LoginPage();
+//        HomePage hp = new HomePage();
 
 
         //CreateTaskPage ct = new CreateTaskPage();

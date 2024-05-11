@@ -1,7 +1,9 @@
-package com.virtualbankv2.boundary;
+package com.virtualbankv2.entity;
 
+import com.virtualbankv2.boundary.AccountInformationPage;
+import com.virtualbankv2.boundary.HomePage;
+import com.virtualbankv2.boundary.TaskOverviewUI;
 import com.virtualbankv2.control.AccountOverviewPage;
-import com.virtualbankv2.entity.Account;
 
 import javax.swing.*;
 import java.awt.*;
