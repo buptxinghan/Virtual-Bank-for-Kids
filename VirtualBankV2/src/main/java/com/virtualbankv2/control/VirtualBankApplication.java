@@ -14,9 +14,16 @@ public class VirtualBankApplication {
 
     public VirtualBankApplication() {
         new Reader();
+<<<<<<< Updated upstream
 
         currentUser = users.get(1);
         //List<Account> tempAccounts = getCurrentUserAccounts(currentUser);
+=======
+        totalcounter = 0;
+        //currentUser = users.get(1);
+        LoginPage login = new LoginPage();
+//        HomePage hp = new HomePage();
+>>>>>>> Stashed changes
 
         //Account tempAccount = accounts.get(0);
         //AccountManager accountManager = new AccountManager();
