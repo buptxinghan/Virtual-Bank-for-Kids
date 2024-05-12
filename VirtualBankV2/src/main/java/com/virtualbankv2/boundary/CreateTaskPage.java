@@ -218,7 +218,4 @@ public class CreateTaskPage extends JFrame{
     public RoundedButton getSaveButton() {
         return saveButton;
     }
-
 }
-
-// Unfinished
