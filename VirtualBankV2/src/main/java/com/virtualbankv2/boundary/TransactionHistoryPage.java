@@ -1,8 +1,7 @@
 package com.virtualbankv2.boundary;
 
 import com.virtualbankv2.control.TransactionManager;
-import com.virtualbankv2.entity.Account;
-import com.virtualbankv2.entity.Transaction;
+import com.virtualbankv2.entity.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -12,8 +11,9 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.virtualbankv2.boundary.Reader.accounts;
-
+/**
+ * Represents a page displaying transaction history for a specific account.
+ */
 public class TransactionHistoryPage extends JFrame {
     private JPanel datePanel;
     private JPanel dateFieldsPanel; // Panel for date fields
@@ -28,6 +28,11 @@ public class TransactionHistoryPage extends JFrame {
 
     TransactionManager transactionManager = new TransactionManager();
 
+    /**
+     * Constructs a TransactionHistoryPage object for the given account.
+     *
+     * @param account The account for which transaction history is displayed.
+     */
     public TransactionHistoryPage(Account account) {
         setTitle("Transaction History");
         setSize(1200, 900);
@@ -131,9 +136,14 @@ public class TransactionHistoryPage extends JFrame {
         setVisible(true);
     }
 
+    /**
+     * Displays the provided list of transactions on the UI.
+     *
+     * @param tempTransactions The list of transactions to be displayed.
+     */
     private void showTransactions(List<Transaction> tempTransactions) {
-        transactionsPanel.removeAll(); // 清空之前的记录
-        transactionsPanel.add(Box.createRigidArea(new Dimension(0, 15))); // 添加20像素的空白
+        transactionsPanel.removeAll();
+        transactionsPanel.add(Box.createRigidArea(new Dimension(0, 15)));
         for (Transaction transaction : tempTransactions) {
             addTransaction(transaction);
         }
@@ -141,6 +151,11 @@ public class TransactionHistoryPage extends JFrame {
         transactionsPanel.repaint();
     }
 
+    /**
+     * Adds a transaction to the UI.
+     *
+     * @param transaction The transaction to be added.
+     */
     private void addTransaction(Transaction transaction) {
         JPanel transactionPanel = new RoundedPanel(45);
         transactionPanel.setLayout(new BoxLayout(transactionPanel, BoxLayout.Y_AXIS));
@@ -172,7 +187,15 @@ public class TransactionHistoryPage extends JFrame {
         transactionsPanel.add(Box.createRigidArea(new Dimension(0, 15)));
     }
 
-
+    /**
+     * Filters transactions by the provided date.
+     *
+     * @param year            The year to filter by.
+     * @param month           The month to filter by.
+     * @param day             The day to filter by.
+     * @param tempTransactions The list of transactions to filter.
+     * @return List<Transaction> The filtered list of transactions.
+     */
     private List<Transaction> filterTransactionsByDate(String year, String month, String day, List<Transaction> tempTransactions) {
         List<Transaction> filteredTransactions = new ArrayList<>();
 
@@ -195,14 +218,5 @@ public class TransactionHistoryPage extends JFrame {
         }
 
         return filteredTransactions;
-    }
-
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(new Runnable() {
-            public void run() {
-                new Reader();
-                new TransactionHistoryPage(accounts.get(0));
-            }
-        });
     }
 }

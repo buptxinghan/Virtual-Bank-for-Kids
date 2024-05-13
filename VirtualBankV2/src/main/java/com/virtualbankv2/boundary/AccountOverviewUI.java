@@ -2,6 +2,10 @@ package com.virtualbankv2.boundary;
 
 import com.virtualbankv2.control.ChildLockManager;
 import com.virtualbankv2.entity.Account;
+import com.virtualbankv2.entity.ReturnButton;
+import com.virtualbankv2.entity.RoundedButton;
+import com.virtualbankv2.entity.RoundedPanel;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -52,16 +56,22 @@ public class AccountOverviewUI extends JFrame {
     // Display the panel for creating a new account
     private void displayCreateAccountPanel() {
 
-        RoundedButton addButton = new RoundedButton("<html><font style='font-size: 15px;'>+</font></html>");
-        extracted(addButton);
+        RoundedButton addButton = new RoundedButton("+");
+        addButton.setFont(new Font("Arial", Font.BOLD, 25));
+        addButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+        extracted(addButton,50,50);
         new ChildLockManager().addButtonWithChildLock(this,addButton, pageOpen);
 
-        RoundedPanel innerPanel = createRoundedPanel(new Color(255,250,240));
+        RoundedPanel innerPanel = new RoundedPanel(15);
+        innerPanel.setLayout(new BoxLayout(innerPanel, BoxLayout.Y_AXIS));
+        innerPanel.setBackground(new Color(255,250,240));
+        innerPanel.setBorder(BorderFactory.createEmptyBorder(30, 80, 40, 80));
+
         innerPanel.setPreferredSize(new Dimension(400,250));
         innerPanel.setMinimumSize(new Dimension(400,250));
         innerPanel.add(Box.createRigidArea(new Dimension(0, 40)));
-        innerPanel.add(createLabel("Create  new  account ", Font.BOLD, 18,Component.CENTER_ALIGNMENT));
-        innerPanel.add(Box.createRigidArea(new Dimension(0, 65)));
+        innerPanel.add(createLabel("Create  new  account ", Font.BOLD, 22,Component.CENTER_ALIGNMENT));
+        innerPanel.add(Box.createRigidArea(new Dimension(0, 55)));
         innerPanel.add(addButton);
 
         JPanel outerPanel = new JPanel();
@@ -71,36 +81,87 @@ public class AccountOverviewUI extends JFrame {
             mainPanel.add(outerPanel);
             setPage();
         });
-
     }
 
-    private static void extracted(RoundedButton Button) {
-        Button.setBackground(new Color(70, 130, 180));
+    private static void extracted(RoundedButton Button,int width,int height) {
+        Button.setBackground(new Color(79,143,230));
         Button.setForeground(Color.WHITE);
-        Button.setAlignmentX(Component.CENTER_ALIGNMENT);
-        Button.setPreferredSize(new Dimension(0,10));
+        Button.setPreferredSize(new Dimension(width,height));
+        Button.setMaximumSize(new Dimension(width,height));
     }
 
     // Update the page with the given account information
     public void updatePage(Account account) {
-//      if (account == null || color == null) {
-//          throw new IllegalArgumentException("Account or color cannot be null");
-//      }
 
-        RoundedButton selectButton = new RoundedButton( "<html><font style='font-size: 15px;'>select</font></html>");
-        extracted(selectButton);
+        RoundedButton selectButton = new RoundedButton( "select");
+        selectButton.setFont(new Font("Arial", Font.BOLD, 17));
+        extracted(selectButton,90,35);
         selectButton.addActionListener(e -> {
             dispose();
             pageOpen.showAccountInfo(account);
         });
 
-        RoundedPanel panel = createRoundedPanel(new Color(255,239,213));
-        panel.add(createLabel(account.getAccountID(), Font.BOLD, 18,Component.CENTER_ALIGNMENT));
-        panel.add(Box.createRigidArea(new Dimension(0, 15)));
-        panel.add(createLabel("Account status: " + account.getStatus(),Font.BOLD, 18,Component.LEFT_ALIGNMENT));
-        panel.add(Box.createRigidArea(new Dimension(0, 20)));
-        panel.add(createLabel("Account type: " + account.getAccountType(),Font.BOLD, 18,Component.LEFT_ALIGNMENT));
-        panel.add(Box.createRigidArea(new Dimension(0, 20)));
+        RoundedPanel panel = new RoundedPanel(15);
+        panel.setBackground(new Color(255,239,213));
+        panel.setPreferredSize(new Dimension(400,250));
+        panel.setMinimumSize(new Dimension(400,250));
+
+        JLabel label1 = new JLabel("Account ID:  " + account.getAccountID());
+        label1.setFont(new Font("Arial", Font.BOLD, 18));
+
+        Color statusColor = account.getStatus().equals("Active") ? new Color(91,165,133) : Color.RED;
+        JLabel label2 = new JLabel("Account Status: ");
+        JLabel statusLabel = new JLabel(account.getStatus());
+        statusLabel.setForeground(statusColor);
+        label2.setFont(new Font("Arial", Font.BOLD, 18));
+        statusLabel.setFont(new Font("Arial", Font.BOLD, 18));
+
+        JLabel label3 = new JLabel("Account Type: " + account.getAccountType());
+        label3.setFont(new Font("Arial", Font.BOLD, 18));
+
+        GridBagLayout gridBagLayout=new GridBagLayout();
+        GridBagConstraints gridBagConstraints=new GridBagConstraints();
+        gridBagConstraints.fill=GridBagConstraints.NONE;
+        gridBagConstraints.insets = new Insets(10, 0, 10, 0);  // 上、左、下、右的间距
+
+        gridBagConstraints.anchor = GridBagConstraints.WEST;
+
+        gridBagConstraints.gridx=1;
+        gridBagConstraints.gridy=2;
+        gridBagConstraints.gridwidth=4;
+        gridBagConstraints.gridheight=2;
+        gridBagLayout.setConstraints(label1, gridBagConstraints);
+
+        gridBagConstraints.anchor = GridBagConstraints.WEST;
+        gridBagConstraints.gridx=3;
+        gridBagConstraints.gridy=4;
+        gridBagConstraints.gridwidth=2;
+        gridBagConstraints.gridheight=1;
+        gridBagLayout.setConstraints(statusLabel, gridBagConstraints);
+
+        gridBagConstraints.gridx=1;
+        gridBagConstraints.gridy=4;
+        gridBagConstraints.gridheight=1;
+        gridBagLayout.setConstraints(label2, gridBagConstraints);
+
+        gridBagConstraints.gridx=1;
+        gridBagConstraints.gridy=5;
+        gridBagConstraints.gridwidth=4;
+        gridBagConstraints.gridheight=1;
+        gridBagLayout.setConstraints(label3, gridBagConstraints);
+
+        gridBagConstraints.anchor = GridBagConstraints.CENTER;
+        gridBagConstraints.gridx=2;
+        gridBagConstraints.gridy=7;
+//        gridBagConstraints.gridwidth=1;
+//        gridBagConstraints.gridheight=4;
+        gridBagLayout.setConstraints(selectButton, gridBagConstraints);
+
+        panel.setLayout(gridBagLayout);
+        panel.add(label1);
+        panel.add(label2);
+        panel.add(statusLabel);
+        panel.add(label3);
         panel.add(selectButton);
 
         JPanel outerPanel = new JPanel();
@@ -125,14 +186,6 @@ public class AccountOverviewUI extends JFrame {
         label.setFont(new Font("Arial", fontStyle, fontSize));
         label.setAlignmentX(alignment);
         return label;
-    }
-
-    public RoundedPanel createRoundedPanel(Color color) {
-        RoundedPanel rpanel = new RoundedPanel(15);
-        rpanel.setLayout(new BoxLayout(rpanel, BoxLayout.Y_AXIS));
-        rpanel.setBorder(BorderFactory.createEmptyBorder(42, 40, 40, 40));
-        rpanel.setBackground(color);
-        return rpanel;
     }
 
 }

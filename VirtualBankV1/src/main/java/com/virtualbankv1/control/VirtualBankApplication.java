@@ -48,5 +48,6 @@ public class VirtualBankApplication {
     public static void main(String[] args) {
         VirtualBankApplication application = new VirtualBankApplication();
         // 测试系统功能
+        // totalcounter = 0;
     }
 }

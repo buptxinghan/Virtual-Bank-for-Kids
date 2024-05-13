@@ -1,8 +1,8 @@
 package com.virtualbankv2.boundary;
 // Homepage interface class
 
-import com.virtualbankv2.control.AccountOverviewPage;
 import com.virtualbankv2.control.HomePageController;
+import com.virtualbankv2.entity.RoundedButton;
 
 import javax.swing.*;
 import java.awt.*;
@@ -57,7 +57,6 @@ public class HomePage extends JFrame {
 
         // Initialize components
         JLabel l1 = new JLabel( );
-        // 假设 getColorHex(z1) 返回一个颜色的十六进制字符串
         String colorHex = getColorHex(z1);
         l1.setText("<html><font color=" + colorHex + ">Welcome to Your Virtual Bank!</font></html>");
         l1.setHorizontalAlignment(JLabel.CENTER);
@@ -96,10 +95,7 @@ public class HomePage extends JFrame {
         right.setPreferredSize(new Dimension(250, 250));
         left.setPreferredSize(new Dimension(250, 250));
 
-        accountButton.addActionListener(e -> {
-            this.dispose();
-            new AccountOverviewPage();
-        });
+
 
         Centerdown.add(accountButton);
 //        Centerdown.add(Box.createRigidArea(new Dimension(0, 10)));

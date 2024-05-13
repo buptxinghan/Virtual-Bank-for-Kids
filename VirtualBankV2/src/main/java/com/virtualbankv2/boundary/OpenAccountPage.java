@@ -1,12 +1,14 @@
 package com.virtualbankv2.boundary;
 
 import com.virtualbankv2.entity.Account;
+import com.virtualbankv2.entity.ReturnButton;
+import com.virtualbankv2.entity.RoundedButton;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
+import java.util.Random;
 
 import static com.virtualbankv2.boundary.Reader.accounts;
 import static com.virtualbankv2.control.VirtualBankApplication.currentUser;
@@ -30,7 +32,7 @@ public class OpenAccountPage extends JFrame implements ActionListener {
     }
     private RoundedButton submit = (RoundedButton) createRoundButton();
 
-    private JButton returnButton=ReturnButton.createReturnButton(this,"accountOverviewPage");
+    private JButton returnButton= ReturnButton.createReturnButton(this,"accountOverviewPage");
 
     public OpenAccountPage() {
         setPreferredSize(new Dimension(1200,900));
@@ -137,7 +139,10 @@ public class OpenAccountPage extends JFrame implements ActionListener {
                     "OK"
             );
         } else {
-            Account account = new Account("b", str3, currentUser.getUsername(),str1,  0.00, "Active");
+            Random random = new Random();
+            int randomNumber = random.nextInt(900000) + 100000;
+            String accountid = String.valueOf(randomNumber);
+            Account account = new Account(accountid, str3, currentUser.getUsername(),str1,  0.00, "Active");
             //success
             //store
             Reader reader=new Reader();
@@ -158,4 +163,18 @@ public class OpenAccountPage extends JFrame implements ActionListener {
             pw2.setText("");
         }
     }
+
+    public JTextField getPw() {
+        return pw;
+    }
+
+    public JTextField getPw2() {
+        return pw2;
+    }
+
+    public JButton getSubmit() {
+        return submit;
+    }
+
+
 }

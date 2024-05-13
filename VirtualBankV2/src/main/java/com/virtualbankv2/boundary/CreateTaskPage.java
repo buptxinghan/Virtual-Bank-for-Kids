@@ -1,6 +1,8 @@
 package com.virtualbankv2.boundary;
-import com.toedter.calendar.JDateChooser;//需要加入Jcalendar jar到项目路径
+import com.toedter.calendar.JDateChooser;
 import com.virtualbankv2.control.CreateTaskController;
+import com.virtualbankv2.entity.ReturnButton;
+import com.virtualbankv2.entity.RoundedButton;
 
 import javax.swing.*;
 import java.awt.*;
@@ -15,31 +17,37 @@ public class CreateTaskPage extends JFrame{
     private JDateChooser chooseEnd;
     private RoundedButton saveButton;
 
-    public CreateTaskPage(){
+    private JButton returnButton;
 
+    /**
+     * Constructs a new CreateTaskPage object.
+     */
+    public CreateTaskPage(){
         initializeComponents();
         CreateTaskController controller = new CreateTaskController(this);
         controller.initializeController();
     }
-
+    /**
+     * Initializes the GUI components and sets up the layout.
+     */
     private void initializeComponents() {
-        // 设置窗口大小
+
         setSize(new Dimension(1200, 900));
         setTitle("Virtual Bank");
-        // 设置背景颜色
+
+        // background color
         Color bg = new Color(199, 220, 247);
         Color z1 = new Color(93, 97, 195);
-        Color z2 = new Color(133, 149, 188);
+        Color z2 = new Color(70, 130, 180);
 
         getContentPane().setBackground(bg);
 
-        //生成组件
-        //按钮
-        saveButton = new RoundedButton("Save");
-        saveButton.setBackground(z1); // 设置按钮背景颜色为紫色
-        saveButton.setForeground(Color.WHITE); // 设置文本颜色为白色
-        //saveButton.setPreferredSize(new Dimension(5, 5)); // 设置按钮的首选大小
-
+        //components
+        //button
+        saveButton = new RoundedButton("<html><font size ='6'>Save</font></html>");
+        saveButton.setBackground(z2);
+        saveButton.setForeground(Color.WHITE);
+        returnButton = ReturnButton.createReturnButton(this, "taskOverviewPage");
         //Label
         JLabel head = new JLabel("<html><font size=7 color=" + getColorHex(z1) + ">Create Task</font></html>",JLabel.CENTER);
         JLabel l1 = new JLabel("<html><font size=5 color=" + getColorHex(z1) + ">Title*</font></html>",JLabel.LEFT);
@@ -48,30 +56,27 @@ public class CreateTaskPage extends JFrame{
         JLabel l4 = new JLabel("<html><font size=5 color=" + getColorHex(z1) + ">End time</font></html>",JLabel.LEFT);
         JLabel l5 = new JLabel("<html><font size=5 color=" + getColorHex(z1) + ">Content</font></html>",JLabel.LEFT);
         JLabel tip = new JLabel("<html><font size=4 color=" + getColorHex(z1) + ">*Required fields</font></html>",JLabel.LEFT);
-        //content文本域
+        //content
         contentArea = new JTextArea();
         contentArea.setLineWrap(true);
-        contentArea.setWrapStyleWord(true); // 确保单词不会被拆分
+        contentArea.setWrapStyleWord(true);
         JScrollPane scrollPane = new JScrollPane(contentArea);
-        // 设置滚动条始终可见
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
         scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         scrollPane.setPreferredSize(new Dimension(250, 150));
-
-        //文本框
+        //text
         title = new JTextField();
         reward = new JTextField();
-        //time
+        //time chooser
         chooseStart = new JDateChooser();
         chooseStart.setDateFormatString("yyyy-MM-dd");
-        //Date start = chooseStart.getDate();
-        //String strDate = new SimpleDateFormat("yyyy-MM-dd HH:mm").format(date);
+        chooseStart.setDate(new Date());
         chooseEnd = new JDateChooser();
         chooseEnd.setDateFormatString("yyyy-MM-dd");
-        //Date end = chooseEnd.getDate();
-        //String strDate = new SimpleDateFormat("yyyy-MM-dd HH:mm").format(date);
+        chooseEnd.setDate(new Date());
 
-        //布局
+
+        //layout
         JPanel Center = new JPanel(new GridLayout(2, 1));
         JPanel C1 = new JPanel(new GridLayout(9,1));
         JPanel C2 = new JPanel(new GridLayout(3,1));
@@ -80,8 +85,6 @@ public class CreateTaskPage extends JFrame{
         JPanel W = new JPanel();
         JPanel E = new JPanel();
         JPanel b = new JPanel();
-
-
 
         W.setPreferredSize(new Dimension(200, 200));
         E.setPreferredSize(new Dimension(200, 200));
@@ -95,9 +98,7 @@ public class CreateTaskPage extends JFrame{
         E.setBackground(bg);
         b.setBackground(bg);
 
-
-
-        //往布局添加组件
+        //add components into panels
         C1.add(tip);
         C1.add(l1);
         C1.add(title);
@@ -108,62 +109,112 @@ public class CreateTaskPage extends JFrame{
         C1.add(l4);
         C1.add(chooseEnd);
 
-
-
         b.setLayout(null);
-        saveButton.setBounds(500, 20, 80, 40);
+        saveButton.setBounds(520, 20, 100, 50);
+        returnButton.setBounds(660,20,100,50);
         b.add(saveButton);
+        b.add(returnButton);
+
+
+
         C2.add(l5);
         C2.add(contentArea);
         C2.add(b);
 
         Center.add(C1);
         Center.add(C2);
-
-
+        //add panels into the frame
         add(E,BorderLayout.EAST);
         add(head,BorderLayout.NORTH);
         add(S,BorderLayout.SOUTH);
         add(W,BorderLayout.WEST);
         add(Center);
 
-        //显示
-        setLocationRelativeTo(null); // 居中显示
-        //setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        //display
+        setLocationRelativeTo(null);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
-
-
     }
 
-    // 辅助方法：将Color对象转换为HTML颜色字符串
+    /**
+     * Retrieves the color hex code of the specified color.
+     *
+     * @param color The Color object.
+     * @return A String representing the color hex code.
+     */
     private String getColorHex(Color color) {
         return String.format("#%02x%02x%02x", color.getRed(), color.getGreen(), color.getBlue());
     }
 
+    /**
+     * Retrieves the content area where task content is entered.
+     *
+     * @return The JTextArea component representing the content area.
+     */
     public JTextArea getContentArea() {
         return contentArea;
     }
 
-    public JTextField getTitles() {
+    /**
+     * Retrieves the text field for entering the task title.
+     *
+     * @return The JTextField component representing the title field.
+     */
+    public JTextField getTitleField() {
         return title;
     }
 
+    /**
+     * Retrieves the text field for entering the task reward.
+     *
+     * @return The JTextField component representing the reward field.
+     */
     public JTextField getReward() {
         return reward;
     }
 
+    /**
+     * Retrieves the text field for entering the task reward.
+     *
+     * @return The JTextField component representing the reward field.
+     */
+    public JDateChooser getChooseStart() {
+        return chooseStart;
+    }
+
+    /**
+     * Retrieves the date chooser for selecting the task end date.
+     *
+     * @return The JDateChooser component representing the end date chooser.
+     */
+    public JDateChooser getChooseEnd() {
+        return chooseEnd;
+    }
+
+    /**
+     * Retrieves the formatted start date of the task.
+     *
+     * @return A String representing the start date of the task in "yyyy-MM-dd" format.
+     */
     public String getStart() {
         Date s = chooseStart.getDate();
-        String start = new SimpleDateFormat("yyyy-MM-dd").format(s);
-        return start;
+        return new SimpleDateFormat("yyyy-MM-dd").format(s);
     }
 
+    /**
+     * Retrieves the formatted end date of the task.
+     *
+     * @return A String representing the end date of the task in "yyyy-MM-dd" format.
+     */
     public String getEnd() {
         Date e = chooseEnd.getDate();
-        String end = new SimpleDateFormat("yyyy-MM-dd").format(e);
-        return end;
+        return new SimpleDateFormat("yyyy-MM-dd").format(e);
     }
-
+    /**
+     * Retrieves the save button for saving the task.
+     *
+     * @return The RoundedButton component representing the save button.
+     */
     public RoundedButton getSaveButton() {
         return saveButton;
     }

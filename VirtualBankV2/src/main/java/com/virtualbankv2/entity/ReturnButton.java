@@ -83,8 +83,7 @@ public class ReturnButton {
                     new TaskOverviewUI();
                 } else if (lastPage.equals("GoalOverviewUI")) {
                     new GoalOverviewUI();
-                }
-                if (lastPage.equals("accountInformationPage")) {
+                } else if (lastPage.equals("accountInformationPage")) {
                     new AccountInformationPage(account);
                 }
             }

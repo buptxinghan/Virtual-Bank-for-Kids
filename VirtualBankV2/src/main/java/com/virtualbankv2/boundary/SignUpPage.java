@@ -18,6 +18,8 @@ public class SignUpPage {
     private Color deepBlue = new Color(93, 97, 195); // Deep blue for buttons
     private Color white = Color.WHITE; // White text on buttons
     private Font fieldFont = new Font("Arial", Font.BOLD, 25); // Font for fields and buttons
+    private boolean successMessageShown;
+    private boolean errorMessageShown;
 
     public SignUpPage() {
         // Create and set up the window
@@ -69,6 +71,10 @@ public class SignUpPage {
         frame.pack();
         frame.setLocationRelativeTo(null); // Center the window
         frame.setVisible(true);
+
+        // Initialize flags
+        successMessageShown = false;
+        errorMessageShown = false;
     }
 
     private JPanel createFieldPanel(String label, boolean isTextField) {
@@ -117,5 +123,29 @@ public class SignUpPage {
                 new SignUpPage();
             }
         });
+    }
+
+    public JTextField getNameField() {
+        return nameField;
+    }
+
+    public JPasswordField getPasswordField() {
+        return passwordField;
+    }
+
+    public JPasswordField getConfirmPasswordField() {
+        return confirmPasswordField;
+    }
+
+    public JButton getSubmitButton() {
+        return submitButton;
+    }
+
+    public boolean isSuccessMessageShown() {
+        return successMessageShown;
+    }
+
+    public boolean isErrorMessageShown() {
+        return errorMessageShown;
     }
 }

@@ -1,16 +1,12 @@
 package com.virtualbankv2.control;
 
 import com.virtualbankv2.boundary.GoalOverviewUI;
-
-<<<<<<< Updated upstream
+import java.io.*;
 
 public class GoalManager extends JFrame {
     private String currentUsername;
     private List<Goal> userGoals;
     Reader reader = new Reader();
-=======
-import java.io.*;
->>>>>>> Stashed changes
 
 import static com.virtualbankv2.control.VirtualBankApplication.currentUser;
 
