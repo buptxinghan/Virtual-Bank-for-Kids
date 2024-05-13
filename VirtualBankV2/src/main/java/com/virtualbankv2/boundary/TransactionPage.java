@@ -143,17 +143,47 @@ public class TransactionPage extends JFrame {
         try {
             amount = Double.parseDouble(amountField.getText());
         } catch (NumberFormatException ex) {
-            JOptionPane.showMessageDialog(null, "Please enter a valid amount.");
+            JOptionPane.showOptionDialog(
+                    null,
+                    "Please enter a valid amount.",
+                    "Error!",
+                    JOptionPane.DEFAULT_OPTION,
+                    JOptionPane.INFORMATION_MESSAGE,
+                    null,
+                    new String[] {"OK"},
+                    "OK"
+            );
             return;
         }
         String description = descriptionArea.getText();
+        if (description.isEmpty()) {
+            description = "NULL";
+        }
 
         for (Account tempAccount : accounts) {
             if (("Account ID: " + tempAccount.getAccountID() + " | Account Owner: " + tempAccount.getUsername()).equals(transferTo)) {
                 if (transactionManager.transfer(account, tempAccount, amount, description)) {
-                    JOptionPane.showMessageDialog(null, "Transfer to: " + transferTo + "\nAmount: " + amount + "\nDescription: " + description);
+                    JOptionPane.showOptionDialog(
+                            null,
+                            "Transfer to: " + transferTo + "\nAmount: " + amount + "\nDescription: " + description,
+                            "Transaction",
+                            JOptionPane.DEFAULT_OPTION,
+                            JOptionPane.INFORMATION_MESSAGE,
+                            null,
+                            new String[] {"OK"},
+                            "OK"
+                    );
                 } else {
-                    JOptionPane.showMessageDialog(null, "Error during transaction. Please check account balance or account status.", "Error", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showOptionDialog(
+                            null,
+                            "Error during transaction. Please check account balance or account status.",
+                            "Error!",
+                            JOptionPane.DEFAULT_OPTION,
+                            JOptionPane.INFORMATION_MESSAGE,
+                            null,
+                            new String[] {"OK"},
+                            "OK"
+                    );
                 }
             }
         }
