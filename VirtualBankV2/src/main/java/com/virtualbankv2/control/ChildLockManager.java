@@ -32,7 +32,7 @@ public class ChildLockManager {
                         } else {
                             try {
                                 // 设置系统的 Look and Feel
-                                UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+                                //UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
                             } catch (Exception ee) {
                                 ee.printStackTrace();
                             }
