@@ -1,6 +1,7 @@
 package com.virtualbankv2.entity;
 
 import com.virtualbankv2.boundary.AccountInformationPage;
+import com.virtualbankv2.boundary.GoalOverviewUI;
 import com.virtualbankv2.boundary.HomePage;
 import com.virtualbankv2.boundary.TaskOverviewUI;
 import com.virtualbankv2.control.AccountOverviewPage;
@@ -78,8 +79,10 @@ public class ReturnButton {
                     new AccountOverviewPage(); // Generate the previous page
                 } else if (lastPage.equals("HomePage")) {
                     new HomePage();
-                } else if (lastPage.equals("taskOverviewPage")) {
+                } else if (lastPage.equals("TaskOverviewUI")) {
                     new TaskOverviewUI();
+                } else if (lastPage.equals("GoalOverviewUI")) {
+                    new GoalOverviewUI();
                 } else if (lastPage.equals("accountInformationPage")) {
                     new AccountInformationPage(account);
                 }

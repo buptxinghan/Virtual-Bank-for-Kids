@@ -18,11 +18,9 @@ public class VirtualBankApplication {
         new Reader();
         totalcounter = 0;
         currentUser = users.get(1);
+        totalcounter = 0;
         LoginPage login = new LoginPage();
 //        HomePage hp = new HomePage();
-
-
-        //CreateTaskPage ct = new CreateTaskPage();
     }
 
     public List<Account> getCurrentUserAccounts(User currentUser) {
