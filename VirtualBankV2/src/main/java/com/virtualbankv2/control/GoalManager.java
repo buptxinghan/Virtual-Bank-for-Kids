@@ -3,11 +3,6 @@ package com.virtualbankv2.control;
 import com.virtualbankv2.boundary.GoalOverviewUI;
 import java.io.*;
 
-public class GoalManager extends JFrame {
-    private String currentUsername;
-    private List<Goal> userGoals;
-    Reader reader = new Reader();
-
 import static com.virtualbankv2.control.VirtualBankApplication.currentUser;
 
 public class GoalManager {
