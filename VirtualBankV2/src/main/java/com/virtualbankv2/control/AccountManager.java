@@ -16,7 +16,6 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import static com.virtualbankv2.boundary.Reader.accounts;
-import static com.virtualbankv2.boundary.Reader.transactions;
 
 /**
  * Manages account-related operations.
@@ -165,37 +164,68 @@ public class AccountManager {
 
             if (validateAccount(account)) return;
 
-            String input = JOptionPane.showInputDialog(null, "Please enter the amount:", "Transaction", JOptionPane.PLAIN_MESSAGE);
-            if (input != null && !input.isEmpty()) {
-                try {
-                    double amount = Double.parseDouble(input);
-                    if ("withdraw".equals(e.getActionCommand())) {
-                        if(withdraw(account, amount)) {
+            JPanel panel = new JPanel();
+            panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+            JLabel label = new JLabel("Please enter the amount:");
+            JTextField textField = new JTextField(10);
+
+            panel.add(Box.createVerticalGlue());
+            panel.add(label);
+            panel.add(Box.createVerticalStrut(10));
+            panel.add(textField);
+
+            int option = JOptionPane.showOptionDialog(
+                    null,
+                    panel,
+                    "Transaction",
+                    JOptionPane.OK_CANCEL_OPTION,
+                    JOptionPane.PLAIN_MESSAGE,
+                    null,
+                    new String[]{"OK", "Cancel"},
+                    "OK"
+            );
+
+            if (option == JOptionPane.OK_OPTION) { // OK button clicked
+                String input = textField.getText();
+                if (input != null && !input.isEmpty()) {
+                    try {
+                        double amount = Double.parseDouble(input);
+                        if ("withdraw".equals(e.getActionCommand())) {
+                            if(withdraw(account, amount)) {
+                                DecimalFormat df = new DecimalFormat("#,##0.00");
+                                String formattedBalance = df.format(account.getBalance());
+                                accountBalanceLabel.setText("<html><font color='Red' style='font-size: 20px;'>" + formattedBalance + "</font></html>");
+                            }
+                            else {
+                                JOptionPane.showOptionDialog(
+                                        null,
+                                        "Not sufficient funds",
+                                        "Error!",
+                                        JOptionPane.DEFAULT_OPTION,
+                                        JOptionPane.INFORMATION_MESSAGE,
+                                        null,
+                                        new String[] {"OK"},
+                                        "OK"
+                                );
+                            }
+                        } else if ("transferIn".equals(e.getActionCommand())) {
+                            transferIn(account, amount);
                             DecimalFormat df = new DecimalFormat("#,##0.00");
                             String formattedBalance = df.format(account.getBalance());
                             accountBalanceLabel.setText("<html><font color='Red' style='font-size: 20px;'>" + formattedBalance + "</font></html>");
                         }
-                        else {
-                            JOptionPane.showMessageDialog(null, "Not sufficient funds", "Error!", JOptionPane.ERROR_MESSAGE);
-                        }
-                    } else if ("transferIn".equals(e.getActionCommand())) {
-                        transferIn(account, amount);
-                        DecimalFormat df = new DecimalFormat("#,##0.00");
-                        String formattedBalance = df.format(account.getBalance());
-                        accountBalanceLabel.setText("<html><font color='Red' style='font-size: 20px;'>" + formattedBalance + "</font></html>");
+                    } catch (NumberFormatException ex) {
+                        JOptionPane.showOptionDialog(
+                                null,
+                                "Please enter a valid amount!",
+                                "Error",
+                                JOptionPane.DEFAULT_OPTION,
+                                JOptionPane.INFORMATION_MESSAGE,
+                                null,
+                                new String[] {"OK"},
+                                "OK"
+                        );
                     }
-                } catch (NumberFormatException ex) {
-                    //JOptionPane.showMessageDialog(null, "Please enter a valid amount", "Error", JOptionPane.ERROR_MESSAGE);
-                    JOptionPane.showOptionDialog(
-                            null,
-                            "Please enter a valid amount!",
-                            "Error",
-                            JOptionPane.DEFAULT_OPTION,
-                            JOptionPane.INFORMATION_MESSAGE,
-                            null,
-                            new String[] {"OK"},
-                            "OK"
-                    );
                 }
             }
         });
@@ -216,7 +246,16 @@ public class AccountManager {
     public void addConfirmationListenerToButton(JButton button, String actionCommand, Account account, JLabel accountStatusLabel, JLabel accountBalanceLabel, JLabel accountTypeLabel, JLabel accountIDLabel, JLabel accountUsernameLabel) {
         button.setActionCommand(actionCommand);
         button.addActionListener(e ->  {
-            int confirmed = JOptionPane.showConfirmDialog(null, "Are you sure you want to do this?", "Confirm operation", JOptionPane.YES_NO_OPTION);
+            int confirmed = JOptionPane.showOptionDialog(
+                    null,
+                    "Are you sure you want to do this?",
+                    "Confirm operation",
+                    JOptionPane.YES_NO_OPTION,
+                    JOptionPane.QUESTION_MESSAGE,
+                    null,
+                    new String[]{"Yes", "No"},
+                    "Yes"
+            );
             if (confirmed == JOptionPane.YES_OPTION) {
                 if ("delete account".equals(e.getActionCommand())) {
                     deleteAccount(account);
@@ -282,14 +321,57 @@ public class AccountManager {
      */
     private boolean validateAccount(Account account) {
         if (isFrozen(account) || isDeleted(account)) {
-            JOptionPane.showMessageDialog(null, "The account status is abnormal and cannot be traded", "Error!", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showOptionDialog(
+                    null,
+                    "The account status is abnormal and cannot be traded",
+                    "Error!",
+                    JOptionPane.DEFAULT_OPTION,
+                    JOptionPane.INFORMATION_MESSAGE,
+                    null,
+                    new String[] {"OK"},
+                    "OK"
+            );
             return true;
         }
 
-        String password = JOptionPane.showInputDialog(null, "Enter your password:", "Authentication", JOptionPane.PLAIN_MESSAGE);
-        if (!validatePassword(password, account)) {
-            JOptionPane.showMessageDialog(null, "Wrong password", "Error!", JOptionPane.ERROR_MESSAGE);
-            return true;
+        JPanel panel = new JPanel();
+        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+        JLabel label = new JLabel("Enter your password:");
+        JTextField passwordField = new JTextField(10);
+
+        panel.add(Box.createVerticalGlue());
+        panel.add(label);
+        panel.add(Box.createVerticalStrut(10));
+        panel.add(passwordField);
+
+        int option = JOptionPane.showOptionDialog(
+                null,
+                panel,
+                "Authentication",
+                JOptionPane.OK_CANCEL_OPTION,
+                JOptionPane.PLAIN_MESSAGE,
+                null,
+                new String[]{"OK", "Cancel"},
+                "OK"
+        );
+        if (option == JOptionPane.OK_OPTION) { // OK button clicked
+            String password = passwordField.getText();
+            if (!validatePassword(password, account)) {
+                JOptionPane.showOptionDialog(
+                        null,
+                        "Wrong password",
+                        "Error!",
+                        JOptionPane.DEFAULT_OPTION,
+                        JOptionPane.INFORMATION_MESSAGE,
+                        null,
+                        new String[]{"OK"},
+                        "OK"
+                );
+                return true;
+            }
+        }
+        else { // If the "Cancel" button is clicked
+            return true; // If true is returned, authentication failed
         }
         return false;
     }

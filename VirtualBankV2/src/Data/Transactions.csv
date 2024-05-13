@@ -38,3 +38,6 @@ TransactionID,AccountFrom,AccountTo,Amount,Date,Description
 0037,System,003211,10.00,2024/05/09,Withdraw
 0038,System,003211,20.00,2024/05/10,Transfer In
 0039,System,003211,10.00,2024/05/10,Withdraw
+0040,System,003211,10.20,2024/05/13,Transfer In
+0041,System,003211,12.00,2024/05/13,Transfer In
+0042,System,003211,0.00,2024/05/13,Transfer In
