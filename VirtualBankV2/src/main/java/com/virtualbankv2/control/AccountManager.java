@@ -67,9 +67,20 @@ public class AccountManager {
      * @param amount  The amount of funds to transfer.
      */
     public void transferIn(Account account, double amount) {
+        transferIn(account, amount, "Transfer In");
+    }
+
+    /**
+     * Transfers funds into an account.
+     *
+     * @param account The account to transfer funds into.
+     * @param amount  The amount of funds to transfer.
+     * @param description The description of transaction
+     */
+    public void transferIn(Account account, double amount, String description) {
         account.setBalance(account.getBalance() + amount);
         DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy/MM/dd");
-        Transaction transaction = new Transaction(new TransactionManager().getFormatTransactionID(), "System", account.getAccountID(), amount,  dateFormatter.format(LocalDate.now()), "Transfer In");
+        Transaction transaction = new Transaction(new TransactionManager().getFormatTransactionID(), "System", account.getAccountID(), amount,  dateFormatter.format(LocalDate.now()), description);
         writer.writeAccounts(accounts);
         writer.writeSingleTransaction(transaction);
     }

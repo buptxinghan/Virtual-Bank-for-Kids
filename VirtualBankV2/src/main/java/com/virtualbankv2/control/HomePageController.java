@@ -1,6 +1,7 @@
 package com.virtualbankv2.control;
 import com.virtualbankv2.boundary.GoalOverviewUI;
 import com.virtualbankv2.boundary.HomePage;
+import com.virtualbankv2.boundary.InterestMessagePage;
 import com.virtualbankv2.boundary.TaskOverviewUI;
 
 import javax.swing.*;
@@ -17,7 +18,8 @@ public class HomePageController {
      */
     public HomePageController(HomePage view) {
 
-        this.task = new TaskOverviewUI(); // 在构造函数中初始化hp
+        new InterestController().getInterest();
+        this.task = new TaskOverviewUI();
        // task.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         task.setVisible(false);
         this.view = view;

@@ -229,11 +229,8 @@ public class Reader {
             while ((line = br.readLine()) != null) {
                 String[] values = line.split(",");
                 Interest interest = new Interest(
-                        values[0], // InterestId
-                        values[1], // LastUpdate
-                        values[2], // CurrentDate
-                        values[3], // AccountId
-                        Double.parseDouble(values[4]) // Amount
+                        values[0], // Username
+                        values[1]  // LastUpdate
                 );
                 interests.add(interest);
             }
