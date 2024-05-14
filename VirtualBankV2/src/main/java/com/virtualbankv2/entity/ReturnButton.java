@@ -1,9 +1,6 @@
 package com.virtualbankv2.entity;
 
-import com.virtualbankv2.boundary.AccountInformationPage;
-import com.virtualbankv2.boundary.GoalOverviewUI;
-import com.virtualbankv2.boundary.HomePage;
-import com.virtualbankv2.boundary.TaskOverviewUI;
+import com.virtualbankv2.boundary.*;
 import com.virtualbankv2.control.AccountOverviewPage;
 
 import javax.swing.*;
@@ -77,6 +74,8 @@ public class ReturnButton {
                 // Determine the next page based on the last page identifier
                 if (lastPage.equals("accountOverviewPage")) {
                     new AccountOverviewPage(); // Generate the previous page
+                } else if (lastPage.equals("LoginPage")) {
+                    new LoginPage();
                 } else if (lastPage.equals("HomePage")) {
                     new HomePage();
                 } else if (lastPage.equals("TaskOverviewUI")) {
