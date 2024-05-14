@@ -11,6 +11,8 @@ import static com.virtualbankv2.boundary.Reader.users;
 
 import javax.swing.*;
 import java.awt.*;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 import com.virtualbankv2.entity.User;
 
@@ -124,6 +126,15 @@ public class SignUpPage extends JFrame {
 
         // Simulate adding user and show success
         User newUser = new User(userName, password);
+
+        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+        String currentDate = dateFormatter.format(LocalDate.now());
+        Interest interest = new Interest(newUser.getUsername(), currentDate);
+
+        Writer writer = new Writer();
+        writer.writeSingleUser(newUser);
+        writer.writeSingleInterest(interest);
+
         // Normally here you would interact with a data manager or database
         JOptionPane.showMessageDialog(this, "Account created successfully!");
     }
