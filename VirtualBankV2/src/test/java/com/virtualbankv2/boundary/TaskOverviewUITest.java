@@ -23,8 +23,7 @@ public class TaskOverviewUITest {
         assertTrue(taskOverviewUI.getCreateTaskButton().isEnabled());
         taskOverviewUI.getCreateTaskButton().doClick();
     }
-
-
+    
     @Test
     public void testTaskCompletionInteraction() {
         User currentUser = new User("testUser", "testPassword");
