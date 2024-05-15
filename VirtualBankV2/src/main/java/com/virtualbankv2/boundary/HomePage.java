@@ -195,8 +195,4 @@ public class HomePage extends JFrame {
         return manualButton;
     }
 
-    public static void main(String[] args){
-        HomePage hp = new HomePage();
-    };
-
 }
