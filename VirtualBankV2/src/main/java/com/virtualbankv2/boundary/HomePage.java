@@ -1,8 +1,8 @@
 package com.virtualbankv2.boundary;
 // Homepage interface class
 
+import com.virtualbankv2.control.AccountOverviewPage;
 import com.virtualbankv2.control.HomePageController;
-import com.virtualbankv2.entity.RoundedButton;
 
 import javax.swing.*;
 import java.awt.*;

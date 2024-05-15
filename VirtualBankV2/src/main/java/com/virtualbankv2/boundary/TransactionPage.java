@@ -5,8 +5,6 @@ import java.awt.*;
 
 import com.virtualbankv2.control.TransactionManager;
 import com.virtualbankv2.entity.Account;
-import com.virtualbankv2.entity.ReturnButton;
-import com.virtualbankv2.entity.RoundedButton;
 
 import static com.virtualbankv2.boundary.Reader.accounts;
 
@@ -143,47 +141,17 @@ public class TransactionPage extends JFrame {
         try {
             amount = Double.parseDouble(amountField.getText());
         } catch (NumberFormatException ex) {
-            JOptionPane.showOptionDialog(
-                    null,
-                    "Please enter a valid amount.",
-                    "Error!",
-                    JOptionPane.DEFAULT_OPTION,
-                    JOptionPane.INFORMATION_MESSAGE,
-                    null,
-                    new String[] {"OK"},
-                    "OK"
-            );
+            JOptionPane.showMessageDialog(null, "Please enter a valid amount.");
             return;
         }
         String description = descriptionArea.getText();
-        if (description.isEmpty()) {
-            description = "NULL";
-        }
 
         for (Account tempAccount : accounts) {
             if (("Account ID: " + tempAccount.getAccountID() + " | Account Owner: " + tempAccount.getUsername()).equals(transferTo)) {
                 if (transactionManager.transfer(account, tempAccount, amount, description)) {
-                    JOptionPane.showOptionDialog(
-                            null,
-                            "Transfer to: " + transferTo + "\nAmount: " + amount + "\nDescription: " + description,
-                            "Transaction",
-                            JOptionPane.DEFAULT_OPTION,
-                            JOptionPane.INFORMATION_MESSAGE,
-                            null,
-                            new String[] {"OK"},
-                            "OK"
-                    );
+                    JOptionPane.showMessageDialog(null, "Transfer to: " + transferTo + "\nAmount: " + amount + "\nDescription: " + description);
                 } else {
-                    JOptionPane.showOptionDialog(
-                            null,
-                            "Error during transaction. Please check account balance or account status.",
-                            "Error!",
-                            JOptionPane.DEFAULT_OPTION,
-                            JOptionPane.INFORMATION_MESSAGE,
-                            null,
-                            new String[] {"OK"},
-                            "OK"
-                    );
+                    JOptionPane.showMessageDialog(null, "Error during transaction. Please check account balance or account status.", "Error", JOptionPane.ERROR_MESSAGE);
                 }
             }
         }

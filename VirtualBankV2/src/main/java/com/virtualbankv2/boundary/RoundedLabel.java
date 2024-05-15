@@ -1,4 +1,4 @@
-package com.virtualbankv2.entity;
+package com.virtualbankv2.boundary;
 
 import javax.swing.*;
 import java.awt.*;

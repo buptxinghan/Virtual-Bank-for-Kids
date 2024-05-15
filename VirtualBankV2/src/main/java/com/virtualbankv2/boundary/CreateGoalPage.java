@@ -1,7 +1,6 @@
 package com.virtualbankv2.boundary;
 
 import com.virtualbankv2.entity.Goal;
-import com.virtualbankv2.entity.RoundedButton;
 
 import javax.swing.*;
 import java.awt.*;
@@ -46,38 +45,38 @@ public class CreateGoalPage extends JFrame {
         Font labelFont = new Font("Arial", Font.BOLD, 28); // Font for labels
         Font inputFont = new Font("Arial", Font.BOLD, 24); // Font for input fields
 
-        // Goal Name Label
+// Goal Name Label
         JLabel goalNameLabel = new JLabel("Goal Name");
         goalNameLabel.setFont(labelFont);
         goalNameLabel.setForeground(new Color(93, 97, 195)); // Set color of the label
         middlePanel.add(goalNameLabel);
 
-        // Goal Name Field
+// Goal Name Field
         goalNameField = new JTextField();
         goalNameField.setFont(inputFont);
         goalNameField.setPreferredSize(new Dimension(100, 20)); // Set size of the input field
         middlePanel.add(goalNameField);
 
-        // Description Label
+// Description Label
         JLabel descriptionLabel = new JLabel("Description");
         descriptionLabel.setFont(labelFont);
         descriptionLabel.setForeground(new Color(93, 97, 195)); // Set color of the label
         middlePanel.add(descriptionLabel);
 
-        // Description Area
+// Description Area
         descriptionArea = new JTextArea(5, 20);
         descriptionArea.setFont(inputFont);
         JScrollPane scrollPane = new JScrollPane(descriptionArea);
         scrollPane.setPreferredSize(new Dimension(100, 20)); // Set size of the scroll pane
         middlePanel.add(scrollPane);
 
-        // Target Amount Label
+// Target Amount Label
         JLabel targetAmountLabel = new JLabel("Target Amount");
         targetAmountLabel.setFont(labelFont);
         targetAmountLabel.setForeground(new Color(93, 97, 195)); // Set color of the label
         middlePanel.add(targetAmountLabel);
 
-        // Target Amount Field
+// Target Amount Field
         targetAmountField = new JTextField();
         targetAmountField.setFont(inputFont);
         targetAmountField.setPreferredSize(new Dimension(100, 20)); // Set size of the input field
@@ -102,22 +101,6 @@ public class CreateGoalPage extends JFrame {
         });
 
         setVisible(true);
-    }
-
-    public JTextField getGoalNameField() {
-        return goalNameField;
-    }
-
-    public JTextArea getDescriptionArea() {
-        return descriptionArea;
-    }
-
-    public JTextField getTargetAmountField() {
-        return targetAmountField;
-    }
-
-    public RoundedButton getSaveButton() {
-        return saveButton;
     }
 
     private void saveGoal() {

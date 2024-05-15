@@ -1,7 +1,8 @@
 package com.virtualbankv2.boundary;
 
 import com.virtualbankv2.control.TransactionManager;
-import com.virtualbankv2.entity.*;
+import com.virtualbankv2.entity.Account;
+import com.virtualbankv2.entity.Transaction;
 
 import javax.swing.*;
 import java.awt.*;
@@ -10,6 +11,8 @@ import java.awt.event.ActionListener;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.virtualbankv2.boundary.Reader.accounts;
 
 /**
  * Represents a page displaying transaction history for a specific account.
@@ -142,8 +145,8 @@ public class TransactionHistoryPage extends JFrame {
      * @param tempTransactions The list of transactions to be displayed.
      */
     private void showTransactions(List<Transaction> tempTransactions) {
-        transactionsPanel.removeAll();
-        transactionsPanel.add(Box.createRigidArea(new Dimension(0, 15)));
+        transactionsPanel.removeAll(); // 清空之前的记录
+        transactionsPanel.add(Box.createRigidArea(new Dimension(0, 15))); // 添加20像素的空白
         for (Transaction transaction : tempTransactions) {
             addTransaction(transaction);
         }
