@@ -72,7 +72,7 @@ public class TaskOverviewUI extends JFrame implements ActionListener {
         middlePanel.setOpaque(false);
         setMiddlePanel(middlePanel);
         JScrollPane scrollPane = new JScrollPane(middlePanel);
-        scrollPane.getViewport().setOpaque(false); // 设置滚动面板的视口透明
+        scrollPane.getViewport().setOpaque(false);
         scrollPane.setBackground(new Color(199, 220, 247));
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
         // Add components to content pane
@@ -136,18 +136,18 @@ public class TaskOverviewUI extends JFrame implements ActionListener {
         horizontalPanel.setOpaque(false);
         horizontalPanel.setBorder(new HorizontalLineBorder(new Color(133, 149, 188), 1));
         JPanel pairContainer = new JPanel(new GridLayout(2, 1));
-        pairContainer.setAlignmentY(Component.CENTER_ALIGNMENT); // 垂直方向上中间对齐
+        pairContainer.setAlignmentY(Component.CENTER_ALIGNMENT);
         pairContainer.setOpaque(false);
-        pairContainer.setPreferredSize(new Dimension(500, 100)); // 设置合适的固定大小
+        pairContainer.setPreferredSize(new Dimension(500, 100));
 
         JLabel titleLabel = new JLabel("Task " + (i + 1) + ": " + task.getTitle() + "(" + status + ")");
-        titleLabel.setHorizontalAlignment(SwingConstants.LEFT); // 设置标题左对齐
+        titleLabel.setHorizontalAlignment(SwingConstants.LEFT);
         titleLabel.setOpaque(false);
         titleLabel.setForeground(new Color(133, 149, 188));
         titleLabel.setFont(new Font("Arial", Font.BOLD, 32));
 
         JLabel descriptionLabel = new JLabel("Description: " + task.getDescription());
-        descriptionLabel.setHorizontalAlignment(SwingConstants.LEFT); // 设置描述左对齐
+        descriptionLabel.setHorizontalAlignment(SwingConstants.LEFT);
         descriptionLabel.setOpaque(false);
         descriptionLabel.setForeground(new Color(112, 172, 249));
         descriptionLabel.setFont(new Font("Arial", Font.PLAIN, 20));
@@ -190,7 +190,7 @@ public class TaskOverviewUI extends JFrame implements ActionListener {
             for (int i = 0; i < lines.size(); i++) {
                 String line = lines.get(i);
                 String[] values = line.split(",");
-                if (values.length > 1 && values[1].equals(description)) { // 根据描述来定位需要修改的行
+                if (values.length > 1 && values[1].equals(description)) {
                     // Update the 'IsCompleted' value to true
                     values[3] = "true";
                     // Reconstruct the updated task data into a single line
