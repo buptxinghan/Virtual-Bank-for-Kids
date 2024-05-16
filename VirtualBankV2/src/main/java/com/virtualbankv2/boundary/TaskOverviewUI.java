@@ -5,6 +5,7 @@ import com.virtualbankv2.entity.Account;
 import com.virtualbankv2.entity.ReturnButton;
 import com.virtualbankv2.entity.RoundedButton;
 import com.virtualbankv2.entity.Task;
+import com.virtualbankv2.entity.User;
 import static com.virtualbankv2.boundary.Reader.accounts;
 import static com.virtualbankv2.control.VirtualBankApplication.currentUser;
 import static com.virtualbankv2.boundary.Reader.tasks;
@@ -25,6 +26,9 @@ public class TaskOverviewUI extends JFrame implements ActionListener {
     private JPanel middlePanel;
     private JPanel topPanel;
     private JPanel bottomPanel;
+    private User currentUser;
+    //private JLabel title;
+  
     /**
      * Create a new rounded button with specific text and style.
      * @return JButton A new rounded button.
@@ -233,5 +237,19 @@ public class TaskOverviewUI extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         CreateTaskPage createTaskPage=new CreateTaskPage();
         this.dispose();
+    }
+
+    public JButton getCreateTaskButton() {
+        return cnt; // Return the create task button
+    }
+
+    public void setCurrentUser(User currentUser) {
+        this.currentUser = currentUser;
+    }
+
+    public TaskOverviewUI(User currentUser) {
+        this.currentUser = currentUser;
+        cnt.addActionListener(this);
+        this.setVisible(true);
     }
 }
