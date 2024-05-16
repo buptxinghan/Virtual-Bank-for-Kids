@@ -2,6 +2,9 @@ package com.virtualbankv2.boundary;
 
 import com.virtualbankv2.control.AccountManager;
 import com.virtualbankv2.entity.Account;
+import com.virtualbankv2.entity.ReturnButton;
+import com.virtualbankv2.entity.RoundedButton;
+import com.virtualbankv2.entity.RoundedLabel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -199,7 +202,6 @@ public class AccountInformationPage extends JFrame {
      * @return The configured JLabel displaying the formatted balance.
      */
     private static RoundedLabel createDisplayLabel(Double balance) {
-        //格式化balance
         DecimalFormat df = new DecimalFormat("#,##0.00");
         String formattedBalance = df.format(balance);
 

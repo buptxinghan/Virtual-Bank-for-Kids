@@ -5,7 +5,6 @@ import com.virtualbankv2.entity.Account;
 import com.virtualbankv2.entity.ReturnButton;
 import com.virtualbankv2.entity.RoundedButton;
 import com.virtualbankv2.entity.Task;
-import com.virtualbankv2.entity.User;
 import static com.virtualbankv2.boundary.Reader.accounts;
 import static com.virtualbankv2.control.VirtualBankApplication.currentUser;
 import static com.virtualbankv2.boundary.Reader.tasks;
@@ -18,21 +17,12 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
-/**
- * TaskOverviewUI class represents the user interface for managing tasks.
- * This class extends JFrame and implements ActionListener.
- */
+
 public class TaskOverviewUI extends JFrame implements ActionListener {
     private JPanel middlePanel;
     private JPanel topPanel;
     private JPanel bottomPanel;
-    private User currentUser;
     //private JLabel title;
-  
-    /**
-     * Create a new rounded button with specific text and style.
-     * @return JButton A new rounded button.
-     */
     public static JButton createRoundButton() {
         RoundedButton button = new RoundedButton("<html><font size ='6'>Create new task</font></html>");
         button.setBackground(new Color(70, 130, 180));
@@ -44,22 +34,18 @@ public class TaskOverviewUI extends JFrame implements ActionListener {
         return button;
     }
     private RoundedButton cnt = (RoundedButton) createRoundButton();
-    /**
-     * Constructor to initialize the TaskOverviewUI.
-     */
+
+    // Constructor
     public TaskOverviewUI() {
-        // Set frame properties
         setPreferredSize(new Dimension(1200,900));
         getContentPane().setBackground(new Color(199, 220, 247));
         getContentPane().setLayout(new BorderLayout());
-        // Create top panel for title and buttons
         topPanel = new JPanel(new GridBagLayout());
         topPanel.setMaximumSize(new Dimension(Integer.MAX_VALUE, 100));
         topPanel.setOpaque(false);
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.anchor = GridBagConstraints.CENTER;
         gbc.insets = new Insets(30, 20, 30,20);
-        // Create bottom panel for return button
         bottomPanel = new JPanel();
         bottomPanel.setMaximumSize(new Dimension(Integer.MAX_VALUE, 100));
         JLabel title = new JLabel("Task Management");
@@ -70,20 +56,17 @@ public class TaskOverviewUI extends JFrame implements ActionListener {
         addComponent(topPanel, gbc, cnt, 2,0,1,GridBagConstraints.CENTER);
         bottomPanel.add(returnButton);
         bottomPanel.setOpaque(false);
-        // Create middle panel for displaying tasks
         middlePanel = new JPanel();
         middlePanel.setLayout(new BoxLayout(middlePanel, BoxLayout.Y_AXIS));
         middlePanel.setOpaque(false);
         setMiddlePanel(middlePanel);
         JScrollPane scrollPane = new JScrollPane(middlePanel);
-        scrollPane.getViewport().setOpaque(false);
+        scrollPane.getViewport().setOpaque(false); // 设置滚动面板的视口透明
         scrollPane.setBackground(new Color(199, 220, 247));
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-        // Add components to content pane
         getContentPane().add(topPanel, BorderLayout.NORTH);
         getContentPane().add(scrollPane, BorderLayout.CENTER);
         getContentPane().add(bottomPanel, BorderLayout.SOUTH);
-        // Finalize frame setup
         pack();
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -91,16 +74,6 @@ public class TaskOverviewUI extends JFrame implements ActionListener {
         this.setVisible(true);
 
     }
-    /**
-     * Add a component to the panel with GridBagConstraints.
-     * @param panel The panel to add the component to.
-     * @param gbc GridBagConstraints to set component position and alignment.
-     * @param component The component to add.
-     * @param gridwidth The number of cells the component will occupy horizontally.
-     * @param gridx The column position of the component.
-     * @param gridy The row position of the component.
-     * @param horizontalAlignment The horizontal alignment of the component within its cell.
-     */
     private void addComponent(JPanel panel,GridBagConstraints gbc,JComponent component,int gridwidth,int gridx,int gridy,int horizontalAlignment){
         gbc.gridwidth = gridwidth;
         gbc.gridx = gridx;
@@ -108,10 +81,7 @@ public class TaskOverviewUI extends JFrame implements ActionListener {
         gbc.anchor = horizontalAlignment;
         panel.add(component, gbc);
     }
-    /**
-     * Set up the middle panel to display tasks.
-     * @param panel The panel to display tasks.
-     */
+
     private void setMiddlePanel(JPanel panel) {
         panel.setOpaque(false);
         Reader reader = new Reader();
@@ -125,45 +95,38 @@ public class TaskOverviewUI extends JFrame implements ActionListener {
             }
         }
     }
-    /**
-     * Create a component to display a task.
-     * @param task The task to display.
-     * @param i The index of the task.
-     * @param container The container to add the component to.
-     */
     private void createTaskComponent(Task task, int i, JPanel container) {
         String status = task.isCompleted() ? "finished" : "unfinished";
-        JPanel outerPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 10, 0));
-        outerPanel.setOpaque(false);
         JPanel horizontalPanel = new JPanel();
-        horizontalPanel.setLayout(new BoxLayout(horizontalPanel, BoxLayout.X_AXIS));
+        horizontalPanel.setLayout(new BoxLayout(horizontalPanel, BoxLayout.X_AXIS)); // 使用水平 BoxLayout
         horizontalPanel.setOpaque(false);
-        horizontalPanel.setBorder(new HorizontalLineBorder(new Color(133, 149, 188), 1));
+
         JPanel pairContainer = new JPanel(new GridLayout(2, 1));
-        pairContainer.setAlignmentY(Component.CENTER_ALIGNMENT);
+        pairContainer.setAlignmentY(Component.CENTER_ALIGNMENT); // 垂直方向上顶部对齐 呵呵
         pairContainer.setOpaque(false);
-        pairContainer.setPreferredSize(new Dimension(500, 100));
+        pairContainer.setPreferredSize(new Dimension(500, 100)); // 设置合适的固定大小
 
         JLabel titleLabel = new JLabel("Task " + (i + 1) + ": " + task.getTitle() + "(" + status + ")");
-        titleLabel.setHorizontalAlignment(SwingConstants.LEFT);
+        titleLabel.setHorizontalAlignment(SwingConstants.LEFT); // 设置标题左对齐
         titleLabel.setOpaque(false);
         titleLabel.setForeground(new Color(133, 149, 188));
         titleLabel.setFont(new Font("Arial", Font.BOLD, 32));
 
         JLabel descriptionLabel = new JLabel("Description: " + task.getDescription());
-        descriptionLabel.setHorizontalAlignment(SwingConstants.LEFT);
+        descriptionLabel.setHorizontalAlignment(SwingConstants.LEFT); // 设置描述左对齐
         descriptionLabel.setOpaque(false);
         descriptionLabel.setForeground(new Color(112, 172, 249));
         descriptionLabel.setFont(new Font("Arial", Font.PLAIN, 20));
 
         pairContainer.add(titleLabel);
         pairContainer.add(descriptionLabel);
-        horizontalPanel.add(pairContainer, BorderLayout.WEST);
-
+        Box horizontalBox = Box.createHorizontalBox();
+        horizontalBox.add(pairContainer);
+        horizontalBox.add(Box.createHorizontalGlue());
         if (!task.isCompleted()) {
+
             JButton button = new JButton("Finish");
-            //button.setForeground(new Color(112, 172, 249));
-            horizontalPanel.add(button, BorderLayout.EAST);
+            horizontalBox.add(button);
             button.addActionListener(e -> {
                 String description = task.getDescription();
                 updateTaskIsCompletedInCSV(description);
@@ -179,77 +142,61 @@ public class TaskOverviewUI extends JFrame implements ActionListener {
                 refreshUI();
             });
         }
-        outerPanel.add(horizontalPanel);
-        container.add(outerPanel);
+        horizontalPanel.add(horizontalBox);
+        container.add(horizontalPanel);
     }
-    /**
-     * Update the completion status of a task in the CSV file.
-     * @param description The description of the task.
-     */
     private void updateTaskIsCompletedInCSV(String description) {
-        String filePath = "src/Data/Tasks.csv";
+        String filePath = "src/Data/Tasks.csv"; // CSV 文件路径
         Path path = Paths.get(filePath);
+
         try {
             List<String> lines = Files.readAllLines(path);
             for (int i = 0; i < lines.size(); i++) {
                 String line = lines.get(i);
                 String[] values = line.split(",");
-                if (values.length > 1 && values[1].equals(description)) {
-                    // Update the 'IsCompleted' value to true
+                if (values.length > 1 && values[1].equals(description)) { // 根据描述来定位需要修改的行
+                    // 更新 IsCompleted 值为 true
                     values[3] = "true";
-                    // Reconstruct the updated task data into a single line
+
+                    // 将更新后的任务数据重新组合成一行
                     StringBuilder updatedLine = new StringBuilder();
                     for (int j = 0; j < values.length; j++) {
                         updatedLine.append(values[j]);
                         if (j < values.length - 1) {
-                            updatedLine.append(","); // Add comma separator
+                            updatedLine.append(","); // 添加逗号分隔符
                         }
                     }
-                    // Update the corresponding row in the list
+
+                    // 更新列表中的对应行
                     lines.set(i, updatedLine.toString());
                     break;
                 }
             }
-            // Write back all the updated lines to the file
+
+            // 将更新后的所有行写回到文件中
             Files.write(path, lines);
         } catch (IOException ex) {
             ex.printStackTrace();
             System.out.println("failed");
         }
     }
-    /**
-     * Refreshes the user interface by clearing the current content,
-     * updating the middle panel's content, and redrawing the interface.
-     */
     public void refreshUI() {
+        // 清空当前界面的内容
         middlePanel.removeAll();
+
+        // 重新设置中间面板的内容
         setMiddlePanel(middlePanel);
+
+        // 重新绘制界面
         revalidate();
         repaint();
     }
-    /**
-     * Handles actions performed by the user interface components.
-     * In this case, it opens the create task page and disposes the current window.
-     *
-     * @param e The ActionEvent that occurred.
-     */
+    //public static void main(String[] args) {
+        //TaskOverviewUI taskOverviewUI= new TaskOverviewUI();
+    //}
     @Override
     public void actionPerformed(ActionEvent e) {
         CreateTaskPage createTaskPage=new CreateTaskPage();
         this.dispose();
-    }
-
-    public JButton getCreateTaskButton() {
-        return cnt; // Return the create task button
-    }
-
-    public void setCurrentUser(User currentUser) {
-        this.currentUser = currentUser;
-    }
-
-    public TaskOverviewUI(User currentUser) {
-        this.currentUser = currentUser;
-        cnt.addActionListener(this);
-        this.setVisible(true);
     }
 }

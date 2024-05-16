@@ -1,5 +1,7 @@
 package com.virtualbankv2.control;
+import com.virtualbankv2.boundary.GoalOverviewUI;
 import com.virtualbankv2.boundary.HomePage;
+import com.virtualbankv2.boundary.InterestMessagePage;
 import com.virtualbankv2.boundary.TaskOverviewUI;
 
 import javax.swing.*;
@@ -16,7 +18,8 @@ public class HomePageController {
      */
     public HomePageController(HomePage view) {
 
-        this.task = new TaskOverviewUI(); // 在构造函数中初始化hp
+        new InterestController().getInterest();
+        this.task = new TaskOverviewUI();
        // task.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         task.setVisible(false);
         this.view = view;
@@ -31,12 +34,17 @@ public class HomePageController {
             view.dispose();
             new AccountOverviewPage();
         });
+      
+        view.getGoalsButton().addActionListener(e -> {
+            view.dispose();
+            GoalOverviewUI goal = new  GoalOverviewUI();
+        });
 
         addReturnListenerToButton(view.getTasksButton(), task);
         //addReturnListenerToButton(view.getGoalsButton(), new testpage3("VB"));
         //addReturnListenerToButton(view.getAccountButton(), new AccountOverviewPage());
         //addReturnListenerToButton(view.getTasksButton(), new testpage2("VB"));
-        //addReturnListenerToButton(view.getGoalsButton(), new GoalManager("ltz"));
+        //addReturnListenerToButton(view.getGoalsButton(),goal);
         //addReturnListenerToButton(view.getManualButton(), new testpage4("VB"));
     }
 
