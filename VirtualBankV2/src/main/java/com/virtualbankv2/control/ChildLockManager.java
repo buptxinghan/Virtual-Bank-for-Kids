@@ -1,7 +1,7 @@
 package com.virtualbankv2.control;
 
 import com.virtualbankv2.boundary.PageOpen;
-import com.virtualbankv2.entity.ChildLock;
+import com.virtualbankv2.boundary.ChildLock;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;

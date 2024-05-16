@@ -16,7 +16,7 @@ public class LoginPage extends JFrame {
     private JFrame frame;
     private JTextField nameField;
     private JPasswordField passwordField;
-    private RoundedButton loginButton, signUpButton;
+    private RoundedButton loginButton, signUpButton, parentsMode;
     private JLabel usernameLabel, passwordLabel, titleLabel;
 
     public LoginPage() {
@@ -131,7 +131,10 @@ public class LoginPage extends JFrame {
                 JOptionPane.showMessageDialog(frame, "Error: Incorrect Username or Password!", "Error", JOptionPane.ERROR_MESSAGE);
             }
         });
+        parentsMode = new RoundedButton("Enter Parent Mode");
+        parentsMode.addActionListener(e -> {
 
+        });
         frame.add(outerPanel, BorderLayout.CENTER);
         frame.pack();
         frame.setLocationRelativeTo(null);

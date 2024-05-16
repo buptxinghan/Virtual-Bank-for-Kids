@@ -11,8 +11,9 @@ import static com.virtualbankv2.boundary.Reader.users;
 public class SignUpPage {
 
     private JFrame frame;
-    private JTextField nameField;
-    private JPasswordField passwordField, confirmPasswordField;
+    private JTextField nameField = new JTextField();
+    private JPasswordField passwordField = new JPasswordField();
+    private JPasswordField confirmPasswordField = new JPasswordField();
     private JButton submitButton;
     private Color lightBlue = new Color(199, 220, 247); // Light blue background
     private Color deepBlue = new Color(93, 97, 195); // Deep blue for buttons

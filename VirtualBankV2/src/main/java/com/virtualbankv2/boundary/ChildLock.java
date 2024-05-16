@@ -1,6 +1,6 @@
-package com.virtualbankv2.entity;
+package com.virtualbankv2.boundary;
 
-import com.virtualbankv2.boundary.RoundedTextField;
+import com.virtualbankv2.entity.RoundedButton;
 
 import javax.swing.*;
 import java.awt.*;

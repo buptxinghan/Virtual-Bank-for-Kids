@@ -1,5 +1,5 @@
 package com.virtualbankv2.entity;
-import com.virtualbankv2.entity.ChildLock;
+import com.virtualbankv2.boundary.ChildLock;
 import org.junit.jupiter.api.Test;
 import javax.swing.*;
 import static org.junit.jupiter.api.Assertions.*;
