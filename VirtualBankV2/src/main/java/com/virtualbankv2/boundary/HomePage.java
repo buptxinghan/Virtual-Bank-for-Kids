@@ -1,198 +1,124 @@
 package com.virtualbankv2.boundary;
-// Homepage interface class
 
-import com.virtualbankv2.control.AccountOverviewPage;
 import com.virtualbankv2.control.HomePageController;
 
 import javax.swing.*;
-import javax.swing.border.MatteBorder;
 import java.awt.*;
 
 public class HomePage extends JFrame {
 
-    private JButton accountButton; // Button for accessing the user's account
-    private JButton tasksButton; // Button for accessing user's tasks
-    private JButton goalsButton; // Button for accessing user's goals
-    private JButton manualButton; // Button for accessing instruction manual
+    private JButton accountButton;
+    private JButton tasksButton;
+    private JButton goalsButton;
+    private JButton manualButton;
 
-    /**
-     * Constructor for HomePage class.
-     * Initializes components and sets up the controller.
-     */
     public HomePage() {
         initializeComponents();
         HomePageController controller = new HomePageController(this);
         controller.initializeController();
     }
 
-    /**
-     * Initializes the components of the homepage.
-     * Sets up buttons, labels, and layout.
-     */
     private void initializeComponents() {
-        // Set window size
         setSize(new Dimension(1200, 900));
         setTitle("Virtual Bank");
-        // Set background color
         Color bg = new Color(199, 220, 247);
-        Color z1 = new Color(93,97,195);
-        Color z2 = new Color(133,149,188);
+        Color z1 = new Color(93, 97, 195);
+        Color z2 = new Color(133, 149, 188);
 
         getContentPane().setBackground(bg);
 
-        // Initialize buttons
-        accountButton = new RoundedButton("<html><font size=7 color=" + getColorHex(z1) + ">My account</font><br><font size=6 color=" + getColorHex(z2) + ">Check your account information</font></html>");
-        tasksButton = new RoundedButton("<html><font size=7 color=" + getColorHex(z1) + ">My tasks</font><br><font size=6 color=" + getColorHex(z2) + ">Check the tasks assigned</font></html>");
-        goalsButton = new RoundedButton("<html><font size=7 color=" + getColorHex(z1) + ">My goals</font><br><font size=6 color=" + getColorHex(z2) + ">Check and manage your goal</font></html>");
-        manualButton = new RoundedButton("<html><font size=7 color=" + getColorHex(z1) + ">Instruction manual</font><br><font size=6 color=" + getColorHex(z2) + ">Learn how to use the software or contact us</font></html>");
+        accountButton = createButton("My account", "Check your account information", z1, z2, bg);
+        tasksButton = createButton("My tasks", "Check the tasks assigned", z1, z2, bg);
+        goalsButton = createButton("My goals", "Check and manage your goal", z1, z2, bg);
+        manualButton = createButton("Instruction manual", "Learn how to use the software or contact us", z1, z2, bg);
 
+        JLabel welcomeLabel = createLabel("Welcome to Your Virtual Bank!", z1);
+        JLabel picLabel = createImageLabel("src/Materials/pig.png", bg);
 
-        accountButton.setHorizontalAlignment(SwingConstants.LEFT);
-        tasksButton.setHorizontalAlignment(SwingConstants.LEFT);
-        goalsButton.setHorizontalAlignment(SwingConstants.LEFT);
-        manualButton.setHorizontalAlignment(SwingConstants.LEFT);
+        JPanel centerPanel = new JPanel();
+        centerPanel.setLayout(new BoxLayout(centerPanel, BoxLayout.Y_AXIS));
+        centerPanel.setBackground(bg);
 
-        accountButton.setBackground(bg);
-        tasksButton.setBackground(bg);
-        goalsButton.setBackground(bg);
-        manualButton.setBackground(bg);
+        JPanel buttonPanel = createButtonPanel(bg, accountButton, tasksButton, goalsButton, manualButton);
 
-        // Initialize components
-        JLabel l1 = new JLabel( );
-        String colorHex = getColorHex(z1);
-        l1.setText("<html><font color=" + colorHex + ">Welcome to Your Virtual Bank!</font></html>");
-        l1.setHorizontalAlignment(JLabel.CENTER);
-        l1.setFont(new Font("Serif", Font.BOLD, 60));
+        centerPanel.add(Box.createRigidArea(new Dimension(0, 10)));
+        centerPanel.add(picLabel);
+        centerPanel.add(buttonPanel);
 
-
-        ImageIcon icon = new ImageIcon("src/Materials/pig.png");
-        JLabel pic = new JLabel(icon,JLabel.CENTER);
-        JPanel picPanel = new JPanel();
-        picPanel.add(pic);
-        picPanel.setBackground(bg);
-        picPanel.setMaximumSize(new Dimension(300,100));
-
-        // Set layout
-
-        JPanel Center = new JPanel();
-//        RoundedPanel Center = new RoundedPanel(15);
-        Center.setLayout(new BoxLayout(Center,BoxLayout.Y_AXIS));
-        //RoundedPanel right = new RoundedPanel(15);
-        //RoundedPanel left = new RoundedPanel(15);
-//        RoundedPanel down = new RoundedPanel(15);
-//        RoundedPanel Centerdown = new RoundedPanel(15);
-        JPanel right = new JPanel();
-        JPanel left = new JPanel();
-        JPanel down = new JPanel();
-        JPanel b1 =new JPanel();
-        JPanel b2 =new JPanel();
-        JPanel b3 =new JPanel();
-        JPanel b4 =new JPanel();
-
-        b1.setLayout(new BoxLayout(b1,BoxLayout.Y_AXIS));
-        b2.setLayout(new BoxLayout(b2,BoxLayout.Y_AXIS));
-        b3.setLayout(new BoxLayout(b3,BoxLayout.Y_AXIS));
-        b4.setLayout(new BoxLayout(b4,BoxLayout.Y_AXIS));
-        down.setPreferredSize(new Dimension(0,100));
-        JPanel Centerdown = new JPanel(new GridLayout(4, 1));
-
-        Center.setBackground(bg);
-        right.setBackground(bg);
-        left.setBackground(bg);
-        down.setBackground(bg);
-        Centerdown.setBackground(bg);
-        b1.setBackground(bg);
-        b2.setBackground(bg);
-        b3.setBackground(bg);
-        b4.setBackground(bg);
-
-        right.setPreferredSize(new Dimension(250, 250));
-        left.setPreferredSize(new Dimension(250, 250));
-
-
-
-//        Centerdown.add(accountButton);
-////        Centerdown.add(Box.createRigidArea(new Dimension(0, 10)));
-//        Centerdown.add(tasksButton);
-////        Centerdown.add(Box.createRigidArea(new Dimension(0, 10)));
-//        Centerdown.add(goalsButton);
-
-////        Centerdown.add(Box.createRigidArea(new Dimension(0, 10)));
-//        Centerdown.add(manualButton);
-
-
-
-        // Add buttons and separators
-        b1.add(accountButton);
-        b1.add(new JSeparator(SwingConstants.HORIZONTAL));
-        Centerdown.add(b1);
-
-        b2.add(tasksButton);
-        b2.add(new JSeparator(SwingConstants.HORIZONTAL));
-        Centerdown.add(b2);
-
-        b3.add(goalsButton);
-        b3.add(new JSeparator(SwingConstants.HORIZONTAL));
-        Centerdown.add(b3);
-
-        b4.add(manualButton);
-        b4.add(new JSeparator(SwingConstants.HORIZONTAL));
-        Centerdown.add(b4);
-
-        Center.add(Box.createRigidArea(new Dimension(0, 10)));
-        Center.add(picPanel);
-        Center.add(Centerdown);
-
-        add(right, BorderLayout.EAST);
-        add(l1, BorderLayout.NORTH);
-        add(down, BorderLayout.SOUTH);
-        add(left, BorderLayout.WEST);
-        add(Center);
+        add(createPanel(new Dimension(250, 250), bg), BorderLayout.EAST);
+        add(welcomeLabel, BorderLayout.NORTH);
+        add(createPanel(new Dimension(0, 100), bg), BorderLayout.SOUTH);
+        add(createPanel(new Dimension(250, 250), bg), BorderLayout.WEST);
+        add(centerPanel);
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setLocationRelativeTo(null); // Center the window
+        setLocationRelativeTo(null);
         setVisible(true);
     }
 
-    /**
-     * Converts a Color object to its corresponding hexadecimal representation.
-     * @param color The Color object to convert.
-     * @return The hexadecimal representation of the Color.
-     */
+    private JButton createButton(String title, String subtitle, Color titleColor, Color subtitleColor, Color bgColor) {
+        JButton button = new RoundedButton(String.format(
+                "<html><font size=7 color=%s>%s</font><br><font size=6 color=%s>%s</font></html>",
+                getColorHex(titleColor), title, getColorHex(subtitleColor), subtitle));
+        button.setHorizontalAlignment(SwingConstants.LEFT);
+        button.setBackground(bgColor);
+        return button;
+    }
+
+    private JLabel createLabel(String text, Color color) {
+        JLabel label = new JLabel(String.format("<html><font color=%s>%s</font></html>", getColorHex(color), text), JLabel.CENTER);
+        label.setFont(new Font("Serif", Font.BOLD, 60));
+        return label;
+    }
+
+    private JLabel createImageLabel(String imagePath, Color bgColor) {
+        JLabel label = new JLabel(new ImageIcon(imagePath), JLabel.CENTER);
+        JPanel picPanel = new JPanel();
+        picPanel.add(label);
+        picPanel.setBackground(bgColor);
+        picPanel.setMaximumSize(new Dimension(300, 100));
+        return label;
+    }
+
+    private JPanel createPanel(Dimension size, Color bgColor) {
+        JPanel panel = new JPanel();
+        panel.setPreferredSize(size);
+        panel.setBackground(bgColor);
+        return panel;
+    }
+
+    private JPanel createButtonPanel(Color bgColor, JButton... buttons) {
+        JPanel buttonPanel = new JPanel(new GridLayout(4, 1));
+        buttonPanel.setBackground(bgColor);
+
+        for (JButton button : buttons) {
+            JPanel buttonContainer = new JPanel();
+            buttonContainer.setLayout(new BoxLayout(buttonContainer, BoxLayout.Y_AXIS));
+            buttonContainer.setBackground(bgColor);
+            buttonContainer.add(button);
+            buttonContainer.add(new JSeparator(SwingConstants.HORIZONTAL));
+            buttonPanel.add(buttonContainer);
+        }
+        return buttonPanel;
+    }
+
     private String getColorHex(Color color) {
         return String.format("#%02x%02x%02x", color.getRed(), color.getGreen(), color.getBlue());
     }
 
-    /**
-     * Getter for the account button.
-     * @return The account button.
-     */
     public JButton getAccountButton() {
         return accountButton;
     }
 
-    /**
-     * Getter for the tasks button.
-     * @return The tasks button.
-     */
     public JButton getTasksButton() {
         return tasksButton;
     }
 
-    /**
-     * Getter for the goals button.
-     * @return The goals button.
-     */
     public JButton getGoalsButton() {
         return goalsButton;
     }
 
-    /**
-     * Getter for the manual button.
-     * @return The manual button.
-     */
     public JButton getManualButton() {
         return manualButton;
     }
-
 }
