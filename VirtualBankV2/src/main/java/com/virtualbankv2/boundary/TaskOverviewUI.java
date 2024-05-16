@@ -134,6 +134,7 @@ public class TaskOverviewUI extends JFrame implements ActionListener {
         JPanel horizontalPanel = new JPanel();
         horizontalPanel.setLayout(new BoxLayout(horizontalPanel, BoxLayout.X_AXIS));
         horizontalPanel.setOpaque(false);
+        horizontalPanel.setPreferredSize(new Dimension(569, 102));
         horizontalPanel.setBorder(new HorizontalLineBorder(new Color(133, 149, 188), 1));
         JPanel pairContainer = new JPanel(new GridLayout(2, 1));
         pairContainer.setAlignmentY(Component.CENTER_ALIGNMENT);
@@ -155,7 +156,6 @@ public class TaskOverviewUI extends JFrame implements ActionListener {
         pairContainer.add(titleLabel);
         pairContainer.add(descriptionLabel);
         horizontalPanel.add(pairContainer, BorderLayout.WEST);
-
         if (!task.isCompleted()) {
             JButton button = new JButton("Finish");
             //button.setForeground(new Color(112, 172, 249));
