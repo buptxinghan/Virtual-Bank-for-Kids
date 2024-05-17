@@ -47,7 +47,7 @@ public class CreateTaskPage extends JFrame{
         saveButton = new RoundedButton("<html><font size ='6'>Save</font></html>");
         saveButton.setBackground(z2);
         saveButton.setForeground(Color.WHITE);
-        returnButton = ReturnButton.createReturnButton(this, "taskOverviewPage");
+        returnButton = ReturnButton.createReturnButton(this, "TaskOverviewUI");
         //Label
         JLabel head = new JLabel("<html><font size=7 color=" + getColorHex(z1) + ">Create Task</font></html>",JLabel.CENTER);
         JLabel l1 = new JLabel("<html><font size=5 color=" + getColorHex(z1) + ">Title*</font></html>",JLabel.LEFT);
