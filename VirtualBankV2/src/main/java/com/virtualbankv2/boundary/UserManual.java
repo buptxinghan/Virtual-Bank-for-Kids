@@ -63,7 +63,7 @@ public class UserManual extends JFrame {
         getContentPane().add(middlePanel, BorderLayout.CENTER);
         getContentPane().add(bottomPanel, BorderLayout.SOUTH);
 /*
-//pic
+//pics needed?
         ImageIcon icon = new ImageIcon("src/Materials/pig.png");
         JLabel pic = new JLabel(icon,JLabel.CENTER);
         JPanel picPanel = new JPanel();

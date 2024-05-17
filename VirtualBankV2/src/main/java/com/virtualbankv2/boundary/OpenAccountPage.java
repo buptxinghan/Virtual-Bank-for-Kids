@@ -38,6 +38,7 @@ public class OpenAccountPage extends JFrame implements ActionListener {
     }
     private RoundedButton submit = (RoundedButton) createRoundButton();
     private JButton returnButton=ReturnButton.createReturnButton(this,"accountOverviewPage");
+
     /**
      * Constructor for OpenAccountPage. Initializes the GUI components and layout.
      */
