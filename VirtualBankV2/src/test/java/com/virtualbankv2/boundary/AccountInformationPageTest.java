@@ -12,7 +12,7 @@ public class AccountInformationPageTest {
 
     @Test
     void testAccountInformationPageConstructor() {
-        Account account = new Account("123456789", "JohnDoe", "Savings", "Active", 1000.00, "password");
+        Account account = new Account("123456789", "JohnDoe", "Savings", "password", 1000.00, "Active");
         AccountInformationPage page = new AccountInformationPage(account);
         assertNotNull(page);
         assertNotNull(page.getTitle());
@@ -23,7 +23,7 @@ public class AccountInformationPageTest {
 
     @Test
     void testAccountInformationPageComponents() {
-        Account account = new Account("123456789", "JohnDoe", "Savings", "Active", 1000.00, "password");
+        Account account = new Account("123456789", "JohnDoe", "Savings", "password", 1000.00, "Deleted");
         AccountInformationPage page = new AccountInformationPage(account);
         assertNotNull(page);
 
@@ -46,7 +46,7 @@ public class AccountInformationPageTest {
 
     @Test
     void testAccountInformationPageBalanceLabel() {
-        Account account = new Account("123456789", "JohnDoe", "Savings", "Active", 1000.00, "password");
+        Account account = new Account("123456789", "JohnDoe", "Savings", "password", 1000.00, "Frozen");
         AccountInformationPage page = new AccountInformationPage(account);
         assertNotNull(page);
 

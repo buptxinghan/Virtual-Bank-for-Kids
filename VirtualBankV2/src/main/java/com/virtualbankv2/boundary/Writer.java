@@ -1,5 +1,6 @@
 package com.virtualbankv2.boundary;
 
+import com.virtualbankv2.control.InterestController;
 import com.virtualbankv2.entity.*;
 import java.io.*;
 import java.text.DecimalFormat;
@@ -150,6 +151,42 @@ public class Writer {
     }
 
     /**
+     * Writes interest data to a CSV file.
+     *
+     * @param interests The list of interests to be written.
+     */
+    public void writeInterest(List<Interest> interests) {
+        try {
+            FileWriter fw = new FileWriter("src/Data/Interest.csv");
+            BufferedWriter bw = new BufferedWriter(fw);
+            bw.write("Username,LastUpdate");
+            for (Interest interest : interests) {
+                bw.newLine();
+                bw.write(interest.getUsername() + "," + interest.getLastUpdate());
+            }
+            bw.newLine();
+            bw.close();
+            fw.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Writes a single interest to the user CSV file.
+     *
+     * @param interest The interest to be written.
+     */
+    public void writeSingleInterest(Interest interest) { //TODO 在创建账户时调用
+        try (PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("src/Data/Interest.csv", true)))) {
+            interests.add(interest);
+            out.println(interest.getUsername() + "," + dateFormatter.format(LocalDate.now()));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
      * Writes a single user to the user CSV file.
      *
      * @param tempUser The user to be written.
@@ -248,25 +285,4 @@ public class Writer {
             e.printStackTrace();
         }
     }
-
-    /**
-     * Writes a single interest to the Interest CSV file.
-     *
-     * @param tempInterest The interest to be written.
-     */
-    public void writeSingleInterest(Interest tempInterest) {
-        try (PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("src/Data/Interest.csv", true)))) {
-            interests.add(tempInterest);
-            out.println(
-                    tempInterest.getInterestId() + "," +
-                            tempInterest.getLastUpdate() + "," +
-                            tempInterest.getCurrentDate() + "," +
-                            tempInterest.getAccountId() + "," +
-                            decimalFormat.format(tempInterest.getAmount())
-            );
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
 }

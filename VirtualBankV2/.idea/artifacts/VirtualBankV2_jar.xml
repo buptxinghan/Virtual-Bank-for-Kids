@@ -1,0 +1,9 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="VirtualBankV2:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/VirtualBankV2_jar</output-path>
+    <root id="archive" name="VirtualBankV2.jar">
+      <element id="module-output" name="VirtualBankV2" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/com/toedter/jcalendar/1.4/jcalendar-1.4.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>
