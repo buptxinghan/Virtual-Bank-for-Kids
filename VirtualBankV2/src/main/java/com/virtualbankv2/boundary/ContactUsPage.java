@@ -2,7 +2,7 @@ package com.virtualbankv2.boundary;
 
 import javax.swing.*;
 import java.awt.*;
-
+//version1
 public class ContactUsPage extends JFrame {
     public ContactUsPage(){
         this.initComponents();
@@ -15,7 +15,6 @@ public class ContactUsPage extends JFrame {
 
         Color bg = new Color(199, 220, 247);
         Color z1 = new Color(93, 97, 195);
-        Color z2 = new Color(70, 130, 180);
         getContentPane().setBackground(bg);
 
         //return button
@@ -108,8 +107,8 @@ public class ContactUsPage extends JFrame {
         return String.format("#%02x%02x%02x", color.getRed(), color.getGreen(), color.getBlue());
     }
 
-    public static void main(String[] args){
-      ContactUsPage ct = new ContactUsPage();
-    };
+//    public static void main(String[] args){
+//      ContactUsPage ct = new ContactUsPage();
+//    }
 
 }
