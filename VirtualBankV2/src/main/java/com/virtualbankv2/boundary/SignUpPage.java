@@ -2,21 +2,14 @@ package com.virtualbankv2.boundary;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
 
 import com.virtualbankv2.entity.*;
 
-import static com.virtualbankv2.boundary.Reader.users;
 
-
-import javax.swing.*;
-import java.awt.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 import com.virtualbankv2.entity.User;
-
-import static com.virtualbankv2.boundary.Reader.users;
 
 public class SignUpPage extends JFrame {
 

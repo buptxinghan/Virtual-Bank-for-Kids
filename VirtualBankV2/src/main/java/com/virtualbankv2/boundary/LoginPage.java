@@ -3,10 +3,7 @@ package com.virtualbankv2.boundary;
 import javax.swing.*;
 import java.awt.*;
 
-import com.virtualbankv2.entity.RoundedButton;
-import com.virtualbankv2.entity.RoundedPanel;
-import com.virtualbankv2.entity.RoundedPasswordField;
-import com.virtualbankv2.entity.User;
+import com.virtualbankv2.entity.*;
 
 import static com.virtualbankv2.control.VirtualBankApplication.currentUser;
 import static com.virtualbankv2.boundary.Reader.users;
