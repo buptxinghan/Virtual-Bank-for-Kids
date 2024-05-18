@@ -17,13 +17,9 @@ import static com.virtualbankv2.entity.Task.totalcounter;
 public class CreateTaskController {
 
     private CreateTaskPage view;
-    private TaskOverviewUI overviewUI;
     Writer writer = new Writer();
 
     public CreateTaskController(CreateTaskPage view) {
-
-        this.overviewUI = new TaskOverviewUI();
-        overviewUI.setVisible(false);
         this.view = view;
     }
 
@@ -54,7 +50,7 @@ public class CreateTaskController {
     }
 
     public void initializeController() {
-        addReturnListenerToButton(view.getSaveButton(), overviewUI);
+        addReturnListenerToButton(view.getSaveButton());
         view.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         view.addWindowListener(new WindowAdapter() {
             @Override
@@ -67,15 +63,15 @@ public class CreateTaskController {
 
     private void returnToTaskOverview() {
         view.dispose();
-        overviewUI.setVisible(true);
+        new TaskOverviewUI();
     }
 
-    private void addReturnListenerToButton(RoundedButton button, JFrame newPage) {
+    private void addReturnListenerToButton(RoundedButton button) {
         button.addActionListener(e -> {
             createTask();
             if(titleIsValid() && rewardIsValid()){
                 view.dispose();
-                newPage.setVisible(true);
+                new TaskOverviewUI();
             }
         });
     }
