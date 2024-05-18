@@ -18,7 +18,7 @@ public class ContactUsPage extends JFrame {
         getContentPane().setBackground(bg);
 
         //return button
-        JButton returnButton = ReturnButton.createReturnButton(this, "homepage");
+        JButton returnButton = ReturnButton.createReturnButton(this, "UserManual");
 
         JLabel head = new JLabel("<html><font size=7 color=" + getColorHex(z1) + ">Contact Us</font></html>",JLabel.CENTER);
         JLabel l1 = new JLabel("<html><font size=6 color=" + getColorHex(z1) + ">Customer Services</font></html>",JLabel.LEFT);
@@ -74,7 +74,7 @@ public class ContactUsPage extends JFrame {
         C1.add(l5);
 
         b.setLayout(null);
-        returnButton.setBounds(660,20,100,50);
+        returnButton.setBounds(660,20,120,50);
         b.add(returnButton);
         C2.add(contentArea);
         C2.add(b);
