@@ -9,6 +9,7 @@ import java.util.List;
 import static com.virtualbankv2.boundary.Reader.*;
 import static com.virtualbankv2.entity.Task.totalcounter;
 
+
 public class VirtualBankApplication {
     public static User currentUser; // 表示当前进入的用户账户
 
