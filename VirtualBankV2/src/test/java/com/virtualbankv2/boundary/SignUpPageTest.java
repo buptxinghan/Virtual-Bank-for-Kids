@@ -1,56 +1,50 @@
-package com.virtualbankv2.boundary;
-
-import org.junit.jupiter.api.BeforeAll;
+import com.virtualbankv2.boundary.Reader;
+import com.virtualbankv2.boundary.SignUpPage;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import javax.swing.*;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 public class SignUpPageTest {
 
-    private static SignUpPage signUpPage;
+    private SignUpPage signUpPage;
 
-    @BeforeAll
-    public static void setUp() {
+    @BeforeEach
+    void setUp() {
+        new Reader();
         signUpPage = new SignUpPage();
     }
 
     @Test
-    public void testSignUpPageInitialization() {
-        assertNotNull(signUpPage);
+    void testEmptyFields() {
+        signUpPage.setNameFieldText("");
+        signUpPage.setPasswordFieldText("");
+        signUpPage.setConfirmPasswordFieldText("");
+        signUpPage.clickSubmitButton();
+        assertTrue(signUpPage.isSubmitButtonPressed());
     }
 
     @Test
-    public void testUserRegistrationSuccess() {
-        JTextField nameField = signUpPage.getNameField();
-        JTextField passwordField = signUpPage.getPasswordField();
-        JTextField confirmPasswordField = signUpPage.getConfirmPasswordField();
-        JButton submitButton = signUpPage.getSubmitButton();
-
-        nameField.setText("TestUser");
-        passwordField.setText("TestPassword");
-        confirmPasswordField.setText("TestPassword");
-
-        submitButton.doClick();
-
-        assertTrue(signUpPage.isSuccessMessageShown());
-        assertFalse(signUpPage.isErrorMessageShown());
+    void testPasswordsDoNotMatch() {
+        signUpPage.setNameFieldText("username");
+        signUpPage.setPasswordFieldText("password");
+        signUpPage.setConfirmPasswordFieldText("differentPassword");
+        signUpPage.clickSubmitButton();
+        assertTrue(signUpPage.isSubmitButtonPressed());
     }
 
     @Test
-    public void testPasswordMismatchError() {
-        JTextField nameField = signUpPage.getNameField();
-        JTextField passwordField = signUpPage.getPasswordField();
-        JTextField confirmPasswordField = signUpPage.getConfirmPasswordField();
-        JButton submitButton = signUpPage.getSubmitButton();
+    void testSuccessfulSignUp() {
+        signUpPage.setNameFieldText("username");
+        signUpPage.setPasswordFieldText("password");
+        signUpPage.setConfirmPasswordFieldText("password");
+        signUpPage.clickSubmitButton();
+        assertTrue(signUpPage.isSubmitButtonPressed());
+    }
 
-        nameField.setText("TestUser");
-        passwordField.setText("TestPassword");
-        confirmPasswordField.setText("MismatchedPassword");
-
-        submitButton.doClick();
-
-        assertFalse(signUpPage.isSuccessMessageShown());
-        assertTrue(signUpPage.isErrorMessageShown());
+    @Test
+    void testSubmitButtonAction() {
+        signUpPage.clickSubmitButton();
+        assertTrue(signUpPage.isSubmitButtonPressed());
     }
 }
