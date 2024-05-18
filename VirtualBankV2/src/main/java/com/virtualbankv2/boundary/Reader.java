@@ -240,4 +240,32 @@ public class Reader {
         return interests;
     }
 
+    /**
+     * Reads the total counter value from the last line of the CSV file.
+     * If no data is found, the total counter is set to 0.
+     *
+     * @param filePath The path to the CSV file.
+     * @return The total counter value read from the last line of the CSV file,
+     *         or 0 if no data is found or an error occurs.
+     */
+    public static int readTotalCounter(String filePath) {
+        int totalCounter = 0; // Default value if no data is found
+        try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
+            String line;
+            String lastLine = null;
+            // Read all lines until reaching the end of the file
+            while ((line = br.readLine()) != null) {
+                lastLine = line; // Update lastLine with the current line
+            }
+            if (lastLine != null) {
+                String[] values = lastLine.split(",");
+                // Extract and return the total counter value from the last line
+                totalCounter = Integer.parseInt(values[0]);
+            }
+        } catch (IOException | NumberFormatException e) {
+            e.printStackTrace();
+        }
+        return totalCounter;
+    }
+
 }

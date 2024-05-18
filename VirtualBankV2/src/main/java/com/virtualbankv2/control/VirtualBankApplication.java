@@ -6,8 +6,7 @@ import com.virtualbankv2.entity.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.virtualbankv2.boundary.Reader.accounts;
-import static com.virtualbankv2.boundary.Reader.users;
+import static com.virtualbankv2.boundary.Reader.*;
 import static com.virtualbankv2.entity.Task.totalcounter;
 
 public class VirtualBankApplication {
@@ -16,11 +15,10 @@ public class VirtualBankApplication {
     public VirtualBankApplication() {
 
         new Reader();
-        totalcounter = 0;
+        totalcounter = readTotalCounter("src/Data/Tasks.csv");
         currentUser = users.get(1);
-        totalcounter = 0;
-        LoginPage login = new LoginPage();
-//        HomePage hp = new HomePage();
+       LoginPage login = new LoginPage();
+        //HomePage hp = new HomePage();
     }
 
     public List<Account> getCurrentUserAccounts(User currentUser) {
