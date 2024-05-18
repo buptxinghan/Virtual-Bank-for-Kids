@@ -1,8 +1,5 @@
 package com.virtualbankv2.control;
-import com.virtualbankv2.boundary.GoalOverviewUI;
-import com.virtualbankv2.boundary.HomePage;
-import com.virtualbankv2.boundary.InterestMessagePage;
-import com.virtualbankv2.boundary.TaskOverviewUI;
+import com.virtualbankv2.boundary.*;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -40,12 +37,14 @@ public class HomePageController {
             GoalOverviewUI goal = new  GoalOverviewUI();
         });
 
-        addReturnListenerToButton(view.getTasksButton(), task);
+        view.getManualButton().addActionListener(e -> {
+            view.dispose();
+            UserManual manual = new UserManual();
+        });
         //addReturnListenerToButton(view.getGoalsButton(), new testpage3("VB"));
         //addReturnListenerToButton(view.getAccountButton(), new AccountOverviewPage());
         //addReturnListenerToButton(view.getTasksButton(), new testpage2("VB"));
         //addReturnListenerToButton(view.getGoalsButton(),goal);
-        //addReturnListenerToButton(view.getManualButton(), new testpage4("VB"));
     }
 
     /**
