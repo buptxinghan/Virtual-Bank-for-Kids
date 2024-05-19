@@ -11,22 +11,34 @@ import java.util.*;
  */
 
 public class Reader {
-    /** List to store all user account information. */
+    /**
+     * List to store all user account information.
+     */
     public static List<User> users;
 
-    /** List to store all account information. */
+    /**
+     * List to store all account information.
+     */
     public static List<Account> accounts;
 
-    /** List to store all transaction records of accounts. */
+    /**
+     * List to store all transaction records of accounts.
+     */
     public static List<Transaction> transactions;
 
-    /** List to store all tasks set by parents. */
+    /**
+     * List to store all tasks set by parents.
+     */
     public static List<Task> tasks;
 
-    /** List to store all long-term goals set by users. */
+    /**
+     * List to store all long-term goals set by users.
+     */
     public static List<Goal> goals;
 
-    /** List to store user support and help information. */
+    /**
+     * List to store user support and help information.
+     */
     public static List<SupportSystem> support;
 
     public static List<Interest> interests;
@@ -241,27 +253,33 @@ public class Reader {
         return interests;
     }
 
+
     /**
      * Reads the total counter value from the last line of the CSV file.
-     * If no data is found, the total counter is set to 0.
+     * If no data is found or an error occurs, the total counter is set to 0.
      *
      * @param filePath The path to the CSV file.
      * @return The total counter value read from the last line of the CSV file,
-     *         or 0 if no data is found or an error occurs.
+     * or 0 if no data is found or an error occurs.
      */
     public static int readTotalCounter(String filePath) {
         int totalCounter = 0; // Default value if no data is found
         try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
             String line;
             String lastLine = null;
+            // Skip the header line
+            br.readLine();
             // Read all lines until reaching the end of the file
             while ((line = br.readLine()) != null) {
                 lastLine = line; // Update lastLine with the current line
             }
-            if (lastLine != null) {
+            if (lastLine != null && !lastLine.isEmpty()) {
                 String[] values = lastLine.split(",");
-                // Extract and return the total counter value from the last line
-                totalCounter = Integer.parseInt(values[0]);
+                // Ensure the line has enough values
+                if (values.length > 0) {
+                    // Extract and return the total counter value from the last line
+                    totalCounter = Integer.parseInt(values[0]);
+                }
             }
         } catch (IOException | NumberFormatException e) {
             e.printStackTrace();
@@ -269,4 +287,6 @@ public class Reader {
         return totalCounter;
     }
 
+
 }
+
