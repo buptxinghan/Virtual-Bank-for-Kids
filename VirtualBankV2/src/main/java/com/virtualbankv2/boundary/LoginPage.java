@@ -6,10 +6,7 @@ import java.awt.*;
 import com.virtualbankv2.entity.RoundedButton;
 import com.virtualbankv2.entity.RoundedPanel;
 import com.virtualbankv2.entity.RoundedPasswordField;
-import com.virtualbankv2.entity.User;
-
-import static com.virtualbankv2.control.VirtualBankApplication.currentUser;
-import static com.virtualbankv2.boundary.Reader.users;
+import com.virtualbankv2.control.LoginController;
 
 public class LoginPage extends JFrame {
 
@@ -18,10 +15,33 @@ public class LoginPage extends JFrame {
     private JPasswordField passwordField;
     private RoundedButton loginButton, signUpButton;
     private JLabel usernameLabel, passwordLabel, titleLabel;
+    private LoginController loginController;
+
+    public JFrame getFrame() {
+        return frame;
+    }
+
+    public JTextField getNameField() {
+        return nameField;
+    }
+
+    public JPasswordField getPasswordField() {
+        return passwordField;
+    }
+
+    public JButton getLoginButton() {
+        return loginButton;
+    }
+
+    public JButton getSignUpButton() {
+        return signUpButton;
+    }
 
     public LoginPage() {
+        loginController = new LoginController();
+
         // Set a consistent font for all labels and buttons
-        Font fieldFont = new Font("Arial", Font.BOLD, 25);
+        Font fieldFont = new Font("Arial", Font.BOLD, 24);
         // Create and set up the window
         frame = new JFrame("Bank Login System");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -37,7 +57,7 @@ public class LoginPage extends JFrame {
         GridBagConstraints gbcLogin = new GridBagConstraints();
 
         // Title label
-        titleLabel = new JLabel("Login", JLabel.CENTER);
+        titleLabel = new JLabel(" Login ", JLabel.CENTER);
         titleLabel.setFont(new Font("Times New Roman", Font.BOLD, 36)); // Larger font for the title
         gbcLogin.gridx = 0;
         gbcLogin.gridy = 0;
@@ -51,14 +71,14 @@ public class LoginPage extends JFrame {
         gbcLogin.gridx = 0;
         gbcLogin.gridy = 1;
         gbcLogin.gridwidth = 1;
-        gbcLogin.anchor = GridBagConstraints.LINE_START;
+        gbcLogin.anchor = GridBagConstraints.LINE_END;
         loginPanel.add(usernameLabel, gbcLogin);
 
         nameField = new RoundedTextField(10);
         nameField.setFont(fieldFont);
         gbcLogin.gridx = 1;
         gbcLogin.gridy = 1;
-        gbcLogin.gridwidth = 1; // 例如，这里设置为2，文本框将占据2列
+        gbcLogin.gridwidth = 1;
         gbcLogin.gridheight = 1;
         loginPanel.add(nameField, gbcLogin);
 
@@ -82,6 +102,7 @@ public class LoginPage extends JFrame {
 
         // Login and Sign Up buttons
         loginButton = new RoundedButton("Login");
+        loginButton.setPreferredSize(new Dimension(150,40));
         loginButton.setFont(fieldFont);
         loginButton.setBackground(new Color(93, 97, 195));
         loginButton.setForeground(Color.WHITE);
@@ -91,6 +112,7 @@ public class LoginPage extends JFrame {
         loginPanel.add(loginButton, gbcLogin);
 
         signUpButton = new RoundedButton("Sign Up");
+        signUpButton.setPreferredSize(new Dimension(150,40));
         signUpButton.setFont(fieldFont);
         signUpButton.setBackground(new Color(93, 97, 195));
         signUpButton.setForeground(Color.WHITE);
@@ -124,11 +146,20 @@ public class LoginPage extends JFrame {
         loginButton.addActionListener(e -> {
             String userName = nameField.getText();
             String password = new String(passwordField.getPassword());
-            if (checkCredentials(userName, password)) {
+            if (loginController.checkCredentials(userName, password)) {
                 frame.dispose();
                 new HomePage();
             } else {
-                JOptionPane.showMessageDialog(frame, "Error: Incorrect Username or Password!", "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showOptionDialog(
+                        this,
+                        "Error: Incorrect Username or Password!",
+                        "Error",
+                        JOptionPane.DEFAULT_OPTION,
+                        JOptionPane.ERROR_MESSAGE,
+                        null,
+                        new String[] {"OK"},
+                        "OK"
+                );
             }
         });
 
@@ -136,41 +167,5 @@ public class LoginPage extends JFrame {
         frame.pack();
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
-    }
-
-    private boolean checkCredentials(String userName, String password) {
-        for (User user : users) {
-            if (user.getUsername().equals(userName) && user.getPassword().equals(password)) {
-                currentUser = user;
-                return true;
-            }
-        }
-        JOptionPane.showMessageDialog(frame, "Error: User not found!", "Error", JOptionPane.ERROR_MESSAGE);
-        return false;
-    }
-
-//    public static void main(String[] args) {
-//        Reader reader = new Reader();
-//        SwingUtilities.invokeLater(() -> new LoginPage());
-//    }
-
-    public JFrame getFrame() {
-        return frame;
-    }
-
-    public JTextField getNameField() {
-        return nameField;
-    }
-
-    public JPasswordField getPasswordField() {
-        return passwordField;
-    }
-
-    public JButton getLoginButton() {
-        return loginButton;
-    }
-
-    public JButton getSignUpButton() {
-        return signUpButton;
     }
 }
