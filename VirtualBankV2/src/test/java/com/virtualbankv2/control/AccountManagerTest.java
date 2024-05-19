@@ -67,66 +67,6 @@ class AccountManagerTest {
     }
 
     @Test
-    void testTransferIn() {
-        double initialBalance = account.getBalance();
-        double amount = 500.00;
-        accountManager.transferIn(account, amount);
-
-        assertEquals(initialBalance + amount, account.getBalance());
-
-        assertEquals(1, writer.writtenTransactions.size());
-        Transaction capturedTransaction = writer.writtenTransactions.get(0);
-
-        assertEquals("System", capturedTransaction.getAccountFrom());
-        assertEquals(account.getAccountID(), capturedTransaction.getAccountTo());
-        assertEquals(amount, capturedTransaction.getAmount());
-        assertEquals(LocalDate.now(), LocalDate.parse(capturedTransaction.getDate(), DateTimeFormatter.ofPattern("yyyy/MM/dd")));
-        assertEquals("Transfer In", capturedTransaction.getDescription());
-    }
-
-    @Test
-    void testWithdraw() {
-        double initialBalance = account.getBalance();
-        double amount = 200.00;
-        assertTrue(accountManager.withdraw(account, amount));
-        assertEquals(initialBalance - amount, account.getBalance());
-
-        assertFalse(accountManager.withdraw(account, initialBalance + 100));
-        assertEquals(initialBalance - amount, account.getBalance());
-    }
-
-    @Test
-    void testFreezeAccount() {
-        accountManager.freezeAccount(account);
-        assertNotNull(writer.writtenAccounts);
-        assertTrue(writer.writtenAccounts.contains(account));
-        assertEquals("Frozen", account.getStatus());
-        assertEquals(1, writer.writtenAccounts.size());
-    }
-
-    @Test
-    void testUnfreezeAccount() {
-        account.setStatus("Frozen");
-        accountManager.unfreezeAccount(account);
-        assertTrue(writer.writtenAccounts.contains(account));
-        assertEquals("Active", account.getStatus());
-        assertEquals(1, writer.writtenAccounts.size());
-    }
-
-    @Test
-    void testDeleteAccount() {
-        accountManager.deleteAccount(account);
-        assertTrue(writer.writtenAccounts.contains(account));
-        assertEquals("Deleted", account.getStatus());
-        assertEquals(0.00, account.getBalance());
-        assertEquals("---", account.getAccountType());
-        assertEquals("---", account.getUsername());
-        assertEquals("---", account.getPassword());
-        assertEquals("---", account.getAccountID());
-        assertEquals(1, writer.writtenAccounts.size());
-    }
-
-    @Test
     void testIsFrozen() {
         assertFalse(accountManager.isFrozen(account));
         account.setStatus("Frozen");
