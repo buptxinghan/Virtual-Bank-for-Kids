@@ -40,7 +40,7 @@ public class GoalOverviewUI extends JFrame {
         setLocationRelativeTo(null);
         setVisible(true);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        JFrame.setDefaultLookAndFeelDecorated(true);
+        //JFrame.setDefaultLookAndFeelDecorated(true);
         setLayout(new BorderLayout());
 
         Font font1 = new Font("Arial", Font.BOLD, 40);
