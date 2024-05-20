@@ -22,7 +22,7 @@ import static com.virtualbankv2.boundary.Reader.accounts;
  */
 public class AccountManager {
 
-    private Writer writer;
+    private Writer writer = new Writer();
 
     public void setWriter(Writer writer) {
         this.writer = writer;
