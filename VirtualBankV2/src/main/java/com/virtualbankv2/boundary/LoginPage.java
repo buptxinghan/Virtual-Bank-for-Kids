@@ -8,6 +8,9 @@ import com.virtualbankv2.entity.RoundedPanel;
 import com.virtualbankv2.entity.RoundedPasswordField;
 import com.virtualbankv2.control.LoginController;
 
+import static com.virtualbankv2.control.VirtualBankApplication.currentUser;
+import static com.virtualbankv2.boundary.Reader.users;
+
 public class LoginPage extends JFrame {
 
     private JFrame frame;
