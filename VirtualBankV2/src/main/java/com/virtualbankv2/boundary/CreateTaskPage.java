@@ -64,6 +64,7 @@ public class CreateTaskPage extends JFrame{
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
         scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         scrollPane.setPreferredSize(new Dimension(250, 150));
+
         //text
         title = new JTextField();
         reward = new JTextField();
@@ -110,8 +111,8 @@ public class CreateTaskPage extends JFrame{
         C1.add(chooseEnd);
 
         b.setLayout(null);
-        saveButton.setBounds(520, 20, 100, 50);
-        returnButton.setBounds(660,20,100,50);
+        saveButton.setBounds(520, 20, 120, 50);
+        returnButton.setBounds(660,20,120,50);
         b.add(saveButton);
         b.add(returnButton);
 
