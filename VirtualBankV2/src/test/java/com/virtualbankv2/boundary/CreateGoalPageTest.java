@@ -1,4 +1,3 @@
-<<<<<<< Updated upstream
 package com.virtualbankv2.boundary;
 
 import com.virtualbankv2.boundary.CreateGoalPage;
@@ -109,7 +108,7 @@ public class CreateGoalPageTest {
         return null;
     }
 }
-=======
+
 //package com.virtualbankv2.boundary;
 //
 //import com.virtualbankv2.boundary.CreateGoalPage;
@@ -220,4 +219,4 @@ public class CreateGoalPageTest {
 //        return null;
 //    }
 //}
->>>>>>> Stashed changes
+

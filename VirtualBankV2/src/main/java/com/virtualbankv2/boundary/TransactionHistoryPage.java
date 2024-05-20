@@ -219,4 +219,28 @@ public class TransactionHistoryPage extends JFrame {
 
         return filteredTransactions;
     }
+
+    public TransactionManager getTransactionManager() {
+        return transactionManager;
+    }
+
+    public void setTransactionManager(TransactionManager transactionManager) {
+        this.transactionManager = transactionManager;
+    }
+
+    public JComboBox<String> getYearComboBox() {
+        return yearComboBox;
+    }
+
+    public JComboBox<String> getMonthComboBox() {
+        return monthComboBox;
+    }
+
+    public JComboBox<String> getDayComboBox() {
+        return dayComboBox;
+    }
+
+    public void triggerShowButton() {
+        showButton.doClick();
+    }
 }

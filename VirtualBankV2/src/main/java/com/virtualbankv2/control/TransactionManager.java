@@ -12,7 +12,7 @@ import java.util.List;
 import static com.virtualbankv2.boundary.Reader.transactions;
 
 public class TransactionManager {
-
+    private List<Transaction> transactions;
     private AccountManager accountManager = new AccountManager();
 
     public boolean transfer(Account sourceAccount, Account targetAccount, double amount, String description) {
@@ -60,5 +60,8 @@ public class TransactionManager {
             }
         }
         return tempTransactions;
+    }
+    public void setTransactions(List<Transaction> transactions) {
+        this.transactions = transactions;
     }
 }
