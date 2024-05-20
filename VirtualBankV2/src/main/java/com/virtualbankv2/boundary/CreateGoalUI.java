@@ -26,7 +26,7 @@ public class CreateGoalUI extends JFrame {
     private void createUI() {
         setTitle("Create My Goal");
         getContentPane().setBackground(new Color(199, 220, 247));
-        setSize(800, 600); // Set frame size
+        setSize(1200, 900); // Set frame size
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new BorderLayout(10, 10)); // Set layout manager

@@ -63,7 +63,7 @@ public class GoalOverviewUI extends JFrame {
     private void initializeUI() {
         setTitle("Goal Management");
         getContentPane().setBackground(new Color(199, 220, 247));
-        setSize(800, 600);
+        setSize(1200, 900);
         setLocationRelativeTo(null);
         setVisible(true);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

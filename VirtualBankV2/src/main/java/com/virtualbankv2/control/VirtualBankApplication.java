@@ -11,14 +11,14 @@ import static com.virtualbankv2.entity.Task.totalcounter;
 
 
 public class VirtualBankApplication {
-    public static User currentUser; // 表示当前进入的用户账户
+    public static User currentUser;// Indicates the current user account
 
     public VirtualBankApplication() {
 
         new Reader();
         totalcounter = readTotalCounter("src/Data/Tasks.csv");
         currentUser = users.get(1);
-       LoginPage login = new LoginPage();
+        LoginPage login = new LoginPage();
         //HomePage hp = new HomePage();
     }
 
