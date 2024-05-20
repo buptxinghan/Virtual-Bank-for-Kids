@@ -2,21 +2,21 @@ package com.virtualbankv2.boundary;
 
 import javax.swing.*;
 import java.awt.*;
+
+import com.virtualbankv2.entity.ReturnButton;
+import com.virtualbankv2.entity.RoundedButton;
+import com.virtualbankv2.entity.RoundedPanel;
+import com.virtualbankv2.entity.RoundedPasswordField;
+import com.virtualbankv2.control.SignUpController;
+
 import java.awt.event.*;
 import com.virtualbankv2.entity.User;
 import com.virtualbankv2.entity.*;
 
 import static com.virtualbankv2.boundary.Reader.users;
 
-
-import javax.swing.*;
-import java.awt.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-
-import com.virtualbankv2.entity.User;
-
-import static com.virtualbankv2.boundary.Reader.users;
 
 public class SignUpPage extends JFrame {
 
@@ -27,8 +27,11 @@ public class SignUpPage extends JFrame {
     private Font fieldFont = new Font("Arial", Font.BOLD, 25); // Font for fields and buttons
     private Color lightBlue = new Color(199, 220, 247); // Light blue background
     private Color deepBlue = new Color(93, 97, 195); // Deep blue for buttons
+    private SignUpController signUpController;
 
     public SignUpPage() {
+        signUpController = new SignUpController();
+
         setTitle("Sign Up");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setPreferredSize(new Dimension(1200, 900));
@@ -36,7 +39,7 @@ public class SignUpPage extends JFrame {
 
         // Create a main panel with GridBagLayout to hold the login panel
         JPanel mainPanel = new JPanel(new GridBagLayout());
-        mainPanel.setBackground(new Color(199, 220, 247)); // Different color from the login panel
+        mainPanel.setBackground(lightBlue); // Different color from the login panel
         GridBagConstraints gbcMain = new GridBagConstraints();
         gbcMain.fill = GridBagConstraints.BOTH;
         gbcMain.weightx = 1;
@@ -45,9 +48,9 @@ public class SignUpPage extends JFrame {
 
         RoundedPanel loginPanel = new RoundedPanel(20);
         loginPanel.setLayout(new GridBagLayout());
-        loginPanel.setPreferredSize(new Dimension(400,300));
-        loginPanel.setMaximumSize(new Dimension(400,300));
-        loginPanel.setMinimumSize(new Dimension(400,300));
+        loginPanel.setPreferredSize(new Dimension(400, 300));
+        loginPanel.setMaximumSize(new Dimension(400, 300));
+        loginPanel.setMinimumSize(new Dimension(400, 300));
         loginPanel.setBackground(new Color(133, 149, 188)); // Set the login panel color
         GridBagConstraints gbcLogin = new GridBagConstraints();
 
@@ -68,12 +71,12 @@ public class SignUpPage extends JFrame {
 
         // Submit button
         submitButton = new RoundedButton("Submit");
-        submitButton.setPreferredSize(new Dimension(200,50));
-        setupButton(submitButton, loginPanel, gbcLogin, 0,3);
+        submitButton.setPreferredSize(new Dimension(200, 50));
+        setupButton(submitButton, loginPanel, gbcLogin, 0, 3);
 
-        //Return button
-        returnButton = ReturnButton.createReturnButton(this,"LoginPage");
-        setupButton(returnButton,loginPanel,gbcLogin,1,3);
+        // Return button
+        returnButton = ReturnButton.createReturnButton(this, "LoginPage");
+        setupButton(returnButton, loginPanel, gbcLogin, 1, 3);
 
         // Add the login panel to the main panel
         mainPanel.add(loginPanel, gbcMain);
@@ -98,7 +101,7 @@ public class SignUpPage extends JFrame {
         panel.add(field, gbc);
     }
 
-    private void setupButton(JButton button, JPanel panel, GridBagConstraints gbc, int gridx,int gridy) {
+    private void setupButton(JButton button, JPanel panel, GridBagConstraints gbc, int gridx, int gridy) {
         button.setFont(fieldFont);
         button.setBackground(deepBlue);
         button.setForeground(Color.WHITE);
@@ -114,14 +117,34 @@ public class SignUpPage extends JFrame {
         String password = new String(passwordField.getPassword());
         String confirmPassword = new String(confirmPasswordField.getPassword());
 
-        if (userName.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "All fields are required.", "Error", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
+        boolean success = signUpController.performSignUp(userName, password, confirmPassword);
+        if (success) {
+            JOptionPane.showOptionDialog(
+                    this,
+                    "User created successfully!",
+                    "Success",
+                    JOptionPane.DEFAULT_OPTION,
+                    JOptionPane.INFORMATION_MESSAGE,
+                    null,
+                    new String[] {"OK"},
+                    "OK"
+            );
+            // Clear the text fields
+            nameField.setText("");
+            passwordField.setText("");
+            confirmPasswordField.setText("");
+        } else {
+            JOptionPane.showOptionDialog(
+                    this,
+                    "Error: All fields are required and passwords must match.",
+                    "Error",
+                    JOptionPane.DEFAULT_OPTION,
+                    JOptionPane.ERROR_MESSAGE,
+                    null,
+                    new String[] {"OK"},
+                    "OK"
+            );
 
-        if (!password.equals(confirmPassword)) {
-            JOptionPane.showMessageDialog(this, "Passwords do not match!", "Error", JOptionPane.ERROR_MESSAGE);
-            return;
         }
 
         // Simulate adding user and show success
@@ -163,4 +186,3 @@ public class SignUpPage extends JFrame {
         SwingUtilities.invokeLater(SignUpPage::new);
     }
 }
-

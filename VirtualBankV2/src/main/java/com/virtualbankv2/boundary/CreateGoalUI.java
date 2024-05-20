@@ -72,7 +72,6 @@ public class CreateGoalUI extends JFrame {
                 saveGoal();
             }
         });
-
         setVisible(true);
     }
 
@@ -111,7 +110,7 @@ public class CreateGoalUI extends JFrame {
             String goalName = goalNameField.getText();
             String description = descriptionField.getText();
             double targetAmount = Double.parseDouble(targetAmountField.getText());
-            double currentAmount = 10; // Assuming the logic to fetch current amount is defined elsewhere
+            double currentAmount = 0; // Assuming the logic to fetch current amount is defined elsewhere
 
             // Create a Goal object
             Goal goal = new Goal(goalName, description, targetAmount, currentAmount, currentUsername);
@@ -119,10 +118,30 @@ public class CreateGoalUI extends JFrame {
             // Logic to save the goal (e.g., database or file system)
             Writer writer = new Writer();
             writer.writeSingleGoal(goal);
-
-            JOptionPane.showMessageDialog(this, "Goal saved successfully!");
+            JOptionPane.showOptionDialog(
+                    this,
+                    "Goal saved successfully!",
+                    "Success",
+                    JOptionPane.DEFAULT_OPTION,
+                    JOptionPane.INFORMATION_MESSAGE,
+                    null,
+                    new String[] {"OK"},
+                    "OK"
+            );
+            goalNameField.setText("");
+            descriptionField.setText("");
+            targetAmountField.setText("");
         } catch (NumberFormatException ex) {
-            JOptionPane.showMessageDialog(this, "Please enter a valid number for target amount.", "Input Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showOptionDialog(
+                    this,
+                    "Please enter a valid number for target amount.",
+                    "Error",
+                    JOptionPane.DEFAULT_OPTION,
+                    JOptionPane.ERROR_MESSAGE,
+                    null,
+                    new String[] {"OK"},
+                    "OK"
+            );
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, "Error saving the goal: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
