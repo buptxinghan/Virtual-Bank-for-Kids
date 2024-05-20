@@ -230,9 +230,14 @@ public class TaskOverviewUI extends JFrame implements ActionListener {
      *
      * @param e The ActionEvent that occurred.
      */
+
+    public RoundedButton getCntButton() {
+        return cnt;
+    }
+
     @Override
     public void actionPerformed(ActionEvent e) {
-        CreateTaskPage createTaskPage=new CreateTaskPage();
+        CreateTaskPage createTaskPage = new CreateTaskPage();
         this.dispose();
     }
 }
