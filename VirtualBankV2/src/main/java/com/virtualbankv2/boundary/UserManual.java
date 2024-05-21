@@ -49,7 +49,7 @@ public class UserManual extends JFrame {
         // Create title label
         JLabel title = new JLabel("User Manual");
         title.setForeground(new Color(93, 97, 195));
-        title.setFont(new Font("Arial", Font.BOLD, 60));
+        title.setFont(new Font("Arial", Font.BOLD, 50));
         title.setPreferredSize(new Dimension(1200,100));
 
         GridBagConstraints gbc = new GridBagConstraints();
@@ -63,7 +63,6 @@ public class UserManual extends JFrame {
         // Add components to the top panel
         addComponent(topPanel,gbc,picLabel,2,0,0,GridBagConstraints.CENTER);
         addComponent(topPanel, gbc,title,2, 0, 1,GridBagConstraints.CENTER);
-
         // Create bottom panel for return button
         bottomPanel = new JPanel();
         bottomPanel.setMaximumSize(new Dimension(Integer.MAX_VALUE, 100));
@@ -74,12 +73,10 @@ public class UserManual extends JFrame {
         middlePanel = new JPanel();
         middlePanel.setLayout(new BoxLayout(middlePanel, BoxLayout.Y_AXIS));
         middlePanel.setOpaque(false);
-
         // Initialize buttons
         feature = new JButton("<html><font size=7 color=" + getColorHex(z1) + ">Feature Introduction</font><br><font size=6 color=" + getColorHex(z2) + ">Click here for explanations about each feature.</font></html>");
         faq = new JButton("<html><font size=7 color=" + getColorHex(z1) + ">FAQ</font><br><font size=6 color=" + getColorHex(z2) + ">Frequently asked questions are displayed here.</font></html>");
         contact = new JButton("<html><font size=7 color=" + getColorHex(z1) + ">Contact Us</font><br><font size=6 color=" + getColorHex(z2) + ">Contact us for personal support through this.</font></html>");
-
         // Add buttons to the middle panel
         addButtonToPanel(feature);
         addButtonToPanel(faq);
@@ -90,11 +87,11 @@ public class UserManual extends JFrame {
         getContentPane().add(bottomPanel, BorderLayout.SOUTH);
         // Add action listeners to buttons
         feature.addActionListener(e -> {
-
+            new FeatureIntroPage();
             this.dispose();
         });
         faq.addActionListener(e -> {
-
+            new FAQ();
             this.dispose();
         });
         contact.addActionListener(e -> {
@@ -146,7 +143,4 @@ public class UserManual extends JFrame {
         gbc.anchor = horizontalAlignment;
         panel.add(component, gbc);
     }
-    /*public static void main(String[] args){
-        UserManual userManual=new UserManual();
-    }*/
 }

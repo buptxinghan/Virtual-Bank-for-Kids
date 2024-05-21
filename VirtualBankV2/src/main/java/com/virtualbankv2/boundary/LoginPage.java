@@ -38,6 +38,7 @@ public class LoginPage extends JFrame {
         return signUpButton;
     }
 
+
     public LoginPage() {
         loginController = new LoginController();
 
@@ -95,6 +96,7 @@ public class LoginPage extends JFrame {
 
         passwordField = new RoundedPasswordField(10);
         passwordField.setFont(fieldFont);
+        passwordField.addActionListener(e -> performLogin());
         gbcLogin.gridx = 1;
         gbcLogin.gridy = 2;
         gbcLogin.gridwidth = 1; // 例如，这里设置为2，文本框将占据2列
@@ -169,4 +171,26 @@ public class LoginPage extends JFrame {
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
     }
+
+
+    private void performLogin() {
+        String userName = nameField.getText();
+        String password = new String(passwordField.getPassword());
+        if (loginController.checkCredentials(userName, password)) {
+            frame.dispose();
+            new HomePage();
+        } else {
+            JOptionPane.showOptionDialog(
+                    this,
+                    "Error: Incorrect Username or Password!",
+                    "Error",
+                    JOptionPane.DEFAULT_OPTION,
+                    JOptionPane.ERROR_MESSAGE,
+                    null,
+                    new String[]{"OK"},
+                    "OK"
+            );
+        }
+    }
+
 }
