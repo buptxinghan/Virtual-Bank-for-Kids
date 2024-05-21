@@ -42,36 +42,36 @@ public class WriterTest {
     @Test
     void testWriteAccounts() {
         writer.writeAccounts(accounts);
-        assertTrue(Files.exists(Paths.get("src/Data/Accounts.csv")));
+        assertTrue(Files.exists(Paths.get("src/test/Data/Accounts.csv")));
     }
 
     @Test
     void testWriteSingleAccount() {
         Account tempAccount = new Account("ACC002", "Checking", "testuser", "password", 2000.0, "Active");
         writer.writeSingleAccount(tempAccount);
-        assertTrue(Files.exists(Paths.get("src/Data/Accounts.csv")));
+        assertTrue(Files.exists(Paths.get("src/test/Data/Accounts.csv")));
     }
 
     @Test
     void testWriteGoals() {
         writer.writeGoals(goals);
-        assertTrue(Files.exists(Paths.get("src/Data/Goals.csv")));
+        assertTrue(Files.exists(Paths.get("src/test/Data/Goals.csv")));
     }
 
     @Test
     void testWriteSingleGoal() {
         Goal tempGoal = new Goal("Vacation", "Saving for vacation", 3000.0, 1000.0, "testuser");
         writer.writeSingleGoal(tempGoal);
-        assertTrue(Files.exists(Paths.get("src/Data/Goals.csv")));
+        assertTrue(Files.exists(Paths.get("src/test/Data/Goals.csv")));
     }
 
     @Test
     void testWriteTasks() {
         writer.writeTasks(tasks);
-        assertTrue(Files.exists(Paths.get("src/Data/Tasks.csv")));
+        assertTrue(Files.exists(Paths.get("src/test/Data/Tasks.csv")));
         // 检查写入的任务文件内容，确保完成状态为字符串而不是布尔值
         try {
-            String tasksContent = Files.readString(Paths.get("src/Data/Tasks.csv"));
+            String tasksContent = Files.readString(Paths.get("src/test/Data/Tasks.csv"));
             assertNotNull(tasksContent);
             assertTrue(tasksContent.contains("Task001,Do something,100.00,false")); // 这里完成状态已经是字符串了
         } catch (IOException e) {
@@ -83,10 +83,10 @@ public class WriterTest {
     void testWriteSingleTask() {
         Task tempTask = new Task("Task002", "Exercise daily", 50.0, false, 0, "2024/5/5", "2024/5/9", "Fitness Goal", "testuser");
         writer.writeSingleTask(tempTask);
-        assertTrue(Files.exists(Paths.get("src/Data/Tasks.csv")));
+        assertTrue(Files.exists(Paths.get("src/test/Data/Tasks.csv")));
         // 检查写入的任务文件内容，确保完成状态为字符串而不是布尔值
         try {
-            String tasksContent = Files.readString(Paths.get("src/Data/Tasks.csv"));
+            String tasksContent = Files.readString(Paths.get("src/test/Data/Tasks.csv"));
             assertNotNull(tasksContent);
             assertTrue(tasksContent.contains("Task002,Exercise daily,50.00,false")); // 这里完成状态已经是字符串了
         } catch (IOException e) {
@@ -97,27 +97,27 @@ public class WriterTest {
     @Test
     void testWriteTransactions() {
         writer.writeTransactions(transactions);
-        assertTrue(Files.exists(Paths.get("src/Data/Transactions.csv")));
+        assertTrue(Files.exists(Paths.get("src/test/Data/Transactions.csv")));
     }
 
     @Test
     void testWriteSingleTransaction() {
         Transaction tempTransaction = new Transaction("TR002", "ACC002", "ACC001", 300.0, "2024/5/5", "Payment received");
         writer.writeSingleTransaction(tempTransaction);
-        assertTrue(Files.exists(Paths.get("src/Data/Transactions.csv")));
+        assertTrue(Files.exists(Paths.get("src/test/Data/Transactions.csv")));
     }
 
     @Test
     void testWriteUsers() {
         writer.writeUsers(users);
-        assertTrue(Files.exists(Paths.get("src/Data/Users.csv")));
+        assertTrue(Files.exists(Paths.get("src/test/Data/Users.csv")));
     }
 
     @Test
     void testWriteSingleUser() {
         User tempUser = new User("newuser", "newpassword");
         writer.writeSingleUser(tempUser);
-        assertTrue(Files.exists(Paths.get("src/Data/Users.csv")));
+        assertTrue(Files.exists(Paths.get("src/test/Data/Users.csv")));
     }
 
 }

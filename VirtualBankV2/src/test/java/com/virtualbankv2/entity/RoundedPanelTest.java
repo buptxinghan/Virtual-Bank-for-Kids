@@ -1,6 +1,5 @@
-package com.virtualbankv2.boundary;
+package com.virtualbankv2.entity;
 
-import com.virtualbankv2.entity.RoundedPanel;
 import org.junit.jupiter.api.Test;
 
 import java.awt.*;

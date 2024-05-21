@@ -18,8 +18,8 @@ public class VirtualBankApplication {
         new Reader();
         totalcounter = readTotalCounter("src/Data/Tasks.csv");
         currentUser = users.get(1);
-        LoginPage login = new LoginPage();
-        //HomePage hp = new HomePage();
+//        LoginPage login = new LoginPage();
+        HomePage hp = new HomePage();
     }
 
     public List<Account> getCurrentUserAccounts(User currentUser) {

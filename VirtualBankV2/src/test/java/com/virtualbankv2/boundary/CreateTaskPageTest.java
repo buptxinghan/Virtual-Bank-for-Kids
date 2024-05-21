@@ -37,6 +37,7 @@ public class CreateTaskPageTest {
 
     @Test
     public void testSaveButtonClicked() {
+        new Reader();
         JTextField titleField = createTaskPage.getTitleField();
         titleField.setText("Task Title");
 
