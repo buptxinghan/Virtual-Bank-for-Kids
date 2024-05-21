@@ -33,29 +33,19 @@ public class ContactUsPage extends JFrame {
         // return button
         JButton returnButton = ReturnButton.createReturnButton(this, "UserManual");
         //labels
-        JLabel head = new JLabel("<html><font size=7 color=" + getColorHex(z1) + ">Contact Us</font></html>", JLabel.CENTER);
-        JLabel l1 = new JLabel("<html><font size=6 color=" + getColorHex(z1) + ">Customer Services</font></html>", JLabel.LEFT);
-        JLabel l2 = new JLabel("<html><font size=5 color=" + getColorHex(z1) + ">Wechat Number: XXXXX</font></html>", JLabel.LEFT);
-        JLabel l3 = new JLabel("<html><font size=5 color=" + getColorHex(z1) + ">Tel:           XXXXX</font></html>", JLabel.LEFT);
-        JLabel l4 = new JLabel("<html><font size=5 color=" + getColorHex(z1) + ">Email:         XXXX@xx.com</font></html>", JLabel.LEFT);
-        JLabel l5 = new JLabel("<html><font size=5 color=" + getColorHex(z1) + ">Service Time:  09:00-20:00</font></html>", JLabel.LEFT);
-
-        // content
-        JTextArea contentArea = new JTextArea("Please contact us if you need help!");
-        contentArea.setEditable(false);
-        contentArea.setLineWrap(true);
-        contentArea.setWrapStyleWord(true);
-        JScrollPane scrollPane = new JScrollPane(contentArea);
-        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-        scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-        scrollPane.setPreferredSize(new Dimension(250, 150));
+        JLabel head = new JLabel("<html><font color=" + getColorHex(z1) + ">Customer Services</font></html>", JLabel.CENTER);
+        head.setFont(new Font("Serif", Font.BOLD, 50)); // Set font style and size
+        JLabel l2 = new JLabel("<html><font size=6 color=" + getColorHex(z1) + ">Wechat Number:  buptxinghan</font></html>", JLabel.CENTER);
+        JLabel l3 = new JLabel("<html><font size=6 color=" + getColorHex(z1) + ">Tel:      +86 15545195623</font></html>", JLabel.CENTER);
+        JLabel l4 = new JLabel("<html><font size=6 color=" + getColorHex(z1) + ">Email:        jp2021213165@qmul.ac.uk</font></html>", JLabel.CENTER);
+        JLabel l5 = new JLabel("<html><font size=6 color=" + getColorHex(z1) + ">Service Time:  09:00-20:00</font></html>", JLabel.CENTER);
 
         ImageIcon pic = new ImageIcon("src/Materials/contactus.jpg");
         JLabel top = new JLabel(pic, SwingConstants.CENTER);
 
         JPanel center = new JPanel(new GridLayout(2, 1));
-        JPanel c1 = new JPanel(new GridLayout(6, 1));
-        JPanel c2 = new JPanel(new GridLayout(2, 1));
+        JPanel c1 = new JPanel(new GridLayout(5, 1));
+        JPanel c2 = new JPanel(new GridLayout(1, 1));
 
         JPanel s = new JPanel();
         JPanel w = new JPanel();
@@ -63,9 +53,9 @@ public class ContactUsPage extends JFrame {
         JPanel b = new JPanel();
         JPanel n = new JPanel();
 
-        w.setPreferredSize(new Dimension(200, 200));
-        e.setPreferredSize(new Dimension(200, 200));
-        s.setPreferredSize(new Dimension(100, 100));
+        w.setPreferredSize(new Dimension(300, 200));
+        e.setPreferredSize(new Dimension(300, 200));
+        s.setPreferredSize(new Dimension(10, 10));
         n.setPreferredSize(new Dimension(1200, 200));
 
         center.setBackground(bg);
@@ -78,18 +68,15 @@ public class ContactUsPage extends JFrame {
         b.setBackground(bg);
 
         n.add(top);
-
         c1.add(head);
-        c1.add(l1);
         c1.add(l2);
         c1.add(l3);
         c1.add(l4);
         c1.add(l5);
 
         b.setLayout(null);
-        returnButton.setBounds(660, 20, 120, 50);
+        returnButton.setBounds(250, 20, 120, 50);
         b.add(returnButton);
-        c2.add(contentArea);
         c2.add(b);
 
         center.add(c1);
@@ -117,4 +104,5 @@ public class ContactUsPage extends JFrame {
     private String getColorHex(Color color) {
         return String.format("#%02x%02x%02x", color.getRed(), color.getGreen(), color.getBlue());
     }
+
 }
