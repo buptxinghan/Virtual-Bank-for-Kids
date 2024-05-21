@@ -71,9 +71,8 @@ public class GoalOverviewUI extends JFrame {
         setLayout(new BorderLayout());
 
         Font font1 = new Font("Arial", Font.BOLD, 40);
-        Font font2 = new Font("Arial",Font.BOLD,60);
+        Font font2 = new Font("Arial",Font.BOLD,100);
         Font font3 = new Font("Arial",Font.BOLD,30);
-        Font font4 = new Font("Arial",Font.BOLD,24);
 
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.anchor = GridBagConstraints.CENTER;
@@ -96,10 +95,14 @@ public class GoalOverviewUI extends JFrame {
         goalInfoPanel.add(Box.createVerticalStrut(50)); // Adds initial vertical space
 
         if (userGoals.isEmpty()) {
-            JLabel noGoalLabel = new JLabel("No Goal", JLabel.CENTER);
+            JPanel noGoalPanel = new JPanel(new FlowLayout(FlowLayout.CENTER,150,100));
+            noGoalPanel.setOpaque(false);
+
+            JLabel noGoalLabel = new JLabel("NO Goal!");
             noGoalLabel.setFont(font2);
             noGoalLabel.setForeground(new Color(93, 97, 195));
-            goalInfoPanel.add(noGoalLabel,JPanel.CENTER_ALIGNMENT);
+            noGoalPanel.add(noGoalLabel);
+            goalInfoPanel.add(noGoalPanel,JPanel.CENTER_ALIGNMENT);
         } else {
             JLabel goalNameLabel = new JLabel("GoalName: " + currentGoal.getGoalName(),JLabel.CENTER);
             goalNameLabel.setFont(font3);
@@ -165,7 +168,7 @@ public class GoalOverviewUI extends JFrame {
         add(goalInfoPanel, BorderLayout.CENTER);
 
         // Button Panel
-        buttonPanel = new JPanel();
+        buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER,80,10));
         buttonPanel.setBackground(new Color(199,220,247));
         RoundedButton createButton = new RoundedButton("<html><font size ='6'>Create a goal</font></html>");
         createButton.setBackground(new Color(70, 130, 180));

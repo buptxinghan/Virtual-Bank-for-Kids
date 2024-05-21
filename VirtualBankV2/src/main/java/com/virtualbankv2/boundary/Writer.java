@@ -15,8 +15,9 @@ import static com.virtualbankv2.boundary.Reader.*;
  */
 public class Writer {
 
-    private DecimalFormat decimalFormat = new DecimalFormat("#,##0.00");
+    //private DecimalFormat decimalFormat = new DecimalFormat("#,##0.00");
     private DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+    private DecimalFormat decimalFormat = new DecimalFormat("0.00");
 
     /**
      * Writes account data to a CSV file.

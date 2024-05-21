@@ -32,19 +32,22 @@ public class CreateGoalUI extends JFrame {
         setLayout(new BorderLayout(10, 10)); // Set layout manager
 
         Font font1 = new Font("Arial", Font.BOLD, 40);
-        Font font2 = new Font("Arial",Font.BOLD,24);
+        Font font2 = new Font("Arial",Font.BOLD,40);
 
         // Top panel
         JPanel topPanel = new JPanel();
         topPanel.setBackground(new Color(199, 220, 247));
-        JLabel headerLabel = new JLabel("<html><font size=7 color=" + getColorHex(new Color(93, 97, 195)) + ">Create a Goal</font></html>", JLabel.CENTER);
+        JLabel headerLabel = new JLabel("<html><font size=12 color=" + getColorHex(new Color(93, 97, 195)) + ">Create a Goal</font></html>", JLabel.CENTER);
         topPanel.add(headerLabel);
         add(topPanel, BorderLayout.NORTH);
 
         // Middle panel
-        JPanel middlePanel = new JPanel(new GridLayout(6, 1, 10, 10));
+//        JPanel middlePanel = new JPanel(new GridLayout(6, 1, 10, 10));
+//        middlePanel.setBackground(new Color(199, 220, 247));
+        JPanel middlePanel = new JPanel();
+        middlePanel.setLayout(new GridBagLayout());
         middlePanel.setBackground(new Color(199, 220, 247));
-
+        middlePanel.setBorder(BorderFactory.createEmptyBorder(0,150,50,150));
         addLabelAndTextField("Goal Name", goalNameField, middlePanel, font2);
         addLabelAndTextField("Target Amount", targetAmountField, middlePanel, font2);
         addLabelAndTextField("Description", descriptionField, middlePanel, font2);
@@ -52,7 +55,7 @@ public class CreateGoalUI extends JFrame {
         add(middlePanel, BorderLayout.CENTER);
 
         // Bottom panel
-        JPanel bottomPanel = new JPanel();
+        JPanel bottomPanel = new JPanel(new FlowLayout(FlowLayout.CENTER,80,10));
         bottomPanel.setBackground(new Color(199, 220, 247));
         saveButton = new RoundedButton("<html><font size='6'>Save</font></html>");
         saveButton.setBackground(new Color(70, 130, 180));
@@ -76,23 +79,34 @@ public class CreateGoalUI extends JFrame {
     }
 
     private void addLabelAndTextField(String labelText, JTextField textField, JPanel panel, Font font) {
-        JLabel label = new JLabel("<html><font size=5 color=" + getColorHex(new Color(93, 97, 195)) + ">" + labelText + "</font></html>", JLabel.LEFT);
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.insets = new Insets(10, 10, 10, 10); // 上、左、下、右的间距
+        gbc.gridx = 0;  // X坐标
+        gbc.gridy = GridBagConstraints.RELATIVE;  // 自动递增Y坐标
+        gbc.weightx = 1.0;  // X方向的权重，1.0意味着可以拉伸
+
+        JLabel label = new JLabel("<html><font size=6 color=" + getColorHex(new Color(93, 97, 195)) + ">" + labelText + "</font></html>", JLabel.LEFT);
         label.setFont(font);
-        panel.add(label);
+        panel.add(label, gbc);
+
+        gbc.gridy = GridBagConstraints.RELATIVE;  // 继续自动递增Y坐标
         textField.setFont(font);
-        panel.add(textField);
+//        textField.setPreferredSize(textFieldSize);
+//        textField.setMinimumSize(textFieldSize);
+//        textField.setMaximumSize(textFieldSize);
+        panel.add(textField, gbc);
     }
 
-//    private void addLabelAndComponent(String labelText, JComponent component, JPanel panel, Font font, boolean isTextArea) {
-//        JLabel label = new JLabel("<html><font size=5 color=" + getColorHex(new Color(93, 97, 195)) + ">" + labelText + "</font></html>", JLabel.LEFT);
+//    private void addLabelAndTextField(String labelText, JTextField textField, JPanel panel, Font font,Dimension textFieldSize) {
+//        JLabel label = new JLabel("<html><font size=6 color=" + getColorHex(new Color(93, 97, 195)) + ">" + labelText + "</font></html>", JLabel.LEFT);
 //        label.setFont(font);
 //        panel.add(label);
-//
-//        if (isTextArea) {
-//            descriptionField = new JTextField();
-//            descriptionField.setFont(font);
-//        }
-//        panel.add(descriptionField);
+//        textField.setFont(font);
+//        textField.setPreferredSize(textFieldSize);
+//        textField.setMinimumSize(textFieldSize);
+//        textField.setMaximumSize(textFieldSize);
+//        panel.add(textField);
 //    }
 
     /**

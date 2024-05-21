@@ -112,7 +112,7 @@ public class SignUpPage extends JFrame {
 
         boolean success = signUpController.performSignUp(userName, password, confirmPassword);
         if (success) {
-            JOptionPane.showOptionDialog(
+            int response = JOptionPane.showOptionDialog(
                     this,
                     "User created successfully!",
                     "Success",
@@ -126,6 +126,12 @@ public class SignUpPage extends JFrame {
             nameField.setText("");
             passwordField.setText("");
             confirmPasswordField.setText("");
+
+            // Check if "OK" was pressed
+            if (response == 0) {
+                dispose(); // Close the SignUpPage
+                new LoginPage(); // Open the LoginPage
+            }
         } else {
             JOptionPane.showOptionDialog(
                     this,
