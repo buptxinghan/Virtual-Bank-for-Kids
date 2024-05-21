@@ -1,6 +1,6 @@
 package com.virtualbankv2.control;
 
-import com.virtualbankv2.boundary.PageOpen;
+import com.virtualbankv2.boundary.*;
 import com.virtualbankv2.entity.ChildLock;
 
 import javax.swing.*;
@@ -10,7 +10,7 @@ import java.awt.event.ActionListener;
 // 设置默认语言环境为英语
 public class ChildLockManager {
 
-    public void addButtonWithChildLock(JFrame frame, JButton button, PageOpen pageOpen) {
+    public void addButtonWithChildLock(JFrame frame, JButton button, String pageName) {
 
         button.addActionListener(new ActionListener() {
             @Override
@@ -28,7 +28,10 @@ public class ChildLockManager {
                         if ("111".equals(userText.getText().trim())) {
                             frame.dispose();
                             childLock.dispose();
-                            pageOpen.openAccount();
+                            switch (pageName) {
+                                case "accountOverviewPage" -> new AccountOverviewPage(); // Generate the previous page
+                                case "CreateTaskPage" -> new CreateTaskPage();
+                            }
                         } else {
                             try {
                                 // 设置系统的 Look and Feel

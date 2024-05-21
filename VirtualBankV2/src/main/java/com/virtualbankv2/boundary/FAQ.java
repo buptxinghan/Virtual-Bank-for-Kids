@@ -9,9 +9,7 @@ import java.awt.*;
 public class FAQ extends JFrame {
     public FAQ() {
         super("Account Management System");
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(1200, 900);
-        setLocationRelativeTo(null);
+
 
         JPanel mainPanel = new JPanel(new GridBagLayout()) {
             @Override
@@ -58,6 +56,13 @@ public class FAQ extends JFrame {
                 mainPanel.add(new JSeparator(), gbc);
             }
         }
+
+        JPanel topPanel = new JPanel();
+        topPanel.setBackground(new Color(199, 220, 247));
+        topPanel.setMaximumSize(new Dimension(Integer.MAX_VALUE, 100));
+        JLabel label = createLabel("<html><font color='#5D61C3' style='font-size: 25px;'>FAQ</font></html>",Font.BOLD, 25,Component.CENTER_ALIGNMENT);
+        topPanel.add(label);
+
         JPanel bottlePanel = new JPanel();
         bottlePanel.setBackground(new Color(199, 220, 247));
         bottlePanel.setMaximumSize(new Dimension(Integer.MAX_VALUE, 100));
@@ -67,8 +72,13 @@ public class FAQ extends JFrame {
         JScrollPane scrollPane = new JScrollPane(mainPanel);
 
         setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
+        add(topPanel);
         add(scrollPane);
         add(bottlePanel);
+
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setSize(1200, 900);
+        setLocationRelativeTo(null);
         setVisible(true);
     }
 
@@ -108,7 +118,12 @@ public class FAQ extends JFrame {
         return panel;
     }
 
-
+    private JLabel createLabel(String text, int fontStyle, int fontSize,float alignment) {
+        JLabel label = new JLabel(text);
+        label.setFont(new Font("Arial", fontStyle, fontSize));
+        label.setAlignmentX(alignment);
+        return label;
+    }
 
 //    public static void main(String[] args) {
 //        SwingUtilities.invokeLater(() -> {
