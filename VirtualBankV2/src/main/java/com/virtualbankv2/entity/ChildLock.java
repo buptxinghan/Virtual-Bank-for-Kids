@@ -8,10 +8,10 @@ import java.awt.event.ActionListener;
 public class ChildLock extends JFrame{
 
     private JPanel mainPanel;
-    private JTextField userText = new RoundedTextField(20);
+    private JPasswordField userText = new RoundedPasswordField(20);  // 修改为JPasswordField
     private RoundedButton checkButton = new RoundedButton("Check");
 
-    public JTextField getUserText() {
+    public JPasswordField getUserText() {  // 修改返回类型为JPasswordField
         return userText;
     }
 
