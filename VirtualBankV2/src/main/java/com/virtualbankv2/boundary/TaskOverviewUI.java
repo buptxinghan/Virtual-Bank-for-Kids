@@ -17,6 +17,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
+
 /**
  * TaskOverviewUI class represents the user interface for managing tasks.
  * This class extends JFrame and implements ActionListener.
@@ -106,19 +107,38 @@ public class TaskOverviewUI extends JFrame implements ActionListener {
         panel.add(component, gbc);
     }
     /**
-     * Set up the middle panel to display tasks.
-     * @param panel The panel to display tasks.
+     * Sets up the middle panel with tasks for the current user.
+     * If there are no tasks, it displays a "No Task" message.
+     * If there are tasks, it creates and adds components for each task to the panel.
+     *
+     * @param panel The JPanel to be set up as the middle panel.
      */
     private void setMiddlePanel(JPanel panel) {
         panel.setOpaque(false);
         Reader reader = new Reader();
-        int i = 0;
-        String currentUserUserName = currentUser.getUsername();
-        for (Task task : tasks) {
-            String taskUserName = task.getUserName();
-            if (taskUserName.equals(currentUserUserName)) {
-                createTaskComponent(task, i, panel);
-                i++;
+
+        // Check if the tasks list is empty
+        if (tasks.isEmpty()) {
+            JPanel noTaskPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 10, 0));
+            noTaskPanel.setOpaque(false);
+
+            // Display "No Task" message
+            JLabel noTask = new JLabel("No Task");
+            noTask.setForeground(new Color(93, 97, 195));
+            noTask.setFont(new Font("Arial", Font.BOLD, 96));
+            noTaskPanel.add(noTask);
+            panel.add(noTaskPanel);
+        } else {
+            int i = 0;
+            String currentUserUserName = currentUser.getUsername();
+
+            // Iterate through the tasks and create components for tasks belonging to the current user
+            for (Task task : tasks) {
+                String taskUserName = task.getUserName();
+                if (taskUserName.equals(currentUserUserName)) {
+                    createTaskComponent(task, i, panel);
+                    i++;
+                }
             }
         }
     }
@@ -159,11 +179,10 @@ public class TaskOverviewUI extends JFrame implements ActionListener {
         horizontalPanel.add(pairContainer, BorderLayout.WEST);
         if (!task.isCompleted()) {
             JButton button = new JButton("Finish");
-            //button.setForeground(new Color(112, 172, 249));
             horizontalPanel.add(button, BorderLayout.EAST);
             button.addActionListener(e -> {
-                String description = task.getTaskID();
-                updateTaskIsCompletedInCSV(description);
+                String taskID = task.getTaskID();
+                updateTaskIsCompletedInCSV(taskID);
 
                 for (Account account : accounts) {
                     if (account.getUsername().equals(currentUser.getUsername()) && account.getStatus().equals("Active")) {
@@ -181,9 +200,9 @@ public class TaskOverviewUI extends JFrame implements ActionListener {
     }
     /**
      * Update the completion status of a task in the CSV file.
-     * @param description The description of the task.
+     * @param taskID The description of the task.
      */
-    private void updateTaskIsCompletedInCSV(String description) {//still need correction
+    private void updateTaskIsCompletedInCSV(String taskID) {
         String filePath = "src/Data/Tasks.csv";
         Path path = Paths.get(filePath);
         try {
@@ -191,7 +210,7 @@ public class TaskOverviewUI extends JFrame implements ActionListener {
             for (int i = 0; i < lines.size(); i++) {
                 String line = lines.get(i);
                 String[] values = line.split(",");
-                if (values.length > 1 && values[0].equals(description)) {
+                if (values.length > 1 && values[0].equals(taskID)) {
                     // Update the 'IsCompleted' value to true
                     values[3] = "true";
                     // Reconstruct the updated task data into a single line
@@ -230,14 +249,12 @@ public class TaskOverviewUI extends JFrame implements ActionListener {
      *
      * @param e The ActionEvent that occurred.
      */
-
-    public RoundedButton getCntButton() {
-        return cnt;
-    }
-
     @Override
     public void actionPerformed(ActionEvent e) {
         CreateTaskPage createTaskPage = new CreateTaskPage();
         this.dispose();
+    }
+    public RoundedButton getCntButton() {
+        return cnt;
     }
 }
