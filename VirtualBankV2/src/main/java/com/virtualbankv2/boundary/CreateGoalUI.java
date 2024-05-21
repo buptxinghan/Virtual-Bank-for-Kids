@@ -146,4 +146,19 @@ public class CreateGoalUI extends JFrame {
             JOptionPane.showMessageDialog(this, "Error saving the goal: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
+    public JTextField getGoalNameField() {
+        return goalNameField;
+    }
+
+    public JTextField getDescriptionField() {
+        return descriptionField;
+    }
+
+    public JTextField getTargetAmountField() {
+        return targetAmountField;
+    }
+
+    public JButton getSaveButton() {
+        return saveButton;
+    }
 }

@@ -12,6 +12,7 @@ public class HomePageTest {
     @BeforeEach
     public void setUp() {
         homePage = new HomePage();
+        new Reader();
     }
 
     @Test

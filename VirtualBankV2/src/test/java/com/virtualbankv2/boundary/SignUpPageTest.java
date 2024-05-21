@@ -1,3 +1,5 @@
+package com.virtualbankv2.boundary;
+
 import com.virtualbankv2.boundary.Reader;
 import com.virtualbankv2.boundary.SignUpPage;
 import org.junit.jupiter.api.BeforeEach;
