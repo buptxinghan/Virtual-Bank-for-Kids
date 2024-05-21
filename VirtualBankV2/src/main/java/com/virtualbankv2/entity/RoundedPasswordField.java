@@ -10,7 +10,7 @@ public class RoundedPasswordField extends JPasswordField {
 
     public RoundedPasswordField(int size) {
         super(size);
-        setOpaque(false); // 使组件透明
+        setOpaque(false);
     }
 
     protected void paintComponent(Graphics g) {
@@ -31,4 +31,3 @@ public class RoundedPasswordField extends JPasswordField {
         return shape.contains(x, y);
     }
 }
-
