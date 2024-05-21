@@ -90,11 +90,11 @@ public class UserManual extends JFrame {
         getContentPane().add(bottomPanel, BorderLayout.SOUTH);
         // Add action listeners to buttons
         feature.addActionListener(e -> {
-
+            new FeatureIntroPage();
             this.dispose();
         });
         faq.addActionListener(e -> {
-
+            new FAQ();
             this.dispose();
         });
         contact.addActionListener(e -> {

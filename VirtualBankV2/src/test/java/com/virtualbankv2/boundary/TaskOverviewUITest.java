@@ -1,32 +1,29 @@
 package com.virtualbankv2.boundary;
 
+import static com.virtualbankv2.boundary.Reader.users;
 import static org.junit.Assert.*;
-import org.junit.Test;
-import com.virtualbankv2.boundary.TaskOverviewUI;
+
+import com.virtualbankv2.control.VirtualBankApplication;
 import com.virtualbankv2.entity.User;
+import org.junit.Test;
 
 public class TaskOverviewUITest {
 
     @Test
-    public void testTaskCreation() {
-        User currentUser = new User("testUser", "testPassword");
-        TaskOverviewUI taskOverviewUI = new TaskOverviewUI(currentUser);
+    public void testTaskOverviewUIInitialization() {
+        new Reader();
+        new VirtualBankApplication();
+        TaskOverviewUI taskOverviewUI = new TaskOverviewUI();
         assertNotNull(taskOverviewUI);
     }
 
     @Test
     public void testTaskCompletionButton() {
-        User currentUser = new User("testUser", "testPassword");
-        TaskOverviewUI taskOverviewUI = new TaskOverviewUI(currentUser);
-        taskOverviewUI.setCurrentUser(currentUser);
-        assertNotNull(taskOverviewUI.getCreateTaskButton());
-        assertTrue(taskOverviewUI.getCreateTaskButton().isEnabled());
-        taskOverviewUI.getCreateTaskButton().doClick();
-    }
-    
-    @Test
-    public void testTaskCompletionInteraction() {
-        User currentUser = new User("testUser", "testPassword");
-        TaskOverviewUI taskOverviewUI = new TaskOverviewUI(currentUser);
+        new Reader();
+        new VirtualBankApplication();
+        TaskOverviewUI taskOverviewUI = new TaskOverviewUI();
+        assertNotNull(taskOverviewUI.getCntButton());
+        assertTrue(taskOverviewUI.getCntButton().isEnabled());
+        taskOverviewUI.getCntButton().doClick();
     }
 }

@@ -1,15 +1,28 @@
 package com.virtualbankv2.boundary;
 
+import com.virtualbankv2.entity.ReturnButton;
+
 import javax.swing.*;
 import java.awt.*;
-//version1
-public class ContactUsPage extends JFrame {
-    public ContactUsPage(){
-        this.initComponents();
 
+/**
+ * The ContactUsPage class represents the contact us page of the Virtual Bank application.
+ * It displays contact information and provides a return button to navigate back to the user manual.
+ */
+public class ContactUsPage extends JFrame {
+
+    /**
+     * Constructs a ContactUsPage instance and initializes its components.
+     */
+    public ContactUsPage() {
+        this.initComponents();
     }
 
-    private void initComponents(){
+    /**
+     * Initializes the components of the contact us page.
+     * Sets up the layout, adds labels, text area, and return button.
+     */
+    private void initComponents() {
         setSize(new Dimension(1200, 900));
         setTitle("Virtual Bank");
 
@@ -17,18 +30,18 @@ public class ContactUsPage extends JFrame {
         Color z1 = new Color(93, 97, 195);
         getContentPane().setBackground(bg);
 
-        //return button
-        JButton returnButton = ReturnButton.createReturnButton(this, "homepage");
+        // return button
+        JButton returnButton = ReturnButton.createReturnButton(this, "UserManual");
+        //labels
+        JLabel head = new JLabel("<html><font size=7 color=" + getColorHex(z1) + ">Contact Us</font></html>", JLabel.CENTER);
+        JLabel l1 = new JLabel("<html><font size=6 color=" + getColorHex(z1) + ">Customer Services</font></html>", JLabel.LEFT);
+        JLabel l2 = new JLabel("<html><font size=5 color=" + getColorHex(z1) + ">Wechat Number: XXXXX</font></html>", JLabel.LEFT);
+        JLabel l3 = new JLabel("<html><font size=5 color=" + getColorHex(z1) + ">Tel:           XXXXX</font></html>", JLabel.LEFT);
+        JLabel l4 = new JLabel("<html><font size=5 color=" + getColorHex(z1) + ">Email:         XXXX@xx.com</font></html>", JLabel.LEFT);
+        JLabel l5 = new JLabel("<html><font size=5 color=" + getColorHex(z1) + ">Service Time:  09:00-20:00</font></html>", JLabel.LEFT);
 
-        JLabel head = new JLabel("<html><font size=7 color=" + getColorHex(z1) + ">Contact Us</font></html>",JLabel.CENTER);
-        JLabel l1 = new JLabel("<html><font size=6 color=" + getColorHex(z1) + ">Customer Services</font></html>",JLabel.LEFT);
-        JLabel l2 = new JLabel("<html><font size=5 color=" + getColorHex(z1) + ">Wechat Number: XXXXX</font></html>",JLabel.LEFT);
-        JLabel l3 = new JLabel("<html><font size=5 color=" + getColorHex(z1) + ">Tel:           XXXXX</font></html>",JLabel.LEFT);
-        JLabel l4 = new JLabel("<html><font size=5 color=" + getColorHex(z1) + ">Email:         XXXX@xx.com</font></html>",JLabel.LEFT);
-        JLabel l5 = new JLabel("<html><font size=5 color=" + getColorHex(z1) + ">Service Time:  09:00-20:00</font></html>",JLabel.LEFT);
-
-        //content
-        JTextArea contentArea = new JTextArea("Please Contact us if you need help!");
+        // content
+        JTextArea contentArea = new JTextArea("Please contact us if you need help!");
         contentArea.setEditable(false);
         contentArea.setLineWrap(true);
         contentArea.setWrapStyleWord(true);
@@ -38,63 +51,61 @@ public class ContactUsPage extends JFrame {
         scrollPane.setPreferredSize(new Dimension(250, 150));
 
         ImageIcon pic = new ImageIcon("src/Materials/contactus.jpg");
-        JLabel top = new JLabel(pic,SwingConstants.CENTER);
+        JLabel top = new JLabel(pic, SwingConstants.CENTER);
 
-        JPanel Center = new JPanel(new GridLayout(2, 1));
-        JPanel C1 = new JPanel(new GridLayout(6,1));
-        JPanel C2 = new JPanel(new GridLayout(2,1));
+        JPanel center = new JPanel(new GridLayout(2, 1));
+        JPanel c1 = new JPanel(new GridLayout(6, 1));
+        JPanel c2 = new JPanel(new GridLayout(2, 1));
 
-        JPanel S = new JPanel();
-        JPanel W = new JPanel();
-        JPanel E = new JPanel();
+        JPanel s = new JPanel();
+        JPanel w = new JPanel();
+        JPanel e = new JPanel();
         JPanel b = new JPanel();
-        JPanel N = new JPanel();
+        JPanel n = new JPanel();
 
-        W.setPreferredSize(new Dimension(200, 200));
-        E.setPreferredSize(new Dimension(200, 200));
-        S.setPreferredSize(new Dimension(100, 100));
-        N.setPreferredSize(new Dimension(1200, 200));
+        w.setPreferredSize(new Dimension(200, 200));
+        e.setPreferredSize(new Dimension(200, 200));
+        s.setPreferredSize(new Dimension(100, 100));
+        n.setPreferredSize(new Dimension(1200, 200));
 
-        Center.setBackground(bg);
-        C1.setBackground(bg);
-        C2.setBackground(bg);
-        S.setBackground(bg);
-        W.setBackground(bg);
-        E.setBackground(bg);
-        N.setBackground(bg);
+        center.setBackground(bg);
+        c1.setBackground(bg);
+        c2.setBackground(bg);
+        s.setBackground(bg);
+        w.setBackground(bg);
+        e.setBackground(bg);
+        n.setBackground(bg);
         b.setBackground(bg);
 
-        N.add(top);
+        n.add(top);
 
-        C1.add(head);
-        C1.add(l1);
-        C1.add(l2);
-        C1.add(l3);
-        C1.add(l4);
-        C1.add(l5);
+        c1.add(head);
+        c1.add(l1);
+        c1.add(l2);
+        c1.add(l3);
+        c1.add(l4);
+        c1.add(l5);
 
         b.setLayout(null);
-        returnButton.setBounds(660,20,100,50);
+        returnButton.setBounds(660, 20, 120, 50);
         b.add(returnButton);
-        C2.add(contentArea);
-        C2.add(b);
+        c2.add(contentArea);
+        c2.add(b);
 
-        Center.add(C1);
-        Center.add(C2);
+        center.add(c1);
+        center.add(c2);
 
-        //add panels into the frame
-        add(E,BorderLayout.EAST);
-        add(N,BorderLayout.NORTH);
-        add(S,BorderLayout.SOUTH);
-        add(W,BorderLayout.WEST);
-        add(Center);
+        // add panels into the frame
+        add(e, BorderLayout.EAST);
+        add(n, BorderLayout.NORTH);
+        add(s, BorderLayout.SOUTH);
+        add(w, BorderLayout.WEST);
+        add(center);
 
-        //display
+        // display
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
-
-
     }
 
     /**
@@ -106,9 +117,4 @@ public class ContactUsPage extends JFrame {
     private String getColorHex(Color color) {
         return String.format("#%02x%02x%02x", color.getRed(), color.getGreen(), color.getBlue());
     }
-
-//    public static void main(String[] args){
-//      ContactUsPage ct = new ContactUsPage();
-//    }
-
 }

@@ -22,8 +22,11 @@ import static com.virtualbankv2.boundary.Reader.accounts;
  */
 public class AccountManager {
 
-    private final Writer writer = new Writer();
+    private Writer writer = new Writer();
 
+    public void setWriter(Writer writer) {
+        this.writer = writer;
+    }
     /**
      * Displays account information.
      *
@@ -386,6 +389,5 @@ public class AccountManager {
         }
         return false;
     }
-
 }
 

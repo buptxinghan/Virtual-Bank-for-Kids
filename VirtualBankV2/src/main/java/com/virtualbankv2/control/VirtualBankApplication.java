@@ -6,21 +6,20 @@ import com.virtualbankv2.entity.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.virtualbankv2.boundary.Reader.accounts;
-import static com.virtualbankv2.boundary.Reader.users;
+import static com.virtualbankv2.boundary.Reader.*;
 import static com.virtualbankv2.entity.Task.totalcounter;
 
+
 public class VirtualBankApplication {
-    public static User currentUser; // 表示当前进入的用户账户
+    public static User currentUser;// Indicates the current user account
 
     public VirtualBankApplication() {
 
         new Reader();
-        totalcounter = 0;
+        totalcounter = readTotalCounter("src/Data/Tasks.csv");
         currentUser = users.get(1);
-        totalcounter = 0;
-        LoginPage login = new LoginPage();
-//        HomePage hp = new HomePage();
+//        LoginPage login = new LoginPage();
+        HomePage hp = new HomePage();
     }
 
     public List<Account> getCurrentUserAccounts(User currentUser) {

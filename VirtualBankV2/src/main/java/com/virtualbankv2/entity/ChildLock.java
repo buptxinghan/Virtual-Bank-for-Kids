@@ -1,9 +1,9 @@
 package com.virtualbankv2.entity;
 
-import com.virtualbankv2.boundary.RoundedTextField;
-
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class ChildLock extends JFrame{
 
@@ -28,14 +28,21 @@ public class ChildLock extends JFrame{
         this.setContentPane(this.mainPanel);
         displayCreateLockPanel(this.mainPanel);
         this.setVisible(true);
+        userText.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Perform the same action as clicking the "Check" button
+                checkButton.doClick();
+            }
+        });
     }
 
     private void displayCreateLockPanel(JPanel panel) {
 
         checkButton.setBackground(new Color(79,143,230));
         checkButton.setForeground(Color.WHITE);
-        checkButton.setPreferredSize(new Dimension(100,50));
-        checkButton.setMaximumSize(new Dimension(100,50));
+        checkButton.setPreferredSize(new Dimension(100,40));
+        checkButton.setMaximumSize(new Dimension(100,45));
         checkButton.setFont(new Font("Arial", Font.BOLD, 18));
 
         GridBagConstraints gbc = new GridBagConstraints();

@@ -85,6 +85,9 @@ public class ReturnButton {
                 } else if (lastPage.equals("accountInformationPage")) {
                     new AccountInformationPage(account);
                 }
+                else if (lastPage.equals("UserManual")) {
+                    new UserManual();
+                }
             }
         });
     }

@@ -21,6 +21,7 @@ import java.util.List;
  * TaskOverviewUI class represents the user interface for managing tasks.
  * This class extends JFrame and implements ActionListener.
  */
+
 public class TaskOverviewUI extends JFrame implements ActionListener {
     private JPanel middlePanel;
     private JPanel topPanel;
@@ -161,7 +162,7 @@ public class TaskOverviewUI extends JFrame implements ActionListener {
             //button.setForeground(new Color(112, 172, 249));
             horizontalPanel.add(button, BorderLayout.EAST);
             button.addActionListener(e -> {
-                String description = task.getDescription();
+                String description = task.getTaskID();
                 updateTaskIsCompletedInCSV(description);
 
                 for (Account account : accounts) {
@@ -190,7 +191,7 @@ public class TaskOverviewUI extends JFrame implements ActionListener {
             for (int i = 0; i < lines.size(); i++) {
                 String line = lines.get(i);
                 String[] values = line.split(",");
-                if (values.length > 1 && values[1].equals(description)) {
+                if (values.length > 1 && values[0].equals(description)) {
                     // Update the 'IsCompleted' value to true
                     values[3] = "true";
                     // Reconstruct the updated task data into a single line
@@ -229,9 +230,14 @@ public class TaskOverviewUI extends JFrame implements ActionListener {
      *
      * @param e The ActionEvent that occurred.
      */
+
+    public RoundedButton getCntButton() {
+        return cnt;
+    }
+
     @Override
     public void actionPerformed(ActionEvent e) {
-        CreateTaskPage createTaskPage=new CreateTaskPage();
+        CreateTaskPage createTaskPage = new CreateTaskPage();
         this.dispose();
     }
 }

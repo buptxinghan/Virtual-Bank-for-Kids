@@ -35,7 +35,7 @@ public class InterestController {
                 accountManager.transferIn(tempAccount, interestAmount, "Interest income");
                 tempAccount.setBalance(tempAccount.getBalance() + interestAmount);
                 // Assuming interestAmount is a double
-                accountInterests.add("Account ID: " + tempAccount.getAccountID() + " - Interest: " + String.format("%.2f", interestAmount));
+                accountInterests.add("<html><div style='text-align:center;'>Account ID: " + tempAccount.getAccountID() + " - Interest: <span style='color:red;'>" + String.format("%.2f", interestAmount) + "</span></div></html>");
                 isUpdate = true;
             }
             writer.writeInterest(interests);
