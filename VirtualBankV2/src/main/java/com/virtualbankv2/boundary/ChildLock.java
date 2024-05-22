@@ -1,4 +1,7 @@
-package com.virtualbankv2.entity;
+package com.virtualbankv2.boundary;
+
+import com.virtualbankv2.entity.RoundedButton;
+import com.virtualbankv2.entity.RoundedPasswordField;
 
 import javax.swing.*;
 import java.awt.*;
