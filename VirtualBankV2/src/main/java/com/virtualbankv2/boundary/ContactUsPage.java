@@ -6,8 +6,11 @@ import javax.swing.*;
 import java.awt.*;
 
 /**
- * The ContactUsPage class represents the contact us page of the Virtual Bank application.
+ * The ContactUsPage class represents the customer service page of the Virtual Bank application.
  * It displays contact information and provides a return button to navigate back to the user manual.
+ *
+ * @author Feng Shiyu
+ * @since 3.0
  */
 public class ContactUsPage extends JFrame {
 
