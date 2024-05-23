@@ -21,6 +21,8 @@ import java.util.List;
 /**
  * TaskOverviewUI class represents the user interface for managing tasks.
  * This class extends JFrame and implements ActionListener.
+ *
+ * @author Sun Lichen
  */
 
 public class TaskOverviewUI extends JFrame implements ActionListener {
