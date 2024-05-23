@@ -7,6 +7,8 @@ import java.awt.*;
 /**
  * The UserManual class represents a GUI window that displays the user manual of the Virtual Bank application.
  * It contains a title, an image, and buttons for different sections of the manual.
+ *
+ * @author Sun Lichen
  */
 public class UserManual extends JFrame {
     private JButton feature;

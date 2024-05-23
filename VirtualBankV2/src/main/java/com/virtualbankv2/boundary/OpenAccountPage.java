@@ -15,6 +15,8 @@ import static com.virtualbankv2.control.VirtualBankApplication.currentUser;
 /**
  * OpenAccountPage is a GUI class that allows users to open a new account.
  * It extends JFrame and implements ActionListener to handle button actions.
+ *
+ * @author Sun Lichen
  */
 public class OpenAccountPage extends JFrame implements ActionListener {
     private JLabel title, att, atd, pp, ppd, cp;
