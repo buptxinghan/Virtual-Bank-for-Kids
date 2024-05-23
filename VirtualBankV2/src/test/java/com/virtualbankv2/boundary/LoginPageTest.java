@@ -1,5 +1,5 @@
 package com.virtualbankv2.boundary;
-import com.virtualbankv2.boundary.LoginPage;
+
 import com.virtualbankv2.control.VirtualBankApplication;
 import com.virtualbankv2.entity.User;
 import org.junit.jupiter.api.BeforeEach;
@@ -7,7 +7,6 @@ import org.junit.jupiter.api.Test;
 
 import javax.swing.*;
 import java.lang.reflect.Field;
-import java.util.ArrayList;
 
 import static com.virtualbankv2.boundary.Reader.users;
 import static org.junit.jupiter.api.Assertions.*;
@@ -27,7 +26,7 @@ public class LoginPageTest {
         // Prepare mock data before creating a LoginPage instance
         users.add(new User("root", "111"));  // Add a test user
 
-        loginPage = new LoginPage();  // Create a LoginPage instance
+        loginPage = new LoginPage();
         frame = retrieveAccessibleJFrame(loginPage);
         nameField = retrieveAccessibleField(loginPage, "nameField", JTextField.class);
         passwordField = retrieveAccessibleField(loginPage, "passwordField", JPasswordField.class);
@@ -43,29 +42,25 @@ public class LoginPageTest {
 
     @Test
     public void testLoginFunctionality() {
-        // Simulate user inputting valid username and password
         nameField.setText("root");
         passwordField.setText("111");
 
-        // Simulate clicking the login button
         loginButton.doClick();
 
-        // Verify that the currentUser is set correctly after a successful login
         assertNotNull(VirtualBankApplication.currentUser, "Current user should be set after successful login");
         assertEquals("root", VirtualBankApplication.currentUser.getUsername());
     }
 
     @Test
     public void testLoginInvalidCredentials() {
-        // Simulate user inputting invalid username and password
         nameField.setText("wrongUser");
         passwordField.setText("wrongPass");
 
-        // Simulate clicking the login button
+        VirtualBankApplication.currentUser = null;
+
         loginButton.doClick();
 
-        // Verify that the currentUser is still null after a failed login
-        assertNull(VirtualBankApplication.currentUser, "Error: Incorrect Username or Password!");
+        assertNull(VirtualBankApplication.currentUser, "Current user should be null after failed login");
     }
 
     private <T> T retrieveAccessibleField(Object obj, String fieldName, Class<T> fieldType) throws NoSuchFieldException, IllegalAccessException {
