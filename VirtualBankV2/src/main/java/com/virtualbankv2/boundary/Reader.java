@@ -45,6 +45,9 @@ public class Reader {
      */
     public static List<SupportSystem> support;
 
+    /**
+     * List to store Interest information.
+     */
     public static List<Interest> interests;
 
     /**

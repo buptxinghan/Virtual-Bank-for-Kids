@@ -93,7 +93,7 @@ public class Task {
      * @param end         the end date of the task
      * @param userName    the username of the user associated with the task
      */
-    public Task(String taskID, String description, double reward, boolean isCompleted, int counter, String title, String start, String end, String userName) {
+    public Task(String taskID, String description, double reward, boolean isCompleted, int counter, String start, String end, String title, String userName) {
         this.taskID = taskID;
         this.description = description;
         this.reward = reward;
