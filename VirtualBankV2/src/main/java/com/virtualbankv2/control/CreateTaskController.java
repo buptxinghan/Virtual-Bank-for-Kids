@@ -14,8 +14,18 @@ import static com.virtualbankv2.control.VirtualBankApplication.currentUser;
 import static com.virtualbankv2.entity.Task.totalcounter;
 
 /**
- * The CreateTaskTaskController class is responsible for managing the interactions
+ * The CreateTaskController class is responsible for managing the interactions
  * between the CreateTaskPage view and the underlying task creation logic.
+ * It handles user input from the view, validates the input fields, and if valid,
+ * creates a task, writes it using the Writer class, and displays a success message.
+ * If the input validation fails, it displays an error message.
+ * This class also initializes the controller by setting up event listeners and
+ * window closing behavior, as well as closing the current view and returning to
+ * the TaskOverviewUI. It includes methods to validate the task title and reward
+ * input to ensure the data entered by the user is valid.
+ *
+ * @author Feng Shiyu
+ * @since 2.0
  */
 public class CreateTaskController {
 

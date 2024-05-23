@@ -12,6 +12,14 @@ public class RoundedLabel extends JLabel {
         setOpaque(false);
     }
 
+    public int getArcW() {
+        return arcW;
+    }
+
+    public int getArcH() {
+        return arcH;
+    }
+
     @Override
     protected void paintComponent(Graphics g) {
         Graphics2D g2 = (Graphics2D) g.create();
@@ -21,4 +29,3 @@ public class RoundedLabel extends JLabel {
         super.paintComponent(g);
     }
 }
-

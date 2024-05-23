@@ -1,9 +1,7 @@
-package com.virtualbankv2.boundary;
+package com.virtualbankv2.entity;
 
 import com.virtualbankv2.control.VirtualBankApplication;
-import com.virtualbankv2.entity.Account;
-import com.virtualbankv2.entity.ReturnButton;
-import com.virtualbankv2.entity.User;
+
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;

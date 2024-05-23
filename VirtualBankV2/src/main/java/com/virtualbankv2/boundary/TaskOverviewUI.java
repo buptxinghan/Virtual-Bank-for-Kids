@@ -1,6 +1,7 @@
 package com.virtualbankv2.boundary;
 
 import com.virtualbankv2.control.AccountManager;
+import com.virtualbankv2.control.ChildLockManager;
 import com.virtualbankv2.entity.Account;
 import com.virtualbankv2.entity.ReturnButton;
 import com.virtualbankv2.entity.RoundedButton;
@@ -87,7 +88,7 @@ public class TaskOverviewUI extends JFrame implements ActionListener {
         pack();
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        cnt.addActionListener(this);
+        new ChildLockManager().addButtonWithChildLock(this,cnt, "CreateTaskPage");
         this.setVisible(true);
 
     }

@@ -8,6 +8,10 @@ import java.util.*;
 /**
  * The Reader class provides methods to read data from CSV files and populate lists of various entities,
  * such as users, accounts, transactions, tasks, goals, and support information.
+ *
+ * @version 9.0
+ * @since 2024-04-14
+ * @author Zhenghan Zhong
  */
 
 public class Reader {

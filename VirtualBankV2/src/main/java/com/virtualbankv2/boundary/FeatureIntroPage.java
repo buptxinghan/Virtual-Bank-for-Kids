@@ -28,6 +28,7 @@ public class FeatureIntroPage extends JFrame {
                 g2d.fillRect(0, 0, w, h);
             }
         };
+        JScrollPane scrollPane = new JScrollPane(mainPanel);
 
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.gridwidth = GridBagConstraints.REMAINDER;
@@ -64,15 +65,22 @@ public class FeatureIntroPage extends JFrame {
                 mainPanel.add(new JSeparator(), gbc);
             }
         }
+
+        JPanel topPanel = new JPanel();
+        topPanel.setBackground(new Color(199, 220, 247));
+        topPanel.setMaximumSize(new Dimension(Integer.MAX_VALUE, 100));
+        JLabel label = createLabel("<html><font color='#5D61C3' style='font-size: 25px;'>Feature Introduction</font></html>",Font.BOLD, 25,Component.CENTER_ALIGNMENT);
+        topPanel.add(label);
+
         JPanel bottlePanel = new JPanel();
         bottlePanel.setBackground(new Color(199, 220, 247));
         bottlePanel.setMaximumSize(new Dimension(Integer.MAX_VALUE, 100));
         JButton returnButton = ReturnButton.createReturnButton(this,"UserManual",new Dimension(120,50));
         bottlePanel.add(returnButton);
 
-        JScrollPane scrollPane = new JScrollPane(mainPanel);
 
         setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
+        add(topPanel);
         add(scrollPane);
         add(bottlePanel);
         setVisible(true);
@@ -114,6 +122,12 @@ public class FeatureIntroPage extends JFrame {
         return panel;
     }
 
+    private JLabel createLabel(String text, int fontStyle, int fontSize,float alignment) {
+        JLabel label = new JLabel(text);
+        label.setFont(new Font("Arial", fontStyle, fontSize));
+        label.setAlignmentX(alignment);
+        return label;
+    }
 
 
 //    public static void main(String[] args) {

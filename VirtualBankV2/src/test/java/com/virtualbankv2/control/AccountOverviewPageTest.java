@@ -18,6 +18,8 @@ public class AccountOverviewPageTest {
 
     @Before
     public void setUp() {
+        new Reader();
+        new VirtualBankApplication();
         uiStub = new AccountOverviewUIStub();
         accountOverviewPage = new AccountOverviewPage();
         accountOverviewPage.ui = uiStub;

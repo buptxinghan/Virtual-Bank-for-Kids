@@ -30,4 +30,3 @@ public class RoundedTextField extends JTextField {
         return shape.contains(x, y);
     }
 }
-

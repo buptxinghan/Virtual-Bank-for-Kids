@@ -2,6 +2,10 @@ package com.virtualbankv2.boundary;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 import com.virtualbankv2.entity.RoundedButton;
 import com.virtualbankv2.entity.RoundedPanel;
@@ -9,6 +13,15 @@ import com.virtualbankv2.entity.RoundedPasswordField;
 import com.virtualbankv2.control.LoginController;
 import com.virtualbankv2.entity.RoundedTextField;
 
+/**
+ * The {@code LoginPage} class represents the login page for the Virtual Bank application.
+ * It extends {@link JFrame} and provides the GUI components and logic for user login.
+ *
+ * @version 2.0
+ * @since 2024-04-10
+ * @author Tianzhi Li
+ *
+ */
 public class LoginPage extends JFrame {
 
     private JFrame frame;
@@ -18,27 +31,54 @@ public class LoginPage extends JFrame {
     private JLabel usernameLabel, passwordLabel, titleLabel;
     private LoginController loginController;
 
+    /**
+     * Gets the frame of the login page.
+     *
+     * @return the frame of the login page
+     */
     public JFrame getFrame() {
         return frame;
     }
 
+    /**
+     * Gets the text field for entering the username.
+     *
+     * @return the text field for entering the username
+     */
     public JTextField getNameField() {
         return nameField;
     }
 
+    /**
+     * Gets the password field for entering the password.
+     *
+     * @return the password field for entering the password
+     */
     public JPasswordField getPasswordField() {
         return passwordField;
     }
 
+    /**
+     * Gets the login button.
+     *
+     * @return the login button
+     */
     public JButton getLoginButton() {
         return loginButton;
     }
 
+    /**
+     * Gets the sign-up button.
+     *
+     * @return the sign-up button
+     */
     public JButton getSignUpButton() {
         return signUpButton;
     }
 
-
+    /**
+     * Constructs a new {@code LoginPage} object and initializes the GUI components.
+     */
     public LoginPage() {
         loginController = new LoginController();
 
@@ -97,9 +137,18 @@ public class LoginPage extends JFrame {
         passwordField = new RoundedPasswordField(10);
         passwordField.setFont(fieldFont);
         passwordField.addActionListener(e -> performLogin());
+        passwordField.addKeyListener(new KeyAdapter() {
+            public void keyPressed(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                    loginButton.doClick();
+                }
+            }
+        });
+
+
         gbcLogin.gridx = 1;
         gbcLogin.gridy = 2;
-        gbcLogin.gridwidth = 1; // 例如，这里设置为2，文本框将占据2列
+        gbcLogin.gridwidth = 1;
         gbcLogin.gridheight = 1;
         loginPanel.add(passwordField, gbcLogin);
 
@@ -172,7 +221,11 @@ public class LoginPage extends JFrame {
         frame.setVisible(true);
     }
 
-
+    /**
+     * Performs the login action when the user presses the login button or hits enter in the password field.
+     * Checks the user credentials and navigates to the home page if valid.
+     * Displays an error message if the credentials are incorrect.
+     */
     private void performLogin() {
         String userName = nameField.getText();
         String password = new String(passwordField.getPassword());

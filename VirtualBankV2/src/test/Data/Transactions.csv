@@ -65,9 +65,3 @@ TransactionID,AccountFrom,AccountTo,Amount,Date,Description
 0064,System,233002,0.03,2024/05/18,Interest income
 0065,System,003211,5.26,2024/05/20,Interest income
 0066,System,233002,0.02,2024/05/20,Interest income
-0067,System,003211,0.55,2024/05/21,Interest income
-0068,System,233002,0.00,2024/05/21,Interest income
-0069,System,003211,0.55,2024/05/21,Interest income
-0070,System,233002,0.00,2024/05/21,Interest income
-0071,System,003211,55.00,2024/05/21,Transfer In
-0072,System,003211,66.00,2024/05/21,Transfer In
