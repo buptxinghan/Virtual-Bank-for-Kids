@@ -166,8 +166,4 @@ public class SignUpPage extends JFrame {
     public boolean isSubmitButtonPressed() {
         return submitButton.getModel().isPressed();
     }
-
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(SignUpPage::new);
-    }
 }
