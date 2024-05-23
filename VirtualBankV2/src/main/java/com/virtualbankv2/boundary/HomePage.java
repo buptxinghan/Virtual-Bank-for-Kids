@@ -5,8 +5,17 @@ import com.virtualbankv2.entity.RoundedButton;
 
 import javax.swing.*;
 import java.awt.*;
+/**
+ * HomePage class provides a home page for the Virtual Bank application.
+ * It contains buttons to navigate to different sections such as account information,
+ * tasks, goals, and an instruction manual.
+ * This class is part of the boundary layer in the application architecture,
+ * interacting with the user and delegating user actions to the control layer.
+ *
+ * @author Feng Shiyu
+ * @since 1.0
+ */
 
-// HomePage
 public class HomePage extends JFrame {
 
     private JButton accountButton; // Button to access the user's account information
