@@ -29,7 +29,7 @@ public class ChildLockManager {
                             frame.dispose();
                             childLock.dispose();
                             switch (pageName) {
-                                case "accountOverviewPage" -> new AccountOverviewPage(); // Generate the previous page
+                                case "OpenAccountPage" -> new OpenAccountPage(); // Generate the previous page
                                 case "CreateTaskPage" -> new CreateTaskPage();
                             }
                         } else {
