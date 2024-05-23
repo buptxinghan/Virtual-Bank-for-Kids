@@ -8,9 +8,17 @@ import com.virtualbankv2.entity.RoundedButton;
 import com.virtualbankv2.entity.RoundedPanel;
 import com.virtualbankv2.entity.RoundedPasswordField;
 import com.virtualbankv2.control.SignUpController;
-
 import com.virtualbankv2.entity.*;
 
+/**
+ * The {@code SignUpPage} class represents the sign-up page for the Virtual Bank application.
+ * It extends {@link JFrame} and provides the GUI components and logic for user sign-up.
+ *
+ * @version 2.0
+ * @since 2024-04-20
+ * @author Tianzhi Li
+ *
+ */
 public class SignUpPage extends JFrame {
 
     private JTextField nameField;
@@ -22,6 +30,9 @@ public class SignUpPage extends JFrame {
     private Color deepBlue = new Color(93, 97, 195); // Deep blue for buttons
     private SignUpController signUpController;
 
+    /**
+     * Constructs a new {@code SignUpPage} object and initializes the GUI components.
+     */
     public SignUpPage() {
         signUpController = new SignUpController();
 
@@ -81,6 +92,15 @@ public class SignUpPage extends JFrame {
         submitButton.addActionListener(e -> performSignUp());
     }
 
+    /**
+     * Sets up a label and text field within the given panel.
+     *
+     * @param label the label for the field
+     * @param field the text field
+     * @param panel the panel to add the components to
+     * @param gbc the GridBagConstraints for layout
+     * @param gridy the row position in the grid
+     */
     private void setupField(JLabel label, JTextField field, JPanel panel, GridBagConstraints gbc, int gridy) {
         label.setFont(fieldFont);
         field.setFont(fieldFont);
@@ -94,6 +114,15 @@ public class SignUpPage extends JFrame {
         panel.add(field, gbc);
     }
 
+    /**
+     * Sets up a button within the given panel.
+     *
+     * @param button the button to set up
+     * @param panel the panel to add the button to
+     * @param gbc the GridBagConstraints for layout
+     * @param gridx the column position in the grid
+     * @param gridy the row position in the grid
+     */
     private void setupButton(JButton button, JPanel panel, GridBagConstraints gbc, int gridx, int gridy) {
         button.setFont(fieldFont);
         button.setBackground(deepBlue);
@@ -105,6 +134,11 @@ public class SignUpPage extends JFrame {
         panel.add(button, gbc);
     }
 
+    /**
+     * Performs the sign-up action when the user presses the submit button.
+     * Validates the input fields and shows a success or error message.
+     * If successful, clears the fields and navigates back to the login page.
+     */
     private void performSignUp() {
         String userName = nameField.getText();
         String password = new String(passwordField.getPassword());
@@ -147,26 +181,54 @@ public class SignUpPage extends JFrame {
         }
     }
 
+    /**
+     * Sets the text of the name field.
+     *
+     * @param text the text to set in the name field
+     */
     public void setNameFieldText(String text) {
         nameField.setText(text);
     }
 
+    /**
+     * Sets the text of the password field.
+     *
+     * @param text the text to set in the password field
+     */
     public void setPasswordFieldText(String text) {
         passwordField.setText(text);
     }
 
+    /**
+     * Sets the text of the confirm password field.
+     *
+     * @param text the text to set in the confirm password field
+     */
     public void setConfirmPasswordFieldText(String text) {
         confirmPasswordField.setText(text);
     }
 
+    /**
+     * Simulates a click on the submit button.
+     */
     public void clickSubmitButton() {
         submitButton.doClick();
     }
 
+    /**
+     * Checks if the submit button is pressed.
+     *
+     * @return {@code true} if the submit button is pressed, {@code false} otherwise
+     */
     public boolean isSubmitButtonPressed() {
         return submitButton.getModel().isPressed();
     }
 
+    /**
+     * The main method to run the SignUpPage.
+     *
+     * @param args the command line arguments
+     */
     public static void main(String[] args) {
         SwingUtilities.invokeLater(SignUpPage::new);
     }
