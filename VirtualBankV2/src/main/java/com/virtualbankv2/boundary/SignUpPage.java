@@ -223,13 +223,4 @@ public class SignUpPage extends JFrame {
     public boolean isSubmitButtonPressed() {
         return submitButton.getModel().isPressed();
     }
-
-    /**
-     * The main method to run the SignUpPage.
-     *
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(SignUpPage::new);
-    }
 }

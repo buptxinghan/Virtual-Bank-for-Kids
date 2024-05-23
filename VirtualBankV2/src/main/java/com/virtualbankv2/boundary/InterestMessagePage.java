@@ -8,8 +8,21 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
 
+/**
+ * This class represents the interest message page of the virtual bank application.
+ * It displays a list of account interests in a scrollable window with a confirm button to close the window.
+ *
+ * @version 2.0
+ * @since 2024-05-14
+ * @author Zhenghan Zhong
+ */
 public class InterestMessagePage {
 
+    /**
+     * Displays a window with a list of account interests.
+     *
+     * @param accountInterests a list of strings representing the account interests to be displayed
+     */
     public void showInterestWindow(List<String> accountInterests) {
         JFrame frame = new JFrame("Interest Display");
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);

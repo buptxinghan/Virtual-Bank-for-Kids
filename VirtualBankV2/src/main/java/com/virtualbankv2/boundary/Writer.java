@@ -192,7 +192,7 @@ public class Writer {
      *
      * @param interest The interest to be written.
      */
-    public void writeSingleInterest(Interest interest) { //TODO 在创建账户时调用
+    public void writeSingleInterest(Interest interest) {
         try (PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("src/Data/Interest.csv", true)))) {
             interests.add(interest);
             out.println(interest.getUsername() + "," + dateFormatter.format(LocalDate.now()));
