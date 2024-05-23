@@ -215,4 +215,28 @@ public class TransactionPage extends JFrame {
             }
         }
     }
+
+    public JComboBox<String> getTransferToDropdown() {
+        return transferToDropdown;
+    }
+
+    public void setTransferToDropdown(JComboBox<String> transferToDropdown) {
+        this.transferToDropdown = transferToDropdown;
+    }
+
+    public JTextField getAmountField() {
+        return amountField;
+    }
+
+    public void setAmountField(JTextField amountField) {
+        this.amountField = amountField;
+    }
+
+    public JTextArea getDescriptionArea() {
+        return descriptionArea;
+    }
+
+    public void setDescriptionArea(JTextArea descriptionArea) {
+        this.descriptionArea = descriptionArea;
+    }
 }
