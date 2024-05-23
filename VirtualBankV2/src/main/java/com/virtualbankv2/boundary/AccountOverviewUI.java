@@ -16,7 +16,7 @@ public class AccountOverviewUI extends JFrame {
     private JPanel mainPanel;
     private JPanel topPanel;
     private JPanel bottlePanel;
-    public PageOpen pageOpen = new PageOpen();
+
     // Constructor
     public AccountOverviewUI() {
         mainPanel = new JPanel(new GridLayout(3,2));
@@ -36,7 +36,6 @@ public class AccountOverviewUI extends JFrame {
         bottlePanel.add(returnButton);
         setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
         add(this.topPanel);
-//        add(this.mainPanel);
         add(scrollPane);
         add(this.bottlePanel);
         displayCreateAccountPanel();
@@ -60,7 +59,7 @@ public class AccountOverviewUI extends JFrame {
         addButton.setFont(new Font("Arial", Font.BOLD, 25));
         addButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         extracted(addButton,50,50);
-        new ChildLockManager().addButtonWithChildLock(this,addButton, pageOpen);
+        new ChildLockManager().addButtonWithChildLock(this,addButton, "OpenAccountPage");
 
         RoundedPanel innerPanel = new RoundedPanel(15);
         innerPanel.setLayout(new BoxLayout(innerPanel, BoxLayout.Y_AXIS));
@@ -84,7 +83,7 @@ public class AccountOverviewUI extends JFrame {
     }
 
     private static void extracted(RoundedButton Button,int width,int height) {
-        Button.setBackground(new Color(79,143,230));
+        Button.setBackground(new Color(115,127,182));
         Button.setForeground(Color.WHITE);
         Button.setPreferredSize(new Dimension(width,height));
         Button.setMaximumSize(new Dimension(width,height));
@@ -98,7 +97,7 @@ public class AccountOverviewUI extends JFrame {
         extracted(selectButton,90,35);
         selectButton.addActionListener(e -> {
             dispose();
-            pageOpen.showAccountInfo(account);
+            new AccountInformationPage(account);
         });
 
         RoundedPanel panel = new RoundedPanel(15);

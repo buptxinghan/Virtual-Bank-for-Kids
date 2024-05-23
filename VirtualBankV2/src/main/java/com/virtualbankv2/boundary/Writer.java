@@ -11,8 +11,22 @@ import java.util.*;
 import static com.virtualbankv2.boundary.Reader.*;
 
 /**
- * Writes data to CSV files.
+ * The Writer class is responsible for writing various data entities to CSV files.
+ * It handles the conversion of data from objects to a comma-separated text format
+ * that can be easily read and written to a file. This class is part of the boundary
+ * layer, facilitating persistent storage of application data.
+ * Each method in this class corresponds to a specific data entity and is responsible
+ * for writing that entity's data to an associated CSV file. The class utilizes
+ * java.io.FileWriter and BufferedWriter to write the data, and java.text.DecimalFormat
+ * and java.time.format.DateTimeFormatter to format the data appropriately before writing.
+ * Exception handling is implemented to catch and log any IOExceptions that may occur
+ * during the file writing process. Additionally, methods are provided to write single
+ * entries to the CSV files.
+ *
+ * @author Feng Shiyu
+ * @since 1.0
  */
+
 public class Writer {
 
     //private DecimalFormat decimalFormat = new DecimalFormat("#,##0.00");

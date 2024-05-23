@@ -2,6 +2,10 @@ package com.virtualbankv2.boundary;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 import com.virtualbankv2.entity.RoundedButton;
 import com.virtualbankv2.entity.RoundedPanel;
@@ -133,6 +137,15 @@ public class LoginPage extends JFrame {
         passwordField = new RoundedPasswordField(10);
         passwordField.setFont(fieldFont);
         passwordField.addActionListener(e -> performLogin());
+        passwordField.addKeyListener(new KeyAdapter() {
+            public void keyPressed(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                    loginButton.doClick();
+                }
+            }
+        });
+
+
         gbcLogin.gridx = 1;
         gbcLogin.gridy = 2;
         gbcLogin.gridwidth = 1;
