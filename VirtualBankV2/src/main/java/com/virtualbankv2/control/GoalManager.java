@@ -1,6 +1,7 @@
 package com.virtualbankv2.control;
 
-import com.virtualbankv2.boundary.GoalOverviewUI;
+import com.virtualbankv2.entity.Goal;
+
 import java.io.*;
 
 import static com.virtualbankv2.control.VirtualBankApplication.currentUser;
@@ -46,6 +47,73 @@ public class GoalManager {
                     }
                 }
                 // Write the lines of goals that are not achieved to the new file
+                bw.write(currentLine + "\n");
+            }
+            br.close();
+            bw.close();
+            oldFile.delete(); // Delete the original file
+            File dump = new File("src/Data/Goals.csv");
+            newFile.renameTo(dump); // Rename the temporary file to the original file name
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Calculates the current amount saved towards the user's goals by reading from the account data.
+     *
+     * @param username the username of the current user
+     * @return the current amount saved towards the user's goals
+     */
+    public double calculateCurrentAmount(String username) {
+        double currentAmount = 0.0;
+        String filePath = "src/Data/Accounts.csv";
+        String line;
+
+        try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
+            // Skip the first line (header)
+            br.readLine();
+            while ((line = br.readLine()) != null) {
+                String[] values = line.split(",");
+                String accountUsername = values[2];
+                double balance = Double.parseDouble(values[4]);
+                if (accountUsername.equals(username)) {
+                    currentAmount += balance;
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return currentAmount;
+    }
+
+    /**
+     * Updates the current amount of the specified goal in the Goals.csv file.
+     *
+     * @param goal the goal to update
+     */
+    public void updateGoalCurrentAmount(Goal goal) {
+        String tempFile = "Goals_temp.csv";
+        File oldFile = new File("src/Data/Goals.csv");
+        File newFile = new File(tempFile);
+
+        String currentLine;
+        String[] data;
+
+        try {
+            FileReader fr = new FileReader(oldFile);
+            BufferedReader br = new BufferedReader(fr);
+            FileWriter fw = new FileWriter(newFile);
+            BufferedWriter bw = new BufferedWriter(fw);
+
+            while ((currentLine = br.readLine()) != null) {
+                data = currentLine.split(",");  // Assuming CSV file uses commas as separators
+                if (data[4].equals(goal.getUsername()) && data[0].equals(goal.getGoalName())) {
+                    // Update the current amount
+                    data[3] = String.valueOf(goal.getCurrentAmount());
+                    currentLine = String.join(",", data);
+                }
                 bw.write(currentLine + "\n");
             }
             br.close();

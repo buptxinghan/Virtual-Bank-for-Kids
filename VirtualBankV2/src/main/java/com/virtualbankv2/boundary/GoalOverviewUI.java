@@ -6,9 +6,6 @@ import com.virtualbankv2.entity.*;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.geom.Arc2D;
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -28,7 +25,7 @@ public class GoalOverviewUI extends JFrame {
     private JPanel goalInfoPanel;
     private JPanel buttonPanel;
     private Goal currentGoal;
-    GoalManager goalManager = new GoalManager();
+    private GoalManager goalManager = new GoalManager();
 
     /**
      * Constructs a new {@code GoalOverviewUI} object and initializes the user interface.
@@ -38,46 +35,21 @@ public class GoalOverviewUI extends JFrame {
         this.currentUsername = VirtualBankApplication.currentUser.getUsername();
 
         // Load goals from Reader and filter them for the current user
-        this.userGoals = Reader.goals.stream()
+        Reader reader = new Reader();
+        this.userGoals = reader.goals.stream()
                 .filter(goal -> goal.getUsername().equals(currentUsername))
                 .collect(Collectors.toList());
 
         // If user has goals, set the current goal and calculate its current amount
         if (!userGoals.isEmpty()) {
             this.currentGoal = this.userGoals.get(0);
-            this.currentGoal.setCurrentAmount(calculateCurrentAmount());
+            this.currentGoal.setCurrentAmount(goalManager.calculateCurrentAmount(currentUsername));
+            goalManager.updateGoalCurrentAmount(currentGoal); // Update the goal's current amount in the CSV file
         } else {
             this.currentGoal = null; // or other appropriate handling
         }
 
         initializeUI();
-    }
-
-    /**
-     * Calculates the current amount saved towards the user's goals by reading from the account data.
-     *
-     * @return the current amount saved towards the user's goals
-     */
-    private double calculateCurrentAmount() {
-        double currentAmount = 0.0;
-        String filePath = "src/Data/Accounts.csv";
-        String line;
-
-        try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
-            // Skip the first line (header)
-            br.readLine();
-            while ((line = br.readLine()) != null) {
-                String[] values = line.split(",");
-                String username = values[2];
-                double balance = Double.parseDouble(values[4]);
-                if (username.equals(currentUsername)) {
-                    currentAmount += balance;
-                }
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return currentAmount;
     }
 
     /**

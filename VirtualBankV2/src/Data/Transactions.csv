@@ -71,3 +71,5 @@ TransactionID,AccountFrom,AccountTo,Amount,Date,Description
 0070,System,233002,0.00,2024/05/21,Interest income
 0071,System,003211,55.00,2024/05/21,Transfer In
 0072,System,003211,66.00,2024/05/21,Transfer In
+0073,System,003211,1.59,2024/05/23,Interest income
+0074,System,233002,0.00,2024/05/23,Interest income
