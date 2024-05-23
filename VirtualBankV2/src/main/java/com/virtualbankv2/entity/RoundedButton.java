@@ -6,6 +6,10 @@ import java.awt.geom.RoundRectangle2D;
 
 /**
  * A custom JButton with rounded corners.
+ *
+ * @version 1.0
+ * @since 2024-04-15
+ * @author Zhenghan Zhong
  */
 public class RoundedButton extends JButton {
     private Shape shape;

@@ -136,7 +136,3 @@ public class FeatureIntroPage extends JFrame {
 //        });
 //    }
 }
-
-
-
-

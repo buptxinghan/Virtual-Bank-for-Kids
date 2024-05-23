@@ -131,7 +131,3 @@ public class FAQ extends JFrame {
 //        });
 //    }
 }
-
-
-
-

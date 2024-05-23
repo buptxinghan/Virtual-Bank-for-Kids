@@ -14,6 +14,10 @@ import java.text.DecimalFormat;
  * This class represents the GUI for displaying account information.
  * It extends JFrame and provides functionalities to display account details,
  * perform transactions, and manage account status.
+ *
+ * @version 12.0
+ * @since 2024-04-15
+ * @author Zhenghan Zhong
  */
 public class AccountInformationPage extends JFrame {
 

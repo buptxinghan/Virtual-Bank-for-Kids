@@ -13,19 +13,65 @@ import java.util.List;
 
 /**
  * Represents a page displaying transaction history for a specific account.
+ *
+ * @version 3.0
+ * @since 2024-04-24
+ * @author Zhenghan Zhong
  */
 public class TransactionHistoryPage extends JFrame {
+    /**
+     * Panel for selecting the date.
+     */
     private JPanel datePanel;
-    private JPanel dateFieldsPanel; // Panel for date fields
-    private JPanel buttonPanel; // Panel for buttons
+
+    /**
+     * Panel for date fields (year, month, day).
+     */
+    private JPanel dateFieldsPanel;
+
+    /**
+     * Panel for action buttons (Show, Show All, Return).
+     */
+    private JPanel buttonPanel;
+
+    /**
+     * Panel for displaying transactions.
+     */
     private JPanel transactionsPanel;
+
+    /**
+     * Button to show transactions for a selected date.
+     */
     private JButton showButton;
+
+    /**
+     * Button to show all transactions.
+     */
     private JButton showAllButton;
+
+    /**
+     * Button to return to the previous page.
+     */
     private JButton returnButton;
+
+    /**
+     * ComboBox for selecting the year.
+     */
     private JComboBox<String> yearComboBox;
+
+    /**
+     * ComboBox for selecting the month.
+     */
     private JComboBox<String> monthComboBox;
+
+    /**
+     * ComboBox for selecting the day.
+     */
     private JComboBox<String> dayComboBox;
 
+    /**
+     * Manager for handling transactions.
+     */
     TransactionManager transactionManager = new TransactionManager();
 
     /**
@@ -126,8 +172,8 @@ public class TransactionHistoryPage extends JFrame {
         transactionsPanel.setBackground(new Color(199, 220, 247));
 
         JScrollPane scrollPane = new JScrollPane(transactionsPanel);
-        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS); // 总是显示垂直滚动条
-        scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER); // 不显示水平滚动条
+        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS); // Always display a vertical scroll bar
+        scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER); // Horizontal scroll bars are not displayed
         scrollPane.setBackground(new Color(199, 220, 247));
         scrollPane.setPreferredSize(new Dimension(600, 650));
         add(scrollPane, BorderLayout.SOUTH);
@@ -219,26 +265,55 @@ public class TransactionHistoryPage extends JFrame {
 
         return filteredTransactions;
     }
+
+    /**
+     * Gets the transaction manager.
+     *
+     * @return TransactionManager The transaction manager.
+     */
     public TransactionManager getTransactionManager() {
         return transactionManager;
     }
 
+    /**
+     * Sets the transaction manager.
+     *
+     * @param transactionManager The transaction manager to set.
+     */
     public void setTransactionManager(TransactionManager transactionManager) {
         this.transactionManager = transactionManager;
     }
 
+    /**
+     * Gets the year combo box.
+     *
+     * @return JComboBox<String> The year combo box.
+     */
     public JComboBox<String> getYearComboBox() {
         return yearComboBox;
     }
 
+    /**
+     * Gets the month combo box.
+     *
+     * @return JComboBox<String> The month combo box.
+     */
     public JComboBox<String> getMonthComboBox() {
         return monthComboBox;
     }
 
+    /**
+     * Gets the day combo box.
+     *
+     * @return JComboBox<String> The day combo box.
+     */
     public JComboBox<String> getDayComboBox() {
         return dayComboBox;
     }
 
+    /**
+     * Triggers the show button action.
+     */
     public void triggerShowButton() {
         showButton.doClick();
     }

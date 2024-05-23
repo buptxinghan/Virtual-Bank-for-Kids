@@ -13,13 +13,40 @@ import static com.virtualbankv2.boundary.Reader.accounts;
 /**
  * TransactionPage class represents the GUI for performing transactions.
  * Allows users to transfer money between accounts.
+ *
+ * @version 3.0
+ * @since 2024-04-24
+ * @author Zhenghan Zhong
  */
 public class TransactionPage extends JFrame {
+    /**
+     * Dropdown for selecting the account to transfer to.
+     */
     private JComboBox<String> transferToDropdown;
+
+    /**
+     * Text field for entering the amount to transfer.
+     */
     private JTextField amountField;
+
+    /**
+     * Text area for entering a description for the transaction.
+     */
     private JTextArea descriptionArea;
+
+    /**
+     * Button to clear all input fields.
+     */
     private JButton clearButton;
+
+    /**
+     * Button to submit the transaction.
+     */
     private JButton submitButton;
+
+    /**
+     * Button to submit the transaction.
+     */
     private TransactionManager transactionManager = new TransactionManager();
 
     /**
@@ -187,5 +214,29 @@ public class TransactionPage extends JFrame {
                 }
             }
         }
+    }
+
+    public JComboBox<String> getTransferToDropdown() {
+        return transferToDropdown;
+    }
+
+    public void setTransferToDropdown(JComboBox<String> transferToDropdown) {
+        this.transferToDropdown = transferToDropdown;
+    }
+
+    public JTextField getAmountField() {
+        return amountField;
+    }
+
+    public void setAmountField(JTextField amountField) {
+        this.amountField = amountField;
+    }
+
+    public JTextArea getDescriptionArea() {
+        return descriptionArea;
+    }
+
+    public void setDescriptionArea(JTextArea descriptionArea) {
+        this.descriptionArea = descriptionArea;
     }
 }
