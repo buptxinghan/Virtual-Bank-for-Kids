@@ -8,7 +8,19 @@ import javax.swing.*;
 import java.awt.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
+/**
+ * CreateTaskPage class provides a user interface for creating new tasks
+ * within the Virtual Bank application. It allows users to input task details
+ * such as title, reward, start and end dates, and content.
+ * This class is part of the boundary layer in the application architecture,
+ * interacting with the user and delegating user actions to the control layer.
+ * The page includes components for text input, date selection, and action buttons.
+ * It initializes these components and sets up their layout, providing a visually
+ * appealing and functional interface for task creation.
+ *
+ * @author Feng Shiyu
+ * @since 2.0
+ */
 public class CreateTaskPage extends JFrame{
     private JTextArea contentArea;
     private JTextField title;
