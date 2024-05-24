@@ -1,0 +1,1 @@
+typeSearchIndex = [{"p":"com.virtualbankv2.boundary","l":"SignUpPageTest"},{"l":"所有类和接口","u":"allclasses-index.html"}];updateSearchResults();
