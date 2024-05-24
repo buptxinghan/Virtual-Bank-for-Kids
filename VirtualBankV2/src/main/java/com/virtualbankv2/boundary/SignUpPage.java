@@ -16,8 +16,6 @@ import com.virtualbankv2.entity.*;
  *
  * @version 2.0
  * @since 2024-04-20
- * @author Tianzhi Li
- *
  */
 public class SignUpPage extends JFrame {
 
@@ -166,18 +164,6 @@ public class SignUpPage extends JFrame {
                 dispose(); // Close the SignUpPage
                 new LoginPage(); // Open the LoginPage
             }
-        } else {
-            JOptionPane.showOptionDialog(
-                    this,
-                    "Error: All fields are required and passwords must match.",
-                    "Error",
-                    JOptionPane.DEFAULT_OPTION,
-                    JOptionPane.ERROR_MESSAGE,
-                    null,
-                    new String[] {"OK"},
-                    "OK"
-            );
-
         }
     }
 
