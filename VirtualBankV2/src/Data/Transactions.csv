@@ -1,1 +1,5 @@
 TransactionID,AccountFrom,AccountTo,Amount,Date,Description
+0001,System,003211,4.80,2024/05/25,Interest income
+0002,System,233002,0.01,2024/05/25,Interest income
+0003,System,003211,10.00,2024/05/25,Transfer In
+0004,System,003211,100.00,2024/05/25,Transfer In
