@@ -27,16 +27,16 @@ public class AccountInformationPageTest {
         AccountInformationPage page = new AccountInformationPage(account);
         assertNotNull(page);
 
-        Container contentPane = page.getContentPane(); // Get the contentPane of the JFrame
-        assertEquals(4, contentPane.getComponentCount()); // Check if there are 4 panels: North, West, East, South
+        Container contentPane = page.getContentPane();
+        assertEquals(4, contentPane.getComponentCount());
 
         // Check if components are added in the West panel
-        Component westPanel = contentPane.getComponent(1); // Assuming the West panel is the second component
+        Component westPanel = contentPane.getComponent(1);
         assertTrue(westPanel instanceof JPanel);
         Component[] westComponents = ((JPanel) westPanel).getComponents();
-        System.out.println("Number of components in West panel: " + westComponents.length); // Debugging output
+        System.out.println("Number of components in West panel: " + westComponents.length);
         for (Component component : westComponents) {
-            System.out.println("Component in West panel: " + component); // Debugging output
+            System.out.println("Component in West panel: " + component);
         }
         // Print out the details of each component in the West panel
         for (Component component : westComponents) {

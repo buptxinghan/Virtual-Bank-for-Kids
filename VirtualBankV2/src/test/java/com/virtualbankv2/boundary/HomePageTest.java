@@ -60,7 +60,6 @@ public class HomePageTest {
     }
 
     private String getButtonText(JButton button) {
-        // Extract the text content from the button, ignoring HTML tags
         return button.getText().replaceAll("\\<.*?\\>", "").trim();
     }
 }

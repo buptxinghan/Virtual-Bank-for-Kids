@@ -12,7 +12,6 @@ public class ChildLockTest {
         assertEquals(600, childLock.getWidth());
         assertEquals(450, childLock.getHeight());
 
-        // Check if mainPanel is not null
         assertNotNull(childLock.getContentPane());
     }
 
@@ -21,15 +20,12 @@ public class ChildLockTest {
         ChildLock childLock = new ChildLock();
         assertNotNull(childLock);
 
-        // Check if userText and checkButton are not null
         JTextField userText = childLock.getUserText();
         JButton checkButton = childLock.getCheckButton();
         assertNotNull(userText);
         assertNotNull(checkButton);
 
-        // Check if the userText has a proper size
         assertEquals(20, userText.getColumns());
-        // Check if the button text is correct
         assertEquals("Check", checkButton.getText());
     }
 }

@@ -82,7 +82,7 @@ public class GoalOverviewUITest {
         handleCreateGoalMethod.setAccessible(true);
         handleCreateGoalMethod.invoke(goalOverviewUI);
 
-        assertFalse(goalOverviewUI.isVisible()); // Ensure the window is closed
+        assertFalse(goalOverviewUI.isVisible());
     }
 
     @SuppressWarnings("unchecked")

@@ -23,8 +23,7 @@ public class LoginPageTest {
     public void setUp() throws NoSuchFieldException, IllegalAccessException {
         new Reader();
         new VirtualBankApplication();
-        // Prepare mock data before creating a LoginPage instance
-        users.add(new User("root", "111"));  // Add a test user
+        users.add(new User("root", "111"));
 
         loginPage = new LoginPage();
         frame = retrieveAccessibleJFrame(loginPage);

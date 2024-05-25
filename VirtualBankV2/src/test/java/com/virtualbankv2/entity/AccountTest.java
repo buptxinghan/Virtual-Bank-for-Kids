@@ -37,7 +37,6 @@ public class AccountTest {
         account.setBalance(1500.0);
         account.setStatus("Inactive");
 
-        // Test getter methods
         assertEquals("987654321", account.getAccountID());
         assertEquals("Checking", account.getAccountType());
         assertEquals("JaneDoe", account.getUsername());

@@ -64,7 +64,6 @@ public class FAQTest {
 
         assertEquals(new Color(0x46a6e2), topColor);
         assertEquals(new Color(0x638bbf), bottomColor);
-
         g2d.dispose();
     }
 }

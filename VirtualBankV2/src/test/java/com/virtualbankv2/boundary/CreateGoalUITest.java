@@ -78,7 +78,7 @@ public class CreateGoalUITest {
 
     private boolean waitForDialog(String message) {
         long startTime = System.currentTimeMillis();
-        long timeout = 2000; // 2 seconds timeout
+        long timeout = 2000;
 
         while (System.currentTimeMillis() - startTime < timeout) {
             Window[] windows = Window.getWindows();
