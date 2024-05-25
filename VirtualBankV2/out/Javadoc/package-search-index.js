@@ -1,1 +1,1 @@
-packageSearchIndex = [{"l":"com.virtualbankv2.boundary"},{"l":"所有程序包","u":"allpackages-index.html"}];updateSearchResults();
+packageSearchIndex = [{"l":"com.virtualbankv2.boundary"},{"l":"com.virtualbankv2.control"},{"l":"com.virtualbankv2.entity"},{"l":"所有程序包","u":"allpackages-index.html"}];updateSearchResults();
