@@ -39,9 +39,9 @@ public class RoundedButton extends JButton {
         Graphics2D g2 = (Graphics2D) g.create();
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         if (getModel().isArmed()) {
-            g2.setColor(getBackground().darker()); // 按钮被按下时的颜色
+            g2.setColor(getBackground().darker());
         } else {
-            g2.setColor(getBackground()); // 默认颜色
+            g2.setColor(getBackground());
         }
         g2.fill(new RoundRectangle2D.Double(0, 0, getWidth(), getHeight(), cornerRadius, cornerRadius));
         super.paintComponent(g2);
