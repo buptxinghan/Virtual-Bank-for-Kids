@@ -66,7 +66,6 @@ public class HomePage extends JFrame {
         JPanel buttonPanel = createButtonPanel(bg, accountButton, tasksButton, goalsButton, manualButton);
 
         // Add spacing and components to center panel
-        centerPanel.add(Box.createRigidArea(new Dimension(0, 10)));
         centerPanel.add(picLabel);
         centerPanel.add(buttonPanel);
 

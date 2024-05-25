@@ -62,11 +62,13 @@ public class CreateTaskController {
             writer.writeSingleTask(temptask);
             UIManager.put("OptionPane.cancelButtonText", "Cancel");
             UIManager.put("OptionPane.okButtonText", "OK");
+            UIManager.put("OptionPane.messageDialogTitle", "Message");
             JOptionPane.showMessageDialog(view, "Task created successfully!");
         } else {
             UIManager.put("OptionPane.cancelButtonText", "Cancel");
             UIManager.put("OptionPane.okButtonText", "OK");
-            JOptionPane.showMessageDialog(view, "Please fill in the required field.");
+            UIManager.put("OptionPane.messageDialogTitle", "Message");
+            JOptionPane.showMessageDialog(view, "Please fill in the required field with the correct format.");
         }
     }
 
@@ -75,22 +77,15 @@ public class CreateTaskController {
      * behavior.
      */
     public void initializeController() {
-        addReturnListenerToButton(view.getSaveButton());
         view.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        addReturnListenerToButton(view.getSaveButton());
         view.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
-                returnToTaskOverview();
+                view.dispose();
+                new TaskOverviewUI();
             }
         });
-    }
-
-    /**
-     * Closes the current view and returns to the TaskOverviewUI.
-     */
-    private void returnToTaskOverview() {
-        view.dispose();
-        new TaskOverviewUI();
     }
 
     /**
@@ -122,10 +117,19 @@ public class CreateTaskController {
     /**
      * Validates the task reward input.
      *
-     * @return true if the reward is not null and not empty; false otherwise
+     * @return true if the reward is not null, not empty, and a valid number; false otherwise
      */
+
     private boolean rewardIsValid() {
         String re = view.getReward().getText();
-        return re != null && !re.trim().isEmpty();
+        if (re == null || re.trim().isEmpty()) {
+            return false;
+        }
+        try {
+            Double.parseDouble(re);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
     }
 }
