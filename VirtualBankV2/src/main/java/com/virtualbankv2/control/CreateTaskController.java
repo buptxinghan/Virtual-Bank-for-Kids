@@ -62,10 +62,12 @@ public class CreateTaskController {
             writer.writeSingleTask(temptask);
             UIManager.put("OptionPane.cancelButtonText", "Cancel");
             UIManager.put("OptionPane.okButtonText", "OK");
+            UIManager.put("OptionPane.messageDialogTitle", "Message");
             JOptionPane.showMessageDialog(view, "Task created successfully!");
         } else {
             UIManager.put("OptionPane.cancelButtonText", "Cancel");
             UIManager.put("OptionPane.okButtonText", "OK");
+            UIManager.put("OptionPane.messageDialogTitle", "Message");
             JOptionPane.showMessageDialog(view, "Please fill in the required field with the correct format.");
         }
     }
