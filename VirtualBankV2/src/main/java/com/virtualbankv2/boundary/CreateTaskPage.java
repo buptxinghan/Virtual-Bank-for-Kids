@@ -231,4 +231,30 @@ public class CreateTaskPage extends JFrame{
     public RoundedButton getSaveButton() {
         return saveButton;
     }
+
+    public JTextField getStartField() {
+        return (JTextField) chooseStart.getDateEditor().getUiComponent();
+    }
+
+    public JTextField getEndField() {
+        return (JTextField) chooseEnd.getDateEditor().getUiComponent();
+    }
+
+    public void setStart(String start) {
+        try {
+            Date date = new SimpleDateFormat("yyyy-MM-dd").parse(start);
+            chooseStart.setDate(date);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void setEnd(String end) {
+        try {
+            Date date = new SimpleDateFormat("yyyy-MM-dd").parse(end);
+            chooseEnd.setDate(date);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }

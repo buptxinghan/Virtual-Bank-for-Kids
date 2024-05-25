@@ -3,6 +3,8 @@ import javax.swing.border.Border;
 import java.awt.*;
 /**
  * A custom Swing border implementation to draw a horizontal line at the bottom of a component.
+ *
+ * @author Sun Lichen
  */
 class HorizontalLineBorder implements Border {
     private Color color;

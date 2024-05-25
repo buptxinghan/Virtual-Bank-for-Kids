@@ -25,7 +25,6 @@ class ReaderTest {
         List<User> users = reader.readUsers("src/Data/Users.csv");
         assertNotNull(users);
         assertFalse(users.isEmpty());
-        // Add more assertions to validate the contents of the users list if needed
     }
 
     @Test
@@ -33,7 +32,6 @@ class ReaderTest {
         List<Account> accounts = reader.readAccounts("src/Data/Accounts.csv");
         assertNotNull(accounts);
         assertFalse(accounts.isEmpty());
-        // Add more assertions to validate the contents of the accounts list if needed
     }
 
     @Test
@@ -41,7 +39,6 @@ class ReaderTest {
         List<Goal> goals = reader.readGoals("src/Data/Goals.csv");
         assertNotNull(goals);
         assertFalse(goals.isEmpty());
-        // Add more assertions to validate the contents of the goals list if needed
     }
 
     @Test
@@ -49,7 +46,6 @@ class ReaderTest {
         List<Task> tasks = reader.readTasks("src/Data/Tasks.csv");
         assertNotNull(tasks);
         assertFalse(tasks.isEmpty());
-        // Add more assertions to validate the contents of the tasks list if needed
     }
 
     @Test
@@ -57,7 +53,6 @@ class ReaderTest {
         List<SupportSystem> support = reader.readSupport("src/Data/Support.csv");
         assertNotNull(support);
         assertFalse(support.isEmpty());
-        // Add more assertions to validate the contents of the support list if needed
     }
 
     @Test
@@ -65,6 +60,5 @@ class ReaderTest {
         List<Transaction> transactions = reader.readTransactions("src/Data/Transactions.csv");
         assertNotNull(transactions);
         assertFalse(transactions.isEmpty());
-        // Add more assertions to validate the contents of the transactions list if needed
     }
 }

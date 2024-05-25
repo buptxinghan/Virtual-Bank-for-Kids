@@ -37,7 +37,7 @@ public class ContactUsPage extends JFrame {
         JButton returnButton = ReturnButton.createReturnButton(this, "UserManual");
         //labels
         JLabel head = new JLabel("<html><font color=" + getColorHex(z1) + ">Customer Services</font></html>", JLabel.CENTER);
-        head.setFont(new Font("Serif", Font.BOLD, 50)); // Set font style and size
+        head.setFont(new Font("Arial", Font.BOLD, 50)); // Set font style and size
         JLabel l2 = new JLabel("<html><font size=6 color=" + getColorHex(z1) + ">Wechat Number:  buptxinghan</font></html>", JLabel.CENTER);
         JLabel l3 = new JLabel("<html><font size=6 color=" + getColorHex(z1) + ">Tel:      +86 15545195623</font></html>", JLabel.CENTER);
         JLabel l4 = new JLabel("<html><font size=6 color=" + getColorHex(z1) + ">Email:        jp2021213165@qmul.ac.uk</font></html>", JLabel.CENTER);

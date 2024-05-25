@@ -22,6 +22,8 @@ import java.util.List;
 /**
  * TaskOverviewUI class represents the user interface for managing tasks.
  * This class extends JFrame and implements ActionListener.
+ *
+ * @author Sun Lichen
  */
 
 public class TaskOverviewUI extends JFrame implements ActionListener {
@@ -179,7 +181,7 @@ public class TaskOverviewUI extends JFrame implements ActionListener {
         pairContainer.add(descriptionLabel);
         horizontalPanel.add(pairContainer, BorderLayout.WEST);
         if (!task.isCompleted()) {
-            JButton button = new JButton("Finish");
+            JButton button = new RoundedButton("Finish");
             horizontalPanel.add(button, BorderLayout.EAST);
             button.addActionListener(e -> {
                 String taskID = task.getTaskID();

@@ -10,6 +10,10 @@ import java.awt.event.ActionListener;
 
 /**
  * Utility class for creating a return button with custom functionalities.
+ *
+ * @version 4.0
+ * @since 2024-04-15
+ * @author Zhenghan Zhong
  */
 public class ReturnButton {
 

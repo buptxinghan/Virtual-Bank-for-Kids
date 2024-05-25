@@ -19,6 +19,10 @@ import static com.virtualbankv2.boundary.Reader.accounts;
 
 /**
  * Manages account-related operations.
+ *
+ * @version 6.0
+ * @since 2024-04-15
+ * @author Zhenghan Zhong
  */
 public class AccountManager {
 
