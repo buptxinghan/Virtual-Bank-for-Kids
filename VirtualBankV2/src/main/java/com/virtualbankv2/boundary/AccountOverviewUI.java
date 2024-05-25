@@ -1,3 +1,4 @@
+
 package com.virtualbankv2.boundary;
 
 import com.virtualbankv2.control.ChildLockManager;
@@ -9,15 +10,24 @@ import com.virtualbankv2.entity.RoundedPanel;
 import javax.swing.*;
 import java.awt.*;
 
-
-
+/**
+ * The {@code AccountOverviewUI} class is a user interface for displaying and managing user accounts.
+ * It extends the {@code JFrame} class and provides methods for updating the page with account information,
+ * displaying a create account panel, and setting the page layout.
+ *
+ * @author Botong Wu
+ * @version 1.0
+ * @since 2024/4/13
+ */
 public class AccountOverviewUI extends JFrame {
 
     private JPanel mainPanel;
     private JPanel topPanel;
     private JPanel bottlePanel;
 
-    // Constructor
+    /**
+     * Creates an instance of the {@code AccountOverviewUI} class.
+     */
     public AccountOverviewUI() {
         mainPanel = new JPanel(new GridLayout(3,2));
         mainPanel.setBackground(new Color(199, 220, 247));
@@ -41,7 +51,9 @@ public class AccountOverviewUI extends JFrame {
         displayCreateAccountPanel();
     }
 
-
+    /**
+     * Sets the page layout and visibility.
+     */
     public void setPage() {
 //        pack();
         setPreferredSize(new Dimension(1200,900));
@@ -52,7 +64,9 @@ public class AccountOverviewUI extends JFrame {
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
 
-    // Display the panel for creating a new account
+    /**
+     * Displays the panel for creating a new account.
+     */
     private void displayCreateAccountPanel() {
 
         RoundedButton addButton = new RoundedButton("+");
@@ -89,7 +103,11 @@ public class AccountOverviewUI extends JFrame {
         Button.setMaximumSize(new Dimension(width,height));
     }
 
-    // Update the page with the given account information
+    /**
+     * Updates the page with the given account information.
+     *
+     * @param account The account to display.
+     */
     public void updatePage(Account account) {
 
         RoundedButton selectButton = new RoundedButton( "select");
@@ -162,7 +180,6 @@ public class AccountOverviewUI extends JFrame {
         panel.add(statusLabel);
         panel.add(label3);
         panel.add(selectButton);
-
         JPanel outerPanel = new JPanel();
         createOuterPanel(outerPanel, panel);
 
@@ -172,7 +189,11 @@ public class AccountOverviewUI extends JFrame {
             revalidate();
         });
     }
-
+    /**
+     * Creates an outer panel with the given inner panel.
+     *
+     * @param outerPanel The outer panel to create.
+     */
     private static void createOuterPanel(JPanel outerPanel, RoundedPanel panel) {
         outerPanel.setLayout(new BorderLayout());
         outerPanel.setBorder(BorderFactory.createEmptyBorder(20, 40, 20, 40));
@@ -180,6 +201,15 @@ public class AccountOverviewUI extends JFrame {
         outerPanel.add(panel);
     }
 
+    /**
+     * Creates a label with the given text, font style, font size, and alignment.
+     *
+     * @param text      The text of the label.
+     * @param fontStyle The font style of the label.
+     * @param fontSize  The font size of the label.
+     * @param alignment The alignment of the label.
+     * @return The created label.
+     */
     private JLabel createLabel(String text, int fontStyle, int fontSize,float alignment) {
         JLabel label = new JLabel(text);
         label.setFont(new Font("Arial", fontStyle, fontSize));
