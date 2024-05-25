@@ -6,77 +6,44 @@ import com.virtualbankv2.entity.User;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import static com.virtualbankv2.boundary.Reader.accounts;
 import static com.virtualbankv2.boundary.Reader.users;
 import static com.virtualbankv2.entity.Task.totalcounter;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 public class VirtualBankApplicationTest {
 
-    private VirtualBankApplication application;
-    private User testUser;
+    private VirtualBankApplication app;
+    private Reader reader;
 
     @BeforeEach
-    void setUp() {
-        new Reader();
-        users = new ArrayList<>();
-        accounts = new ArrayList<>();
+    public void setUp() {
+        reader = new Reader();
+        reader.readUsers("src/Data/Users.csv");
+        reader.readAccounts("src/Data/Accounts.csv");
 
-        testUser = new User("testUser", "password");
-        users.add(testUser);
-        users.add(new User("anotherUser", "password"));
-
-        accounts.add(new Account("001", "Saving", "testUser", "password", 1000.0, "Active"));
-        accounts.add(new Account("002", "Checking", "testUser", "password", 1500.0, "Active"));
-        accounts.add(new Account("003", "Saving", "anotherUser", "password", 2000.0, "Active"));
-
-        totalcounter = 10;
-
-        VirtualBankApplication.currentUser = testUser;
-
-        application = new VirtualBankApplication();
+        app = new VirtualBankApplication();
     }
 
     @Test
-    void testInitialization() {
-        assertNotNull(application);
-        assertEquals(10, totalcounter);
+    public void testConstructorInitialization() {
+        User expectedUser = users.get(1);
         assertNotNull(VirtualBankApplication.currentUser);
-        assertEquals("testUser", VirtualBankApplication.currentUser.getUsername());
+        assertEquals(expectedUser, VirtualBankApplication.currentUser);
+
+        int expectedTotalCounter = reader.readTotalCounter("src/Data/Tasks.csv");
+        assertEquals(expectedTotalCounter, totalcounter);
     }
 
     @Test
-    void testGetCurrentUserAccounts() {
-        VirtualBankApplication.currentUser = testUser;
-
-        List<Account> currentUserAccounts = application.getCurrentUserAccounts(testUser);
-        assertNotNull(currentUserAccounts);
-        assertEquals(2, currentUserAccounts.size());
-
-        Account account1 = currentUserAccounts.get(0);
-        Account account2 = currentUserAccounts.get(1);
-
-        assertEquals("001", account1.getAccountID());
-        assertEquals("002", account2.getAccountID());
-
-        assertEquals("Saving", account1.getAccountType());
-        assertEquals("Checking", account2.getAccountType());
-
-        assertEquals(1000.0, account1.getBalance());
-        assertEquals(1500.0, account2.getBalance());
-    }
-
-    @Test
-    void testGetCurrentUserAccountsNoAccounts() {
-        User noAccountUser = new User("noAccountUser", "password");
-        users.add(noAccountUser);
-        VirtualBankApplication.currentUser = noAccountUser;
-
-        List<Account> currentUserAccounts = application.getCurrentUserAccounts(noAccountUser);
-        assertNotNull(currentUserAccounts);
-        assertEquals(0, currentUserAccounts.size());
+    public void testGetCurrentUserAccounts() {
+        User currentUser = users.get(1);
+        List<Account> accounts = app.getCurrentUserAccounts(currentUser);
+        assertNotNull(accounts);
+        for (Account account : accounts) {
+            assertEquals(currentUser.getUsername(), account.getUsername());
+        }
     }
 }

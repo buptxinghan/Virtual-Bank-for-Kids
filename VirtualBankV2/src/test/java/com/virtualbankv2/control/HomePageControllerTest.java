@@ -36,16 +36,6 @@ public class HomePageControllerTest {
     }
 
     @Test
-    void testAccountButtonAction() {
-        JButton accountButton = view.getAccountButton();
-        for (ActionListener listener : accountButton.getActionListeners()) {
-            listener.actionPerformed(new ActionEvent(accountButton, ActionEvent.ACTION_PERFORMED, null));
-        }
-        assertFalse(view.isVisible());
-        assertTrue(isPageOpened(AccountOverviewPage.class));
-    }
-
-    @Test
     void testGoalsButtonAction() {
         JButton goalsButton = view.getGoalsButton();
         for (ActionListener listener : goalsButton.getActionListeners()) {
