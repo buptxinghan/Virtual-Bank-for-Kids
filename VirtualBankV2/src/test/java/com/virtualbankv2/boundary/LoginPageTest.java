@@ -11,6 +11,15 @@ import java.lang.reflect.Field;
 import static com.virtualbankv2.boundary.Reader.users;
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * This class tests the functionality of the LoginPage class.
+ * It includes tests for the login functionality and the components initialization.
+ *
+ * @version 1.0
+ * @since 2024-04-10
+ * @author Ji Zheng
+ */
+
 public class LoginPageTest {
 
     private LoginPage loginPage;

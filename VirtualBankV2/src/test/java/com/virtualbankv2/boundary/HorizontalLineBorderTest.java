@@ -8,6 +8,15 @@ import java.awt.image.BufferedImage;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * This class tests the functionality of the HorizontalLineBorder class.
+ * It includes tests for the paintBorder, getBorderInsets, and isBorderOpaque methods.
+ *
+ * @version 2.0
+ * @since 2024-05-05
+ * @author Ji Zheng
+ */
+
 public class HorizontalLineBorderTest {
 
     @Test

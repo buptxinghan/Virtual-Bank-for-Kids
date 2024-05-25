@@ -1,5 +1,5 @@
 package com.virtualbankv2.boundary;
-import com.virtualbankv2.boundary.OpenAccountPage;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -8,7 +8,14 @@ import java.awt.*;
 import java.awt.event.InputEvent;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+
+/**
+ * This class tests the functionality of the OpenAccountPage class.
+ * It includes tests for actionPerformed method with invalid input, passwords that do not match, and successful account creation.
+ *
+ * @version 1.0
+ * @since 2024-05-01
+ */
 
 class OpenAccountPageTest {
 

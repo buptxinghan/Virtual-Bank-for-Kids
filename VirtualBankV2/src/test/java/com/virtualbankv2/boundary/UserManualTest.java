@@ -1,11 +1,17 @@
 package com.virtualbankv2.boundary;
 
 import org.junit.jupiter.api.Test;
-import com.virtualbankv2.entity.Account;
 import javax.swing.*;
 import java.awt.*;
 
 import static org.junit.jupiter.api.Assertions.*;
+
+/**
+ * This class tests the functionality of the UserManual class.
+ *
+ * @version 1.0
+ * @since 2024-05-01
+ */
 
 public class UserManualTest {
 

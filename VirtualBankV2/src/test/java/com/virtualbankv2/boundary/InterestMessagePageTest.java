@@ -9,6 +9,15 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * This class tests the functionality of the InterestMessagePage class.
+ * It includes tests for the showInterestWindow method.
+ *
+ * @version 1.0
+ * @since 2024-05-05
+ * @author Ji Zheng
+ */
+
 public class InterestMessagePageTest {
 
     @Test

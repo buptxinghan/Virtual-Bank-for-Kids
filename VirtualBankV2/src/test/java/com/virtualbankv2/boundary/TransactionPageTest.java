@@ -4,13 +4,19 @@ import com.virtualbankv2.control.VirtualBankApplication;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import javax.swing.*;
-import java.awt.*;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
+import com.virtualbankv2.entity.Account;
+
 import static org.junit.jupiter.api.Assertions.*;
 
-import com.virtualbankv2.entity.Account;
+/**
+ * This class tests the functionality of the TransactionPage class.
+ *
+ * @version 1.0
+ * @since 2024-05-01
+ */
 
 public class TransactionPageTest {
 

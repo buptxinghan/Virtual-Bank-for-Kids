@@ -8,6 +8,16 @@ import javax.swing.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * This class tests the functionality of the HomePage class.
+ * It includes tests for the account button, tasks button, goals button, manual button,
+ * and window visibility.
+ *
+ * @version 2.0
+ * @since 2024-04-15
+ * @author Ji Zheng
+ */
+
 public class HomePageTest {
     private HomePage homePage;
 
