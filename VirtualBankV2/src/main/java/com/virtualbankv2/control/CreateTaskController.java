@@ -117,6 +117,7 @@ public class CreateTaskController {
      *
      * @return true if the reward is not null, not empty, and a valid number; false otherwise
      */
+
     private boolean rewardIsValid() {
         String re = view.getReward().getText();
         if (re == null || re.trim().isEmpty()) {
