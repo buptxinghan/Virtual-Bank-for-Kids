@@ -6,11 +6,18 @@ import com.virtualbankv2.entity.RoundedPanel;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * The {@code FAQ} class is a user interface for displaying frequently asked questions (FAQ) about the Account Management System.
+ * It extends the {@code JFrame} class and provides a method for creating a panel with a given title and content.
+ * The class also sets up the main frame with a gradient background, top panel, and bottle panel.
+ *
+ * @author Botong Wu
+ * @version 3.0
+ * @since 2024/5/20
+ */
 public class FAQ extends JFrame {
     public FAQ() {
         super("Account Management System");
-
-
         JPanel mainPanel = new JPanel(new GridBagLayout()) {
             @Override
             protected void paintComponent(Graphics g) {
@@ -81,7 +88,13 @@ public class FAQ extends JFrame {
         setLocationRelativeTo(null);
         setVisible(true);
     }
-
+    /**
+     * Creates a panel with the given title and content.
+     *
+     * @param title The title of the panel.
+     * @param content The content of the panel.
+     * @return The created panel.
+     */
     private JPanel createPanel(String title, String content) {
         JPanel panel = new RoundedPanel(15);
         panel.setLayout(new BorderLayout());
@@ -118,6 +131,15 @@ public class FAQ extends JFrame {
         return panel;
     }
 
+    /**
+     * Creates a label with the given text, font style, font size, and alignment.
+     *
+     * @param text      The text of the label.
+     * @param fontStyle The font style of the label.
+     * @param fontSize  The font size of the label.
+     * @param alignment The alignment of the label.
+     * @return The created label.
+     */
     private JLabel createLabel(String text, int fontStyle, int fontSize,float alignment) {
         JLabel label = new JLabel(text);
         label.setFont(new Font("Arial", fontStyle, fontSize));
@@ -125,9 +147,4 @@ public class FAQ extends JFrame {
         return label;
     }
 
-//    public static void main(String[] args) {
-//        SwingUtilities.invokeLater(() -> {
-//            new FeatureIntroPage().setVisible(true);
-//        });
-//    }
 }
