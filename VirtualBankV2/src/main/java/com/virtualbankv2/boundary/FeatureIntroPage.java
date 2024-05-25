@@ -5,7 +5,13 @@ import com.virtualbankv2.entity.RoundedPanel;
 
 import javax.swing.*;
 import java.awt.*;
-
+/**
+ * The FeatureIntroPage class extends JFrame and is used to display the feature introduction page of the Account Management System.
+ *
+ * @author Botong Wu
+ * @version 3.0
+ * @since 2024-05-19
+ */
 public class FeatureIntroPage extends JFrame {
     public FeatureIntroPage() {
         super("Account Management System");
@@ -86,6 +92,13 @@ public class FeatureIntroPage extends JFrame {
         setVisible(true);
     }
 
+    /**
+     * Creates a panel with a title and content.
+     *
+     * @param title   The title of the panel.
+     * @param content The content of the panel.
+     * @return Returns the created panel.
+     */
     private JPanel createPanel(String title, String content) {
         JPanel panel = new RoundedPanel(15);
         panel.setLayout(new BorderLayout());
@@ -122,6 +135,15 @@ public class FeatureIntroPage extends JFrame {
         return panel;
     }
 
+    /**
+     * Creates a label.
+     *
+     * @param text      The text of the label.
+     * @param fontStyle The font style of the label.
+     * @param fontSize  The font size of the label.
+     * @param alignment The alignment of the label.
+     * @return Returns the created label.
+     */
     private JLabel createLabel(String text, int fontStyle, int fontSize,float alignment) {
         JLabel label = new JLabel(text);
         label.setFont(new Font("Arial", fontStyle, fontSize));
