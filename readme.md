@@ -34,26 +34,38 @@ The Virtual Bank Application for Kids is a Java-based standalone application des
 
 ### Prerequisites
 
-- Java Development Kit (JDK) 22 or higher
-- Apache Maven
+- **Java Development Kit (JDK) 22 or higher**
+- **Apache Maven**
 
 ### Steps
 
+#### Method 1: Download the project and run VirtualBankApplication.java
+
 1. Clone the repository:
     ```bash
-    git clone https://github.com/xxx/virtual-bank-kids.git
-    cd virtual-bank-kids
+    git clone https://github.com/buptxinghan/Virtual-Bank-for-Kids.git
+    cd VirtualBankV2
     ```
 
 2. Build the project:
     ```bash
-    
+    mvn clean install
     ```
 
 3. Run the application:
     ```bash
-    
+    mvn exec:java -Dexec.mainClass="com.virtualbankv2.control.VirtualBankApplication"
     ```
+
+#### Method 2: Run the application using the packaged jar file
+
+1. Ensure you have the jar file (e.g., `virtual-bank-kids.jar`).
+
+2. Run the application:
+
+   ```bash
+   java -jar virtual-bank-kids.jar
+   ```
 
 ## Usage
 
@@ -73,7 +85,7 @@ After running the application, users can interact through a graphical user inter
     - Track task completion.
 
 3. **My Goals**
-    
+   
     - Allow children to set a total savings goal.
     
     - Display progress towards goals through a pie chart.
@@ -101,9 +113,73 @@ The project follows Agile development methods, including the following phases:
 
 ### Milestones
 
-- **Product Backlog and Prototype**: April 15, 2024
-- **Final Submission**: Report and Software: May 27, 2024
-- **Demonstration**: May 27-31, 2024
+####  Iteration 1 (April 1st - April 12th)
+
+- **Objective:** Establish the foundational features of the Virtual Bank application.
+- **Milestones:**
+  - User Registration and Login
+  - Current/Savings Account Creation
+  - Account Freezing/Unfreezing
+  - Account Cancelling
+  - Balance Inquiry
+  - Deposit and Withdrawal Management
+  - Account Transfer
+- **Tasks:**
+  - Develop user interfaces for registration, login, and home page.
+  - Implement core functionalities for managing accounts, including freezing, unfreezing, and cancelling accounts.
+  - Ensure seamless deposit, withdrawal, and transfer processes.
+  - Conduct unit testing to validate individual components.
+- **Outcome:** Working Software v1 with basic account management capabilities.
+
+#### Iteration 2 (April 12th - April 26th)
+
+- **Objective:** Expand the application with task and goal management features.
+- **Milestones:**
+  - Task Setting, Recording, Rewards, and History
+  - Goal Setting, Recording, and Feedback
+- **Tasks:**
+  - Design and develop interfaces for task and goal management.
+  - Implement backend logic for task tracking and reward distribution.
+  - Integrate goal management functionalities, enabling users to set and monitor financial goals.
+  - Perform integration testing to ensure smooth interaction between modules.
+- **Outcome:** Working Software v2 with integrated task and goal management systems.
+
+#### Iteration 3 (April 26th - May 10th)
+
+- **Objective:** Introduce child lock and enhance system security.
+- **Milestones:**
+  - Child Lock Implementation
+  - Enhanced Account Security Features
+- **Tasks:**
+  - Develop child lock functionality, including interface and control mechanisms.
+  - Implement additional security measures, such as Two-Factor Authentication (2FA).
+  - Link child lock settings to task and goal management features.
+  - Conduct usability testing to ensure user-friendly interfaces and interactions.
+- **Outcome:** Working Software v3 with advanced security features and child lock integration.
+
+#### Iteration 4 (May 10th - May 19th)
+
+- **Objective:** Finalize support features and prepare for project closure.
+- **Milestones:**
+  - Support System: Feature Introduction, FAQ, and Contact Us
+- **Tasks:**
+  - Develop user support interfaces, including a comprehensive FAQ section and contact form.
+  - Integrate support features into the main application.
+  - Conduct system testing to verify the functionality and reliability of the support features.
+- **Outcome:** Working Software v4 with complete support and assistance functionalities.
+
+#### Iteration 5 (May 19th - May 27th)
+
+- **Objective:** Documentation and final preparation for submission.
+- **Milestones:**
+  - Complete Project Documentation
+  - Finalize User Manual, Readme, and Javadoc
+- **Tasks:**
+  - Compile and organize all project documentation, ensuring thorough coverage of all features and functionalities.
+  - Finalize the user manual, providing clear instructions for all application features.
+  - Generate Javadoc for all code components, ensuring comprehensive developer documentation.
+  - Perform final testing to ensure all components are functioning as expected.
+- **Outcome:** Submission-ready application with complete documentation.
 
 ## API Documentation
 

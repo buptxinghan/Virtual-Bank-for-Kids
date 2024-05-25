@@ -287,7 +287,7 @@ public class TransactionHistoryPage extends JFrame {
     /**
      * Gets the year combo box.
      *
-     * @return JComboBox<String> The year combo box.
+     * @return The year combo box.
      */
     public JComboBox<String> getYearComboBox() {
         return yearComboBox;
@@ -296,7 +296,7 @@ public class TransactionHistoryPage extends JFrame {
     /**
      * Gets the month combo box.
      *
-     * @return JComboBox<String> The month combo box.
+     * @return The month combo box.
      */
     public JComboBox<String> getMonthComboBox() {
         return monthComboBox;
@@ -305,7 +305,7 @@ public class TransactionHistoryPage extends JFrame {
     /**
      * Gets the day combo box.
      *
-     * @return JComboBox<String> The day combo box.
+     * @return The day combo box.
      */
     public JComboBox<String> getDayComboBox() {
         return dayComboBox;
