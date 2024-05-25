@@ -24,7 +24,7 @@ public class TransactionManager {
     /**
      * AccountManager instance for managing account operations.
      */
-    private AccountManager accountManager = new AccountManager();
+    private final AccountManager accountManager = new AccountManager();
 
     /**
      * Transfers money from a source account to a target account.
@@ -36,11 +36,10 @@ public class TransactionManager {
      * @return true if the transfer is successful, false otherwise.
      */
     public boolean transfer(Account sourceAccount, Account targetAccount, double amount, String description) {
-        if (accountManager.withdraw(sourceAccount, amount)) {
+        if (sourceAccount.getBalance() >= amount) {
             if (accountManager.isFrozen(targetAccount) || accountManager.isDeleted(targetAccount)) {
                 return false; // Account status is abnormal
             }
-            accountManager.transferIn(targetAccount, amount);
             recordTransaction(sourceAccount, targetAccount, amount, description);
             return true;
         } else {
@@ -59,14 +58,14 @@ public class TransactionManager {
     private void recordTransaction(Account sourceAccount, Account targetAccount, double amount, String description) {
         DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy/MM/dd");
         Transaction transaction = new Transaction(
-                "00" + getTransactionID(),
+                "000" + getTransactionID(),
                 sourceAccount.getAccountID(),
                 targetAccount.getAccountID(),
                 amount,
                 dateFormatter.format(LocalDate.now()),
                 description
         );
-        transactions.add(transaction);
+//        transactions.add(transaction);
 
         Writer writer = new Writer();
         writer.writeSingleTransaction(transaction);

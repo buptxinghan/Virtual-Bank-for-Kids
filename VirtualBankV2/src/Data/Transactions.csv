@@ -1,9 +1,13 @@
 TransactionID,AccountFrom,AccountTo,Amount,Date,Description
-TX1001,ACC1000,ACC2000,1500.5,2024-05-23,SampleTransaction0002,System,003211,2.40,2024/05/23,Interest income
-0003,System,233002,0.00,2024/05/23,Interest income
-0003,System,003211,1.21,2024/05/24,Interest income
-0004,System,233002,0.00,2024/05/24,Interest income
-0005,System,023153,4.28,2024/05/25,Interest income
-0006,System,003211,1.21,2024/05/25,Interest income
-0007,System,233002,0.00,2024/05/25,Interest income
-
+0001,System,023153,0.42,2024/05/25,Interest income
+0002,System,003211,12.00,2024/05/25,Transfer In
+0003,023153,003211,12.00,2024/05/25,test
+0004,003211,023153,12.00,2024/05/25,test
+0005,System,003211,10.00,2024/05/25,Withdraw
+0006,System,003211,100.00,2024/05/25,Withdraw
+0007,System,003211,10.00,2024/05/25,Withdraw
+0008,System,003211,2.00,2024/05/25,Withdraw
+0009,System,003211,1.00,2024/05/25,Withdraw
+0010,System,003211,2.00,2024/05/25,Withdraw
+0011,System,003211,1.00,2024/05/25,Withdraw
+0012,System,003211,10.00,2024/05/25,Transfer In
