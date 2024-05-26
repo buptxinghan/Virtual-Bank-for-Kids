@@ -39,23 +39,21 @@ The Virtual Bank Application for Kids is a Java-based standalone application des
 
 ### Steps
 
-#### Method 1: Download the project and run VirtualBankApplication.java
+#### Method 1: Download the project and run VirtualBankApplication.java using IntelliJ IDEA
 
-1. Clone the repository:
-    ```bash
-    git clone https://github.com/buptxinghan/Virtual-Bank-for-Kids.git
-    cd VirtualBankV2
-    ```
-
-2. Build the project:
-    ```bash
-    mvn clean install
-    ```
-
-3. Run the application:
-    ```bash
-    mvn exec:java -Dexec.mainClass="com.virtualbankv2.control.VirtualBankApplication"
-    ```
+1. Open the project in IntelliJ IDEA:
+   - Open IntelliJ IDEA and select `Open` from the welcome screen.
+   - Navigate to the cloned project directory and select it to open the project.
+2. Configure Maven repository:
+   - Click on `File` in the top left corner, then select `Settings`.
+   - In the `Settings` window, navigate to `Build, Execution, Deployment > Build Tools > Maven > Repositories`.
+   - Select `https://repo.maven.apache.org/maven2` and click `Update`.
+3. Reload Maven project:
+   - Open the `pom.xml` file located in the root directory of the project.
+   - Right-click on the `pom.xml` file and select `Maven` from the context menu, then choose `Reload Project`.
+4. Run the application:
+   - In the Project tool window, navigate to `src/main/java/com/virtualbankv2/control/VirtualBankApplication.java`.
+   - Right-click on `VirtualBankApplication.java` and select `Run 'VirtualBankApplication.main()'`.
 
 #### Method 2: Run the application using the packaged jar file
 
