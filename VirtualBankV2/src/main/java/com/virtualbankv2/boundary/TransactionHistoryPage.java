@@ -141,7 +141,7 @@ public class TransactionHistoryPage extends JFrame {
                 String day = (String) dayComboBox.getSelectedItem();
 
                 List<Transaction> tempTransactions = transactionManager.filterTransactionsByAccount(account);
-                showTransactions(filterTransactionsByDate(year, month, day, tempTransactions));
+                showTransactions(transactionManager.filterTransactionsByDate(year, month, day, tempTransactions));
             }
         });
         showAllButton = new RoundedButton("<html><font style='font-size: 18px;'>Show All</font></html>");
@@ -233,38 +233,7 @@ public class TransactionHistoryPage extends JFrame {
         transactionsPanel.add(Box.createRigidArea(new Dimension(0, 15)));
     }
 
-    /**
-     * Filters transactions by the provided date.
-     *
-     * @param year            The year to filter by.
-     * @param month           The month to filter by.
-     * @param day             The day to filter by.
-     * @param tempTransactions The list of transactions to filter.
-     * @return List<Transaction> The filtered list of transactions.
-     */
-    private List<Transaction> filterTransactionsByDate(String year, String month, String day, List<Transaction> tempTransactions) {
-        List<Transaction> filteredTransactions = new ArrayList<>();
 
-        for (Transaction tempTransaction : tempTransactions) {
-            String[] dateParts = tempTransaction.getDate().split("/"); // Split by '/'
-
-            if (dateParts.length == 3) {
-                String transactionYear = dateParts[0];
-                String transactionMonth = dateParts[1];
-                String transactionDay = dateParts[2];
-
-                if (year.isEmpty() || year.equals(transactionYear)) {
-                    if (month.isEmpty() || month.equals(transactionMonth)) {
-                        if (day.isEmpty() || day.equals(transactionDay)) {
-                            filteredTransactions.add(tempTransaction);
-                        }
-                    }
-                }
-            }
-        }
-
-        return filteredTransactions;
-    }
 
     /**
      * Gets the transaction manager.

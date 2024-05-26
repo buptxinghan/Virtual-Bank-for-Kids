@@ -9,6 +9,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.virtualbankv2.boundary.Reader.accounts;
 import static com.virtualbankv2.boundary.Reader.transactions;
 
 /**
@@ -40,6 +41,8 @@ public class TransactionManager {
             if (accountManager.isFrozen(targetAccount) || accountManager.isDeleted(targetAccount)) {
                 return false; // Account status is abnormal
             }
+            targetAccount.setBalance(targetAccount.getBalance() + amount);
+            sourceAccount.setBalance(sourceAccount.getBalance() - amount);
             recordTransaction(sourceAccount, targetAccount, amount, description);
             return true;
         } else {
@@ -65,9 +68,8 @@ public class TransactionManager {
                 dateFormatter.format(LocalDate.now()),
                 description
         );
-//        transactions.add(transaction);
-
         Writer writer = new Writer();
+        writer.writeAccounts(accounts);
         writer.writeSingleTransaction(transaction);
     }
 
@@ -103,5 +105,38 @@ public class TransactionManager {
             }
         }
         return tempTransactions;
+    }
+
+    /**
+     * Filters transactions by the provided date.
+     *
+     * @param year            The year to filter by.
+     * @param month           The month to filter by.
+     * @param day             The day to filter by.
+     * @param tempTransactions The list of transactions to filter.
+     * @return List<Transaction> The filtered list of transactions.
+     */
+    public List<Transaction> filterTransactionsByDate(String year, String month, String day, List<Transaction> tempTransactions) {
+        List<Transaction> filteredTransactions = new ArrayList<>();
+
+        for (Transaction tempTransaction : tempTransactions) {
+            String[] dateParts = tempTransaction.getDate().split("/"); // Split by '/'
+
+            if (dateParts.length == 3) {
+                String transactionYear = dateParts[0];
+                String transactionMonth = dateParts[1];
+                String transactionDay = dateParts[2];
+
+                if (year.isEmpty() || year.equals(transactionYear)) {
+                    if (month.isEmpty() || month.equals(transactionMonth)) {
+                        if (day.isEmpty() || day.equals(transactionDay)) {
+                            filteredTransactions.add(tempTransaction);
+                        }
+                    }
+                }
+            }
+        }
+
+        return filteredTransactions;
     }
 }
