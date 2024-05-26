@@ -21,7 +21,6 @@ import static org.junit.jupiter.api.Assertions.*;
  *
  * @version 1.0
  * @since 2024-05-10
- * @author Ji Zheng
  */
 public class TransactionManagerTest {
 
@@ -35,8 +34,8 @@ public class TransactionManagerTest {
         new VirtualBankApplication();
         transactionManager = new TransactionManager();
         transactions = new ArrayList<>();
-        sourceAccount = new Account("001", "Saving", "user1", "password", 500.0, "Active");
-        targetAccount = new Account("002", "Saving", "user2", "password", 200.0, "Active");
+        sourceAccount = new Account("001", "Saving Account", "user1", "password", 500.0, "Active");
+        targetAccount = new Account("002", "Saving Account", "user2", "password", 200.0, "Active");
     }
 
     /**
@@ -75,6 +74,21 @@ public class TransactionManagerTest {
         assertEquals(500.0, sourceAccount.getBalance());
         assertEquals(200.0, targetAccount.getBalance());
         assertEquals(0, transactions.size());
+    }
+
+    /**
+     * Tests the transfer method when the transfer is successful.
+     */
+    @Test
+    void testSuccessfulTransfer() {
+        boolean result = transactionManager.transfer(sourceAccount, targetAccount, 100.0, "Transfer to target");
+        assertTrue(result);
+        assertEquals(400.0, sourceAccount.getBalance());
+        assertEquals(300.0, targetAccount.getBalance());
+        assertEquals(1, transactions.size());
+        assertEquals("001", transactions.get(0).getAccountFrom());
+        assertEquals("002", transactions.get(0).getAccountTo());
+        assertEquals(100.0, transactions.get(0).getAmount());
     }
 
     /**
@@ -120,5 +134,29 @@ public class TransactionManagerTest {
 
         filteredTransactions = transactionManager.filterTransactionsByAccount(targetAccount);
         assertEquals(2, filteredTransactions.size());
+    }
+
+    /**
+     * Tests that the source account balance is correctly updated after a successful transfer.
+     */
+    @Test
+    void testSourceAccountBalanceAfterTransfer() {
+        double initialBalance = sourceAccount.getBalance();
+        double transferAmount = 100.0;
+        boolean result = transactionManager.transfer(sourceAccount, targetAccount, transferAmount, "Transfer to target");
+        assertTrue(result);
+        assertEquals(initialBalance - transferAmount, sourceAccount.getBalance());
+    }
+
+    /**
+     * Tests that the target account balance is correctly updated after a successful transfer.
+     */
+    @Test
+    void testTargetAccountBalanceAfterTransfer() {
+        double initialBalance = targetAccount.getBalance();
+        double transferAmount = 100.0;
+        boolean result = transactionManager.transfer(sourceAccount, targetAccount, transferAmount, "Transfer to target");
+        assertTrue(result);
+        assertEquals(initialBalance + transferAmount, targetAccount.getBalance());
     }
 }
