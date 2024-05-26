@@ -3,4 +3,4 @@ AccountID,AccountType,Username,Password,Balance,Status
 233002,Saving Account,Zhong Zhenghan,000000,40.18,Active
 233023,Current Account,Zhong Zhenghan,000000,208.30,Frozen
 023153,Saving Account,Wu Botong,000000,213.13,Active
-873443,Saving,root,123456,8.00,Active
+873443,Saving Account,root,123456,8.02,Active
