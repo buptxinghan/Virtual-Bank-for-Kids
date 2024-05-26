@@ -19,35 +19,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class HorizontalLineBorderTest {
 
-//    @Test
-//    public void testPaintBorder() {
-//        JFrame frame = new JFrame();
-//        JPanel panel = new JPanel();
-//        frame.add(panel);
-//        frame.setVisible(true);
-//
-//        Color color = Color.BLACK;
-//        int thickness = 2;
-//        HorizontalLineBorder border = new HorizontalLineBorder(color, thickness);
-//
-//        panel.setBorder(border);
-//        panel.setSize(200, 200);
-//        BufferedImage image = new BufferedImage(panel.getWidth(), panel.getHeight(), BufferedImage.TYPE_INT_ARGB);
-//        Graphics2D g2d = image.createGraphics();
-//        panel.paint(g2d);
-//        g2d.dispose();
-//
-//        int bottomLineY = panel.getHeight() - thickness;
-//        int middleX = panel.getWidth() / 2;
-//        int colorRGB = color.getRGB();
-//
-//        assertEquals(colorRGB, image.getRGB(0, bottomLineY));
-//        assertEquals(colorRGB, image.getRGB(panel.getWidth() - 1, bottomLineY));
-//        assertEquals(colorRGB, image.getRGB(middleX, bottomLineY));
-//
-//        frame.dispose();
-//    }
-
     @Test
     public void testGetBorderInsets() {
         Color color = Color.BLACK;
