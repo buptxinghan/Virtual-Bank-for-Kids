@@ -1,10 +1,21 @@
 package com.virtualbankv2.entity;
-import com.virtualbankv2.entity.Account;
+
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * This class tests the functionality of the Account class.
+ * It includes tests for the constructor, setter and getter methods, and the toString method.
+ *
+ * @version 1.0
+ * @since 2024-05-10
+ * @author Ji Zheng
+ */
 public class AccountTest {
 
+    /**
+     * Tests the constructor of the Account class.
+     */
     @Test
     void testAccountConstructor() {
         String accountID = "123456789";
@@ -25,6 +36,9 @@ public class AccountTest {
         assertEquals(status, account.getStatus());
     }
 
+    /**
+     * Tests the setter and getter methods of the Account class.
+     */
     @Test
     void testAccountSetterGetterMethods() {
         Account account = new Account("123456789", "Savings", "JohnDoe", "password123", 1000.0, "Active");
@@ -45,6 +59,9 @@ public class AccountTest {
         assertEquals("Inactive", account.getStatus());
     }
 
+    /**
+     * Tests the toString method of the Account class.
+     */
     @Test
     void testAccountToStringMethod() {
         String expectedString = "Account{accountID='123456789', accountType='Savings', username='JohnDoe', password='password123', balance=1000.0, status='Active'}";

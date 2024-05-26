@@ -2,14 +2,24 @@ package com.virtualbankv2.entity;
 
 import org.junit.jupiter.api.Test;
 
-import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * This class tests the functionality of the RoundedTextField class.
+ * It includes tests for the constructor, the paintComponent method, the paintBorder method, and the contains method.
+ *
+ * @version 1.0
+ * @since 2024-05-10
+ * @autor Ji Zheng
+ */
 public class RoundedTextFieldTest {
 
+    /**
+     * Tests the constructor of the RoundedTextField class.
+     */
     @Test
     public void testConstructor() {
         int size = 10;
@@ -19,6 +29,9 @@ public class RoundedTextFieldTest {
         assertFalse(textField.isOpaque());
     }
 
+    /**
+     * Tests the paintComponent method of the RoundedTextField class.
+     */
     @Test
     public void testPaintComponent() {
         RoundedTextField textField = new RoundedTextField(10);
@@ -38,6 +51,9 @@ public class RoundedTextFieldTest {
         graphics.dispose();
     }
 
+    /**
+     * Tests the paintBorder method of the RoundedTextField class.
+     */
     @Test
     public void testPaintBorder() {
         RoundedTextField textField = new RoundedTextField(10);
@@ -57,6 +73,9 @@ public class RoundedTextFieldTest {
         graphics.dispose();
     }
 
+    /**
+     * Tests the contains method of the RoundedTextField class.
+     */
     @Test
     public void testContains() {
         RoundedTextField textField = new RoundedTextField(10);

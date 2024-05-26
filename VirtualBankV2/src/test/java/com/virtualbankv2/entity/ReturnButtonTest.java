@@ -1,16 +1,22 @@
 package com.virtualbankv2.entity;
 
 import com.virtualbankv2.control.VirtualBankApplication;
-
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * This class tests the functionality of the ReturnButton class.
+ * It includes tests for creating return buttons with and without accounts, and with default and custom sizes.
+ *
+ * @version 1.0
+ * @since 2024-05-10
+ * @author Ji Zheng
+ */
 class ReturnButtonTest {
 
     @BeforeEach
@@ -31,6 +37,9 @@ class ReturnButtonTest {
         }
     }
 
+    /**
+     * Tests the createReturnButton method with no account and default size.
+     */
     @Test
     void testCreateReturnButton_NoAccount_DefaultSize() {
         JFrame frame = new JFrame();
@@ -40,6 +49,9 @@ class ReturnButtonTest {
         assertEquals(new Dimension(200, 50), returnButton.getPreferredSize());
     }
 
+    /**
+     * Tests the createReturnButton method with no account and custom size.
+     */
     @Test
     void testCreateReturnButton_NoAccount_CustomSize() {
         JFrame frame = new JFrame();
@@ -50,6 +62,9 @@ class ReturnButtonTest {
         assertEquals(customSize, returnButton.getPreferredSize());
     }
 
+    /**
+     * Tests the createReturnButton method with an account.
+     */
     @Test
     void testCreateReturnButton_WithAccount() {
         JFrame frame = new JFrame();

@@ -10,6 +10,15 @@ import static com.virtualbankv2.boundary.Reader.users;
 import static com.virtualbankv2.control.VirtualBankApplication.currentUser;
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * This class tests the functionality of the LoginController class.
+ * It includes tests for validating user credentials, handling non-existent users,
+ * and checking for empty usernames and passwords.
+ *
+ * @version 1.0
+ * @since 2024-05-10
+ * @author Ji Zheng
+ */
 public class LoginControllerTest {
 
     private LoginController loginController;
@@ -23,6 +32,9 @@ public class LoginControllerTest {
         currentUser = null; // Reset currentUser before each test
     }
 
+    /**
+     * Tests the checkCredentials method with valid credentials.
+     */
     @Test
     void testValidCredentials() {
         boolean result = loginController.checkCredentials("testUser", "password");
@@ -31,6 +43,9 @@ public class LoginControllerTest {
         assertEquals("testUser", currentUser.getUsername(), "Current user username should match");
     }
 
+    /**
+     * Tests the checkCredentials method with invalid credentials.
+     */
     @Test
     void testInvalidCredentials() {
         boolean result = loginController.checkCredentials("testUser", "wrongPassword");
@@ -38,6 +53,9 @@ public class LoginControllerTest {
         assertNull(currentUser, "Current user should be null after failed login");
     }
 
+    /**
+     * Tests the checkCredentials method with a non-existent user.
+     */
     @Test
     void testNonExistentUser() {
         boolean result = loginController.checkCredentials("nonExistentUser", "password");
@@ -45,6 +63,9 @@ public class LoginControllerTest {
         assertNull(currentUser, "Current user should be null after failed login");
     }
 
+    /**
+     * Tests the checkCredentials method with an empty username.
+     */
     @Test
     void testEmptyUsername() {
         boolean result = loginController.checkCredentials("", "password");
@@ -52,6 +73,9 @@ public class LoginControllerTest {
         assertNull(currentUser, "Current user should be null after failed login");
     }
 
+    /**
+     * Tests the checkCredentials method with an empty password.
+     */
     @Test
     void testEmptyPassword() {
         boolean result = loginController.checkCredentials("testUser", "");
@@ -59,6 +83,9 @@ public class LoginControllerTest {
         assertNull(currentUser, "Current user should be null after failed login");
     }
 
+    /**
+     * Tests the checkCredentials method with empty credentials.
+     */
     @Test
     void testEmptyCredentials() {
         boolean result = loginController.checkCredentials("", "");

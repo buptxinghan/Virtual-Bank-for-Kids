@@ -13,6 +13,14 @@ import static com.virtualbankv2.entity.Task.totalcounter;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
+/**
+ * This class tests the functionality of the VirtualBankApplication class.
+ * It includes tests for constructor initialization and retrieving current user accounts.
+ *
+ * @version 1.0
+ * @since 2024-05-10
+ * @author Ji Zheng
+ */
 public class VirtualBankApplicationTest {
 
     private VirtualBankApplication app;
@@ -27,6 +35,9 @@ public class VirtualBankApplicationTest {
         app = new VirtualBankApplication();
     }
 
+    /**
+     * Tests the constructor of VirtualBankApplication for proper initialization.
+     */
     @Test
     public void testConstructorInitialization() {
         User expectedUser = users.get(1);
@@ -37,6 +48,9 @@ public class VirtualBankApplicationTest {
         assertEquals(expectedTotalCounter, totalcounter);
     }
 
+    /**
+     * Tests the getCurrentUserAccounts method for retrieving accounts of the current user.
+     */
     @Test
     public void testGetCurrentUserAccounts() {
         User currentUser = users.get(1);

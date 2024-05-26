@@ -1,8 +1,6 @@
 package com.virtualbankv2.control;
 
 import com.virtualbankv2.boundary.Reader;
-import com.virtualbankv2.boundary.Writer;
-import com.virtualbankv2.boundary.InterestMessagePage;
 import com.virtualbankv2.entity.Account;
 import com.virtualbankv2.entity.Interest;
 import com.virtualbankv2.entity.User;
@@ -19,6 +17,15 @@ import static com.virtualbankv2.boundary.Reader.interests;
 import static com.virtualbankv2.control.VirtualBankApplication.currentUser;
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * This class tests the functionality of the InterestController class.
+ * It includes tests for calculating days between dates, retrieving last update by user,
+ * and getting saving accounts.
+ *
+ * @version 1.0
+ * @since 2024-05-01
+ * @author Ji Zheng
+ */
 public class InterestControllerTest {
 
     private InterestController interestController;
@@ -39,6 +46,9 @@ public class InterestControllerTest {
         interests.add(new Interest("testUser", "2024/01/01"));
     }
 
+    /**
+     * Tests the calculateDaysBetween method of InterestController.
+     */
     @Test
     void testCalculateDaysBetween() {
         String dateStr1 = "2024/05/14";
@@ -47,6 +57,9 @@ public class InterestControllerTest {
         assertEquals(134, daysBetween);
     }
 
+    /**
+     * Tests the getLastUpdateByUser method of InterestController.
+     */
     @Test
     void testGetLastUpdateByUser() {
         String lastUpdate = interestController.getLastUpdateByUser();
@@ -54,6 +67,9 @@ public class InterestControllerTest {
         assertEquals(LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy/MM/dd")), interests.get(0).getLastUpdate());
     }
 
+    /**
+     * Tests the getSavingAccounts method of InterestController.
+     */
     @Test
     void testGetSavingAccounts() {
         List<Account> savingAccounts = interestController.getSavingAccounts();
