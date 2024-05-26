@@ -64,12 +64,16 @@ The Virtual Bank Application for Kids is a Java-based standalone application des
 2. Run the application:
 
    ```bash
-   java -jar virtual-bank-kids.jar
+   java -jar VirtualBankV2.jar
    ```
 
 ## Usage
 
 After running the application, users can interact through a graphical user interface (GUI). Upon logging in, the interface is divided into four sections: My Account, My Tasks, My Goals, and Instruction Manual.
+
+### Parental Lock
+
+**The password for the child lock is the root user's password 111.**
 
 ### Graphical User Interface
 
