@@ -1,10 +1,21 @@
 package com.virtualbankv2.entity;
-import com.virtualbankv2.entity.Task;
+
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * This class tests the functionality of the Task class.
+ * It includes tests for the constructor, getter, and setter methods.
+ *
+ * @version 1.0
+ * @since 2024-05-10
+ * @author Ji Zheng
+ */
 public class TaskTest {
 
+    /**
+     * Tests the constructor of the Task class.
+     */
     @Test
     void testTaskConstructor() {
         Task task = new Task("Do homework", 10.0, "Homework", "2024-05-10", "2024-05-15", "JohnDoe");
@@ -18,6 +29,9 @@ public class TaskTest {
         assertEquals("JohnDoe", task.getUserName());
     }
 
+    /**
+     * Tests the getter and setter methods of the Task class.
+     */
     @Test
     void testTaskGettersAndSetters() {
         Task task = new Task("Do homework", 10.0, "Homework", "2024-05-10", "2024-05-15", "JohnDoe");

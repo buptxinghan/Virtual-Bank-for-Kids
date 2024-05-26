@@ -14,6 +14,15 @@ import java.util.List;
 import static com.virtualbankv2.boundary.Reader.transactions;
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * This class tests the functionality of the TransactionManager class.
+ * It includes tests for transferring funds between accounts, generating transaction IDs,
+ * formatting transaction IDs, and filtering transactions by account.
+ *
+ * @version 1.0
+ * @since 2024-05-10
+ * @author Ji Zheng
+ */
 public class TransactionManagerTest {
 
     private TransactionManager transactionManager;
@@ -30,6 +39,9 @@ public class TransactionManagerTest {
         targetAccount = new Account("002", "Saving", "user2", "password", 200.0, "Active");
     }
 
+    /**
+     * Tests the transfer method when the source account has insufficient balance.
+     */
     @Test
     void testTransferInsufficientBalance() {
         boolean result = transactionManager.transfer(sourceAccount, targetAccount, 600.0, "Transfer to target");
@@ -39,6 +51,9 @@ public class TransactionManagerTest {
         assertEquals(0, transactions.size());
     }
 
+    /**
+     * Tests the transfer method when the target account is frozen.
+     */
     @Test
     void testTransferToFrozenAccount() {
         targetAccount.setStatus("Frozen");
@@ -49,6 +64,9 @@ public class TransactionManagerTest {
         assertEquals(0, transactions.size());
     }
 
+    /**
+     * Tests the transfer method when the target account is deleted.
+     */
     @Test
     void testTransferToDeletedAccount() {
         targetAccount.setStatus("Deleted");
@@ -59,6 +77,9 @@ public class TransactionManagerTest {
         assertEquals(0, transactions.size());
     }
 
+    /**
+     * Tests the getTransactionID method for generating unique transaction IDs.
+     */
     @Test
     void testGetTransactionID() throws Exception {
         Method getTransactionIDMethod = TransactionManager.class.getDeclaredMethod("getTransactionID");
@@ -71,6 +92,9 @@ public class TransactionManagerTest {
         assertEquals(2, transactionID);
     }
 
+    /**
+     * Tests the getFormatTransactionID method for formatting transaction IDs.
+     */
     @Test
     void testGetFormatTransactionID() throws Exception {
         Method getTransactionIDMethod = TransactionManager.class.getDeclaredMethod("getTransactionID");
@@ -83,6 +107,9 @@ public class TransactionManagerTest {
         assertEquals("0002", transactionManager.getFormatTransactionID());
     }
 
+    /**
+     * Tests the filterTransactionsByAccount method for filtering transactions by a given account.
+     */
     @Test
     void testFilterTransactionsByAccount() {
         transactions.add(new Transaction("001", "001", "002", 100.0, "2024/01/01", "Description"));

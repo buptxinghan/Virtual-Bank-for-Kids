@@ -1,9 +1,21 @@
 package com.virtualbankv2.entity;
+
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+/**
+ * This class tests the functionality of the SupportSystem class.
+ * It includes tests for the constructor and getter methods.
+ *
+ * @version 1.0
+ * @since 2024-05-10
+ * @author Ji Zheng
+ */
 public class SupportSystemTest {
 
+    /**
+     * Tests the constructor of the SupportSystem class.
+     */
     @Test
     public void testSupportSystemCreation() {
         String faqID = "001";
