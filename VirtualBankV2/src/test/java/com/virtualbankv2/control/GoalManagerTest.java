@@ -12,6 +12,14 @@ import java.util.List;
 import static com.virtualbankv2.control.VirtualBankApplication.currentUser;
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * This class tests the functionality of the GoalManager class.
+ * It includes tests for removing completed goals from the goals file.
+ *
+ * @version 1.0
+ * @since 2024-04-20
+ * @author Ji Zheng
+ */
 public class GoalManagerTest {
 
     private GoalManager goalManager;
@@ -35,6 +43,9 @@ public class GoalManagerTest {
         Files.write(tempFilePath, String.join("\n", goals).getBytes());
     }
 
+    /**
+     * Tests the removeGoalIfComplete method of GoalManager.
+     */
     @Test
     void testRemoveGoalIfComplete() throws IOException {
         goalManager.removeGoalIfComplete();

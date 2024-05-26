@@ -1,12 +1,21 @@
 package com.virtualbankv2.entity;
-import com.virtualbankv2.entity.Goal;
+
 import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-
+/**
+ * This class tests the functionality of the Goal class.
+ * It includes tests for the constructor and the setter and getter methods.
+ *
+ * @version 1.0
+ * @since 2024-05-10
+ * @author Ji Zheng
+ */
 public class GoalTest {
 
+    /**
+     * Tests the constructor of the Goal class.
+     */
     @Test
     void testGoalConstructor() {
         String goalName = "123456";
@@ -15,8 +24,7 @@ public class GoalTest {
         double currentAmount = 50.0;
         String username = "JohnDoe";
 
-
-        Goal goal = new Goal(goalName,description,targetAmount,currentAmount,username);
+        Goal goal = new Goal(goalName, description, targetAmount, currentAmount, username);
 
         assertNotNull(goal);
         assertEquals(goalName, goal.getGoalName());
@@ -26,6 +34,9 @@ public class GoalTest {
         assertEquals(username, goal.getUsername());
     }
 
+    /**
+     * Tests the setter and getter methods of the Goal class.
+     */
     @Test
     void testGoalSettersAndGetters() {
         Goal goal = new Goal("", "", 0.0, 0.0, "");

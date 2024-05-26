@@ -2,14 +2,24 @@ package com.virtualbankv2.entity;
 
 import org.junit.jupiter.api.Test;
 
-import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * This class tests the functionality of the RoundedPasswordField class.
+ * It includes tests for the constructor, the paintComponent method, the paintBorder method, and the contains method.
+ *
+ * @version 1.0
+ * @since 2024-05-10
+ * @autor Ji Zheng
+ */
 public class RoundedPasswordFieldTest {
 
+    /**
+     * Tests the constructor of the RoundedPasswordField class.
+     */
     @Test
     public void testConstructor() {
         int size = 10;
@@ -19,6 +29,9 @@ public class RoundedPasswordFieldTest {
         assertFalse(passwordField.isOpaque());
     }
 
+    /**
+     * Tests the paintComponent method of the RoundedPasswordField class.
+     */
     @Test
     public void testPaintComponent() {
         RoundedPasswordField passwordField = new RoundedPasswordField(10);
@@ -37,6 +50,9 @@ public class RoundedPasswordFieldTest {
         graphics.dispose();
     }
 
+    /**
+     * Tests the paintBorder method of the RoundedPasswordField class.
+     */
     @Test
     public void testPaintBorder() {
         RoundedPasswordField passwordField = new RoundedPasswordField(10);
@@ -56,6 +72,9 @@ public class RoundedPasswordFieldTest {
         graphics.dispose();
     }
 
+    /**
+     * Tests the contains method of the RoundedPasswordField class.
+     */
     @Test
     public void testContains() {
         RoundedPasswordField passwordField = new RoundedPasswordField(10);
