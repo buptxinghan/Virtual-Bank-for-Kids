@@ -8,6 +8,16 @@ import javax.swing.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * This class tests the functionality of the HomePage class.
+ * It includes tests for the account button, tasks button, goals button, manual button,
+ * and window visibility.
+ *
+ * @version 2.0
+ * @since 2024-04-15
+ * @author Ji Zheng
+ */
+
 public class HomePageTest {
     private HomePage homePage;
 
@@ -60,7 +70,6 @@ public class HomePageTest {
     }
 
     private String getButtonText(JButton button) {
-        // Extract the text content from the button, ignoring HTML tags
         return button.getText().replaceAll("\\<.*?\\>", "").trim();
     }
 }

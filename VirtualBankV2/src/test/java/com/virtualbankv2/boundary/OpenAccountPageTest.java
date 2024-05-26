@@ -1,5 +1,5 @@
 package com.virtualbankv2.boundary;
-import com.virtualbankv2.boundary.OpenAccountPage;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -8,7 +8,14 @@ import java.awt.*;
 import java.awt.event.InputEvent;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+
+/**
+ * This class tests the functionality of the OpenAccountPage class.
+ * It includes tests for actionPerformed method with invalid input, passwords that do not match, and successful account creation.
+ *
+ * @version 1.0
+ * @since 2024-05-01
+ */
 
 class OpenAccountPageTest {
 
@@ -53,10 +60,8 @@ class OpenAccountPageTest {
             for (char c : text.toCharArray()) {
                 robot.keyPress(Character.toUpperCase(c));
                 robot.keyRelease(Character.toUpperCase(c));
-                // Add a short delay between each character to simulate typing speed
                 robot.delay(50);
             }
-            // Add a delay after each password to allow the system to process it
             robot.delay(100);
         }
     }
@@ -66,7 +71,6 @@ class OpenAccountPageTest {
         Robot robot = new Robot();
         robot.mouseMove(p.x + button.getWidth() / 2, p.y + button.getHeight() / 2);
         robot.mousePress(InputEvent.BUTTON1_DOWN_MASK);
-        // Add a delay after clicking the button to ensure the system processes the click
         robot.delay(100);
         robot.mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
     }

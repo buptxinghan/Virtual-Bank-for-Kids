@@ -23,7 +23,6 @@ class ReturnButtonTest {
         } catch (NoSuchFieldException | IllegalAccessException e) {
             e.printStackTrace();
         }
-        // Mock Reader.users as well
         try {
             Class<?> readerClass = Class.forName("com.virtualbankv2.boundary.Reader");
             readerClass.getDeclaredField("users").set(null, users);

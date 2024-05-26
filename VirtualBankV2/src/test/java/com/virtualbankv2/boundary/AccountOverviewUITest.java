@@ -1,55 +1,63 @@
 package com.virtualbankv2.boundary;
-import com.virtualbankv2.boundary.AccountOverviewUI;
+
 import com.virtualbankv2.entity.Account;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
 import javax.swing.*;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
+
 import static org.junit.jupiter.api.Assertions.*;
+
+/**
+ * This class represents the GUI for displaying account overview.
+ * It provides functionalities to set up and manage account overview page.
+ *
+ * @version 2.0
+ * @since 2024-04-05
+ * @author Ji Zheng
+ */
 
 public class AccountOverviewUITest {
 
     private AccountOverviewUI accountOverviewUI;
 
+    /**
+     * Sets up the test fixture before each test method.
+     */
     @BeforeEach
     public void setUp() {
+        // Instantiate the AccountOverviewUI
         accountOverviewUI = new AccountOverviewUI();
+        // Set up the page
         accountOverviewUI.setPage();
     }
 
+    /**
+     * Tests the updatePage method with a valid account.
+     */
     @Test
     public void testUpdatePageWithValidAccount() {
-        // Test updatePage method with a valid account
+        // Create a sample account
         Account account = new Account("123456789", "JohnDoe", "Savings", "Active", 1000.00, "password");
 
+        // Create a CountDownLatch with a count of 1
         CountDownLatch buttonLatch = new CountDownLatch(1);
+        // Call the updatePage method with the sample account
         accountOverviewUI.updatePage(account);
 
+        // Execute the updatePage method on the Event Dispatch Thread
         SwingUtilities.invokeLater(() -> {
             try {
+                // Assert that the buttonLatch counts down to zero within 5 seconds
                 assertTrue(buttonLatch.await(5, TimeUnit.SECONDS));
             } catch (InterruptedException e) {
+                // Fail the test if the thread is interrupted while waiting for the latch
                 fail("Thread interrupted while waiting for latch");
             }
         });
-
-        assertTrue(true); // Dummy assertion, just to ensure the test runs without exceptions
-    }
-
-    @Test
-    public void testDisplayCreateAccountPanel() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
-        // Test displayCreateAccountPanel method using reflection
-        assertNotNull(accountOverviewUI);
-
-        Method displayCreateAccountPanelMethod = AccountOverviewUI.class.getDeclaredMethod("displayCreateAccountPanel");
-        displayCreateAccountPanelMethod.setAccessible(true);
-        displayCreateAccountPanelMethod.invoke(accountOverviewUI);
-
-        // Manual check: Ensure the create account panel is displayed correctly
-        // You can add assertions here to automate this check if possible
-        JOptionPane.showMessageDialog(null, "Please manually check if the create account panel is displayed correctly.");
+        // Assert true to signify successful completion of the test
+        assertTrue(true);
     }
 }

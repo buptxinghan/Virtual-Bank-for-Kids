@@ -11,6 +11,14 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.List;
 
+/**
+ * This class tests the functionality of the Reader class.
+ * It includes tests for reading users, accounts, goals, tasks, support system data, and transactions from CSV files.
+ *
+ * @version 1.0
+ * @since 2024-05-01
+ */
+
 class ReaderTest {
 
     private Reader reader;

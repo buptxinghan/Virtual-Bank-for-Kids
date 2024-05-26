@@ -11,6 +11,15 @@ import java.util.Date;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * This class tests the functionality of the CreateTaskPage class.
+ * It includes tests for retrieving title and reward fields, as well as simulating the save button click action.
+ *
+ * @version 1.0
+ * @since 2024-04-24
+ * @author Ji Zheng
+ */
+
 public class CreateTaskPageTest {
 
     private CreateTaskPage createTaskPage;

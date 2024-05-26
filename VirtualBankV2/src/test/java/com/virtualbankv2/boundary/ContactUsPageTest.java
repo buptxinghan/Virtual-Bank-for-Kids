@@ -4,6 +4,15 @@ import org.junit.Test;
 import java.awt.*;
 import static org.junit.Assert.*;
 
+/**
+ * This class tests the functionality of the ContactUsPage class.
+ * It includes tests for initialization, color representation, and return button.
+ *
+ * @version 1.0
+ * @since 2024-04-20
+ * @author Ji Zheng
+ */
+
 public class ContactUsPageTest {
 
     @Test

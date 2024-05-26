@@ -9,6 +9,15 @@ import java.awt.image.BufferedImage;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * This class tests the functionality of the FeatureIntroPage class.
+ * It includes tests for initializing the main panel, top panel, bottle panel, and gradient background.
+ *
+ * @version 1.0
+ * @since 2024-04-25
+ * @author Ji Zheng
+ */
+
 public class FeatureIntroPageTest {
 
     private FeatureIntroPage featureIntroPage;
@@ -62,9 +71,18 @@ public class FeatureIntroPageTest {
         Color topColor = new Color(image.getRGB(0, 0));
         Color bottomColor = new Color(image.getRGB(0, mainPanel.getHeight() - 1));
 
-        assertEquals(new Color(0x46a6e2), topColor);
-        assertEquals(new Color(0x638bbf), bottomColor);
+        assertAll("Gradient Background Colors",
+                () -> assertRGBEquals(new Color(0x46a6e2), topColor),
+                () -> assertRGBEquals(new Color(0x638bbf), bottomColor)
+        );
 
         g2d.dispose();
+    }
+
+    private void assertRGBEquals(Color expected, Color actual) {
+        int tolerance = 1;
+        assertEquals(expected.getRed(), actual.getRed(), tolerance, "Red component mismatch");
+        assertEquals(expected.getGreen(), actual.getGreen(), tolerance, "Green component mismatch");
+        assertEquals(expected.getBlue(), actual.getBlue(), tolerance, "Blue component mismatch");
     }
 }

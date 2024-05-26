@@ -8,13 +8,22 @@ import org.junit.jupiter.api.Test;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.image.BufferedImage;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
+
+/**
+ * This class tests the functionality of the GoalOverviewUI class.
+ * It includes tests for initializing the header panel, goal info panel, button panel,
+ * handling goal creation when there are no goals, and handling goal creation when a goal is achieved.
+ *
+ * @version 1.0
+ * @since 2024-04-25
+ * @author Ji Zheng
+ */
 
 public class GoalOverviewUITest {
 
@@ -82,7 +91,7 @@ public class GoalOverviewUITest {
         handleCreateGoalMethod.setAccessible(true);
         handleCreateGoalMethod.invoke(goalOverviewUI);
 
-        assertFalse(goalOverviewUI.isVisible()); // Ensure the window is closed
+        assertFalse(goalOverviewUI.isVisible());
     }
 
     @SuppressWarnings("unchecked")

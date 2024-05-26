@@ -2,8 +2,6 @@ package com.virtualbankv2.boundary;
 
 import com.virtualbankv2.control.VirtualBankApplication;
 import com.virtualbankv2.entity.Account;
-import com.virtualbankv2.entity.RoundedButton;
-import com.virtualbankv2.entity.ReturnButton;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -13,6 +11,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
+
+/**
+ * This class tests the functionality of the CreateGoalUI class.
+ * It includes tests for saving goals with valid and invalid inputs.
+ *
+ * @version 2.0
+ * @since 2024-04-28
+ * @author Ji Zheng
+ */
 
 public class CreateGoalUITest {
     private CreateGoalUI createGoalUI;
@@ -78,7 +85,7 @@ public class CreateGoalUITest {
 
     private boolean waitForDialog(String message) {
         long startTime = System.currentTimeMillis();
-        long timeout = 2000; // 2 seconds timeout
+        long timeout = 2000;
 
         while (System.currentTimeMillis() - startTime < timeout) {
             Window[] windows = Window.getWindows();

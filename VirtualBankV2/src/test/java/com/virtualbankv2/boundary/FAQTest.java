@@ -9,6 +9,15 @@ import java.awt.image.BufferedImage;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * This class tests the functionality of the FAQ class.
+ * It includes tests for initializing the main panel, top panel, bottle panel, and gradient background.
+ *
+ * @version 1.0
+ * @since 2024-04-25
+ * @author Ji Zheng
+ */
+
 public class FAQTest {
 
     private FAQ faq;
@@ -64,7 +73,6 @@ public class FAQTest {
 
         assertEquals(new Color(0x46a6e2), topColor);
         assertEquals(new Color(0x638bbf), bottomColor);
-
         g2d.dispose();
     }
 }

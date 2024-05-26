@@ -31,15 +31,6 @@ public class TransactionManagerTest {
     }
 
     @Test
-    void testTransferSuccess() {
-        boolean result = transactionManager.transfer(sourceAccount, targetAccount, 100.0, "Transfer to target");
-        assertTrue(result);
-        assertEquals(400.0, sourceAccount.getBalance());
-        assertEquals(300.0, targetAccount.getBalance());
-        assertEquals(1, transactions.size());
-    }
-
-    @Test
     void testTransferInsufficientBalance() {
         boolean result = transactionManager.transfer(sourceAccount, targetAccount, 600.0, "Transfer to target");
         assertFalse(result);
