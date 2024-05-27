@@ -57,7 +57,11 @@ The Virtual Bank Application for Kids is a Java-based standalone application des
 
 #### Method 2: Run the application using the packaged jar file
 
-1. Ensure you have the jar file (e.g., `virtual-bank-kids.jar`).
+1. Change directory to the jar file location:
+
+   ```bash
+   cd VirtualBankV2_jar
+   ```
 
 2. Run the application:
 
